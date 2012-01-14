@@ -5,8 +5,7 @@ Makefile$
 Makefile.pre$
 TAGS$
 autom4te.cache$
-^build/
-^Doc/build/
+build/
 buildno$
 config.cache
 config.log
@@ -33,13 +32,11 @@ Modules/config.c
 Modules/ld_so_aix$
 Parser/pgen$
 Parser/pgen.stamp$
-PCbuild/amd64/
 ^core
 ^python-gdb.py
-^python.exe-gdb.py
-^pybuilddir.txt
 
 syntax: glob
+python.exe-gdb.py
 libpython*.a
 libpython*.so*
 *.swp
@@ -49,14 +46,12 @@ libpython*.so*
 *.pyd
 *.cover
 *~
-Lib/_sysconfigdata.py
 Lib/lib2to3/*.pickle
 Lib/test/data/*
 Misc/*.wpu
 PC/python_nt*.h
 PC/pythonnt_rc*.h
 PC/*.obj
-PC/*.exe
 PCbuild/*.exe
 PCbuild/*.dll
 PCbuild/*.pdb
@@ -65,12 +60,7 @@ PCbuild/*.exp
 PCbuild/*.o
 PCbuild/*.ncb
 PCbuild/*.bsc
-PCbuild/*.user
-PCbuild/*.suo
 PCbuild/Win32-temp-*
-PCbuild/x64-temp-*
-__pycache__
-Modules/_testembed
 .coverage
 coverage/
 htmlcov/

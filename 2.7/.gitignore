@@ -12,7 +12,6 @@ Doc/tools/jinja2/
 Doc/tools/pygments/
 Doc/tools/sphinx/
 Lib/lib2to3/*.pickle
-Lib/_sysconfigdata.py
 Makefile
 Makefile.pre
 Misc/python.pc
@@ -21,7 +20,6 @@ Modules/Setup.config
 Modules/Setup.local
 Modules/config.c
 Modules/ld_so_aix
-Modules/_testembed
 PCbuild/*.bsc
 PCbuild/*.dll
 PCbuild/*.exe
@@ -33,14 +31,12 @@ PCbuild/*.pdb
 PCbuild/Win32-temp-*
 Parser/pgen
 Parser/pgen.stamp
-__pycache__
 autom4te.cache
 build/
 config.log
 config.status
 libpython*.a
 libpython*.so*
-pybuilddir.txt
 pyconfig.h
 python
 python-gdb.py

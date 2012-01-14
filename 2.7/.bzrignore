@@ -11,7 +11,6 @@ python
 build
 Makefile.pre
 platform
-pybuilddir.txt
 pyconfig.h
 libpython*.a
 libpython*.so*
@@ -31,13 +30,10 @@ Modules/Setup
 Modules/Setup.config
 Modules/Setup.local
 Modules/config.c
-Modules/ld_so_aix
 Parser/pgen
-Parser/pgen.stamp
 Lib/test/data/*
 Lib/lib2to3/Grammar*.pickle
 Lib/lib2to3/PatternGrammar*.pickle
-__pycache__
 .coverage
 coverage/*
 htmlcov/*
