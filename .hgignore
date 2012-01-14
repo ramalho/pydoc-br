@@ -74,3 +74,4 @@ Modules/_testembed
 .coverage
 coverage/
 htmlcov/
+2.7/Doc/build
