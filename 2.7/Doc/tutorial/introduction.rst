@@ -1,65 +1,70 @@
 .. _tut-informal:
 
-**********************************
-An Informal Introduction to Python
-**********************************
+********************************
+Uma introdução informal a Python
+********************************
 
-In the following examples, input and output are distinguished by the presence or
-absence of prompts (``>>>`` and ``...``): to repeat the example, you must type
-everything after the prompt, when the prompt appears; lines that do not begin
-with a prompt are output from the interpreter. Note that a secondary prompt on a
-line by itself in an example means you must type a blank line; this is used to
-end a multi-line command.
+Nos exemplos seguintes, pode-se distinguir a entrada da saída pela presença ou
+ausência dos prompts (``>>>`` and ``...``): para repetir o exemplo, você deve
+digitar tudo após o prompt, quando o mesmo aparece; linhas que não começarem
+com o prompt são na verdade as saídas geradas pelo interpretador. Observe que
+quando aparece uma linha contendo apenas um prompt secundário ``...`` você
+deve digitar uma linha em branco; é assim que se encerra um comando de
+múltiplas linhas.
 
-Many of the examples in this manual, even those entered at the interactive
-prompt, include comments.  Comments in Python start with the hash character,
-``#``, and extend to the end of the physical line.  A comment may appear at the
-start of a line or following whitespace or code, but not within a string
-literal.  A hash character within a string literal is just a hash character.
-Since comments are to clarify code and are not interpreted by Python, they may
-be omitted when typing in examples.
+Muitos dos exemplos neste manual, até mesmo aqueles digitados interativamente,
+incluem comentários. Comentários em Python são iniciados pelo caracter ``#``,
+e se extendem até o final da linha física. Um comentário pode aparecer no
+início da linha, depois de um espaço em branco ou código, mas nunca dentro de
+uma string literal. O caractere ``#`` em duma string literal não passa de um
+caratere ``#``. Uma vez que os comentários são usados apenas para explicar o
+código e não são interpretados pelo Python, eles podem ser omitidos ao digitar
+os exemplos.
 
-Some examples::
+Alguns examplos::
 
-   # this is the first comment
-   SPAM = 1                 # and this is the second comment
-                            # ... and now a third!
-   STRING = "# This is not a comment."
+   # este é o primeiro comentário
+   SPAM = 1                 # e este é o segundo comentário
+                            # ... e agora um terceiro!
+   STRING = "# Isto não é um comentário."
 
 
 .. _tut-calculator:
 
-Using Python as a Calculator
-============================
+Usando Python como uma calculadora
+==================================
 
-Let's try some simple Python commands.  Start the interpreter and wait for the
-primary prompt, ``>>>``.  (It shouldn't take long.)
+Vamos expermentar alguns comandos simples em Python. Inicie o interpretador e
+aguarde o prompt primário, ``>>>``. (Não deve demorar muito.)
 
 
 .. _tut-numbers:
 
-Numbers
+Números
 -------
 
-The interpreter acts as a simple calculator: you can type an expression at it
-and it will write the value.  Expression syntax is straightforward: the
-operators ``+``, ``-``, ``*`` and ``/`` work just like in most other languages
-(for example, Pascal or C); parentheses can be used for grouping.  For example::
+O interpretador funciona como uma calculadora bem simples: você pode digitar
+uma expressão e o  resultado será apresentado. A sintaxe de expressões é a
+usual: operadores ``+``, ``-``, ``*`` e ``/`` funcionam da mesma forma que em outras
+linguagens tradicionais (por exemplo, Pascal ou C); parênteses podem ser
+usados para agrupar expressões. Por exemplo::
 
    >>> 2+2
    4
-   >>> # This is a comment
+   >>> # Isto é um comentário
    ... 2+2
    4
-   >>> 2+2  # and a comment on the same line as code
+   >>> 2+2  # em um comentário na mesma linha do código
    4
    >>> (50-5*6)/4
    5
-   >>> # Integer division returns the floor:
+   >>> # A divisão entre inteiros arredonda para baixo:
    ... 7/3
    2
    >>> 7/-3
    -3
+
+.. XXX: parei aqui em 2012-01-14 15:26
 
 The equal sign (``'='``) is used to assign a value to a variable. Afterwards, no
 result is displayed before the next interactive prompt::

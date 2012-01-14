@@ -1,46 +1,49 @@
 .. _tutorial-index:
 
-######################
-  The Python Tutorial
-######################
+####################
+O tutorial de Python
+####################
 
 :Release: |version|
 :Date: |today|
 
-Python is an easy to learn, powerful programming language. It has efficient
-high-level data structures and a simple but effective approach to
-object-oriented programming. Python's elegant syntax and dynamic typing,
-together with its interpreted nature, make it an ideal language for scripting
-and rapid application development in many areas on most platforms.
+Python é uma linguagem de programação poderosa e de fácil aprendizado. Ela
+possui estruturas de dados de alto nível eficientes, bem como adota uma
+abordagem simples e efetiva para a programação orientada a objetos. Sua
+sintaxe elegante e tipagem dinâmica, além de sua natureza interpretada,
+tornam Python ideal para scripting e para o desenvolvimento rápido de
+aplicações em diversas áreas e na maioria das plataformas.
 
-The Python interpreter and the extensive standard library are freely available
-in source or binary form for all major platforms from the Python Web site,
-http://www.python.org/, and may be freely distributed. The same site also
-contains distributions of and pointers to many free third party Python modules,
-programs and tools, and additional documentation.
+O interpretador Python e sua extensa biblioteca padrão estão disponíveis na
+forma de código fonte ou binário para a maioria das plataformas a partir do
+site, http://www.python.org/, e podem ser distribuídos livremente. No mesmo
+sítio estão disponíveis distribuições e referências para diversos módulos,
+programas, ferramentas e documentação adicional, contribuídos por terceiros.
 
-The Python interpreter is easily extended with new functions and data types
-implemented in C or C++ (or other languages callable from C). Python is also
-suitable as an extension language for customizable applications.
+O interpretador Python é facilmente extensível incorporando novas funções e
+tipos de dados implementados em C ou C++ (ou qualquer outra linguagem
+acessível a partir de C). Python também se adequa como linguagem de extensão
+para customizar aplicações. Este tutorial introduz o leitor informalmente aos
+conceitos básicos e aspectos do sistema e linguagem Python. É aconselhável ter
+um interpretador Python disponível para se poder “por a mão na massa”, porém
+todos os exemplos são auto-contidos, assim o tutorial também pode ser lido sem
+que haja a necessidade de se estar on-line.
 
-This tutorial introduces the reader informally to the basic concepts and
-features of the Python language and system. It helps to have a Python
-interpreter handy for hands-on experience, but all examples are self-contained,
-so the tutorial can be read off-line as well.
+Para uma descrição dos módulos e objetos padrão, veja o documento 
+:ref:`library-index`. O  :ref:`reference-index` oferece uma definição formal 
+da linguagem. Para se escrever extensões em C ou C++, leia  
+:ref:`extending-index` e :ref:`c-api-index`. Existem também diversos livros 
+abordando Python em maior profundidade.
 
-For a description of standard objects and modules, see :ref:`library-index`.
-:ref:`reference-index` gives a more formal definition of the language.  To write
-extensions in C or C++, read :ref:`extending-index` and
-:ref:`c-api-index`. There are also several books covering Python in depth.
+Este tutorial não almeja ser abrangente ou abordar todos os aspectos, nem
+mesmo todos os mais frequentes. Ao invés disso, ele introduz muitas das
+características dignas de nota em Python, e fornecerá a você uma boa idéia
+sobre o estilo e o sabor da linguagem. Após a leitura, você deve ser capaz de
+ler e escrever programas e módulos em Python, e estará pronto para aprender
+mais sobre os diversos módulos de biblioteca descritos em
+:ref:`library-index`.
 
-This tutorial does not attempt to be comprehensive and cover every single
-feature, or even every commonly used feature. Instead, it introduces many of
-Python's most noteworthy features, and will give you a good idea of the
-language's flavor and style. After reading it, you will be able to read and
-write Python modules and programs, and you will be ready to learn more about the
-various Python library modules described in :ref:`library-index`.
-
-The :ref:`glossary` is also worth going through.
+Também vale a pena folhear o :ref:`glossary`.
 
 .. toctree::
    :numbered:
@@ -59,3 +62,18 @@ The :ref:`glossary` is also worth going through.
    whatnow.rst
    interactive.rst
    floatingpoint.rst
+
+.. note:: Sobre esta tradução
+
+   A tradução original do tutorial da versão 2.1 do inglês para o português
+   foi feita por Rodrigo Senra, e patrocinada pela GPr Sistemas Ltda. 
+   (http://www.gpr.com.br).
+
+   A atualização do tutorial para a versão 2.4 foi realizada por voluntários
+   do projeto PythonDoc-Brasil: Pedro Werneck, Osvaldo Santana Neto, José
+   Alexandre Nalon, Felipe Lessa, Pedro de Medeiros, Rafael Almeida, Renata
+   Palazzo, Rodrigo Senra e outros.
+   (http://www.pythonbrasil.com.br/moin.cgi/PythonDoc)
+
+   A atualização para a versão 2.7 foi iniciada por Luciano Ramalho.
+

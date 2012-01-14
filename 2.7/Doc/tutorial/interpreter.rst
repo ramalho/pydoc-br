@@ -1,269 +1,283 @@
 .. _tut-using:
 
-****************************
-Using the Python Interpreter
-****************************
+*********************************
+Utilizando o interpretador Python
+*********************************
 
 
 .. _tut-invoking:
 
-Invoking the Interpreter
-========================
+Disparando o interpretador
+==========================
 
-The Python interpreter is usually installed as :file:`/usr/local/bin/python` on
-those machines where it is available; putting :file:`/usr/local/bin` in your
-Unix shell's search path makes it possible to start it by typing the command ::
+O interpretador é freqüentemente instalado como :file:`/usr/local/bin/python`
+nas máquinas onde está disponível; adicionando :file:`/usr/local/bin` ao
+caminho de busca (search path) da shell de seu UNIX torna-se possível
+iniciá-lo digitando::
 
    python
+  
+no console. Considerando que a escolha do diretório
+de instalação é uma opção de instalação, outras localizações são possíveis;
+verifique com seu guru local de Python ou com o administrador do sistema.
+(Ex.: :file:`/usr/local/python` é uma alternativa popular para instalação.)
 
-to the shell.  Since the choice of the directory where the interpreter lives is
-an installation option, other places are possible; check with your local Python
-guru or system administrator.  (E.g., :file:`/usr/local/python` is a popular
-alternative location.)
-
-On Windows machines, the Python installation is usually placed in
-:file:`C:\\Python27`, though you can change this when you're running the
-installer.  To add this directory to your path,  you can type the following
-command into the command prompt in a DOS box::
+Em computadores com Windows, Python é instalado geralmente em 
+:file`C\\Python27`, apesar de você poder mudar isso enquanto está executando o
+instalador. Para adicionar esse diretório ao path, você pode digitar o
+seguinte comando no console::
 
    set path=%path%;C:\python27
 
-Typing an end-of-file character (:kbd:`Control-D` on Unix, :kbd:`Control-Z` on
-Windows) at the primary prompt causes the interpreter to exit with a zero exit
-status.  If that doesn't work, you can exit the interpreter by typing the
-following command: ``quit()``.
+Digitando um caracter EOF (end-of-file; fim de arquivo: :kbd:`Control-D` em
+Unix, :kbd:`Control-Z` em Windows) diretamente no prompt força o interpretador
+a sair com status de saída zero. Se isso não funcionar, voce pode sair do
+interpretador digitando o seguinte: ``quit()``.
 
-The interpreter's line-editing features usually aren't very sophisticated.  On
-Unix, whoever installed the interpreter may have enabled support for the GNU
-readline library, which adds more elaborate interactive editing and history
-features. Perhaps the quickest check to see whether command line editing is
-supported is typing Control-P to the first Python prompt you get.  If it beeps,
-you have command line editing; see Appendix :ref:`tut-interacting` for an
-introduction to the keys.  If nothing appears to happen, or if ``^P`` is echoed,
-command line editing isn't available; you'll only be able to use backspace to
-remove characters from the current line.
+As características de edição de linha não são muito sofisticadas. Sobre UNIX,
+quem instalou o interpretador talvez tenha habilitado o suporte à biblioteca
+GNU readline, que adiciona facilidades mais elaboradas de edição e histórico
+de comandos. Teclar :kbd:`Control-P` no primeiro prompt oferecido pelo Python
+é, provavelmente, a maneira mais rápida de verificar se a edição de linha de
+comando é suportada. Se houver um beep, você possui edição de linha de
+comando; veja o Apêndice :ref:`tut-interacting` para uma introdução as teclas
+especiais. Se nada acontecer, ou se ^P aparecer na tela, a opção de edição não
+está disponível; você apenas será capaz de usar o backspace para remover
+caracteres da linha atual.
 
-The interpreter operates somewhat like the Unix shell: when called with standard
-input connected to a tty device, it reads and executes commands interactively;
-when called with a file name argument or with a file as standard input, it reads
-and executes a *script* from that file.
+O interpretador trabalha de forma semelhante a uma shell de UNIX: quando
+disparado com a saída padrão conectada a um console de terminal (dispositivo
+tty), ele lê e executa comandos interativamente; quando disparado com um nome
+de arquivo como parâmetro ou com redirecionamento da entrada padrão para ler
+um arquivo, o interpretador irá ler e executar o *script* contido em tal
+arquivo.
 
-A second way of starting the interpreter is ``python -c command [arg] ...``,
-which executes the statement(s) in *command*, analogous to the shell's
-:option:`-c` option.  Since Python statements often contain spaces or other
-characters that are special to the shell, it is usually advised to quote
-*command* in its entirety with single quotes.
+Uma segunda forma de rodar o interpretador é ``python -c *comando* [arg] ...``,
+que executa um ou mais comandos especificados na posição *comando*,
+analogamente à opção de shell :option:`-c`. Considerando que comandos Python
+possuem freqüentemente espaços em branco (ou outros caracteres que são
+especiais para a shell) é aconselhável que o *comando* esteja dentro de aspas
+duplas.
 
-Some Python modules are also useful as scripts.  These can be invoked using
-``python -m module [arg] ...``, which executes the source file for *module* as
-if you had spelled out its full name on the command line.
+Alguns módulos Python são também úteis como scripts. Estes podem ser chamados
+usando ``python -m *módulo* [arg] ...``, que executa o arquivo fonte do
+*módulo* como se você tivesse digitado seu caminho completo na linha de
+comando.
 
-When a script file is used, it is sometimes useful to be able to run the script
-and enter interactive mode afterwards.  This can be done by passing :option:`-i`
-before the script.
+Quando um arquivo de script é utilizado, as vezes é útil executá-lo e logo em
+seguida entrar em modo interativo. Isto pode ser feito acrescentando o
+argumento :option:`-i` antes do nome do script.
 
 
 .. _tut-argpassing:
 
-Argument Passing
-----------------
+Passagem de argumentos
+----------------------
 
-When known to the interpreter, the script name and additional arguments
-thereafter are turned into a list of strings and assigned to the ``argv``
-variable in the ``sys`` module.  You can access this list by executing ``import
-sys``.  The length of the list is at least one; when no script and no arguments
-are given, ``sys.argv[0]`` is an empty string.  When the script name is given as
-``'-'`` (meaning  standard input), ``sys.argv[0]`` is set to ``'-'``.  When
-:option:`-c` *command* is used, ``sys.argv[0]`` is set to ``'-c'``.  When
-:option:`-m` *module* is used, ``sys.argv[0]``  is set to the full name of the
-located module.  Options found after  :option:`-c` *command* or :option:`-m`
-*module* are not consumed  by the Python interpreter's option processing but
-left in ``sys.argv`` for  the command or module to handle.
+Quando são de conhecimento do interpretador, o nome do script e subseqüentes
+argumentos da linha de comando da shell são acessíveis ao próprio script
+através da variável ``argv`` do módulo ``sys``, que é uma lista de strings.
+Essa lista tem sempre ao menos um elemento; quando nenhum script ou argumento
+forem passados para o interpretador, ``sys.argv[0]`` será uma string vazia.
+Quando o nome do script for ``-`` (significando entrada padrão), o conteúdo de
+sys.argv[0] será ``'-'``. Quando for utilizado :option:`-c` *comando*,
+``sys.argv[0]`` conterá ``'-c'``. Quando for utilizado :option:`-m` *módulo*,
+``sys.argv[0]`` conterá o caminho completo do módulo localizado. Opções
+especificadas após :option:`-c` *comando* ou :option:`-m` *módulo* não serão
+consumidas pelo interpretador mas deixadas em ``sys.argv`` para serem tratadas
+pelo comando ou módulo.
 
 
 .. _tut-interactive:
 
-Interactive Mode
-----------------
+Modo interativo
+---------------
 
-When commands are read from a tty, the interpreter is said to be in *interactive
-mode*.  In this mode it prompts for the next command with the *primary prompt*,
-usually three greater-than signs (``>>>``); for continuation lines it prompts
-with the *secondary prompt*, by default three dots (``...``). The interpreter
-prints a welcome message stating its version number and a copyright notice
-before printing the first prompt::
+Quando os comandos são lidos a partir do console (tty), diz-se que o
+interpretador está em modo interativo. Nesse modo ele solicita um próximo
+comando através do *prompt primário*, tipicamente três sinais de maior-que
+(``>>>``); para linhas de continuação do comando atual, o *prompt secundário*
+padrão é formado por três pontos (``...``). O interpretador imprime uma
+mensagem de boas vindas, informando seu número de versão e um aviso de
+copyright antes de exibir o primeiro prompt::
 
-   python
-   Python 2.7 (#1, Feb 28 2010, 00:02:06)
-   Type "help", "copyright", "credits" or "license" for more information.
-   >>>
+    python
+    Python 2.7 (#1, Feb 28 2010, 00:02:06)
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>>
 
-Continuation lines are needed when entering a multi-line construct. As an
-example, take a look at this :keyword:`if` statement::
+Linhas de continuação são necessárias em construções multi-linha. Como
+exemplo, dê uma olhada nesse comando :keyword:`if`::
 
-   >>> the_world_is_flat = 1
-   >>> if the_world_is_flat:
-   ...     print "Be careful not to fall off!"
-   ...
-   Be careful not to fall off!
+    >>> o_mundo_eh_plano = 1
+    >>> if o_mundo_eh_plano: 
+    ...     print "Cuidado para não cair dele!" 
+    ... 
+    Cuidado para não cair dele!
 
 
 .. _tut-interp:
 
-The Interpreter and Its Environment
-===================================
+O interpretador e seu ambiente
+==============================
 
 
 .. _tut-error:
 
-Error Handling
---------------
+Tratamento de Erros
+-------------------
 
-When an error occurs, the interpreter prints an error message and a stack trace.
-In interactive mode, it then returns to the primary prompt; when input came from
-a file, it exits with a nonzero exit status after printing the stack trace.
-(Exceptions handled by an :keyword:`except` clause in a :keyword:`try` statement
-are not errors in this context.)  Some errors are unconditionally fatal and
-cause an exit with a nonzero exit; this applies to internal inconsistencies and
-some cases of running out of memory.  All error messages are written to the
-standard error stream; normal output from executed commands is written to
-standard output.
+Quando ocorre um erro, o interpretador exibe uma mensagem de erro um *stack
+trace* (a situação da pilha de execução). No modo interativo, ele retorna ao
+prompt primário; quando a entrada vem de um arquivo, o interpretador aborta a
+execução com status de erro diferente de zero após exibir o stack trace
+(Exceções tratadas por um :keyword:`except` em um comando :keyword:`try` não
+são consideradas erros neste contexto). Alguns erros são incondicionalmente
+fatais e causam a saída com status diferente de zero; isto se aplica a
+inconsistências internas e alguns casos de exaustão de memória. Todas as
+mensagens de erro são escritas na saída de erros padrão (standard error),
+enquanto a saída dos demais comandos é direcionada para a saída padrão.
 
-Typing the interrupt character (usually Control-C or DEL) to the primary or
-secondary prompt cancels the input and returns to the primary prompt. [#]_
-Typing an interrupt while a command is executing raises the
-:exc:`KeyboardInterrupt` exception, which may be handled by a :keyword:`try`
-statement.
+Teclando o caracter de interrupção (tipicamente Control-C ou DEL) no prompt
+primário ou secundário cancela a entrada de dados corrente e retorna-se ao
+prompt primário. [#]_ Provocar a interrupção enquanto um comando está em
+execução levanta a exceção :exc:`KeyboardInterrupt`, a qual pode ser tratada em um
+comando :keyword:`try`. 
 
 
 .. _tut-scripts:
 
-Executable Python Scripts
--------------------------
+Scripts executáveis em Python
+-----------------------------
 
-On BSD'ish Unix systems, Python scripts can be made directly executable, like
-shell scripts, by putting the line ::
+Em sistemas UNIX, scripts Python podem ser transformados em executáveis, como shell scripts, pela inclusão desta linha no início do arquivo::
 
-   #! /usr/bin/env python
+    #! /usr/bin/env python
 
-(assuming that the interpreter is on the user's :envvar:`PATH`) at the beginning
-of the script and giving the file an executable mode.  The ``#!`` must be the
-first two characters of the file.  On some platforms, this first line must end
-with a Unix-style line ending (``'\n'``), not a Windows (``'\r\n'``) line
-ending.  Note that the hash, or pound, character, ``'#'``, is used to start a
-comment in Python.
+(assumindo que o interpretador foi incluído no :envvar:`PATH` do usuário e que
+o script tenha a permissão de acesso habilitada para execução). Os caracteres
+``#!` devem ser os dois primeiros do arquivo. Em algumas plataformas esta
+linha inicial deve ser finalizada no estilo UNIX com (``'\n'``), e não com a
+marca de fim de linha do Windows (``'\r\n'``). Observe que o caracter ``'#'``
+inicia uma linha de comentário em Python.
 
-The script can be given an executable mode, or permission, using the
-:program:`chmod` command::
+Para atribuir modo executável ou permissão de execução ao seu script Python,
+utilize o comando :program:`chmod` do shell do UNIX::
 
-   $ chmod +x myscript.py
+    $ chmod +x meuscript.py
 
-On Windows systems, there is no notion of an "executable mode".  The Python
-installer automatically associates ``.py`` files with ``python.exe`` so that
-a double-click on a Python file will run it as a script.  The extension can
-also be ``.pyw``, in that case, the console window that normally appears is
-suppressed.
+Em sistemas Windows, não há noção de um "modo executável". O instalador de
+Python associa automaticamente arquivos ``.py`` arquivos a ``python.exe`` para
+que um clique duplo sobre um arquivo Python o execute como um script. A
+extensão pode também ser ``.pyw``; nesse caso, a janela de console que
+normalmente aparece é suprimida.
 
 
 .. _tut-source-encoding:
 
-Source Code Encoding
---------------------
+Codificação em arquivos de código-fonte
+---------------------------------------
 
-It is possible to use encodings different than ASCII in Python source files. The
-best way to do it is to put one more special comment line right after the ``#!``
-line to define the source file encoding::
+É possível usar codificação diferente de ASCII em arquivos de código Python. A
+melhor maneira de fazê-lo é através de um comentário adicional logo após a
+linha ``#!``::
 
-   # -*- coding: encoding -*-
+    # -*- coding: codificacao -*-
 
-
-With that declaration, all characters in the source file will be treated as
-having the encoding *encoding*, and it will be possible to directly write
-Unicode string literals in the selected encoding.  The list of possible
-encodings can be found in the Python Library Reference, in the section on
+Com essa declaração, todos os caracteres no código-fonte serão tratados de
+acordo com a codificação especificada, e será possível escrever strings
+Unicode diretamente, usando aquela codificação. A lista de codificações
+possíveis pode ser encontrada na Referência da Biblioteca Python, na seção
 :mod:`codecs`.
 
-For example, to write Unicode literals including the Euro currency symbol, the
-ISO-8859-15 encoding can be used, with the Euro symbol having the ordinal value
-164.  This script will print the value 8364 (the Unicode codepoint corresponding
-to the Euro symbol) and then exit::
+Por exemplo, para escrever strings unicode incluindo o símbolo monetário do
+Euro, a codificação ISO-8859-15 pode ser usada; nela símbolo do Euro tem o
+valor ordinal 164. Este script exibe o valor 8364 (código Unicode
+correspondente ao símbolo do Euro) e termina::
 
-   # -*- coding: iso-8859-15 -*-
+    # -*- coding: iso-8859-15 -*-
 
-   currency = u"€"
-   print ord(currency)
+    currency = u"€"
+    print ord(currency)
 
-If your editor supports saving files as ``UTF-8`` with a UTF-8 *byte order mark*
-(aka BOM), you can use that instead of an encoding declaration. IDLE supports
-this capability if ``Options/General/Default Source Encoding/UTF-8`` is set.
-Notice that this signature is not understood in older Python releases (2.2 and
-earlier), and also not understood by the operating system for script files with
-``#!`` lines (only used on Unix systems).
+Se o seu editor é capaz de salvar arquivos UTF-8 com *byte order mark*
+(conhecido como BOM), você pode usar isto ao invés da declaração de
+codificação. O IDLE é capaz de fazer isto se você habilitar
+``Options/General/Default Source Encoding/UTF-8``.
+Note que esta assinatura não é reconhecida por versões antigas (Python 2.2 e
+anteriores), e nem pelo sistema operacional para arquivos com a declaração ``#!``
+(usada somente em sistemas UNIX).
 
-By using UTF-8 (either through the signature or an encoding declaration),
-characters of most languages in the world can be used simultaneously in string
-literals and comments.  Using non-ASCII characters in identifiers is not
-supported. To display all these characters properly, your editor must recognize
-that the file is UTF-8, and it must use a font that supports all the characters
-in the file.
+Usando UTF-8 (seja através da assinatura ou de uma declaração de codificação),
+caracteres da maioria das línguas do mundo podem ser usados simultaneamente em
+strings e comentários. Não é possível usar caracteres não-ASCII em
+identificadores. Para exibir todos esses caracteres adequadamente, seu editor
+deve reconhecer que o arquivo é UTF-8, e deve usar uma fonte que tenha todos
+os caracteres usados no arquivo.
 
 
 .. _tut-startup:
 
-The Interactive Startup File
-----------------------------
+O arquivo de inicialização para o modo interativo
+-------------------------------------------------
 
-When you use Python interactively, it is frequently handy to have some standard
-commands executed every time the interpreter is started.  You can do this by
-setting an environment variable named :envvar:`PYTHONSTARTUP` to the name of a
-file containing your start-up commands.  This is similar to the :file:`.profile`
-feature of the Unix shells.
+Quando usamos Python interativamente, pode ser útil executar uma série de
+comandos ao iniciar cada sessão do interpretador. Isso pode ser feito
+configurando a variável de ambiente :envvar:`PYTHONSTARTUP` para indicar o
+nome de arquivo script que contém um script de inicialização. Essa
+característica assemelha-se aos arquivos :file:`.profile` de shells UNIX.
 
-.. XXX This should probably be dumped in an appendix, since most people
+.. XXX comentário .rst no texto original:
+   This should probably be dumped in an appendix, since most people
    don't use Python interactively in non-trivial ways.
 
-This file is only read in interactive sessions, not when Python reads commands
-from a script, and not when :file:`/dev/tty` is given as the explicit source of
-commands (which otherwise behaves like an interactive session).  It is executed
-in the same namespace where interactive commands are executed, so that objects
-that it defines or imports can be used without qualification in the interactive
-session. You can also change the prompts ``sys.ps1`` and ``sys.ps2`` in this
-file.
+Este arquivo só é processado em sessões interativas, nunca quando Python lê
+comandos de um script especificado como parâmetro, nem tampouco quando
+:file:`/dev/tty` é especificado como a fonte de leitura de comandos (que de
+outra forma se comporta como uma sessão interativa). O script de inicialização
+é executado no mesmo namespace (espaço nominal ou contexto léxico) em que os
+comandos da sessão interativa serão executados, sendo assim, os objetos
+definidos e módulos importados podem ser utilizados sem qualificação durante a
+sessão interativa. É possível também redefinir os prompts ``sys.ps1`` e
+``sys.ps2`` neste arquivo.
 
-If you want to read an additional start-up file from the current directory, you
-can program this in the global start-up file using code like ``if
-os.path.isfile('.pythonrc.py'): execfile('.pythonrc.py')``.  If you want to use
-the startup file in a script, you must do this explicitly in the script::
+Se for necessário ler um script adicional de inicialização a partir do
+diretório atual, você pode programar isso a partir do script de
+inicialização global, por exemplo 
+``if os.path.isfile('.pythonrc.py'): execfile('.pythonrc.py')``. 
+Se você deseja utilizar o script de inicialização em outro script, você deve
+fazê-lo explicitamente da seguinte forma:: 
 
-   import os
-   filename = os.environ.get('PYTHONSTARTUP')
-   if filename and os.path.isfile(filename):
-       execfile(filename)
-
+    import os
+    filename = os.environ.get('PYTHONSTARTUP')
+    if filename and os.path.isfile(filename):
+        execfile(filename)
 
 .. _tut-customize:
 
-The Customization Modules
--------------------------
+Os módulos de customização
+--------------------------
 
-Python provides two hooks to let you customize it: :mod:`sitecustomize` and
-:mod:`usercustomize`.  To see how it works, you need first to find the location
-of your user site-packages directory.  Start Python and run this code:
+Python fornece dois hooks (ganchos) para que você possa personalizá-lo:
+:mod:`sitecustomize` e :mod:`usercustomize`. Para ver como funciona, você
+precisa primeiro encontrar o local de seu diretório site-packages de usuário.
+Inicie o Python e execute este código:
 
-   >>> import site
-   >>> site.getusersitepackages()
-   '/home/user/.local/lib/python3.2/site-packages'
+    >>> import site
+    >>> site.getusersitepackages()
+    '/home/user/.local/lib/python2.7/site-packages'
 
-Now you can create a file named :file:`usercustomize.py` in that directory and
-put anything you want in it.  It will affect every invocation of Python, unless
-it is started with the :option:`-s` option to disable the automatic import.
+Agora você pode criar um arquivo chamado :file:`usercustomize.py` nesse
+diretório e colocar o que quiser nele. Isso afetará toda invocação de Python,
+a menos ele seja iniciado com a opção :option:`-s` para desativar esta
+importação automática.
 
-:mod:`sitecustomize` works in the same way, but is typically created by an
-administrator of the computer in the global site-packages directory, and is
-imported before :mod:`usercustomize`.  See the documentation of the :mod:`site`
-module for more details.
+:mod:`sitecustomize` funciona da mesma forma, mas normalmente é criado por um
+administrador do sistema no diretório site-packages global, e é importado
+antes de :mod:`usercustomize`. Consulte a documentação do :mod:`site` para
+mais detalhes.
 
 
-.. rubric:: Footnotes
+.. rubric:: Notas
 
-.. [#] A problem with the GNU Readline package may prevent this.
+.. [#] Um problema com o pacote Readline da GNU pode impedir isso.
