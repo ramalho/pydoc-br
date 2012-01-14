@@ -64,19 +64,17 @@ usados para agrupar expressões. Por exemplo::
    >>> 7/-3
    -3
 
-.. XXX: parei aqui em 2012-01-14 15:26
+O sinal de igual (``'='``) é usado para atribuir um valor a uma variável.
+Depois de uma atribuição, nenhum resultado é exibido antes do próximo prompt::
 
-The equal sign (``'='``) is used to assign a value to a variable. Afterwards, no
-result is displayed before the next interactive prompt::
-
-   >>> width = 20
-   >>> height = 5*9
-   >>> width * height
+   >>> largura = 20
+   >>> algura = 5*9
+   >>> largura * altura
    900
 
-A value can be assigned to several variables simultaneously::
+Um valor pode ser atribuído a diversas variáveis simultaneamente::
 
-   >>> x = y = z = 0  # Zero x, y and z
+   >>> x = y = z = 0  # Zerar x, y, z
    >>> x
    0
    >>> y
@@ -84,26 +82,27 @@ A value can be assigned to several variables simultaneously::
    >>> z
    0
 
-Variables must be "defined" (assigned a value) before they can be used, or an
-error will occur::
+Variáveis precisam ser "definidas" (atribuídas um valor) antes que possam ser
+usadas, se não acontece um erro::
 
-   >>> # try to access an undefined variable
+   >>> # tentar acessar variável não definida
    ... n
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
    NameError: name 'n' is not defined
 
-There is full support for floating point; operators with mixed type operands
-convert the integer operand to floating point::
+Há suporte completo para ponto-flutuante (*float*); operadores com operandos
+de diferentes tipos convertem o inteiro para ponto-flutuante:
 
    >>> 3 * 3.75 / 1.5
    7.5
    >>> 7.0 / 2
    3.5
 
-Complex numbers are also supported; imaginary numbers are written with a suffix
-of ``j`` or ``J``.  Complex numbers with a nonzero real component are written as
-``(real+imagj)``, or can be created with the ``complex(real, imag)`` function.
+Números complexos também são suportados; números imaginários são escritos com
+o sufixo ``j`` ou ``J``. Números complexos com parte real não nula são escritos
+como ``(real+imagJ)``, ou podem ser criados pela chamada de função
+``complex(real, imag)``.
 ::
 
    >>> 1j * 1J
@@ -117,9 +116,10 @@ of ``j`` or ``J``.  Complex numbers with a nonzero real component are written as
    >>> (1+2j)/(1+1j)
    (1.5+0.5j)
 
-Complex numbers are always represented as two floating point numbers, the real
-and imaginary part.  To extract these parts from a complex number *z*, use
-``z.real`` and ``z.imag``.   ::
+Números complexos são sempre representados por dois floats, a
+parte real e a parte imaginária. Para extrair as partes de um número complexo *z*,
+utilize ``z.real`` e ``z.imag``. 
+::
 
    >>> a=1.5+0.5j
    >>> a.real
@@ -127,10 +127,11 @@ and imaginary part.  To extract these parts from a complex number *z*, use
    >>> a.imag
    0.5
 
-The conversion functions to floating point and integer (:func:`float`,
-:func:`int` and :func:`long`) don't work for complex numbers --- there is no one
-correct way to convert a complex number to a real number.  Use ``abs(z)`` to get
-its magnitude (as a float) or ``z.real`` to get its real part. ::
+As funções de conversão para float e inteiro (:func:`float()`,
+:func:`int()` e :func:`long()`) não funcionam para números complexos --- não
+existe apenas uma maneira de converter um número complexo para um
+número real. Use ``abs(z)`` para obter sua magnitude (como um float) ou
+``z.real`` para obter sua parte real. ::
 
    >>> a=3.0+4.0j
    >>> float(a)
@@ -144,31 +145,32 @@ its magnitude (as a float) or ``z.real`` to get its real part. ::
    >>> abs(a)  # sqrt(a.real**2 + a.imag**2)
    5.0
 
-In interactive mode, the last printed expression is assigned to the variable
-``_``.  This means that when you are using Python as a desk calculator, it is
-somewhat easier to continue calculations, for example::
+No modo interativo, o valor da última expressão exibida é atribuída a variável
+``_``. Assim, ao utilizar Python como uma calculadora, fica mais fácil
+prosseguir com os cálculos, por exemplo::
 
-   >>> tax = 12.5 / 100
-   >>> price = 100.50
-   >>> price * tax
+   >>> taxa = 12.5 / 100
+   >>> preco = 100.50
+   >>> preco * taxa
    12.5625
-   >>> price + _
+   >>> preco + _
    113.0625
    >>> round(_, 2)
    113.06
 
-This variable should be treated as read-only by the user.  Don't explicitly
-assign a value to it --- you would create an independent local variable with the
-same name masking the built-in variable with its magic behavior.
-
+Essa variável especial deve ser tratada como *somente para leitura* pelo usuário.
+Nunca lhe atribua explicitamente um valor --- do contrário, estaria criando
+uma outra variável (homônima) independente, que mascararia a variável especial
+com seu comportamento mágico. 
 
 .. _tut-strings:
 
 Strings
 -------
 
-Besides numbers, Python can also manipulate strings, which can be expressed in
-several ways.  They can be enclosed in single quotes or double quotes::
+Além de números, Python também pode manipular strings (sequências de
+caracteres), que podem ser expressas de diversas formas. Elas podem ser
+delimitadas por aspas simples ou duplas::
 
    >>> 'spam eggs'
    'spam eggs'
@@ -183,23 +185,35 @@ several ways.  They can be enclosed in single quotes or double quotes::
    >>> '"Isn\'t," she said.'
    '"Isn\'t," she said.'
 
-The interpreter prints the result of string operations in the same way as they
-are typed for input: inside quotes, and with quotes and other funny characters
-escaped by backslashes, to show the precise value.  The string is enclosed in
-double quotes if the string contains a single quote and no double quotes, else
-it's enclosed in single quotes.  The :keyword:`print` statement produces a more
-readable output for such input strings.
+O interpretador exibe o resultado de operações com strings da mesma forma como
+elas são digitadas na entrada: dentro de aspas, e com aspas, caracteres
+acentuados e outros caracteres especiais representados por sequências de
+escape com barras invertidas (como ``'\t'``, ``'\xc3\xa9'`` etc.), para
+mostrar o valor preciso. A string é delimitada entre aspas simples, exceto
+quando ela contém uma aspa simples e nenhuma aspa dupla. O comando
+:keyword:`print` produz uma saída mais legível para tais strings com
+caracteres especiais.
+
+
 
 String literals can span multiple lines in several ways.  Continuation lines can
 be used, with a backslash as the last character on the line indicating that the
 next line is a logical continuation of the line::
 
-   hello = "This is a rather long string containing\n\
-   several lines of text just as you would do in C.\n\
-       Note that whitespace at the beginning of the line is\
-    significant."
+Strings que contém mais de uma linha podem ser construídas de diversas
+maneiras. Linhas de continuação podem ser usadas, com uma barra invertida
+colocada na última posição para indicar que a próxima linha física é a continuação
+de uma linha lógica::
 
-   print hello
+   oi = "Eis uma string longa contendo\n\
+   diversas linhas de texto assim como se faria em C.\n\
+        Observe que os espaços em branco no inicio da linha são\
+    significativos."
+
+   print oi
+
+.. XXX parei aqui em 2012-01-14 18:06 ~LR
+
 
 Note that newlines still need to be embedded in the string using ``\n`` -- the
 newline following the trailing backslash is discarded.  This example would print

@@ -1,0 +1,45 @@
+Critérios de caixa alta/baixa nos títulos
+==========================================
+
+Vamos usar caixa alta apenas para a primeira palavra do título e nomes próprios, portanto::
+
+  Using the Python Interpreter
+
+fica assim (note que "interpretador" está em minúsculas)::
+
+  Utilizando o interpretador Python	
+
+
+Procure usar construções simples e diretas
+===========================================
+
+Para traduzir:
+
+  The equal sign (``'='``) is used to assign a value to a variable.
+
+Isso é melhor:
+
+  O sinal de igual (``'='``) é usado para atribuir um valor a uma variável.
+
+do que isso:
+
+  O sinal de igual (``'='``) é utilizado para atribuição de um valor a uma variável.
+
+
+Termos adotados na tradução
+============================
+
+indentation -> endentação
+
+shell -> console ou shell (conforme o contexto)
+
+current -> atual (e não "corrente", que é um falso cognato)
+
+print -> exibir (exceto quando de fato for imprimir em papel)
+
+using -> usando (em vez de "utilizando"; não precisamos tanta formalidade)
+
+try -> experimentar ou tentar (conforme o contexto; "Let's try some" é "vamos expermimentar alguns")
+
+float -> float (quando se refere ao tipo) ou ponto-flutuante (o conceito abstrato)
+
