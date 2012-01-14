@@ -1,0 +1,8 @@
+Este repositório é operado pela equipe PythonDoc da comunidade Python Brasil.
+
+http://www.python.org.br/wiki/PythonDoc
+
+Nosso objetivo é traduzir toda a documentação oficial da linguagem Python
+para o porutguês do Brasil.
+
+Veja no arquivo CREDITOS.txt quem já colaborou com esta iniciativa.
