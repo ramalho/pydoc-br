@@ -10,8 +10,8 @@ particularidades.
 
 .. _tut-if:
 
-Comandos :keyword:`if` 
-======================
+Comando :keyword:`if` 
+=====================
 
 Provavelmente o mais conhecido tipo de comando é o :keyword:`if`. Por
 exemplo::
@@ -39,8 +39,8 @@ linguagens.
 
 .. _tut-for:
 
-Comandos :keyword:`for` 
-=======================
+Comando :keyword:`for` 
+======================
 
 .. index::
    statement: for
@@ -163,46 +163,48 @@ ao laço :keyword:`for`, e **não** ao comando :keyword:`if`.)
 
 .. _tut-pass:
 
-:keyword:`pass` Statements
-==========================
+Comando :keyword:`pass` 
+=======================
 
-The :keyword:`pass` statement does nothing. It can be used when a statement is
-required syntactically but the program requires no action. For example::
+O comando :keyword:`pass` não faz nada. Ela pode ser usada quando a sintaxe
+exige um comando mas a semântica do programa não requer nenhuma ação. Por
+exemplo::
 
    >>> while True:
-   ...     pass  # Busy-wait for keyboard interrupt (Ctrl+C)
+   ...     pass  # esperar interrupção via teclado (Ctrl+C)
    ...
 
-This is commonly used for creating minimal classes::
+Isto é usado muitas vezes para se definir classes mínimas::
 
-   >>> class MyEmptyClass:
+   >>> class MinhaClasseVazia:
    ...     pass
    ...
 
-Another place :keyword:`pass` can be used is as a place-holder for a function or
-conditional body when you are working on new code, allowing you to keep thinking
-at a more abstract level.  The :keyword:`pass` is silently ignored::
+Outra situação em que :keyword:`pass` pode ser usado é para reservar o lugar
+de uma função ou de um bloco condicional, quando você está trabalhando em
+código novo, o que lhe possibilita continuar a raciocinar em um nível mais
+abstrato. O comando :keyword:`pass` é ignorado sileciosamente::
 
    >>> def initlog(*args):
-   ...     pass   # Remember to implement this!
+   ...     pass   # Lembrar de implementar isto!
    ...
 
 .. _tut-functions:
 
-Defining Functions
-==================
+Definindo Funções
+=================
 
-We can create a function that writes the Fibonacci series to an arbitrary
-boundary::
+Podemos criar uma função que escreve a série de Fibonacci até um limite
+arbitrário::
 
-   >>> def fib(n):    # write Fibonacci series up to n
-   ...     """Print a Fibonacci series up to n."""
+   >>> def fib(n):    # escrever série de Fibonacci até n
+   ...     """Exibe série de Fibonacci até n"""
    ...     a, b = 0, 1
    ...     while a < n:
    ...         print a,
    ...         a, b = b, a+b
    ...
-   >>> # Now call the function we just defined:
+   >>> # Agora invocamos a funçao que acabamos de definir:
    ... fib(2000)
    0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597
 
@@ -211,38 +213,40 @@ boundary::
    single: docstrings
    single: strings, documentation
 
-The keyword :keyword:`def` introduces a function *definition*.  It must be
-followed by the function name and the parenthesized list of formal parameters.
-The statements that form the body of the function start at the next line, and
-must be indented.
+A palavra reservada :keyword:`def` inicia a *definição* de uma função. Ela
+deve ser seguida do nome da função e da lista de parâmetros formais entre
+parênteses. Os comandos que formam o corpo da função começam na linha seguinte
+e devem ser indentados.
 
-The first statement of the function body can optionally be a string literal;
-this string literal is the function's documentation string, or :dfn:`docstring`.
-(More about docstrings can be found in the section :ref:`tut-docstrings`.)
-There are tools which use docstrings to automatically produce online or printed
-documentation, or to let the user interactively browse through code; it's good
-practice to include docstrings in code that you write, so make a habit of it.
+Opcionalmente, a primeira linha lógica do corpo da função pode ser uma string
+literal, cujo propósito é documentar a função. Se presente, essa string 
+chama-se :dfn:`docstring`. (Há mais informação sobre docstrings na seção 
+:ref:`tut-docstrings`.) Existem ferramentas que utilizam docstrings para 
+produzir automaticamente documentação online ou para imprimir, ou ainda
+permitir que o usuário navegue interativamente pelo código. É uma boa prática
+incluir sempre docstrings em suas funções, portanto, tente fazer disto um
+hábito.
 
-The *execution* of a function introduces a new symbol table used for the local
-variables of the function.  More precisely, all variable assignments in a
-function store the value in the local symbol table; whereas variable references
-first look in the local symbol table, then in the local symbol tables of
-enclosing functions, then in the global symbol table, and finally in the table
-of built-in names. Thus, global variables cannot be directly assigned a value
-within a function (unless named in a :keyword:`global` statement), although they
-may be referenced.
+A *execução* de uma função gera uma nova tabela de símbolos, usada para as
+variáveis locais da função. Mais precisamente, toda atribuição a variável
+dentro da função armazena o valor na tabela de símbolos local. Referências a
+variáveis são buscadas primeiramente na tabela local, então na tabela de
+símbolos global e finalmente na tabela de nomes embutidos (built-in).
+Portanto, não se pode atribuir diretamente um valor a uma variável global
+dentro de uma função (a menos que se utilize a declaração :keyword:`global`
+antes), ainda que variáveis globais possam ser referenciadas livremente.
 
-The actual parameters (arguments) to a function call are introduced in the local
-symbol table of the called function when it is called; thus, arguments are
-passed using *call by value* (where the *value* is always an object *reference*,
-not the value of the object). [#]_ When a function calls another function, a new
-local symbol table is created for that call.
+Os parâmetros reais (argumentos) de uma chamada de função são introduzidos na
+tabela de símbolos local da função no momento da invocação, portanto,
+argumentos são passados por valor (onde o *valor* é sempre uma referência para
+objeto, não o valor do objeto). [#]_ Quando uma função invoca outra, uma nova
+tabela de símbolos é criada para tal chamada.
 
-A function definition introduces the function name in the current symbol table.
-The value of the function name has a type that is recognized by the interpreter
-as a user-defined function.  This value can be assigned to another name which
-can then also be used as a function.  This serves as a general renaming
-mechanism::
+Uma definição de função introduz o nome da função na tabela de símbolos atual.
+O valor associado ao nome da função tem um tipo que é reconhecido pelo
+interpretador como uma função definida pelo usuário. Esse valor pode ser
+atribuído a outros nomes que também podem ser usados como funções. Esse
+mecanismo serve para renomear funções::
 
    >>> fib
    <function fib at 10042ed0>
@@ -250,50 +254,52 @@ mechanism::
    >>> f(100)
    0 1 1 2 3 5 8 13 21 34 55 89
 
-Coming from other languages, you might object that ``fib`` is not a function but
-a procedure since it doesn't return a value.  In fact, even functions without a
-:keyword:`return` statement do return a value, albeit a rather boring one.  This
-value is called ``None`` (it's a built-in name).  Writing the value ``None`` is
-normally suppressed by the interpreter if it would be the only value written.
-You can see it if you really want to using :keyword:`print`::
+Conhecendo outras linguagens, você pode questionar que ``fib`` não é uma
+função, mas um procedimento, pois ela não devolve um valor. Na verdade, mesmo
+funções que não usam o comando :keyword:`return` devolvem um valor, ainda que
+pouco interessante. Esse valor é chamado ``None`` (é um nome embutido). O
+interpretador interativo evita escrever ``None`` quando ele é o único
+resultado de uma expressão. Mas se quiser vê-lo pode usar o comando
+:keyword:`print`::
 
    >>> fib(0)
    >>> print fib(0)
    None
 
-It is simple to write a function that returns a list of the numbers of the
-Fibonacci series, instead of printing it::
+É fácil escrever uma função que deolve uma lista de números série de
+Fibonacci, ao invés de exibí-los:
 
-   >>> def fib2(n): # return Fibonacci series up to n
-   ...     """Return a list containing the Fibonacci series up to n."""
-   ...     result = []
+   >>> def fib2(n): # devolve a série de Fibonacci até n
+   ...     """Devolve uma lista a com série de Fibonacci até n."""
+   ...     resultado = []
    ...     a, b = 0, 1
    ...     while a < n:
-   ...         result.append(a)    # see below
+   ...         resultado.append(a)    # veja mais adiante
    ...         a, b = b, a+b
-   ...     return result
+   ...     return resultado
    ...
-   >>> f100 = fib2(100)    # call it
-   >>> f100                # write the result
+   >>> f100 = fib2(100)    # executar
+   >>> f100                # exibir o resultado
    [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
 
-This example, as usual, demonstrates some new Python features:
+Este exemplo, como sempre, demonstra algumas características novas:
 
-* The :keyword:`return` statement returns with a value from a function.
-  :keyword:`return` without an expression argument returns ``None``. Falling off
-  the end of a function also returns ``None``.
+* O comando :keyword:`return` termina a função devolvendo um valor. Se não
+  houver uma expressão após o :keyword:`return`, o valor ``None`` é devolvido.
+  Se a função chegar ao fim sem o uso explícito do :keyword:`return`, então 
+  também será devolvido o valor ``None``.
 
-* The statement ``result.append(a)`` calls a *method* of the list object
-  ``result``.  A method is a function that 'belongs' to an object and is named
-  ``obj.methodname``, where ``obj`` is some object (this may be an expression),
-  and ``methodname`` is the name of a method that is defined by the object's type.
-  Different types define different methods.  Methods of different types may have
-  the same name without causing ambiguity.  (It is possible to define your own
-  object types and methods, using *classes*, see :ref:`tut-classes`)
-  The method :meth:`append` shown in the example is defined for list objects; it
-  adds a new element at the end of the list.  In this example it is equivalent to
-  ``result = result + [a]``, but more efficient.
-
+* O trecho ``resultado.append(a)`` invoca um *método* do objeto lista
+  ``resultado``. Um método é uma função que "pertence" a um objeto e é chamada
+  através de ``obj.nome_do_metodo`` onde ``obj`` é um objeto qualquer (pode 
+  ser uma expressão), e ``nome_do_metodo`` é o nome de um método que foi 
+  definido pelo tipo do objeto. Tipos diferentes definem métodos diferentes. 
+  Métodos de diferentes tipos podem ter o mesmo nome sem ambiguidade. (É 
+  possível definir seus próprios tipos de objetos e métodos, utilizando 
+  *classes*, veja em :ref:`tut-classes`)
+  O método :meth:`append` mostrado no exemplo é definido para objetos do
+  tipo lista; ele adiciona um novo elemento ao final da lista. Neste exemplo,
+  ele equivale a ``resultado = resultado + [a]``, só que mais eficiente.
 
 .. _tut-defining:
 
@@ -643,9 +649,11 @@ extracted for you:
   environments.  Plain ASCII works best in any case.
 
 
-.. rubric:: Footnotes
+.. rubric:: Notas
 
-.. [#] Actually, *call by object reference* would be a better description,
-   since if a mutable object is passed, the caller will see any changes the
-   callee makes to it (items inserted into a list).
+.. [#] Na verdade, *passagem por referência para objeto* (*call by object
+    reference*) seria uma descrição melhor do que *passagem por valor* 
+    (*call-by-value*), pois, se um objeto mutável for passado, o invocador
+    (*caller*) verá as alterações feitas pelo invocado (*callee*), como 
+    por exemplo a inserção de itens em uma lista.   
 

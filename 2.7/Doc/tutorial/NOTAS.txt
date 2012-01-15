@@ -100,6 +100,14 @@ character -> caractere (e não "caracter", que não consta no Houaiss nem no Aul
 
 built-in -> função embutida
 
+statement -> comando ou declaração
+
+keyword -> palavra reservada (sem hífen)
+
+return -> devolver (quando se refere a devolver um valor) ou retornar (quando se refere ao fluxo de execução)
+
+
+
 
 
 
