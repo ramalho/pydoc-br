@@ -26,10 +26,46 @@ do que isso:
   O sinal de igual (``'='``) é utilizado para atribuição de um valor a uma variável.
 
 
+Outro exemplo:
+
+  O código de escape \u0020 indica a inserção do caractere Unicode na posição...
+
+fica melhor assim:
+
+  O código de escape \u0020 insere o caractere Unicode na posição...
+
+
+Mais alguns exemplo:
+
+  Here is -> Eis (em vez de "Aqui está")
+
+  provides access -> dá acesso (em vez de "provê acesso")
+
+  To convert -> Para converter (em vez de "Para se converter")
+
+
+Evite o uso excessivo de pronomes
+==================================
+
+Pronomes são sempre obrigatórios em inglês, mas em português eles são dispensáveis em muitos casos.
+
+Por exemplo:
+
+  If you want to include special characters in the string, you can do so... 
+
+Eis uma tradução literal:
+
+  Se você desejar incluir caracteres especiais na string, você pode fazê-lo...
+
+Uma mais elegante:
+
+  Se desejar incluir caracteres especiais na string, pode fazê-lo...
+
+
 Termos adotados na tradução
 ============================
 
-indentation -> endentação
+indentation -> indentação (conforme o dicionário Aulete)
 
 shell -> console ou shell (conforme o contexto)
 
@@ -42,4 +78,24 @@ using -> usando (em vez de "utilizando"; não precisamos tanta formalidade)
 try -> experimentar ou tentar (conforme o contexto; "Let's try some" é "vamos expermimentar alguns")
 
 float -> float (quando se refere ao tipo) ou ponto-flutuante (o conceito abstrato)
+
+triple-quote -> aspas triplas (em vez de "aspas tríplices")
+
+character -> caractere (e não "caracter", que não consta no Houaiss nem no Aulete)
+
+built-in -> função embutida
+
+
+
+
+Referências
+============
+
+Dicionário Aulete Digital
+http://aulete.uol.com.br/site.php?mdl=aulete_digital
+
+Dicionário Houaiss da Língua Portuguesa (exige login no UOL)
+http://houaiss.uol.com.br/busca.jhtm
+
+
 
