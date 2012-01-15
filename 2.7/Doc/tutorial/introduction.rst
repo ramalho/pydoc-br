@@ -5,7 +5,7 @@ Uma introdução informal a Python
 ********************************
 
 Nos exemplos seguintes, pode-se distinguir a entrada da saída pela presença ou
-ausência dos prompts (``>>>`` and ``...``): para repetir o exemplo, você deve
+ausência dos prompts (``>>>`` e ``...``): para repetir o exemplo, você deve
 digitar tudo após o prompt, quando o mesmo aparece; linhas que não começarem
 com o prompt são na verdade as saídas geradas pelo interpretador. Observe que
 quando aparece uma linha contendo apenas um prompt secundário ``...`` você
@@ -194,16 +194,10 @@ quando ela contém uma aspa simples e nenhuma aspa dupla. O comando
 :keyword:`print` produz uma saída mais legível para tais strings com
 caracteres especiais.
 
-
-
-String literals can span multiple lines in several ways.  Continuation lines can
-be used, with a backslash as the last character on the line indicating that the
-next line is a logical continuation of the line::
-
 Strings que contém mais de uma linha podem ser construídas de diversas
 maneiras. Linhas de continuação podem ser usadas, com uma barra invertida
-colocada na última posição para indicar que a próxima linha física é a continuação
-de uma linha lógica::
+colocada na última posição para indicar que a próxima linha física é a
+continuação de uma linha lógica::
 
    oi = "Eis uma string longa contendo\n\
    diversas linhas de texto assim como se faria em C.\n\
