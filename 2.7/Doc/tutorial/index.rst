@@ -7,8 +7,8 @@ O tutorial de Python
 :Release: |version|
 :Date: |today|
 
-Python é uma linguagem de programação poderosa e de fácil aprendizado. Ela
-possui estruturas de dados de alto nível eficientes, bem como adota uma
+Python é uma linguagem de programação poderosa e de fácil aprendizado. 
+Possui estruturas de dados de alto nível eficientes, bem como adota uma
 abordagem simples e efetiva para a programação orientada a objetos. Sua
 sintaxe elegante e tipagem dinâmica, além de sua natureza interpretada,
 tornam Python ideal para scripting e para o desenvolvimento rápido de

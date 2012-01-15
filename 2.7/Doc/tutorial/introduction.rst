@@ -227,8 +227,6 @@ físicas com ``\``, mas as quebras de linha serão incluídas na string::
         -H hostname               Host a conectar
    """
 
-produces the following output:
-
 produz a seguinte saída:
 
 .. code-block:: text
@@ -237,7 +235,7 @@ produz a seguinte saída:
         -h                        Exibir esta mensagem de uso
         -H hostname               Host a conectar
 
-Se fazemos uma string *raw* ( N.d.T: “crua” ou sem processamento de caracteres
+Se fazemos uma string *raw* (N.d.T: “crua” ou sem processamento de caracteres
 escape) com o prefixo ``r``, as sequências ``\n`` não são convertidas em
 quebras de linha. Tanto as barras invertidas quanto a quebra de linha física
 no código-fonte são incluídos na string como dados. Portanto, o exemplo::
@@ -247,7 +245,7 @@ no código-fonte são incluídos na string como dados. Portanto, o exemplo::
 
    print oi
 
-Exibiria:
+Exibe:
 
 .. code-block:: text
 
@@ -523,20 +521,21 @@ nome da codificação de origem como segundo argumento. ::
 
 .. _tut-lists:
 
-Lists
------
+Listas
+------
 
-Python knows a number of *compound* data types, used to group together other
-values.  The most versatile is the *list*, which can be written as a list of
-comma-separated values (items) between square brackets.  List items need not all
-have the same type. ::
+Python inclui diversas estruturas de dados *compostas*, usadas para agrupar
+outros valores. A mais versátil é *list* (lista), que pode ser escrita como
+uma lista de valores (itens) separados por vírgula, entre colchetes. Os
+valores contidos na lista não precisam ser todos do mesmo tipo. ::
+
 
    >>> a = ['spam', 'eggs', 100, 1234]
    >>> a
    ['spam', 'eggs', 100, 1234]
 
-Like string indices, list indices start at 0, and lists can be sliced,
-concatenated and so on::
+Da mesma forma que índices de string, índices de lista começam em 0, listas
+também podem ser concatenadas, fatiadas e multiplicadas::
 
    >>> a[0]
    'spam'
@@ -551,14 +550,15 @@ concatenated and so on::
    >>> 3*a[:3] + ['Boo!']
    ['spam', 'eggs', 100, 'spam', 'eggs', 100, 'spam', 'eggs', 100, 'Boo!']
 
-All slice operations return a new list containing the requested elements.  This
-means that the following slice returns a shallow copy of the list *a*::
+Todas as operações de fatiamento devolvem uma nova lista contendo os elementos
+solicitados. Isto significa que o fatiamento a seguir retorna uma cópia rasa
+(*shallow copy*) da lista::
 
    >>> a[:]
    ['spam', 'eggs', 100, 1234]
 
-Unlike strings, which are *immutable*, it is possible to change individual
-elements of a list::
+Diferentemente de strings, que são *imutáveis*, é possível alterar elementos
+individuais de uma lista::
 
    >>> a
    ['spam', 'eggs', 100, 1234]
@@ -566,38 +566,37 @@ elements of a list::
    >>> a
    ['spam', 'eggs', 123, 1234]
 
-Assignment to slices is also possible, and this can even change the size of the
-list or clear it entirely::
+Atribuição à fatias também é possível, e isso pode até alterar o tamanho da
+lista ou remover todos os itens dela::
 
-   >>> # Replace some items:
+   >>> # Substituir alguns itens:
    ... a[0:2] = [1, 12]
    >>> a
    [1, 12, 123, 1234]
-   >>> # Remove some:
+   >>> # Remover alguns:
    ... a[0:2] = []
    >>> a
    [123, 1234]
-   >>> # Insert some:
+   >>> # Inserir alguns:
    ... a[1:1] = ['bletch', 'xyzzy']
    >>> a
    [123, 'bletch', 'xyzzy', 1234]
-   >>> # Insert (a copy of) itself at the beginning
+   >>> # Inserir uma cópiad a própria lista no início
    >>> a[:0] = a
    >>> a
    [123, 'bletch', 'xyzzy', 1234, 123, 'bletch', 'xyzzy', 1234]
-   >>> # Clear the list: replace all items with an empty list
+   >>> # Limpar a lista: substituir todos os items por uma lista vazia
    >>> a[:] = []
    >>> a
    []
 
-The built-in function :func:`len` also applies to lists::
+A função embutida :func:`len` também se aplica a listas::
 
    >>> a = ['a', 'b', 'c', 'd']
    >>> len(a)
    4
 
-It is possible to nest lists (create lists containing other lists), for
-example::
+É possível aninhar listas (criar listas contendo outras listas), por exemplo::
 
    >>> q = [2, 3]
    >>> p = [1, q, 4]
@@ -607,27 +606,26 @@ example::
    [2, 3]
    >>> p[1][0]
    2
-   >>> p[1].append('xtra')     # See section 5.1
+   >>> p[1].append('xtra')     # Veja a seção 5.1
    >>> p
    [1, [2, 3, 'xtra'], 4]
    >>> q
    [2, 3, 'xtra']
 
-Note that in the last example, ``p[1]`` and ``q`` really refer to the same
-object!  We'll come back to *object semantics* later.
-
+Observe que no último exemplo, ``p[1]`` e ``q`` na verdade se referem ao mesmo
+objeto! Mais tarde retornaremos a *semântica dos objetos*.
 
 .. _tut-firststeps:
 
-First Steps Towards Programming
-===============================
+Primeiros passos rumo à programação
+===================================
 
-Of course, we can use Python for more complicated tasks than adding two and two
-together.  For instance, we can write an initial sub-sequence of the *Fibonacci*
-series as follows::
+Naturalmente, podemos utilizar Python para tarefas mais complicadas do que
+somar 2+2. Por exemplo, podemos escrever o início da *sequência de Fibonacci* 
+assim::
 
-   >>> # Fibonacci series:
-   ... # the sum of two elements defines the next
+   >>> # Sequência de Fibonacci:
+   ... # a soma de dois elementos define o próximo
    ... a, b = 0, 1
    >>> while b < 10:
    ...     print b
@@ -640,43 +638,44 @@ series as follows::
    5
    8
 
-This example introduces several new features.
+Este exemplo introduz diversas características ainda não mencionadas.
 
-* The first line contains a *multiple assignment*: the variables ``a`` and ``b``
-  simultaneously get the new values 0 and 1.  On the last line this is used again,
-  demonstrating that the expressions on the right-hand side are all evaluated
-  first before any of the assignments take place.  The right-hand side expressions
-  are evaluated  from the left to the right.
+* A primeira linha contém uma atribuição múltipla: as variáveis ``a`` e ``b``
+  recebem simultaneamente os novos valores 0 e 1. Na última linha há outro
+  exemplo de atribuição múltipla demonstrando que expressões do lado direito são
+  sempre avaliadas primeiro, antes da atribuição. As expressões do lado direito
+  são avaliadas da esquerda para a direita.
 
-* The :keyword:`while` loop executes as long as the condition (here: ``b < 10``)
-  remains true.  In Python, like in C, any non-zero integer value is true; zero is
-  false.  The condition may also be a string or list value, in fact any sequence;
-  anything with a non-zero length is true, empty sequences are false.  The test
-  used in the example is a simple comparison.  The standard comparison operators
-  are written the same as in C: ``<`` (less than), ``>`` (greater than), ``==``
-  (equal to), ``<=`` (less than or equal to), ``>=`` (greater than or equal to)
-  and ``!=`` (not equal to).
+* O laço :keyword:`while` executa enquanto a condição (aqui: ``b < 10``)
+  permanecer verdadeira. Em Python, como em C, qualquer valor não-zero é
+  considerado verdadeiro, zero é considerado falso. A condição pode ser ainda
+  uma lista ou string, na verdade qualquer sequência; qualquer coisa com
+  comprimento maior que zero tem valor verdadeiro e sequências vazias são
+  falsas. O teste utilizado no exemplo é uma comparação simples. Os operadores
+  padrão para comparação são os mesmos de C: ``<`` (menor que), ``>`` (maior
+  que), ``==`` (igual), ``<=`` (menor ou igual), ``>=`` (maior ou igual) e
+  ``!=`` (diferente).
 
-* The *body* of the loop is *indented*: indentation is Python's way of grouping
-  statements.  At the interactive prompt, you have to type a tab or space(s) for
-  each indented line.  In practice you will prepare more complicated input
-  for Python with a text editor; all decent text editors have an auto-indent
-  facility.  When a compound statement is entered interactively, it must be
-  followed by a blank line to indicate completion (since the parser cannot
-  guess when you have typed the last line).  Note that each line within a basic
-  block must be indented by the same amount.
+* O *corpo* do laço é *indentado*: indentação em Python é a maneira de agrupar
+  comandos em blocos. No console interativo padrão você terá que digitar tab ou
+  espaços para indentar cada linha. Na prática você vai preparar scripts Python
+  mais complicados em um editor de texto; a maioria dos editores de texto tem
+  facilidades de indentação automática. Quando um comando composto é digitado
+  interativamente, deve ser finalizado por uma linha em branco (já que o 
+  parser não tem como adivinhar qual é a última linha do comando). Observe que
+  toda linha de um mesmo bloco de comandos deve ter a mesma indentação
 
-* The :keyword:`print` statement writes the value of the expression(s) it is
-  given.  It differs from just writing the expression you want to write (as we did
-  earlier in the calculator examples) in the way it handles multiple expressions
-  and strings.  Strings are printed without quotes, and a space is inserted
-  between items, so you can format things nicely, like this::
+* O comando :keyword:`print` escreve o valor da expressão ou expressões 
+  fornecidas. É diferente de apenas escrever a expressão no interpretador 
+  (como fizemos nos exemplos da calculadora) pela forma como lida com múltiplas
+  expressões e strings. Strings são exibidas sem aspas, e um espaço é inserido
+  entre os itens para formatar o resultado assim::
 
      >>> i = 256*256
-     >>> print 'The value of i is', i
-     The value of i is 65536
+     >>> print 'O valor de i é', i
+     O valor de i é 65536
 
-  A trailing comma avoids the newline after the output::
+  Uma vírgula ao final evita a quebra de linha::
 
      >>> a, b = 0, 1
      >>> while b < 1000:
@@ -685,5 +684,5 @@ This example introduces several new features.
      ...
      1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
 
-  Note that the interpreter inserts a newline before it prints the next prompt if
-  the last line was not completed.
+  Note que o interpretador insere uma quebra de linha antes de imprimir o
+  próximo prompt se a última linha não foi completada.

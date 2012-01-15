@@ -43,6 +43,9 @@ Mais alguns exemplo:
 
   To convert -> Para converter (em vez de "Para se converter")
 
+  For instance, we can write... -> Por exemplo, podemos escrever... 
+  (em vez de "A título de exemplificação, nós podemos escrever...")
+
 
 Evite o uso excessivo de pronomes
 ==================================
@@ -60,6 +63,18 @@ Eis uma tradução literal:
 Uma mais elegante:
 
   Se desejar incluir caracteres especiais na string, pode fazê-lo...
+
+Outro exemplo:
+
+  Of course, we can use Python for...
+
+Fica melhor assim:
+
+Naturalmente, podemos utilizar Python para...
+
+em vez de:
+
+Naturalmente, nós podemos utilizar Python para...
 
 
 Termos adotados na tradução
