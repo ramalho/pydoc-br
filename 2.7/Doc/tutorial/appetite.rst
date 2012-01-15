@@ -67,7 +67,7 @@ Java, por diversas razões:
 * os tipos de alto-nível permitem que você expresse operações complexas em um
   único comando;
 
-* a definição de bloco é feita por endentação ao invés de marcadores de 
+* a definição de bloco é feita por indentação ao invés de marcadores de 
   início e fim de bloco;
 
 * não há necessidade de declaração de variáveis ou parâmetros formais;
