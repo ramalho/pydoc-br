@@ -1,101 +1,103 @@
 .. _tut-morecontrol:
 
-***********************
-More Control Flow Tools
-***********************
+*************************************
+Mais ferramentas de controle de fluxo
+*************************************
 
-Besides the :keyword:`while` statement just introduced, Python knows the usual
-control flow statements known from other languages, with some twists.
-
+Além do comando :keyword:`while` recém apresentado, Python tem as estruturas
+usuais de controle de fluxo conhecidas em outras linguagens, com algumas
+particularidades.
 
 .. _tut-if:
 
-:keyword:`if` Statements
-========================
+Comandos :keyword:`if` 
+======================
 
-Perhaps the most well-known statement type is the :keyword:`if` statement.  For
-example::
+Provavelmente o mais conhecido tipo de comando é o :keyword:`if`. Por
+exemplo::
 
-   >>> x = int(raw_input("Please enter an integer: "))
-   Please enter an integer: 42
+   >>> x = int(raw_input("Favor digitar um inteiro: "))
+   Favor digitar um inteiro: 42
    >>> if x < 0:
    ...      x = 0
-   ...      print 'Negative changed to zero'
+   ...      print 'Negativo alterado para zero'
    ... elif x == 0:
    ...      print 'Zero'
    ... elif x == 1:
-   ...      print 'Single'
+   ...      print 'Unidade'
    ... else:
-   ...      print 'More'
+   ...      print 'Mais'
    ...
-   More
+   Mais
 
-There can be zero or more :keyword:`elif` parts, and the :keyword:`else` part is
-optional.  The keyword ':keyword:`elif`' is short for 'else if', and is useful
-to avoid excessive indentation.  An  :keyword:`if` ... :keyword:`elif` ...
-:keyword:`elif` ... sequence is a substitute for the ``switch`` or
-``case`` statements found in other languages.
-
+Pode haver zero ou mais seções :keyword:`elif`, e a seção :keyword:`else` é
+opcional. A palavra-chave :keyword:`elif` é uma abreviação para 'else if', e é
+útil para evitar indentação excessiva. Uma sequência 
+:keyword:`if` ... :keyword:`elif` ... :keyword:`elif` ...
+substitui as construções ``switch`` ou ``case`` existentes em outras
+linguagens.
 
 .. _tut-for:
 
-:keyword:`for` Statements
-=========================
+Comandos :keyword:`for` 
+=======================
 
 .. index::
    statement: for
    statement: for
 
-The :keyword:`for` statement in Python differs a bit from what you may be used
-to in C or Pascal.  Rather than always iterating over an arithmetic progression
-of numbers (like in Pascal), or giving the user the ability to define both the
-iteration step and halting condition (as C), Python's :keyword:`for` statement
-iterates over the items of any sequence (a list or a string), in the order that
-they appear in the sequence.  For example (no pun intended):
+o comando :keyword:`for` em Python difere um pouco do que você talvez esteja
+acostumado em C ou Pascal. Ao invés de se iterar sobre progressões
+aritiméticas (como em Pascal), ou dar ao usuário o poder de definir tanto o
+passo da iteração quanto a condição de parada (como em C), o comando
+:keyword:`for` de Python itera sobre os itens de qualquer sequência (como uma
+lista ou uma string), na ordem em que eles aparecem na sequência. Por exemplo:
 
-.. One suggestion was to give a real C example here, but that may only serve to
-   confuse non-C programmers.
+.. Nota no texto original:
+   One suggestion was to give a real C example here, but that may 
+   only serve to confuse non-C programmers.
 
 ::
 
-   >>> # Measure some strings:
-   ... a = ['cat', 'window', 'defenestrate']
+   >>> # Medir o tamanho de algumas strings:
+   >>> a = ['gato', 'janela', 'defenestrar']
    >>> for x in a:
    ...     print x, len(x)
-   ...
-   cat 3
-   window 6
-   defenestrate 12
+   ... 
+   gato 4
+   janela 6
+   defenestrar 11
+   >>>
 
-It is not safe to modify the sequence being iterated over in the loop (this can
-only happen for mutable sequence types, such as lists).  If you need to modify
-the list you are iterating over (for example, to duplicate selected items) you
-must iterate over a copy.  The slice notation makes this particularly
-convenient::
 
-   >>> for x in a[:]: # make a slice copy of the entire list
+Não é seguro modificar a sequência sobre a qual se baseia o laço de iteração
+(isto pode acontecer se a sequência for mutável, isto é, uma lista). Se você
+precisar modificar a lista sobre a qual está iterando (por exemplo, para
+duplicar itens selecionados), você deve iterar sobre uma cópia da lista ao
+invés da própria. A notação de fatiamento é bastante conveniente para isso:
+
+   >>> for x in a[:]: # fazer uma cópia da lista inteira
    ...    if len(x) > 6: a.insert(0, x)
    ...
    >>> a
-   ['defenestrate', 'cat', 'window', 'defenestrate']
-
+   ['defenestrar', 'gato', 'janela', 'defenestrar']
 
 .. _tut-range:
 
-The :func:`range` Function
-==========================
+A função :func:`range`
+======================
 
-If you do need to iterate over a sequence of numbers, the built-in function
-:func:`range` comes in handy.  It generates lists containing arithmetic
-progressions::
+Se você precisar iterar sobre sequências numéricas, a função embutida
+:func:`range` é a resposta. Ela gera listas contendo progressões aritiméticas,
+por exemplo::
 
    >>> range(10)
    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-The given end point is never part of the generated list; ``range(10)`` generates
-a list of 10 values, the legal indices for items of a sequence of length 10.  It
-is possible to let the range start at another number, or to specify a different
-increment (even negative; sometimes this is called the 'step')::
+O ponto de parada fornecido nunca é incluído na lista; ``range(10)`` gera uma
+lista com 10 valores, exatamente os índices válidos para uma sequência de
+comprimento 10. É possível iniciar o intervalo em outro número, ou alterar a
+razão da progresão (inclusive com passo negativo)::
 
    >>> range(5, 10)
    [5, 6, 7, 8, 9]
@@ -104,8 +106,8 @@ increment (even negative; sometimes this is called the 'step')::
    >>> range(-10, -100, -30)
    [-10, -40, -70]
 
-To iterate over the indices of a sequence, you can combine :func:`range` and
-:func:`len` as follows::
+Para iterar sobre os índices de uma sequência, combine :func:`range` e
+:func:`len` da seguinte forma:
 
    >>> a = ['Mary', 'had', 'a', 'little', 'lamb']
    >>> for i in range(len(a)):
@@ -117,47 +119,46 @@ To iterate over the indices of a sequence, you can combine :func:`range` and
    3 little
    4 lamb
 
-In most such cases, however, it is convenient to use the :func:`enumerate`
-function, see :ref:`tut-loopidioms`.
-
+Na maioria dos casos como este, porém, é mais conveniente usar a função
+:func:`enumerate`, veja :ref:`tut-loopidioms`.
 
 .. _tut-break:
 
-:keyword:`break` and :keyword:`continue` Statements, and :keyword:`else` Clauses on Loops
-=========================================================================================
+Comandos :keyword:`break` e :keyword:`continue`, e cláusulas :keyword:`else` em laços
+=====================================================================================
 
-The :keyword:`break` statement, like in C, breaks out of the smallest enclosing
-:keyword:`for` or :keyword:`while` loop.
+O comando :keyword:`break`, como em C, interrompe o laço  :keyword:`for` ou
+:keyword:`while` mais interno.
 
-The :keyword:`continue` statement, also borrowed from C, continues with the next
-iteration of the loop.
+O comando :keyword:`continue`, também emprestado de C, avança para a próxima
+iteração do laço mais interno.
 
-Loop statements may have an ``else`` clause; it is executed when the loop
-terminates through exhaustion of the list (with :keyword:`for`) or when the
-condition becomes false (with :keyword:`while`), but not when the loop is
-terminated by a :keyword:`break` statement.  This is exemplified by the
-following loop, which searches for prime numbers::
+Laços podem ter uma cláusula ``else``, que é executada sempre que o laço se
+encerra por exaustão da lista (no caso do :keyword:`for`) ou quando a condição
+se torna falsa (no caso do :keyword:`while`), mas nunca quando o laço é
+interrompido por um :keyword:`break`. Isto é exemplificado no próximo exemplo
+que procura números primos::
 
    >>> for n in range(2, 10):
    ...     for x in range(2, n):
    ...         if n % x == 0:
-   ...             print n, 'equals', x, '*', n/x
+   ...             print n, '=', x, '*', n/x
    ...             break
    ...     else:
-   ...         # loop fell through without finding a factor
-   ...         print n, 'is a prime number'
+   ...         # laço terminou sem encontrar um fator
+   ...         print n, 'é um número primo'
    ...
-   2 is a prime number
-   3 is a prime number
-   4 equals 2 * 2
-   5 is a prime number
-   6 equals 2 * 3
-   7 is a prime number
-   8 equals 2 * 4
-   9 equals 3 * 3
+   2 é um número primo
+   3 é um número primo
+   4 = 2 * 2
+   5 é um número primo
+   6 = 2 * 3
+   7 é um número primo
+   8 = 2 * 4
+   9 = 3 * 3
 
-(Yes, this is the correct code.  Look closely: the ``else`` clause belongs to
-the :keyword:`for` loop, **not** the :keyword:`if` statement.)
+(Sim, este é o código correto. Olhe atentamente: a cláusula ``else`` pertence 
+ao laço :keyword:`for`, e **não** ao comando :keyword:`if`.)
 
 
 .. _tut-pass:
