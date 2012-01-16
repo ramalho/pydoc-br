@@ -58,15 +58,15 @@ SUMÁRIO
           4.5 Construção pass . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
             4.6 Definindo Funções . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
                 4.7 Mais sobre Definição de Funções . . . . . . . . . 23
-Estruturas de Dados 
-5.1 Mais sobre Listas . . . . . . . . . . . 
-5.2 O comando del . . . . . . . . . . . . 
-5.3 Tuplas e Sequências . . . . . . . . . . 
- 5.4 Sets . . . . . . . . . . . . . . . . . . 
- 5.5 Dicionários . . . . . . . . . . . . . . 
-  5.6 Técnicas de Laço . . . . . . . . . . . 
-    5.7 Mais sobre Condições . . . . . . . . . 
-      5.8 Comparando Sequências e Outros Tipos 
+Estruturas de Dados
+5.1 Mais sobre Listas . . . . . . . . . . .
+5.2 O comando del . . . . . . . . . . . .
+5.3 Tuplas e Sequências . . . . . . . . . .
+ 5.4 Sets . . . . . . . . . . . . . . . . . .
+ 5.5 Dicionários . . . . . . . . . . . . . .
+  5.6 Técnicas de Laço . . . . . . . . . . .
+    5.7 Mais sobre Condições . . . . . . . . .
+      5.8 Comparando Sequências e Outros Tipos
 5
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
@@ -1454,7 +1454,7 @@ fib(2000)
 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597
 A palavra-reservada def serve para definir uma função. Ela deve ser seguida do nome da função, da lista formal
 de parâmetros entre parênteses e dois pontos.
-O corpo da função deve começar na linha seguinte e deve ser indentado. 
+O corpo da função deve começar na linha seguinte e deve ser indentado.
 
 Opcionalmente, a primeira linha do corpo
 da função pode ser uma string literal, cujo propósito é documentar a função. Se presente, essa string chama-se
@@ -1680,7 +1680,9 @@ range(*args)
 4.7.5 Funções Lambda
 Dada a demanda do público, algumas características encontradas em linguagens de programação funcionais (como
 Lisp) foram adicionadas a Python. Com a palavra-chave lambda, funções curtas e anônimas podem ser criadas.
-Aqui está uma função que devolve a soma de seus dois argumentos: 'lambda a, b: a+b'. Funções Lambda
+Aqui está uma função que devolve a soma de seus dois argumentos: 'lambda a, b: a+b'.
+
+Funções Lambda
 podem ser utilizadas em qualquer lugar que exigiria uma função tradicional. Sintaticamente, funções Lambda
 estão restritas a uma única expressão. Semanticamente, ela são apenas açúcar sintático para a definição de funções
 normais. Assim como definições de funções aninhadas, funções lambda não podem referenciar variáveis de um
@@ -1704,9 +1706,12 @@ A primeira linha deve ser sempre curta, representando um consiso sumário do pro
 não deve explicitamente se referir ao nome ou tipo do objeto, uma vez que estas informações estão disponívies
 por outros meios (exceto se o nome da função for o próprio verbo que descreve a finalidade da função). Essa linha
 deve começar com letra maiúscula e terminar com ponto.
+
+
 Se existem múltiplas linhas na string de documentação, a segunda linha deve estar em branco, visulamente sepa-
 rando o sumário do resto da descrição. As linhas seguintes devem conter um ou mais parágrafos descrevendo as
 convenções de chamada ao objeto, seus efeitos colaterais, etc.
+
 O parser do Python não toca na indentação de comentários multi-linha. Portanto, ferramentas que processem strings
 de documentação precisam lidar com isso (se desejado). Existe uma convenção para isso. A primeira linha não
 nula após a linha de sumário determina a indentação para o resto da string de documentação. A partir daí, espaços

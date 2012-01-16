@@ -46,9 +46,9 @@ Comando :keyword:`for`
    statement: for
    statement: for
 
-o comando :keyword:`for` em Python difere um pouco do que você talvez esteja
+O comando :keyword:`for` em Python difere um tanto do que você talvez esteja
 acostumado em C ou Pascal. Ao invés de se iterar sobre progressões
-aritiméticas (como em Pascal), ou dar ao usuário o poder de definir tanto o
+aritméticas (como em Pascal), ou dar ao usuário o poder de definir tanto o
 passo da iteração quanto a condição de parada (como em C), o comando
 :keyword:`for` de Python itera sobre os itens de qualquer sequência (como uma
 lista ou uma string), na ordem em que eles aparecem na sequência. Por exemplo:
@@ -85,10 +85,10 @@ invés da própria. A notação de fatiamento é bastante conveniente para isso:
 .. _tut-range:
 
 A função :func:`range`
-======================
+=========================
 
 Se você precisar iterar sobre sequências numéricas, a função embutida
-:func:`range` é a resposta. Ela gera listas contendo progressões aritiméticas,
+:func:`range` é a resposta. Ela gera listas contendo progressões aritméticas,
 por exemplo::
 
    >>> range(10)
@@ -97,7 +97,7 @@ por exemplo::
 O ponto de parada fornecido nunca é incluído na lista; ``range(10)`` gera uma
 lista com 10 valores, exatamente os índices válidos para uma sequência de
 comprimento 10. É possível iniciar o intervalo em outro número, ou alterar a
-razão da progresão (inclusive com passo negativo)::
+razão da progressão (inclusive com passo negativo)::
 
    >>> range(5, 10)
    [5, 6, 7, 8, 9]
@@ -183,7 +183,7 @@ Isto é usado muitas vezes para se definir classes mínimas::
 Outra situação em que :keyword:`pass` pode ser usado é para reservar o lugar
 de uma função ou de um bloco condicional, quando você está trabalhando em
 código novo, o que lhe possibilita continuar a raciocinar em um nível mais
-abstrato. O comando :keyword:`pass` é ignorado sileciosamente::
+abstrato. O comando :keyword:`pass` é ignorado silenciosamente::
 
    >>> def initlog(*args):
    ...     pass   # Lembrar de implementar isto!
@@ -266,8 +266,8 @@ resultado de uma expressão. Mas se quiser vê-lo pode usar o comando
    >>> print fib(0)
    None
 
-É fácil escrever uma função que deolve uma lista de números série de
-Fibonacci, ao invés de exibí-los:
+É fácil escrever uma função que devolve uma lista de números série de
+Fibonacci, ao invés de exibi-los:
 
    >>> def fib2(n): # devolve a série de Fibonacci até n
    ...     """Devolve uma lista a com série de Fibonacci até n."""
@@ -358,10 +358,10 @@ irá exibir ``5``.
 
 **Aviso importante:** Valores default são avaliados apenas uma vez. Isso faz
 diferença quando o valor default é um objeto mutável como uma lista ou
-dicionário (N.d.T. dicionários são como com arrays associativos ou HashMaps em outras linguagens; ver tabl:ref:`tut-dictionaries`).
+dicionário (N.d.T. dicionários são como arrays associativos ou HashMaps em outras linguagens; ver :ref:`tut-dictionaries`).
 
 Por exemplo, a função a seguir acumula os argumentos passados em
-chamadas subsequentes:
+chamadas subsequentes::
 
    def f(a, L=[]):
        L.append(a)
@@ -436,7 +436,8 @@ funciona). Nenhum parâmetro pode receber mais de um valor. Eis um exemplo que n
      File "<stdin>", line 1, in ?
    TypeError: function() got multiple values for keyword argument 'a'
 
-Quando o último parâmetro formal usar a sintaxe ``**nome``, ele armazenará
+Quando o último parâmetro formal usar a sintaxe ``**nome``, ele receberá um
+dicionário (ver :ref:`tut-dictionaries` ou :ref:`typesmapping` [online]) com
 todos os parâmetros nomeados passados para a função, exceto aqueles que
 corresponderam a parâmetros formais definidos antes. Isto pode ser combinado
 com o parâmetro formal ``*nome`` (descrito na próxima subseção) que recebe uma
@@ -484,7 +485,7 @@ Listas arbitrárias de argumentos
 --------------------------------
 
 .. index::
-  statement: *
+   statement: *
 
 Finalmente, a opção menos usada possibilita que função seja invocada com um
 número arbitrário de argumentos. Esses argumentos serão empacotados em uma
@@ -536,11 +537,13 @@ Atendendo a pedidos, algumas características encontradas em linguagens de
 programação funcionais como Lisp foram adicionadas a Python. Com a palavra
 reservada :keyword:`lambda`, pequenas funções anônimas podem ser criadas. Eis
 uma função que devolve a soma de seus dois argumentos: ``lambda a, b: a+b``.
+
 Construções lambda podem ser empregadas em qualquer lugar que exigiria uma
 função. Sintaticamente, estão restritas a uma única expressão. Semanticamente,
 são apenas açúcar sintático para a definição de funções normais. Assim como
 definições de funções aninhadas, construções lambda podem referenciar
-variáveis do escopo onde são definidas (N.d.T isso significa que Python implementa *closures*, recurso encontrado em Lisp, JavaScript, Ruby etc.)::
+variáveis do escopo onde são definidas (N.d.T isso significa que Python
+implementa *closures*, recurso encontrado em Lisp, JavaScript, Ruby etc.)::
 
    >>> def fazer_incrementador(n):
    ...     return lambda x: x + n
@@ -565,12 +568,12 @@ A comunidade Python está convencionando o conteúdo e o formato de strings de d
 
 A primeira linha deve ser um resumo curto e conciso do propósito do objeto.
 Por brevidade, não deve explicitamente se referir ao nome ou tipo do objeto,
-uma vez que estas informações estão disponívies por outros meios (exceto se o
+uma vez que estas informações estão disponíveis por outros meios (exceto se o
 nome da função for o próprio verbo que descreve a finalidade da função). Essa
 linha deve começar com letra maiúscula e terminar com ponto.
 
 Se existem mais linhas na string de documentação, a segunda linha deve
-estar em branco, visulamente separando o resumo do resto da descrição. As
+estar em branco, separando visualmente o resumo do resto da descrição. As
 linhas seguintes devem conter um ou mais parágrafos descrevendo as convenções
 de chamada ao objeto, seus efeitos colaterais, etc.
 
@@ -613,7 +616,7 @@ Agora que você está prestes a escrever peças mais longas e complexas em
 Python, é uma bom momento para falar sobre *estilo de codificação*. A maioria
 das linguagens podem ser escritas (ou *formatadas*) em diferentes estilos;
 alguns são mais legíveis do que outros. Tornar o seu código mais fácil de ler,
-para os outros, é sempre uma boa idéia, e adotar um estilo de codificação
+para os outros, é sempre uma boa ideia, e adotar um estilo de codificação
 agradável ajuda bastante.
 
 Em Python, o :pep:`8` tornou-se o guia de estilo adotado pela maioria dos
@@ -625,7 +628,7 @@ os pontos mais importantes selecionados para você:
 
   4 espaços são um bom meio termo entre indentação estreita (permite maior
   profundidade de aninhamento) e indentação larga (mais fácil de ler). Tabs
-  trazem complicações; é melhor deixa-las fora.
+  trazem complicações; é melhor não usar.
 
 * Quebre as linhas de modo que não excedam 79 caracteres.
 
