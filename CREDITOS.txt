@@ -14,6 +14,7 @@ Fernando Fraga Rodrigues
 Gustavo Sverzut Barbieri
 José Alexandre Nalon
 João Paulo da Silva
+Luciano Ramalho
 Mauricio da Silva Marinho
 Osvaldo Santana Neto
 Pedro Augusto
@@ -28,3 +29,4 @@ Rodrigo Moraes
 Silas Justiniano
 Tiago Eugenio de Melo 
 Vitor Espíndola
+
