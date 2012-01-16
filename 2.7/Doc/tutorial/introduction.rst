@@ -14,14 +14,14 @@ múltiplas linhas.
 
 Muitos dos exemplos neste manual, até mesmo aqueles digitados interativamente,
 incluem comentários. Comentários em Python são iniciados pelo caractere ``#``,
-e se extendem até o final da linha física. Um comentário pode aparecer no
+e se estendem até o final da linha física. Um comentário pode aparecer no
 início da linha, depois de um espaço em branco ou código, mas nunca dentro de
 uma string literal. O caractere ``#`` em uma string literal não passa de um
-caratere ``#``. Uma vez que os comentários são usados apenas para explicar o
+caractere ``#``. Uma vez que os comentários são usados apenas para explicar o
 código e não são interpretados pelo Python, eles podem ser omitidos ao digitar
 os exemplos.
 
-Alguns examplos::
+Alguns exemplos::
 
    # este é o primeiro comentário
    SPAM = 1                 # e este é o segundo comentário
@@ -91,8 +91,8 @@ usadas, se não acontece um erro::
      File "<stdin>", line 1, in <module>
    NameError: name 'n' is not defined
 
-Há suporte completo para ponto-flutuante (*float*); operadores com operandos
-de diferentes tipos convertem o inteiro para ponto-flutuante:
+Há suporte completo para ponto flutuante (*float*); operadores com operandos
+de diferentes tipos convertem o inteiro para ponto flutuante:
 
    >>> 3 * 3.75 / 1.5
    7.5
@@ -204,8 +204,6 @@ continuação de uma linha lógica::
 
    print oi
 
-.. XXX parei aqui em 2012-01-14 18:06 ~LR
-
 Observe que quebras de linha ainda precisam ser embutidos na string usando
 ``\n`` --- a quebra de linha física após a última barra de escape é anulada.
 Este exemplo exibiria o seguinte resultado:
@@ -261,8 +259,8 @@ Strings podem ser concatenadas (coladas) com o operador ``+``, e repetidas com `
    '<AjudaZAjudaZAjudaZAjudaZAjudaZ>'
 
 Duas strings literais adjacentes são automaticamente concatenadas; a primeira
-linha do exemplo anterior poderia ter sido escrita como 
-``palavra = 'Ajuda' 'Z'``; isso funciona somente com strings literais, não com 
+linha do exemplo anterior poderia ter sido escrita como
+``palavra = 'Ajuda' 'Z'``; isso funciona somente com strings literais, não com
 expressões que produzem strings::
 
    >>> 'str' 'ing'             #  <-  Isto funciona
@@ -317,7 +315,7 @@ Entretanto, criar uma nova string combinando conteúdos é fácil e eficiente::
    >>> 'Splat' + palavra[5]
    'SplatZ'
 
-Eis uma invariante interessante das operações de fatiamento: 
+Eis uma invariante interessante das operações de fatiamento:
 ``s[:i] + s[i:]`` é igual a ``s``.
 
 ::
@@ -365,7 +363,7 @@ Intervalos fora dos limites da string são truncados, mas não tente isso com
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
    IndexError: string index out of range
-   >>> 
+   >>>
 
 Uma maneira de lembrar como slices funcionam é pensar que os índices indicam
 posições *entre* caracteres, onde a borda esquerda do primeiro caractere é 0.
@@ -376,7 +374,7 @@ tem índice *n*, por exemplo::
     +---+---+---+---+---+---+
     | A | j | u | d | a | z |
     +---+---+---+---+---+---+
-   -6  -5  -4  -3  -2  -1  
+   -6  -5  -4  -3  -2  -1
 
 
 A primeira fileira de números indica a posição dos índices 0...6 na string; a
@@ -385,7 +383,7 @@ de *i* a *j* consiste em todos os caracteres entre as bordas *i* e *j*,
 respectivamente.
 
 Para índices positivos, o comprimento da fatia é a diferença entre os índices,
-se ambos estão dentro dos limites da string. Por exemplo, comprimento de 
+se ambos estão dentro dos limites da string. Por exemplo, comprimento de
 ``palavra[1:3]`` é 2.
 
 A função built-in (embutida) :func:`len` devolve o comprimento de uma string::
@@ -397,8 +395,8 @@ A função built-in (embutida) :func:`len` devolve o comprimento de uma string::
 .. seealso::
 
    :ref:`typesseq`
-      Strings, e strings Unicode descritas na próxima seção, são exemplos de
-      *sequências* e implementam as operações comuns associadas com esses
+      Strings, e as strings Unicode descritas na próxima seção, são exemplos
+      de *sequências* e implementam as operações comuns associadas com esses
       objetos.
 
    :ref:`string-methods`
@@ -621,7 +619,7 @@ Primeiros passos rumo à programação
 ===================================
 
 Naturalmente, podemos utilizar Python para tarefas mais complicadas do que
-somar 2+2. Por exemplo, podemos escrever o início da *sequência de Fibonacci* 
+somar 2+2. Por exemplo, podemos escrever o início da *sequência de Fibonacci*
 assim::
 
    >>> # Sequência de Fibonacci:
@@ -661,12 +659,12 @@ Este exemplo introduz diversas características ainda não mencionadas.
   espaços para indentar cada linha. Na prática você vai preparar scripts Python
   mais complicados em um editor de texto; a maioria dos editores de texto tem
   facilidades de indentação automática. Quando um comando composto é digitado
-  interativamente, deve ser finalizado por uma linha em branco (já que o 
+  interativamente, deve ser finalizado por uma linha em branco (já que o
   parser não tem como adivinhar qual é a última linha do comando). Observe que
   toda linha de um mesmo bloco de comandos deve ter a mesma indentação
 
-* O comando :keyword:`print` escreve o valor da expressão ou expressões 
-  fornecidas. É diferente de apenas escrever a expressão no interpretador 
+* O comando :keyword:`print` escreve o valor da expressão ou expressões
+  fornecidas. É diferente de apenas escrever a expressão no interpretador
   (como fizemos nos exemplos da calculadora) pela forma como lida com múltiplas
   expressões e strings. Strings são exibidas sem aspas, e um espaço é inserido
   entre os itens para formatar o resultado assim::

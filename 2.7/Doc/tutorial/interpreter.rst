@@ -1,8 +1,8 @@
 .. _tut-using:
 
-*********************************
-Utilizando o interpretador Python
-*********************************
+*****************************
+Usando o interpretador Python
+*****************************
 
 
 .. _tut-invoking:
@@ -10,28 +10,28 @@ Utilizando o interpretador Python
 Disparando o interpretador
 ==========================
 
-O interpretador é freqüentemente instalado como :file:`/usr/local/bin/python`
+O interpretador é frequentemente instalado como :file:`/usr/local/bin/python`
 nas máquinas onde está disponível; adicionando :file:`/usr/local/bin` ao
 caminho de busca (search path) da shell de seu UNIX torna-se possível
 iniciá-lo digitando::
 
    python
-  
+
 no console. Considerando que a escolha do diretório
 de instalação é uma opção de instalação, outras localizações são possíveis;
 verifique com seu guru local de Python ou com o administrador do sistema.
 (Ex.: :file:`/usr/local/python` é uma alternativa popular para instalação.)
 
-Em computadores com Windows, Python é instalado geralmente em 
-:file`C\\Python27`, apesar de você poder mudar isso enquanto está executando o
+Em computadores com Windows, Python é instalado geralmente em
+:file:`C:\\Python27`, apesar de você poder mudar isso enquanto está executando o
 instalador. Para adicionar esse diretório ao path, você pode digitar o
 seguinte comando no console::
 
    set path=%path%;C:\python27
 
-Digitando um caracter EOF (end-of-file; fim de arquivo: :kbd:`Control-D` em
+Digitando um caractere EOF (end-of-file; fim de arquivo: :kbd:`Control-D` em
 Unix, :kbd:`Control-Z` em Windows) diretamente no prompt força o interpretador
-a sair com status de saída zero. Se isso não funcionar, voce pode sair do
+a sair com status de saída zero. Se isso não funcionar, você pode sair do
 interpretador digitando o seguinte: ``quit()``.
 
 As características de edição de linha não são muito sofisticadas. Sobre UNIX,
@@ -39,11 +39,11 @@ quem instalou o interpretador talvez tenha habilitado o suporte à biblioteca
 GNU readline, que adiciona facilidades mais elaboradas de edição e histórico
 de comandos. Teclar :kbd:`Control-P` no primeiro prompt oferecido pelo Python
 é, provavelmente, a maneira mais rápida de verificar se a edição de linha de
-comando é suportada. Se houver um beep, você possui edição de linha de
-comando; veja o Apêndice :ref:`tut-interacting` para uma introdução as teclas
+comando é suportada. Se escutar um *beep*, você tem edição de linha de
+comando; veja o Apêndice :ref:`tut-interacting` para uma introdução às teclas
 especiais. Se nada acontecer, ou se ^P aparecer na tela, a opção de edição não
-está disponível; você apenas será capaz de usar o backspace para remover
-caracteres da linha atual.
+está disponível; você apenas poderá usar o backspace para remover caracteres
+da linha atual.
 
 O interpretador trabalha de forma semelhante a uma shell de UNIX: quando
 disparado com a saída padrão conectada a um console de terminal (dispositivo
@@ -55,7 +55,7 @@ arquivo.
 Uma segunda forma de rodar o interpretador é ``python -c *comando* [arg] ...``,
 que executa um ou mais comandos especificados na posição *comando*,
 analogamente à opção de shell :option:`-c`. Considerando que comandos Python
-possuem freqüentemente espaços em branco (ou outros caracteres que são
+frequentemente têm espaços em branco (ou outros caracteres que são
 especiais para a shell) é aconselhável que o *comando* esteja dentro de aspas
 duplas.
 
@@ -74,7 +74,7 @@ argumento :option:`-i` antes do nome do script.
 Passagem de argumentos
 ----------------------
 
-Quando são de conhecimento do interpretador, o nome do script e subseqüentes
+Quando são de conhecimento do interpretador, o nome do script e demais
 argumentos da linha de comando da shell são acessíveis ao próprio script
 através da variável ``argv`` do módulo ``sys``, que é uma lista de strings.
 Essa lista tem sempre ao menos um elemento; quando nenhum script ou argumento
@@ -95,7 +95,7 @@ Modo interativo
 
 Quando os comandos são lidos a partir do console (tty), diz-se que o
 interpretador está em modo interativo. Nesse modo ele solicita um próximo
-comando através do *prompt primário*, tipicamente três sinais de maior-que
+comando através do *prompt primário*, tipicamente três sinais de maior
 (``>>>``); para linhas de continuação do comando atual, o *prompt secundário*
 padrão é formado por três pontos (``...``). O interpretador imprime uma
 mensagem de boas vindas, informando seu número de versão e um aviso de
@@ -106,13 +106,13 @@ copyright antes de exibir o primeiro prompt::
     Type "help", "copyright", "credits" or "license" for more information.
     >>>
 
-Linhas de continuação são necessárias em construções multi-linha. Como
+Linhas de continuação são necessárias em construções multilinha. Como
 exemplo, dê uma olhada nesse comando :keyword:`if`::
 
     >>> o_mundo_eh_plano = 1
-    >>> if o_mundo_eh_plano: 
-    ...     print "Cuidado para não cair dele!" 
-    ... 
+    >>> if o_mundo_eh_plano:
+    ...     print "Cuidado para não cair dele!"
+    ...
     Cuidado para não cair dele!
 
 
@@ -124,7 +124,7 @@ O interpretador e seu ambiente
 
 .. _tut-error:
 
-Tratamento de Erros
+Tratamento de erros
 -------------------
 
 Quando ocorre um erro, o interpretador exibe uma mensagem de erro um *stack
@@ -138,11 +138,11 @@ inconsistências internas e alguns casos de exaustão de memória. Todas as
 mensagens de erro são escritas na saída de erros padrão (standard error),
 enquanto a saída dos demais comandos é direcionada para a saída padrão.
 
-Teclando o caracter de interrupção (tipicamente Control-C ou DEL) no prompt
-primário ou secundário cancela a entrada de dados corrente e retorna-se ao
+Teclar o caractere de interrupção (tipicamente Control-C ou DEL) no prompt
+primário ou secundário cancela a entrada de dados corrente e volta ao
 prompt primário. [#]_ Provocar a interrupção enquanto um comando está em
-execução levanta a exceção :exc:`KeyboardInterrupt`, a qual pode ser tratada em um
-comando :keyword:`try`. 
+execução levanta a exceção :exc:`KeyboardInterrupt`, a qual pode ser tratada
+em um comando :keyword:`try`.
 
 
 .. _tut-scripts:
@@ -156,10 +156,10 @@ Em sistemas UNIX, scripts Python podem ser transformados em executáveis, como s
 
 (assumindo que o interpretador foi incluído no :envvar:`PATH` do usuário e que
 o script tenha a permissão de acesso habilitada para execução). Os caracteres
-``#!` devem ser os dois primeiros do arquivo. Em algumas plataformas esta
-linha inicial deve ser finalizada no estilo UNIX com (``'\n'``), e não com a
-marca de fim de linha do Windows (``'\r\n'``). Observe que o caracter ``'#'``
-inicia uma linha de comentário em Python.
+``#!`` devem ser os dois primeiros do arquivo. Em algumas plataformas esta
+linha inicial deve ser finalizada no estilo UNIX com (``'\\n'``), e não com a
+marca de fim de linha do Windows (``'\\r\\n'``). Observe que o caractere
+``'#'`` inicia uma linha de comentário em Python.
 
 Para atribuir modo executável ou permissão de execução ao seu script Python,
 utilize o comando :program:`chmod` do shell do UNIX::
@@ -190,7 +190,7 @@ Unicode diretamente, usando aquela codificação. A lista de codificações
 possíveis pode ser encontrada na Referência da Biblioteca Python, na seção
 :mod:`codecs`.
 
-Por exemplo, para escrever strings unicode incluindo o símbolo monetário do
+Por exemplo, para escrever strings Unicode incluindo o símbolo monetário do
 Euro, a codificação ISO-8859-15 pode ser usada; nela símbolo do Euro tem o
 valor ordinal 164. Este script exibe o valor 8364 (código Unicode
 correspondente ao símbolo do Euro) e termina::
@@ -243,10 +243,10 @@ sessão interativa. É possível também redefinir os prompts ``sys.ps1`` e
 
 Se for necessário ler um script adicional de inicialização a partir do
 diretório atual, você pode programar isso a partir do script de
-inicialização global, por exemplo 
-``if os.path.isfile('.pythonrc.py'): execfile('.pythonrc.py')``. 
+inicialização global, por exemplo
+``if os.path.isfile('.pythonrc.py'): execfile('.pythonrc.py')``.
 Se você deseja utilizar o script de inicialização em outro script, você deve
-fazê-lo explicitamente da seguinte forma:: 
+fazê-lo explicitamente da seguinte forma::
 
     import os
     filename = os.environ.get('PYTHONSTARTUP')
