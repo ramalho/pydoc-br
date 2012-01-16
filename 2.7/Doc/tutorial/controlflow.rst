@@ -10,11 +10,11 @@ particularidades.
 
 .. _tut-if:
 
-Comando :keyword:`if` 
+Comando :keyword:`if`
 =====================
 
-Provavelmente o mais conhecido tipo de comando é o :keyword:`if`. Por
-exemplo::
+Provavelmente o mais conhecido comando de controle de fluxo é o :keyword:`if`.
+Por exemplo::
 
    >>> x = int(raw_input("Favor digitar um inteiro: "))
    Favor digitar um inteiro: 42
@@ -32,14 +32,14 @@ exemplo::
 
 Pode haver zero ou mais seções :keyword:`elif`, e a seção :keyword:`else` é
 opcional. A palavra-chave :keyword:`elif` é uma abreviação para 'else if', e é
-útil para evitar indentação excessiva. Uma sequência 
+útil para evitar indentação excessiva. Uma sequência
 :keyword:`if` ... :keyword:`elif` ... :keyword:`elif` ...
 substitui as construções ``switch`` ou ``case`` existentes em outras
 linguagens.
 
 .. _tut-for:
 
-Comando :keyword:`for` 
+Comando :keyword:`for`
 ======================
 
 .. index::
@@ -54,7 +54,7 @@ passo da iteração quanto a condição de parada (como em C), o comando
 lista ou uma string), na ordem em que eles aparecem na sequência. Por exemplo:
 
 .. Nota no texto original:
-   One suggestion was to give a real C example here, but that may 
+   One suggestion was to give a real C example here, but that may
    only serve to confuse non-C programmers.
 
 ::
@@ -63,7 +63,7 @@ lista ou uma string), na ordem em que eles aparecem na sequência. Por exemplo:
    >>> a = ['gato', 'janela', 'defenestrar']
    >>> for x in a:
    ...     print x, len(x)
-   ... 
+   ...
    gato 4
    janela 6
    defenestrar 11
@@ -157,13 +157,13 @@ que procura números primos::
    8 = 2 * 4
    9 = 3 * 3
 
-(Sim, este é o código correto. Olhe atentamente: a cláusula ``else`` pertence 
+(Sim, este é o código correto. Olhe atentamente: a cláusula ``else`` pertence
 ao laço :keyword:`for`, e **não** ao comando :keyword:`if`.)
 
 
 .. _tut-pass:
 
-Comando :keyword:`pass` 
+Comando :keyword:`pass`
 =======================
 
 O comando :keyword:`pass` não faz nada. Ela pode ser usada quando a sintaxe
@@ -219,9 +219,9 @@ parênteses. Os comandos que formam o corpo da função começam na linha seguin
 e devem ser indentados.
 
 Opcionalmente, a primeira linha lógica do corpo da função pode ser uma string
-literal, cujo propósito é documentar a função. Se presente, essa string 
-chama-se :dfn:`docstring`. (Há mais informação sobre docstrings na seção 
-:ref:`tut-docstrings`.) Existem ferramentas que utilizam docstrings para 
+literal, cujo propósito é documentar a função. Se presente, essa string
+chama-se :dfn:`docstring`. (Há mais informação sobre docstrings na seção
+:ref:`tut-docstrings`.) Existem ferramentas que utilizam docstrings para
 produzir automaticamente documentação online ou para imprimir, ou ainda
 permitir que o usuário navegue interativamente pelo código. É uma boa prática
 incluir sempre docstrings em suas funções, portanto, tente fazer disto um
@@ -286,16 +286,16 @@ Este exemplo, como sempre, demonstra algumas características novas:
 
 * O comando :keyword:`return` termina a função devolvendo um valor. Se não
   houver uma expressão após o :keyword:`return`, o valor ``None`` é devolvido.
-  Se a função chegar ao fim sem o uso explícito do :keyword:`return`, então 
+  Se a função chegar ao fim sem o uso explícito do :keyword:`return`, então
   também será devolvido o valor ``None``.
 
 * O trecho ``resultado.append(a)`` invoca um *método* do objeto lista
   ``resultado``. Um método é uma função que "pertence" a um objeto e é chamada
-  através de ``obj.nome_do_metodo`` onde ``obj`` é um objeto qualquer (pode 
-  ser uma expressão), e ``nome_do_metodo`` é o nome de um método que foi 
-  definido pelo tipo do objeto. Tipos diferentes definem métodos diferentes. 
-  Métodos de diferentes tipos podem ter o mesmo nome sem ambiguidade. (É 
-  possível definir seus próprios tipos de objetos e métodos, utilizando 
+  através de ``obj.nome_do_metodo`` onde ``obj`` é um objeto qualquer (pode
+  ser uma expressão), e ``nome_do_metodo`` é o nome de um método que foi
+  definido pelo tipo do objeto. Tipos diferentes definem métodos diferentes.
+  Métodos de diferentes tipos podem ter o mesmo nome sem ambiguidade. (É
+  possível definir seus próprios tipos de objetos e métodos, utilizando
   *classes*, veja em :ref:`tut-classes`)
   O método :meth:`append` mostrado no exemplo é definido para objetos do
   tipo lista; ele adiciona um novo elemento ao final da lista. Neste exemplo,
@@ -303,48 +303,48 @@ Este exemplo, como sempre, demonstra algumas características novas:
 
 .. _tut-defining:
 
-More on Defining Functions
-==========================
+Mais sobre definição de funções
+===============================
 
-It is also possible to define functions with a variable number of arguments.
-There are three forms, which can be combined.
+É possível definir funções com um número variável de argumentos. Existem três
+formas, que podem ser combinadas.
 
 
 .. _tut-defaultargs:
 
-Default Argument Values
------------------------
+Parâmetros com valores default
+------------------------------
 
-The most useful form is to specify a default value for one or more arguments.
-This creates a function that can be called with fewer arguments than it is
-defined to allow.  For example::
+A mais útil das três é especificar um valor default para um ou mais parâmetros
+formais. Isso cria uma função que pode ser invocada com um número menor de
+argumentos do que ela pode receber. Por exemplo::
 
-   def ask_ok(prompt, retries=4, complaint='Yes or no, please!'):
+   def confirmar(pergunta, tentativas=4, reclamacao='Sim ou não, por favor!'):
        while True:
-           ok = raw_input(prompt)
-           if ok in ('y', 'ye', 'yes'):
+           ok = raw_input(pergunta).lower()
+           if ok in ('s', 'si', 'sim'):
                return True
-           if ok in ('n', 'no', 'nop', 'nope'):
+           if ok in ('n', 'no', 'não', 'nananinanão'):
                return False
-           retries = retries - 1
-           if retries < 0:
-               raise IOError('refusenik user')
-           print complaint
+           tentativas = tentativas - 1
+           if tentativas == 0:
+               raise IOError('usuario nao quer cooperar')
+           print reclamacao
 
-This function can be called in several ways:
+Essa função pode ser invocada de várias formas:
 
-* giving only the mandatory argument:
-  ``ask_ok('Do you really want to quit?')``
-* giving one of the optional arguments:
-  ``ask_ok('OK to overwrite the file?', 2)``
-* or even giving all arguments:
-  ``ask_ok('OK to overwrite the file?', 2, 'Come on, only yes or no!')``
+* fornecendo apenas o argumento obrigatório:
+  ``confirmar('Deseja mesmo encerrar?')``
+* fornecendo um dos argumentos opcionais:
+  ``confirmar('Sobrescrever o arquivo?', 2)``
+* ou fornecendo todos os argumentos:
+  ``confirmar('Sobrescrever o arquivo?', 2, 'Escolha apenas s ou n')``
 
-This example also introduces the :keyword:`in` keyword. This tests whether or
-not a sequence contains a certain value.
+Este exemplo também introduz o operador :keyword:`in`, que verifica se uma
+sequência contém ou não um determinado valor.
 
-The default values are evaluated at the point of function definition in the
-*defining* scope, so that ::
+Os valores default são avaliados no momento a definição da função, e no escopo
+em que a função foi *definida*, portanto::
 
    i = 5
 
@@ -354,12 +354,12 @@ The default values are evaluated at the point of function definition in the
    i = 6
    f()
 
-will print ``5``.
+irá exibir ``5``.
 
-**Important warning:**  The default value is evaluated only once. This makes a
-difference when the default is a mutable object such as a list, dictionary, or
-instances of most classes.  For example, the following function accumulates the
-arguments passed to it on subsequent calls::
+**Aviso importante:** Valores default são avaliados apenas uma vez. Isso faz
+diferença quando o valor default é um objeto mutável como uma lista ou
+dicionário. Por exemplo, a função a seguir acumula os argumentos passados em
+chamadas subsequentes:
 
    def f(a, L=[]):
        L.append(a)
@@ -369,14 +369,14 @@ arguments passed to it on subsequent calls::
    print f(2)
    print f(3)
 
-This will print ::
+Esse código vai exibir::
 
    [1]
    [1, 2]
    [1, 2, 3]
 
-If you don't want the default to be shared between subsequent calls, you can
-write the function like this instead::
+Se você não quiser que o valor default seja compartilhado entre chamadas
+subsequentes, pode reescrever a função assim::
 
    def f(a, L=None):
        if L is None:
@@ -387,11 +387,12 @@ write the function like this instead::
 
 .. _tut-keywordargs:
 
-Keyword Arguments
------------------
+Argumentos nomeados
+-------------------
 
-Functions can also be called using :term:`keyword arguments <keyword argument>`
-of the form ``kwarg=value``.  For instance, the following function::
+Funções também podem ser chamadas passando :term:`keyword arguments <keyword
+argument>` (argumentos nomeados) no formato ``chave=valor``. Por exemplo, a
+seguinte função::
 
    def parrot(voltage, state='a stiff', action='voom', type='Norwegian Blue'):
        print "-- This parrot wouldn't", action,
@@ -399,31 +400,33 @@ of the form ``kwarg=value``.  For instance, the following function::
        print "-- Lovely plumage, the", type
        print "-- It's", state, "!"
 
-accepts one required argument (``voltage``) and three optional arguments
-(``state``, ``action``, and ``type``).  This function can be called in any
-of the following ways::
+aceita um argumento obrigatório (``voltage``) e três argumentos opcionais
+(``state``, ``action``, e ``type``). Esta função pode ser invocada de todas
+estas formas::
 
-   parrot(1000)                                          # 1 positional argument
-   parrot(voltage=1000)                                  # 1 keyword argument
-   parrot(voltage=1000000, action='VOOOOOM')             # 2 keyword arguments
-   parrot(action='VOOOOOM', voltage=1000000)             # 2 keyword arguments
-   parrot('a million', 'bereft of life', 'jump')         # 3 positional arguments
-   parrot('a thousand', state='pushing up the daisies')  # 1 positional, 1 keyword
+   parrot(1000)                                   # 1 arg. posicional
+   parrot(voltage=1000)                           # 1 arg. nomeado
+   parrot(voltage=1000000, action='VOOOOOM')      # 2 arg. nomeados
+   parrot(action='VOOOOOM', voltage=1000000)      # 2 arg. nomeados
+   parrot('a million', 'bereft of life', 'jump')  # 3 arg. posicionais
+   # 1 arg. positional e 1 arg. keyword
+   parrot('a thousand', state='pushing up the daisies')
 
-but all the following calls would be invalid::
+mas todas as invocações a seguir seriam inválidas::
 
-   parrot()                     # required argument missing
-   parrot(voltage=5.0, 'dead')  # non-keyword argument after a keyword argument
-   parrot(110, voltage=220)     # duplicate value for the same argument
-   parrot(actor='John Cleese')  # unknown keyword argument
+   parrot()                     # argumento obrigatório faltando
+   parrot(voltage=5.0, 'dead')  # argumento posicional depois do nomeado
+   parrot(110, voltage=220)     # valur duplicado para o mesmo argument
+   parrot(actor='John Cleese')  # argumento nomeado desconhecido
 
 In a function call, keyword arguments must follow positional arguments.
-All the keyword arguments passed must match one of the arguments
-accepted by the function (e.g. ``actor`` is not a valid argument for the
-``parrot`` function), and their order is not important.  This also includes
-non-optional arguments (e.g. ``parrot(voltage=1000)`` is valid too).
-No argument may receive a value more than once.
-Here's an example that fails due to this restriction::
+
+Em uma invocação, argumentos nomeados devem vir depois dos argumentos
+posicionais. Todos os argumentos nomeados passados devem casar com os
+parâmetros formais definidos pela função (ex. ``actor`` não é um argumento
+nomeado válido para a função ``parrot``), mas sua ordem é irrelevante. Isto
+também inclui argumentos obrigatórios (ex.: ``parrot(voltage=1000)``
+funciona). Nenhum parâmetro pode receber mais de um valor. Eis um exemplo que não funciona devido a esta restrição::
 
    >>> def function(a):
    ...     pass
@@ -652,8 +655,8 @@ extracted for you:
 .. rubric:: Notas
 
 .. [#] Na verdade, *passagem por referência para objeto* (*call by object
-    reference*) seria uma descrição melhor do que *passagem por valor* 
+    reference*) seria uma descrição melhor do que *passagem por valor*
     (*call-by-value*), pois, se um objeto mutável for passado, o invocador
-    (*caller*) verá as alterações feitas pelo invocado (*callee*), como 
-    por exemplo a inserção de itens em uma lista.   
+    (*caller*) verá as alterações feitas pelo invocado (*callee*), como
+    por exemplo a inserção de itens em uma lista.
 
