@@ -358,7 +358,9 @@ irá exibir ``5``.
 
 **Aviso importante:** Valores default são avaliados apenas uma vez. Isso faz
 diferença quando o valor default é um objeto mutável como uma lista ou
-dicionário. Por exemplo, a função a seguir acumula os argumentos passados em
+dicionário (N.d.T. dicionários são como com arrays associativos ou HashMaps em outras linguagens; ver tabl:ref:`tut-dictionaries`).
+
+Por exemplo, a função a seguir acumula os argumentos passados em
 chamadas subsequentes:
 
    def f(a, L=[]):
@@ -409,7 +411,7 @@ estas formas::
    parrot(voltage=1000000, action='VOOOOOM')      # 2 arg. nomeados
    parrot(action='VOOOOOM', voltage=1000000)      # 2 arg. nomeados
    parrot('a million', 'bereft of life', 'jump')  # 3 arg. posicionais
-   # 1 arg. positional e 1 arg. keyword
+   # 1 arg. positional e 1 arg. nomeado
    parrot('a thousand', state='pushing up the daisies')
 
 mas todas as invocações a seguir seriam inválidas::
@@ -418,8 +420,6 @@ mas todas as invocações a seguir seriam inválidas::
    parrot(voltage=5.0, 'dead')  # argumento posicional depois do nomeado
    parrot(110, voltage=220)     # valur duplicado para o mesmo argument
    parrot(actor='John Cleese')  # argumento nomeado desconhecido
-
-In a function call, keyword arguments must follow positional arguments.
 
 Em uma invocação, argumentos nomeados devem vir depois dos argumentos
 posicionais. Todos os argumentos nomeados passados devem casar com os
@@ -436,13 +436,14 @@ funciona). Nenhum parâmetro pode receber mais de um valor. Eis um exemplo que n
      File "<stdin>", line 1, in ?
    TypeError: function() got multiple values for keyword argument 'a'
 
-When a final formal parameter of the form ``**name`` is present, it receives a
-dictionary (see :ref:`typesmapping`) containing all keyword arguments except for
-those corresponding to a formal parameter.  This may be combined with a formal
-parameter of the form ``*name`` (described in the next subsection) which
-receives a tuple containing the positional arguments beyond the formal parameter
-list.  (``*name`` must occur before ``**name``.) For example, if we define a
-function like this::
+Quando o último parâmetro formal usar a sintaxe ``**nome``, ele armazenará
+todos os parâmetros nomeados passados para a função, exceto aqueles que
+corresponderam a parâmetros formais definidos antes. Isto pode ser combinado
+com o parâmetro formal ``*nome`` (descrito na próxima subseção) que recebe uma
+tupla (N.d.T. uma sequência de itens, semelhante a uma lista imutável; ver
+:ref:`tut-tuples`) contendo todos argumentos posicionais que não correspondem
+à lista da parâmetros formais. (``*nome`` deve ser declarado antes de
+``**nome``.) Por exemplo, se definimos uma função como esta::
 
    def cheeseshop(kind, *arguments, **keywords):
        print "-- Do you have any", kind, "?"
@@ -454,7 +455,7 @@ function like this::
        for kw in keys:
            print kw, ":", keywords[kw]
 
-It could be called like this::
+Ela pode ser invocada assim::
 
    cheeseshop("Limburger", "It's very runny, sir.",
               "It's really very, VERY runny, sir.",
@@ -462,7 +463,7 @@ It could be called like this::
               client="John Cleese",
               sketch="Cheese Shop Sketch")
 
-and of course it would print::
+e, naturalmente, produziria::
 
    -- Do you have any Limburger ?
    -- I'm sorry, we're all out of Limburger
@@ -473,50 +474,48 @@ and of course it would print::
    shopkeeper : Michael Palin
    sketch : Cheese Shop Sketch
 
-Note that the list of keyword argument names is created by sorting the result
-of the keywords dictionary's ``keys()`` method before printing its contents;
-if this is not done, the order in which the arguments are printed is undefined.
+Note que criamos uma lista de chaves ``keys`` ordenando o resultado do método
+``keys()`` do dicionário ``keywords`` antes de exibir seu conteúdo; se isso
+não fosse feito, os argumentos seriam exibidos em uma ordem não especificada.
 
 .. _tut-arbitraryargs:
 
-Arbitrary Argument Lists
-------------------------
+Listas arbitrárias de argumentos
+--------------------------------
 
 .. index::
   statement: *
 
-Finally, the least frequently used option is to specify that a function can be
-called with an arbitrary number of arguments.  These arguments will be wrapped
-up in a tuple (see :ref:`tut-tuples`).  Before the variable number of arguments,
-zero or more normal arguments may occur. ::
+Finalmente, a opção menos usada possibilita que função seja invocada com um
+número arbitrário de argumentos. Esses argumentos serão empacotados em uma
+tupla (ver :ref:`tut-tuples`). Antes dos argumentos em número variável, zero
+ou mais argumentos normais podem estar presentes. ::
 
-   def write_multiple_items(file, separator, *args):
-       file.write(separator.join(args))
-
+   def escrever_multiplos_items(arquivo, separador, *args):
+       arquivo.write(separador.join(args))
 
 .. _tut-unpacking-arguments:
 
-Unpacking Argument Lists
-------------------------
+Desempacotando listas de argumentos
+-----------------------------------
 
-The reverse situation occurs when the arguments are already in a list or tuple
-but need to be unpacked for a function call requiring separate positional
-arguments.  For instance, the built-in :func:`range` function expects separate
-*start* and *stop* arguments.  If they are not available separately, write the
-function call with the  ``*``\ -operator to unpack the arguments out of a list
-or tuple::
+A situação inversa ocorre quando os argumentos já estão numa lista ou tupla
+mas ela precisa ser explodida para invocarmos uma função que requer argumentos
+posicionais separados. Por exemplo, a função :func:`range` espera argumentos
+separados, *start* e *stop*. Se os valores já estiverem juntos em uma lista ou
+tupla, escreva a chamada de função com o operador ``*`` para desempacotá-los
+da sequência::
 
-   >>> range(3, 6)             # normal call with separate arguments
+   >>> range(3, 6)     # chamada normal com argumentos separados
    [3, 4, 5]
    >>> args = [3, 6]
-   >>> range(*args)            # call with arguments unpacked from a list
+   >>> range(*args)    # chamada com argumentos desempacotados de uma lista
    [3, 4, 5]
 
 .. index::
   statement: **
 
-In the same fashion, dictionaries can deliver keyword arguments with the ``**``\
--operator::
+Da mesma forma, dicionários podem produzir argumentos nomeados com o operador ``**``::
 
    >>> def parrot(voltage, state='a stiff', action='voom'):
    ...     print "-- This parrot wouldn't", action,
@@ -530,127 +529,130 @@ In the same fashion, dictionaries can deliver keyword arguments with the ``**``\
 
 .. _tut-lambda:
 
-Lambda Forms
-------------
+Construções lambda
+------------------
 
-By popular demand, a few features commonly found in functional programming
-languages like Lisp have been added to Python.  With the :keyword:`lambda`
-keyword, small anonymous functions can be created. Here's a function that
-returns the sum of its two arguments: ``lambda a, b: a+b``.  Lambda forms can be
-used wherever function objects are required.  They are syntactically restricted
-to a single expression.  Semantically, they are just syntactic sugar for a
-normal function definition.  Like nested function definitions, lambda forms can
-reference variables from the containing scope::
+Atendendo a pedidos, algumas características encontradas em linguagens de
+programação funcionais como Lisp foram adicionadas a Python. Com a palavra
+reservada :keyword:`lambda`, pequenas funções anônimas podem ser criadas. Eis
+uma função que devolve a soma de seus dois argumentos: ``lambda a, b: a+b``.
+Construções lambda podem ser empregadas em qualquer lugar que exigiria uma
+função. Sintaticamente, estão restritas a uma única expressão. Semanticamente,
+são apenas açúcar sintático para a definição de funções normais. Assim como
+definições de funções aninhadas, construções lambda podem referenciar
+variáveis do escopo onde são definidas (N.d.T isso significa que Python implementa *closures*, recurso encontrado em Lisp, JavaScript, Ruby etc.)::
 
-   >>> def make_incrementor(n):
+   >>> def fazer_incrementador(n):
    ...     return lambda x: x + n
    ...
-   >>> f = make_incrementor(42)
+   >>> f = fazer_incrementador(42)
    >>> f(0)
    42
    >>> f(1)
    43
 
-
 .. _tut-docstrings:
 
-Documentation Strings
----------------------
+Strings de documentação
+-----------------------
 
 .. index::
    single: docstrings
    single: documentation strings
    single: strings, documentation
 
-There are emerging conventions about the content and formatting of documentation
-strings.
+A comunidade Python está convencionando o conteúdo e o formato de strings de documentação (*docstrings*).
 
-The first line should always be a short, concise summary of the object's
-purpose.  For brevity, it should not explicitly state the object's name or type,
-since these are available by other means (except if the name happens to be a
-verb describing a function's operation).  This line should begin with a capital
-letter and end with a period.
+A primeira linha deve ser um resumo curto e conciso do propósito do objeto.
+Por brevidade, não deve explicitamente se referir ao nome ou tipo do objeto,
+uma vez que estas informações estão disponívies por outros meios (exceto se o
+nome da função for o próprio verbo que descreve a finalidade da função). Essa
+linha deve começar com letra maiúscula e terminar com ponto.
 
-If there are more lines in the documentation string, the second line should be
-blank, visually separating the summary from the rest of the description.  The
-following lines should be one or more paragraphs describing the object's calling
-conventions, its side effects, etc.
+Se existem mais linhas na string de documentação, a segunda linha deve
+estar em branco, visulamente separando o resumo do resto da descrição. As
+linhas seguintes devem conter um ou mais parágrafos descrevendo as convenções
+de chamada ao objeto, seus efeitos colaterais, etc.
 
-The Python parser does not strip indentation from multi-line string literals in
-Python, so tools that process documentation have to strip indentation if
-desired.  This is done using the following convention. The first non-blank line
-*after* the first line of the string determines the amount of indentation for
-the entire documentation string.  (We can't use the first line since it is
-generally adjacent to the string's opening quotes so its indentation is not
-apparent in the string literal.)  Whitespace "equivalent" to this indentation is
-then stripped from the start of all lines of the string.  Lines that are
-indented less should not occur, but if they occur all their leading whitespace
-should be stripped.  Equivalence of whitespace should be tested after expansion
-of tabs (to 8 spaces, normally).
+O parser do Python não remove a indentação de comentários multi-linha.
+Portanto, ferramentas que processem strings de documentação precisam lidar com
+isso, quando desejável. Existe uma convenção para isso. A primeira linha não
+vazia  após a linha de sumário determina a indentação para o resto da string
+de documentação. (Não podemos usar a primeira linha para isso porque ela em
+geral está adjacente às aspas que iniciam a string, portanto sua indentação
+real não fica aparente.) Espaços em branco ou tabs "equivalentes" a esta
+indentação são então removidos do início das demais linhas da string. Linhas
+indentação menor não devem ocorrer, mas se ocorrerem, todos os espaços à sua
+esquerda são removidos. Para determinar a indentação, normalmente considera-se
+que um caractere tab equivale a 8 espaços.
 
-Here is an example of a multi-line docstring::
+Eis um exemplo de uma docstring multi-linha::
 
-   >>> def my_function():
-   ...     """Do nothing, but document it.
+   >>> def minha_funcao():
+   ...     """Não faz nada, mas é documentada.
    ...
-   ...     No, really, it doesn't do anything.
+   ...     Realmente ela não faz nada.
    ...     """
    ...     pass
    ...
-   >>> print my_function.__doc__
-   Do nothing, but document it.
+   >>> print minha_funcao.__doc__
+   Não faz nada, mas é documentada.
 
-       No, really, it doesn't do anything.
+       Realmente ela não faz nada.
 
 
 .. _tut-codingstyle:
 
-Intermezzo: Coding Style
-========================
+Intermezzo: estilo de codificação
+=================================
 
 .. sectionauthor:: Georg Brandl <georg@python.org>
 .. index:: pair: coding; style
 
-Now that you are about to write longer, more complex pieces of Python, it is a
-good time to talk about *coding style*.  Most languages can be written (or more
-concise, *formatted*) in different styles; some are more readable than others.
-Making it easy for others to read your code is always a good idea, and adopting
-a nice coding style helps tremendously for that.
+Agora que você está prestes a escrever peças mais longas e complexas em
+Python, é uma bom momento para falar sobre *estilo de codificação*. A maioria
+das linguagens podem ser escritas (ou *formatadas*) em diferentes estilos;
+alguns são mais legíveis do que outros. Tornar o seu código mais fácil de ler,
+para os outros, é sempre uma boa idéia, e adotar um estilo de codificação
+agradável ajuda bastante.
 
-For Python, :pep:`8` has emerged as the style guide that most projects adhere to;
-it promotes a very readable and eye-pleasing coding style.  Every Python
-developer should read it at some point; here are the most important points
-extracted for you:
+Em Python, o :pep:`8` tornou-se o guia de estilo adotado pela maioria dos
+projetos; ele promove um estilo de codificação muito legível e visualmente
+agradável. Todo desenvolvedor Python deve lê-lo em algum momento; aqui estão
+os pontos mais importantes selecionados para você:
 
-* Use 4-space indentation, and no tabs.
+* Use 4 espaços de recuo, e nenhum tab.
 
-  4 spaces are a good compromise between small indentation (allows greater
-  nesting depth) and large indentation (easier to read).  Tabs introduce
-  confusion, and are best left out.
+  4 espaços são um bom meio termo entre indentação estreita (permite maior
+  profundidade de aninhamento) e indentação larga (mais fácil de ler). Tabs
+  trazem complicações; é melhor deixa-las fora.
 
-* Wrap lines so that they don't exceed 79 characters.
+* Quebre as linhas de modo que não excedam 79 caracteres.
 
-  This helps users with small displays and makes it possible to have several
-  code files side-by-side on larger displays.
+  Isso ajuda os usuários com telas pequenas e torna possível abrir vários
+  arquivos de código lado a lado em telas maiores.
 
-* Use blank lines to separate functions and classes, and larger blocks of
-  code inside functions.
+* Deixe linhas em branco para separar as funções e classes, e grandes blocos
+  de código dentro de funções.
 
-* When possible, put comments on a line of their own.
+* Quando possível, coloque comentários em uma linha própria.
 
-* Use docstrings.
+* Escreva docstrings.
 
-* Use spaces around operators and after commas, but not directly inside
-  bracketing constructs: ``a = f(1, 2) + g(3, 4)``.
+* Use espaços ao redor de operadores e após vírgulas, mas não diretamente
+  dentro de parênteses, colchetes e chaves: ``a = f(1, 2) + g(3, 4)``.
 
-* Name your classes and functions consistently; the convention is to use
-  ``CamelCase`` for classes and ``lower_case_with_underscores`` for functions
-  and methods.  Always use ``self`` as the name for the first method argument
-  (see :ref:`tut-firstclasses` for more on classes and methods).
+* Nomeie suas classes e funções de modo consistente; a convenção é usar
+  ``CamelCase`` (literalmente, *CaixaCamelo*) para classes e
+  ``caixa_baixa_com_underscores`` para funções e métodos. Sempre use ``self``
+  como nome do primeiro parâmetro formal dos métodos de instância (veja
+  :ref:`tut-firstclasses` para saber mais sobre classes e métodos).
 
-* Don't use fancy encodings if your code is meant to be used in international
-  environments.  Plain ASCII works best in any case.
-
+* Não use codificações exóticas se o seu código é feito para ser usado em
+  um contexto internacional. ASCII puro funciona bem em qualquer caso.
+  (N.d.T. para programadores de língua portuguesa, UTF-8 é atualmente a
+  melhor opção, e já se tornou o default em Python 3 conforme o
+  :pep:`3120`).
 
 .. rubric:: Notas
 

@@ -106,7 +106,7 @@ copyright antes de exibir o primeiro prompt::
     Type "help", "copyright", "credits" or "license" for more information.
     >>>
 
-Linhas de continuação são necessárias em construções multilinha. Como
+Linhas de continuação são necessárias em construções multi-linha. Como
 exemplo, dê uma olhada nesse comando :keyword:`if`::
 
     >>> o_mundo_eh_plano = 1

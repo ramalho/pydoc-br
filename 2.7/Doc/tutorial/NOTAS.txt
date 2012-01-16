@@ -7,7 +7,7 @@ Vamos usar caixa alta apenas para a primeira palavra do título e nomes próprio
 
 fica assim (note que "interpretador" está em minúsculas)::
 
-  Utilizando o interpretador Python	
+  Utilizando o interpretador Python
 
 
 Procure usar construções simples e diretas
@@ -43,7 +43,7 @@ Mais alguns exemplo:
 
   To convert -> Para converter (em vez de "Para se converter")
 
-  For instance, we can write... -> Por exemplo, podemos escrever... 
+  For instance, we can write... -> Por exemplo, podemos escrever...
   (em vez de "A título de exemplificação, nós podemos escrever...")
 
 
@@ -54,7 +54,7 @@ Pronomes são sempre obrigatórios em inglês, mas em português eles são dispe
 
 Por exemplo:
 
-  If you want to include special characters in the string, you can do so... 
+  If you want to include special characters in the string, you can do so...
 
 Eis uma tradução literal:
 
@@ -104,11 +104,13 @@ statement -> comando ou declaração
 
 keyword -> palavra reservada (sem hífen)
 
+keyword argument -> argumento nomeado
+
 return -> devolver (quando se refere a devolver um valor) ou retornar (quando se refere ao fluxo de execução)
 
+multi-line -> multi-linha (mais claro e tão comum quando "multi linha", e tem o dobro de ocorrências que multilinha no Google)
 
-
-
+blank line -> linha vazia (em vez de linha nula)
 
 
 Referências
