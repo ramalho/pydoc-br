@@ -112,6 +112,10 @@ multi-line -> multi-linha (mais claro e tão comum quando "multi linha", e tem o
 
 blank line -> linha vazia (em vez de linha nula)
 
+parameter -> parâmetro formal (em declarações de funçoes) ou argumento (os valores passados na invocação)
+
+extend -> estender (com s) ou prolongar (uma lista, por exemplo)
+
 
 Referências
 ============

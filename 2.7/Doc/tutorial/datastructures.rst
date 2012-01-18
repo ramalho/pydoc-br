@@ -4,82 +4,76 @@
 Data Structures
 ***************
 
-This chapter describes some things you've learned about already in more detail,
-and adds some new things as well.
+Este capítulo descreve alguns pontos já abordados, porém com mais detalhes, e
+adiciona outros pontos.
 
 
 .. _tut-morelists:
 
-More on Lists
-=============
+Mais sobre listas
+=================
 
-The list data type has some more methods.  Here are all of the methods of list
-objects:
-
+O tipo ``list`` possui mais métodos. Aqui estão todos os métodos disponívies
+em um objeto lista:
 
 .. method:: list.append(x)
    :noindex:
 
-   Add an item to the end of the list; equivalent to ``a[len(a):] = [x]``.
+   Adiciona um item ao fim da lista; equivale a ``a[len(a):] = [x]``.
 
 
 .. method:: list.extend(L)
    :noindex:
 
-   Extend the list by appending all the items in the given list; equivalent to
-   ``a[len(a):] = L``.
+   Prolonga a lista, adicionando no fim todos os elementos da lista ``L``
+   passada como argumento; equivalente a ``a[len(a):] = L``.
 
 
 .. method:: list.insert(i, x)
    :noindex:
 
-   Insert an item at a given position.  The first argument is the index of the
-   element before which to insert, so ``a.insert(0, x)`` inserts at the front of
-   the list, and ``a.insert(len(a), x)`` is equivalent to ``a.append(x)``.
-
+   Insere um item em uma posição especificada. O primeiro argumento é o índice
+   do elemento antes do qual será feita a inserção, assim ``a.insert(0, x)``
+   insere no início da lista, e ``a.insert(len(a), x)`` equivale a
+   ``a.append(x)``.
 
 .. method:: list.remove(x)
    :noindex:
 
-   Remove the first item from the list whose value is *x*. It is an error if there
-   is no such item.
-
+   Remove o primeiro item encontrado na lista cujo valor é igual a *x*. Se não existir valor igual, uma exceção ``ValueError`` é levantada.
 
 .. method:: list.pop([i])
    :noindex:
 
-   Remove the item at the given position in the list, and return it.  If no index
-   is specified, ``a.pop()`` removes and returns the last item in the list.  (The
-   square brackets around the *i* in the method signature denote that the parameter
-   is optional, not that you should type square brackets at that position.  You
-   will see this notation frequently in the Python Library Reference.)
-
+   Remove o item na posição dada e o devolve. Se nenhum índice for
+   especificado, ``a.pop()`` remove e devolve o último item na lista.
+   (Os colchetes ao redor do *i* indicam que o parâmetro é opcional, não que
+   você deva digitá-los daquela maneira. Você verá essa notação com frequência
+   na Referência da Biblioteca Python.)
 
 .. method:: list.index(x)
    :noindex:
 
-   Return the index in the list of the first item whose value is *x*. It is an
-   error if there is no such item.
-
+   Devolve o índice do primeiro item cujo valor é igual a *x*, gerando
+   ``ValueError`` se este valor não existe
 
 .. method:: list.count(x)
    :noindex:
 
-   Return the number of times *x* appears in the list.
-
+   Devolve o número de vezes que o valor *x* aparece na lista.
 
 .. method:: list.sort()
    :noindex:
 
-   Sort the items of the list, in place.
-
+   Ordena os itens na própria lista *in place*.
 
 .. method:: list.reverse()
    :noindex:
 
-   Reverse the elements of the list, in place.
+   Inverte a ordem dos elementos na lista *in place* (sem gerar uma nova
+   lista).
 
-An example that uses most of the list methods::
+Um exemplo que utiliza a maioria dos métodos:::
 
    >>> a = [66.25, 333, 333, 1, 1234.5]
    >>> print a.count(333), a.count(66.25), a.count('x')
@@ -100,41 +94,45 @@ An example that uses most of the list methods::
    >>> a
    [-1, 1, 66.25, 333, 333, 1234.5]
 
+(N.d.T. Note que os métodos que alteram a lista, inclusive ``sort`` e
+``reverse``, devolvem ``None`` para lembrar o programador de que modificam a
+própria lista, e não criam uma nova. O único método que altera a lista e
+devolve um valor é o ``pop``)
 
 .. _tut-lists-as-stacks:
 
-Using Lists as Stacks
----------------------
+Usando listas como pilhas
+-------------------------
 
 .. sectionauthor:: Ka-Ping Yee <ping@lfw.org>
 
+Os métodos de lista tornam muito fácil utilizar listas como pilhas, onde o
+item adicionado por último é o primeiro a ser recuperado (política “último a
+entrar, primeiro a sair”). Para adicionar um item ao topo da pilha, use
+:meth:`append`. Para recuperar um item do topo da pilha use :meth:`pop` sem
+nenhum índice. Por exemplo::
 
-The list methods make it very easy to use a list as a stack, where the last
-element added is the first element retrieved ("last-in, first-out").  To add an
-item to the top of the stack, use :meth:`append`.  To retrieve an item from the
-top of the stack, use :meth:`pop` without an explicit index.  For example::
-
-   >>> stack = [3, 4, 5]
-   >>> stack.append(6)
-   >>> stack.append(7)
-   >>> stack
+   >>> pilha = [3, 4, 5]
+   >>> pilha.append(6)
+   >>> pilha.append(7)
+   >>> pilha
    [3, 4, 5, 6, 7]
-   >>> stack.pop()
+   >>> pilha.pop()
    7
-   >>> stack
+   >>> pilha
    [3, 4, 5, 6]
-   >>> stack.pop()
+   >>> pilha.pop()
    6
-   >>> stack.pop()
+   >>> pilha.pop()
    5
-   >>> stack
+   >>> pilha
    [3, 4]
 
 
 .. _tut-lists-as-queues:
 
-Using Lists as Queues
----------------------
+Usando listas como filas
+------------------------
 
 .. sectionauthor:: Ka-Ping Yee <ping@lfw.org>
 
@@ -144,98 +142,136 @@ efficient for this purpose.  While appends and pops from the end of list are
 fast, doing inserts or pops from the beginning of a list is slow (because all
 of the other elements have to be shifted by one).
 
+Você também pode usar uma lista como uma fila, onde o primeiro item
+adicionado é o primeiro a ser recuperado (política “primeiro a entrar,
+primeiro a sair”); porém, listas não são eficientes para esta finalidade.
+Embora *appends* e *pops* no final da lista sejam rápidos, fazer *inserts*
+ou *pops* no início da lista é lento (porque todos os demais elementos tem
+que ser deslocados).
+
 To implement a queue, use :class:`collections.deque` which was designed to
 have fast appends and pops from both ends.  For example::
 
+Para implementar uma fila, use a classe :class:`collections.deque` que foi
+projetada para permitir *appends* e *pops* eficientes nas duas extremidades.
+Por exemplo::
+
+
    >>> from collections import deque
-   >>> queue = deque(["Eric", "John", "Michael"])
-   >>> queue.append("Terry")           # Terry arrives
-   >>> queue.append("Graham")          # Graham arrives
-   >>> queue.popleft()                 # The first to arrive now leaves
+   >>> fila = deque(["Eric", "John", "Michael"])
+   >>> fila.append("Terry")    # Terry chega
+   >>> fila.append("Graham")   # Graham chega
+   >>> fila.popleft()          # O primeiro a chegar parte
    'Eric'
-   >>> queue.popleft()                 # The second to arrive now leaves
+   >>> fila.popleft()          # O segundo a chegar parte
    'John'
-   >>> queue                           # Remaining queue in order of arrival
+   >>> fila                    # O resto da fila, em ordem de chegada
    deque(['Michael', 'Terry', 'Graham'])
 
+(N.d.T. neste exemplo são usados nomes de membros do grupo *Monty Python*)
 
 .. _tut-functional:
 
 Functional Programming Tools
 ----------------------------
 
-There are three built-in functions that are very useful when used with lists:
-:func:`filter`, :func:`map`, and :func:`reduce`.
+Existem três funções embutidas que são muito úteis para processar listas:
+:func:`filter`, :func:`map`, e :func:`reduce`.
 
-``filter(function, sequence)`` returns a sequence consisting of those items from
-the sequence for which ``function(item)`` is true. If *sequence* is a
-:class:`string` or :class:`tuple`, the result will be of the same type;
-otherwise, it is always a :class:`list`. For example, to compute a sequence of
-numbers not divisible by 2 and 3::
+``filter(funcao, sequecia)`` devolve uma nova sequência formada pelos itens do
+segundo argumento para os quais ``funcao(item)`` é verdadeiro. Se a sequencia
+de entrada for string ou tupla, a saída será do mesmo tipo; caso contrário, o
+resultado será sempre uma lista. Por exemplo, para computar uma sequência de
+números não divisíveis por 2 ou 3::
 
    >>> def f(x): return x % 2 != 0 and x % 3 != 0
    ...
    >>> filter(f, range(2, 25))
    [5, 7, 11, 13, 17, 19, 23]
 
-``map(function, sequence)`` calls ``function(item)`` for each of the sequence's
-items and returns a list of the return values.  For example, to compute some
-cubes::
+``map(funcao, sequencia)`` aplica ``funcao(item)`` a cada item da sequência e
+devolve uma lista formada pelo resultado de cada aplicação. Por exemplo, para
+computar cubos::
 
-   >>> def cube(x): return x*x*x
+   >>> def cubo(x): return x*x*x
    ...
-   >>> map(cube, range(1, 11))
+   >>> map(cubo, range(1, 11))
    [1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]
 
-More than one sequence may be passed; the function must then have as many
-arguments as there are sequences and is called with the corresponding item from
-each sequence (or ``None`` if some sequence is shorter than another).  For
-example::
+Mais de uma sequência pode ser passada; a função a ser aplicada deve aceitar
+tantos argumentos quantas sequências forem passadas, e é invocada com o item
+correspondente de cada sequência (ou ``None``, se alguma sequência for menor que outra). Por exemplo::
 
    >>> seq = range(8)
-   >>> def add(x, y): return x+y
+   >>> def somar(x, y): return x+y
    ...
-   >>> map(add, seq, seq)
+   >>> map(somar, seq, seq)
    [0, 2, 4, 6, 8, 10, 12, 14]
 
-``reduce(function, sequence)`` returns a single value constructed by calling the
-binary function *function* on the first two items of the sequence, then on the
-result and the next item, and so on.  For example, to compute the sum of the
-numbers 1 through 10::
+.. N.d.T: o parágrafo abaixo existia na versão 2.4 do tutorial, mas não
+   existe na versão 2.7. Resolvi preservá-lo, complementando.
 
-   >>> def add(x,y): return x+y
+Se ``None`` for passado no lugar da função, então será aplicada a função
+identidade (apenas devolve o argumento recebido). Se várias sequências forem
+passadas, a lista resultante terá tuplas formadas pelos elementos
+correspondentes de cada sequência. Isso se parece com a função ``:func:zip``,
+exceto que ``:func:map`` devolve uma lista com o comprimento da sequência mais
+longa que foi passada, preenchendo as lacunas com ``None`` quando necessário,
+e ``:func:zip`` devolve uma lista com o comprimento da mais curta. Confira::
+
+   >>> map(None, range(5))
+   [0, 1, 2, 3, 4]
+   >>> map(None, range(5), range(3))
+   [(0, 0), (1, 1), (2, 2), (3, None), (4, None)]
+   >>> zip(range(5), range(3))
+   [(0, 0), (1, 1), (2, 2)]
+   >>>
+
+A função ``reduce(funcao, sequencia)`` devolve um único valor construído a
+partir da sucessiva aplicação da função binária (N.d.T. que recebe dois
+argumentos) a todos os elementos da lista fornecida, começando pelos dois
+primeiros itens, depois aplicando a função ao primeiro resultado obtido e ao
+próximo item, e assim por diante. Por exemplo, para computar a soma dos
+inteiros de 1 a 10::
+
+   >>> def somar(x,y): return x+y
    ...
-   >>> reduce(add, range(1, 11))
+   >>> reduce(somar, range(1, 11))
    55
 
-If there's only one item in the sequence, its value is returned; if the sequence
-is empty, an exception is raised.
+Se houver um único elemento na sequência fornecida, seu valor será devolvido.
+Se a sequência estiver vazia, uma exceção será levantada.
 
-A third argument can be passed to indicate the starting value.  In this case the
-starting value is returned for an empty sequence, and the function is first
-applied to the starting value and the first sequence item, then to the result
-and the next item, and so on.  For example, ::
+Um terceiro argumento pode ser passado para definir o valor inicial. Neste
+caso, redução de uma sequência vazia debolve o valor inicial. Do contrário,
+a redução se inicia aplicando a função ao valor inicial e ao primeiro elemento da sequência, e continuando a partir daí. ::
 
-   >>> def sum(seq):
-   ...     def add(x,y): return x+y
-   ...     return reduce(add, seq, 0)
+   >>> def somatoria(seq):
+   ...     def somar(x,y): return x+y
+   ...     return reduce(somar, seq, 0)
    ...
-   >>> sum(range(1, 11))
+   >>> somatoria(range(1, 11))
    55
-   >>> sum([])
+   >>> somatoria([])
    0
 
-Don't use this example's definition of :func:`sum`: since summing numbers is
-such a common need, a built-in function ``sum(sequence)`` is already provided,
-and works exactly like this.
+Não use a função ``somatória`` deste exemplo; somar sequências de números é uma
+necessidade comum, e para isso Python tem a função embutida :func:`sum`, que
+faz exatamente isto, e também aceita um valor inicial (opcional).
 
 .. versionadded:: 2.3
 
 
-List Comprehensions
+.. XXX: parei aqui em 2012-01-18 20:30
+
+List comprehensions
 -------------------
 
-List comprehensions provide a concise way to create lists.
+*List comprehensions* (N.d.T. literalmente, *compreensões de listas*, mas
+no Brasil apenas o termo em inglês é usado)
+
+
+ provide a concise way to create lists.
 Common applications are to make new lists where each element is the result of
 some operations applied to each member of another sequence or iterable, or to
 create a subsequence of those elements that satisfy a certain condition.
