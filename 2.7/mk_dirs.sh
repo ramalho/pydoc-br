@@ -6,4 +6,5 @@ mkdir Grammar
 mkdir Lib
 mkdir Lib/test
 mkdir Parser
-
+# Include/patchlevel.h is used by the Makefile to determine Python version
+mkdir Include
