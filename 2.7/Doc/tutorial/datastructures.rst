@@ -519,75 +519,83 @@ cria tuplas, mas o desempacotamento funciona para qualquer sequência.
 
 .. _tut-sets:
 
-Sets
-====
+Sets (conjuntos)
+================
 
-Python also includes a data type for *sets*.  A set is an unordered collection
-with no duplicate elements.  Basic uses include membership testing and
-eliminating duplicate entries.  Set objects also support mathematical operations
-like union, intersection, difference, and symmetric difference.
+Python também inclui um tipo de dados para conjuntos, chamado ``set``. Um
+conjunto é uma coleção desordenada de elementos, sem elementos repetidos. Usos
+comuns para sets incluem a verificação eficiente da existência de objetos e a
+eliminação de items duplicados. Conjuntos também suportam operações
+matemáticas como união, interseção, diferença e diferença simétrica.
 
-Here is a brief demonstration::
+Uma pequena demonstração:
 
-   >>> basket = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana']
-   >>> fruit = set(basket)               # create a set without duplicates
-   >>> fruit
-   set(['orange', 'pear', 'apple', 'banana'])
-   >>> 'orange' in fruit                 # fast membership testing
+   >>> cesta = ['uva', 'laranja', 'uva', 'abacaxi', 'laranja', 'banana']
+   >>> frutas = set(cesta)   # criar um conjunto sem duplicatas
+   >>> frutas
+   set(['abacaxi', 'uva', 'laranja', 'banana'])
+   >>> 'laranja' in frutas   # testar se um elemento existe é muito rápido
    True
-   >>> 'crabgrass' in fruit
+   >>> 'capim' in frutas
    False
 
-   >>> # Demonstrate set operations on unique letters from two words
+   >>> # Demonstrar operaçes de conjunto em letras únicas de duas palavras
    ...
    >>> a = set('abracadabra')
    >>> b = set('alacazam')
-   >>> a                                  # unique letters in a
+   >>> a                                # letras unicas em a
    set(['a', 'r', 'b', 'c', 'd'])
-   >>> a - b                              # letters in a but not in b
+   >>> a - b                            # letras em a mas não em b
    set(['r', 'd', 'b'])
-   >>> a | b                              # letters in either a or b
+   >>> a | b                            # letras em a ou em b
    set(['a', 'c', 'r', 'd', 'b', 'm', 'z', 'l'])
-   >>> a & b                              # letters in both a and b
+   >>> a & b                            # letras tanto em a como em b
    set(['a', 'c'])
-   >>> a ^ b                              # letters in a or b but not both
+   >>> a ^ b                            # letras em a ou b mas não em ambos
    set(['r', 'd', 'b', 'm', 'z', 'l'])
 
+N.d.T. A sintaxe de sets do Python 3 foi portada para o Python 2.7, tornando
+possível escrever ``{10, 20, 30}`` para definir ``set([10, 20, 30])``. O
+conjunto vazio tem que ser escrito como ``set()`` ou ``set([])``, pois ``{}``
+sempre representou um dicionário vazio, como veremos a seguir. Também existe
+uma sintaxe para *set comprehensions*, que nos permite escrever
+``{x*10 for x in [1, 2, 3]}`` para construir ``{10, 20, 30}``.
 
 .. _tut-dictionaries:
 
-Dictionaries
-============
+Dicionários
+===========
 
-Another useful data type built into Python is the *dictionary* (see
-:ref:`typesmapping`). Dictionaries are sometimes found in other languages as
-"associative memories" or "associative arrays".  Unlike sequences, which are
-indexed by a range of numbers, dictionaries are indexed by *keys*, which can be
-any immutable type; strings and numbers can always be keys.  Tuples can be used
-as keys if they contain only strings, numbers, or tuples; if a tuple contains
-any mutable object either directly or indirectly, it cannot be used as a key.
-You can't use lists as keys, since lists can be modified in place using index
-assignments, slice assignments, or methods like :meth:`append` and
-:meth:`extend`.
+Outra estrutura de dados muito útil embutida em Python é o *dicionário*, cujo
+tipo é ``dict`` (ver :ref:`typesmapping`). Dicionários são também chamados de
+“memória associativa” ou “vetor associativo” em outras linguagens. Diferente
+de sequências que são indexadas por inteiros, dicionários são indexados por
+chaves (*keys*), que podem ser de qualquer tipo imutável (como strings e
+inteiros). Tuplas também podem ser chaves se contiverem apenas strings,
+inteiros ou outras tuplas. Se a tupla contiver, direta ou indiretamente,
+qualquer valor mutável, não poderá ser chave. Listas não podem ser usadas como
+chaves porque são podem ser modificadas *in place* pela atribuição em índices ou
+fatias, e por métodos como :meth:`append` e :meth:`extend`.
 
-It is best to think of a dictionary as an unordered set of *key: value* pairs,
-with the requirement that the keys are unique (within one dictionary). A pair of
-braces creates an empty dictionary: ``{}``. Placing a comma-separated list of
-key:value pairs within the braces adds initial key:value pairs to the
-dictionary; this is also the way dictionaries are written on output.
+Um bom modelo mental é imaginar um dicionário como um conjunto não ordenado de
+pares chave-valor, onde as chaves são únicas em uma dada instância do
+dicionário. Dicionários são delimitados por chaves: ``{}``, e contém uma lista
+de pares *chave:valor* separada por vírgulas. Dessa forma também será exibido
+o conteúdo de um dicionário no console do Python. O dicionário vazio é ``{}``.
 
-The main operations on a dictionary are storing a value with some key and
-extracting the value given the key.  It is also possible to delete a key:value
-pair with ``del``. If you store using a key that is already in use, the old
-value associated with that key is forgotten.  It is an error to extract a value
-using a non-existent key.
+As principais operações em um dicionário são armazenar e recuperar valores a
+partir de chaves. Também é possível remover um par *chave:valor* com o comando
+``del``. Se você armazenar um valor utilizando uma chave já presente, o antigo
+valor será substituído pelo novo. Se tentar recuperar um valor usando uma chave
+inexistente, será gerado um erro.
 
-The :meth:`keys` method of a dictionary object returns a list of all the keys
-used in the dictionary, in arbitrary order (if you want it sorted, just apply
-the :func:`sorted` function to it).  To check whether a single key is in the
-dictionary, use the :keyword:`in` keyword.
+O método :meth:`keys` do dicionário devolve a lista de todas as chaves
+presentes no dicionário, em ordem arbitrária (se desejar ordená-las basta
+aplicar o a função :func:`sorted` à lista devolvida). Para verificar a
+existência de uma chave, use o operador :keyword:`in`.
 
-Here is a small example using a dictionary::
+A seguir, um exemplo de uso do dicionário:
+
 
    >>> tel = {'jack': 4098, 'sape': 4139}
    >>> tel['guido'] = 4127
@@ -604,33 +612,53 @@ Here is a small example using a dictionary::
    >>> 'guido' in tel
    True
 
-The :func:`dict` constructor builds dictionaries directly from lists of
-key-value pairs stored as tuples.  When the pairs form a pattern, list
-comprehensions can compactly specify the key-value list. ::
+O construtor :func:`dict` produz dicionários diretamente a partir de uma lista
+de chaves-valores, armazenadas como duplas (tuplas de 2 elementos). Quando os
+pares formam um padrão, uma list comprehensions pode especificar a lista de
+chaves-valores de forma mais compacta. ::
 
    >>> dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])
    {'sape': 4139, 'jack': 4098, 'guido': 4127}
-   >>> dict([(x, x**2) for x in (2, 4, 6)])     # use a list comprehension
+   >>> dict([(x, x**2) for x in (2, 4, 6)])     # use uma list comprehension
    {2: 4, 4: 16, 6: 36}
 
-Later in the tutorial, we will learn about Generator Expressions which are even
-better suited for the task of supplying key-values pairs to the :func:`dict`
-constructor.
+N.d.T. A partir do Python 2.7 também existem *dict comprehensions*
+(abrangências de dicionário). Com esta sintaxe o último dict acima pode ser
+construído assim ``{x: x**2 for x in (2, 4, 6)}``.
 
-When the keys are simple strings, it is sometimes easier to specify pairs using
-keyword arguments::
+Mais adiante no tutorial aprenderemos sobre *expressões geradoras*, que são
+ainda mais adequados para fornecer os pares de chave-valor para o construtor
+:func:`dict`.
+
+Quando chaves são strings simples, é mais fácil especificar os pares usando
+argumentos nomeados no construtor:
 
    >>> dict(sape=4139, guido=4127, jack=4098)
    {'sape': 4139, 'jack': 4098, 'guido': 4127}
 
+N.d.T. Naturalmente, por limitações da sintaxe, essa sugestão só vale se as
+chaves forem strings ASCII, sem acentos, conforme a regras para formação de
+identificadores do Python.
 
 .. _tut-loopidioms:
 
-Looping Techniques
-==================
+Técnicas de iteração
+====================
 
-When looping through dictionaries, the key and corresponding value can be
-retrieved at the same time using the :meth:`iteritems` method. ::
+.. N.d.T: acrescentei esse parágrafo e o exemplo a seguir. ~LR
+
+Ao percorrer um dicionário em um laço, a variável de interação receberá
+uma chave de cada vez::
+
+   >>> knights = {'gallahad': 'the pure', 'robin': 'the brave'}
+   >>> for k in knights:
+   ...     print k
+   ...
+   gallahad
+   robin
+
+Quando conveniente, a chave e o valor correspondente podem ser obtidos
+simultaneamente com o método :meth:`iteritems`.
 
    >>> knights = {'gallahad': 'the pure', 'robin': 'the brave'}
    >>> for k, v in knights.iteritems():
@@ -639,8 +667,9 @@ retrieved at the same time using the :meth:`iteritems` method. ::
    gallahad the pure
    robin the brave
 
-When looping through a sequence, the position index and corresponding value can
-be retrieved at the same time using the :func:`enumerate` function. ::
+Ao percorrer uma sequência qualquer, o índice da posição atual e o valor
+correspondente podem ser obtidos simultaneamente usando a função
+:func:`enumerate`::
 
    >>> for i, v in enumerate(['tic', 'tac', 'toe']):
    ...     print i, v
@@ -649,8 +678,8 @@ be retrieved at the same time using the :func:`enumerate` function. ::
    1 tac
    2 toe
 
-To loop over two or more sequences at the same time, the entries can be paired
-with the :func:`zip` function. ::
+Para percorrer duas ou mais sequências simultaneamente com o laço, os items
+podem ser agrupados com a função :func:`zip`. ::
 
    >>> questions = ['name', 'quest', 'favorite color']
    >>> answers = ['lancelot', 'the holy grail', 'blue']
@@ -661,8 +690,12 @@ with the :func:`zip` function. ::
    What is your quest?  It is the holy grail.
    What is your favorite color?  It is blue.
 
-To loop over a sequence in reverse, first specify the sequence in a forward
-direction and then call the :func:`reversed` function. ::
+N.d.T. O exemplo acima reproduz um diálogo do filme *Monty Python - Em Busca
+do Cálice Sagrado*. Este trecho não pode ser traduzido, exceto por um decreto
+real.
+
+Para percorrer uma sequência em ordem inversa, chame a função :func:`reversed`
+com a sequência na ordem original. ::
 
    >>> for i in reversed(xrange(1,10,2)):
    ...     print i
@@ -673,80 +706,96 @@ direction and then call the :func:`reversed` function. ::
    3
    1
 
-To loop over a sequence in sorted order, use the :func:`sorted` function which
-returns a new sorted list while leaving the source unaltered. ::
+Para percorrer uma sequência de maneira ordenada, use a função :func:`sorted`,
+que retorna uma lista ordenada com os items, mantendo a sequência original
+inalterada. ::
 
-   >>> basket = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana']
-   >>> for f in sorted(set(basket)):
-   ...     print f
+   >>> cesta = ['uva', 'laranja', 'uva', 'abacaxi', 'laranja', 'banana']
+   >>> for fruta in sorted(cesta):
+   ...     print fruta
    ...
-   apple
+   abacaxi
    banana
-   orange
-   pear
+   laranja
+   laranja
+   uva
+   uva
+   >>> for fruta in sorted(set(cesta)):  # sem duplicações
+   ...     print fruta
+   ...
+   abacaxi
+   banana
+   laranja
+   uva
+   >>>
 
 
 .. _tut-conditions:
 
-More on Conditions
-==================
+Mais sobre condições
+====================
 
-The conditions used in ``while`` and ``if`` statements can contain any
-operators, not just comparisons.
+As condições de controle usadas em ``while`` e ``if`` podem conter quaisquer
+operadores, não apenas comparações.
 
-The comparison operators ``in`` and ``not in`` check whether a value occurs
-(does not occur) in a sequence.  The operators ``is`` and ``is not`` compare
-whether two objects are really the same object; this only matters for mutable
-objects like lists.  All comparison operators have the same priority, which is
-lower than that of all numerical operators.
+Os operadores de comparação ``in`` e ``not in`` verificam se um valor ocorre
+(ou não ocorre) em uma dada sequência. Os operadores ``is`` e ``is not``
+comparam se dois objetos são na verdade o mesmo objeto; isto só é relevante no
+contexto de objetos mutáveis, como listas. Todos os operadores de comparação
+possuem a mesma precedência, que é menor do que a prioridade de todos os
+operadores numéricos.
 
-Comparisons can be chained.  For example, ``a < b == c`` tests whether ``a`` is
-less than ``b`` and moreover ``b`` equals ``c``.
+Comparações podem ser encadeadas: Por exemplo ``a < b == c`` testa se ``a`` é menor
+que ``b`` e também se ``b`` é igual a ``c``.
 
-Comparisons may be combined using the Boolean operators ``and`` and ``or``, and
-the outcome of a comparison (or of any other Boolean expression) may be negated
-with ``not``.  These have lower priorities than comparison operators; between
-them, ``not`` has the highest priority and ``or`` the lowest, so that ``A and
-not B or C`` is equivalent to ``(A and (not B)) or C``. As always, parentheses
-can be used to express the desired composition.
+Comparações podem ser combinadas através de operadores booleanos ``and`` e
+``or``, e o resultado de uma comparação (ou de qualquer outra expressão), pode
+ter seu valor booleano negado através de ``not``. Estes possuem menor
+prioridade que os demais operadores de comparação. Entre eles, ``not`` é o de
+maior prioridade e ``or`` o de menor. Dessa forma, a condição ``A and not B or
+C`` é equivalente a ``(A and (not B)) or C``. Naturalmente, parênteses podem
+ser usados para expressar o agrupamento desejado.
 
-The Boolean operators ``and`` and ``or`` are so-called *short-circuit*
-operators: their arguments are evaluated from left to right, and evaluation
-stops as soon as the outcome is determined.  For example, if ``A`` and ``C`` are
-true but ``B`` is false, ``A and B and C`` does not evaluate the expression
-``C``.  When used as a general value and not as a Boolean, the return value of a
-short-circuit operator is the last evaluated argument.
+Os operadores booleanos ``and`` e ``or`` são operadores *short-circuit*: seus
+argumentos são avaliados da esquerda para a direita, e a avaliação pára quando
+o resultado é determinado. Por exemplo, se ``A`` e ``C`` são expressões
+verdadeiras, mas ``B`` é falsa, então ``A and B and C`` não chega a avaliar a
+expressão ``C``. Em geral, quando usado sobre valores genéricos e não
+como booleanos, o valor do resultado de um operador atalho é o último valor
+avaliado na expressão.
 
-It is possible to assign the result of a comparison or other Boolean expression
-to a variable.  For example, ::
+É possível atribuir o resultado de uma comparação ou outra expressão booleana
+para uma variável. Por exemplo::
 
    >>> string1, string2, string3 = '', 'Trondheim', 'Hammer Dance'
    >>> non_null = string1 or string2 or string3
    >>> non_null
    'Trondheim'
 
-Note that in Python, unlike C, assignment cannot occur inside expressions. C
-programmers may grumble about this, but it avoids a common class of problems
-encountered in C programs: typing ``=`` in an expression when ``==`` was
-intended.
+Observe que em Python, diferente de C, atribuição não pode ocorrer dentro
+de uma expressão. Programadores C podem resmungar, mas isso evita toda uma
+classe de problemas frequentemente encontrados em programas C: digitar ``=``
+numa expressão quando a intenção era ``==``.
+
 
 
 .. _tut-comparing:
 
-Comparing Sequences and Other Types
-===================================
+Comparando sequências e outros tipos
+====================================
 
-Sequence objects may be compared to other objects with the same sequence type.
-The comparison uses *lexicographical* ordering: first the first two items are
-compared, and if they differ this determines the outcome of the comparison; if
-they are equal, the next two items are compared, and so on, until either
-sequence is exhausted. If two items to be compared are themselves sequences of
-the same type, the lexicographical comparison is carried out recursively.  If
-all items of two sequences compare equal, the sequences are considered equal.
-If one sequence is an initial sub-sequence of the other, the shorter sequence is
-the smaller (lesser) one.  Lexicographical ordering for strings uses the ASCII
-ordering for individual characters.  Some examples of comparisons between
-sequences of the same type::
+Objetos sequência podem ser comparados com outros objetos sequência, desde que
+o tipo das sequências seja o mesmo. A comparação utiliza a ordem
+*lexicografica*: primeiramente os dois primeiros itens são comparados, e se
+diferirem isto determinará o resultado da comparação, caso contrário os
+próximos dois itens serão comparados, e assim por diante até que se tenha
+exaurido alguma das sequências. Se em uma comparação de itens, os mesmos forem
+também sequências (aninhadas), então é disparada recursivamente outra
+comparação léxicografica. Se todos os itens da sequência forem iguais, então
+as sequências são ditas iguais. Se uma das sequências é uma subsequência da
+outra, então a subsequência é a menor. A comparação lexicográfica de strings
+utiliza ASCII para definir a ordenação. Alguns exemplos de comparações entre
+sequências do mesmo tipo::
 
    (1, 2, 3)              < (1, 2, 4)
    [1, 2, 3]              < [1, 2, 4]
@@ -756,15 +805,13 @@ sequences of the same type::
    (1, 2, 3)             == (1.0, 2.0, 3.0)
    (1, 2, ('aa', 'ab'))   < (1, 2, ('abc', 'a'), 4)
 
-Note that comparing objects of different types is legal.  The outcome is
-deterministic but arbitrary: the types are ordered by their name. Thus, a list
-is always smaller than a string, a string is always smaller than a tuple, etc.
-[#]_ Mixed numeric types are compared according to their numeric value, so 0
-equals 0.0, etc.
-
+É permitido comparar objetos de diferentes tipos. O resultado é
+determinístico, porém, arbitrário: os tipos são ordenados pelos seus nomes.
+Então, uma ``list`` é sempre menor do que uma ``str``, uma ``str`` é sempre
+menor do que uma ``tuple``, etc. [#]_ Tipos numéricos misturados são
+comparados de acordo com seus valores numéricos, logo 0 é igual a 0.0, etc.
 
 .. rubric:: Footnotes
 
-.. [#] The rules for comparing objects of different types should not be relied upon;
-   they may change in a future version of the language.
-
+.. [#] As regras para comparação de objetos de tipos diferentes não são
+       definitivas; elas podem variar em futuras versões da linguagem.
