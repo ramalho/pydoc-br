@@ -438,8 +438,8 @@ usos para o comando :keyword:`del` mais tarde.
 
 .. _tut-tuples:
 
-Tuples and Sequences
-====================
+Tuplas e sequências
+===================
 
 We saw that lists and strings have many common properties, such as indexing and
 slicing operations.  They are two examples of *sequence* data types (see
@@ -447,55 +447,72 @@ slicing operations.  They are two examples of *sequence* data types (see
 types may be added.  There is also another standard sequence data type: the
 *tuple*.
 
-A tuple consists of a number of values separated by commas, for instance::
+Vimos que listas e strings têm muitas propriedades em comum, como indexação e
+operações de fatiamento (*slicing*). Elas são dois exemplos de *sequências*
+(veja :ref:`typesseq`). Como Python é uma linguagem em evolução, outros tipos
+de sequências podem ser adicionados. Existe ainda um outro tipo de sequência
+padrão na linguagem: a tupla (*tuple*).
 
-   >>> t = 12345, 54321, 'hello!'
+Uma tupla consiste em uma sequência de valores separados por vírgulas::
+
+   >>> t = 12345, 54321, 'bom dia!'
    >>> t[0]
    12345
    >>> t
-   (12345, 54321, 'hello!')
-   >>> # Tuples may be nested:
+   (12345, 54321, 'bom dia!')
+   >>> # Tuplas podem ser aninhadas:
    ... u = t, (1, 2, 3, 4, 5)
    >>> u
-   ((12345, 54321, 'hello!'), (1, 2, 3, 4, 5))
+   ((12345, 54321, 'bom dia!'), (1, 2, 3, 4, 5))
 
-As you see, on output tuples are always enclosed in parentheses, so that nested
-tuples are interpreted correctly; they may be input with or without surrounding
-parentheses, although often parentheses are necessary anyway (if the tuple is
-part of a larger expression).
+Como você pode ver no trecho acima, na saída do console as tuplas são sempre
+envolvidas por parênteses, assim tuplas aninhadas podem ser lidas
+corretamente. Na criação, tuplas podem ser envolvidas ou não por parênteses,
+desde que o contexto não exija os parênteses (como no caso da tupla dentro
+a uma expressão maior).
 
-Tuples have many uses.  For example: (x, y) coordinate pairs, employee records
-from a database, etc.  Tuples, like strings, are immutable: it is not possible
-to assign to the individual items of a tuple (you can simulate much of the same
-effect with slicing and concatenation, though).  It is also possible to create
-tuples which contain mutable objects, such as lists.
+Tuplas podem ser usadas de diversas formas: pares ordenados ``(x, y)``,
+registros de funcionário extraídos uma base de dados, etc. Tuplas, assim como
+strings, são imutáveis: não é possível atribuir valores a itens individuais de
+uma tupla (você pode simular o mesmo efeito através de operações de fatiamento
+e concatenação; N.d.T. mas neste caso nunca estará modificando tuplas, apenas
+criando novas). Também é possível criar tuplas contendo objetos mutáveis,
+como listas.
 
-A special problem is the construction of tuples containing 0 or 1 items: the
-syntax has some extra quirks to accommodate these.  Empty tuples are constructed
-by an empty pair of parentheses; a tuple with one item is constructed by
-following a value with a comma (it is not sufficient to enclose a single value
-in parentheses). Ugly, but effective.  For example::
+Um problema especial é a criação de tuplas contendo 0 ou 1 itens: a sintaxe
+usa certos truques para acomodar estes casos. Tuplas vazias são construídas
+por uma par de parênteses vazios; uma tupla unitária é construída por um
+único valor e uma vírgula entre parênteses (não basta colocar um único valor
+entre parênteses). Feio, mas funciona::
 
-   >>> empty = ()
-   >>> singleton = 'hello',    # <-- note trailing comma
-   >>> len(empty)
+   >>> vazia = ()
+   >>> upla = 'hello',    # <-- note a vírgula no final
+   >>> len(vazia)
    0
-   >>> len(singleton)
+   >>> len(upla)
    1
-   >>> singleton
+   >>> upla
    ('hello',)
 
-The statement ``t = 12345, 54321, 'hello!'`` is an example of *tuple packing*:
-the values ``12345``, ``54321`` and ``'hello!'`` are packed together in a tuple.
-The reverse operation is also possible::
+O comando ``t = 12345, 54321, 'hello!'`` é um exemplo de *empacotamento de
+tupla* (*tuple packing*): os valores ``12345``, ``54321`` e ``'bom dia!'`` são
+empacotados juntos em uma tupla. A operação inversa também é possível::
 
    >>> x, y, z = t
 
-This is called, appropriately enough, *sequence unpacking* and works for any
-sequence on the right-hand side.  Sequence unpacking requires the list of
-variables on the left to have the same number of elements as the length of the
-sequence.  Note that multiple assignment is really just a combination of tuple
-packing and sequence unpacking.
+Isto é chamado de desempacotamento de sequência (*sequence unpacking*), funciona
+para qualquer tipo de sequência do lado direito. Para funcionar, é necessário
+que a lista de variáveis do lado esquerdo tenha o mesmo comprimento da
+sequência à direita. Sendo assim, a atribuição múltipla é um caso de
+empacotamento de tupla e desempacotamento de sequência::
+
+   >>> a, b = b, a  # troca os valores de a e b
+
+.. N.d.T. Acrescentei o exemplo acima, e preservei o parágrafo abaixo, que não
+   existe na versão atual do tutorial EN mas existe na versão 2.4 do PT-BR ~LR
+
+Existe uma certa assimetria aqui: empacotamento de múltiplos valores sempre
+cria tuplas, mas o desempacotamento funciona para qualquer sequência.
 
 .. XXX Add a bit on the difference between tuples and lists.
 
