@@ -149,9 +149,6 @@ Embora *appends* e *pops* no final da lista sejam rápidos, fazer *inserts*
 ou *pops* no início da lista é lento (porque todos os demais elementos tem
 que ser deslocados).
 
-To implement a queue, use :class:`collections.deque` which was designed to
-have fast appends and pops from both ends.  For example::
-
 Para implementar uma fila, use a classe :class:`collections.deque` que foi
 projetada para permitir *appends* e *pops* eficientes nas duas extremidades.
 Por exemplo::
@@ -200,7 +197,8 @@ computar cubos::
 
 Mais de uma sequência pode ser passada; a função a ser aplicada deve aceitar
 tantos argumentos quantas sequências forem passadas, e é invocada com o item
-correspondente de cada sequência (ou ``None``, se alguma sequência for menor que outra). Por exemplo::
+correspondente de cada sequência (ou ``None``, se alguma sequência for menor
+que outra). Por exemplo::
 
    >>> seq = range(8)
    >>> def somar(x, y): return x+y
@@ -261,17 +259,15 @@ faz exatamente isto, e também aceita um valor inicial (opcional).
 
 .. versionadded:: 2.3
 
-
-.. XXX: parei aqui em 2012-01-18 20:30
-
 List comprehensions
 -------------------
 
-*List comprehensions* (N.d.T. literalmente, *compreensões de listas*, mas
-no Brasil apenas o termo em inglês é usado)
+*List comprehensions* (N.d.T. literalmente, *compreensões de listas*, o
+*abrangência de listas*, mas no Brasil apenas o termo em inglês é mais comum)
+oferecem uma maneira concisa para criar listas.
 
+.. XXX: parei aqui em 2012-01-18 22:23
 
- provide a concise way to create lists.
 Common applications are to make new lists where each element is the result of
 some operations applied to each member of another sequence or iterable, or to
 create a subsequence of those elements that satisfy a certain condition.
