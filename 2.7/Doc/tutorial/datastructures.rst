@@ -13,7 +13,7 @@ adiciona outros pontos.
 Mais sobre listas
 =================
 
-O tipo ``list`` possui mais métodos. Aqui estão todos os métodos disponívies
+O tipo ``list`` possui mais métodos. Aqui estão todos os métodos disponíveis
 em um objeto lista:
 
 .. method:: list.append(x)
@@ -136,17 +136,11 @@ Usando listas como filas
 
 .. sectionauthor:: Ka-Ping Yee <ping@lfw.org>
 
-It is also possible to use a list as a queue, where the first element added is
-the first element retrieved ("first-in, first-out"); however, lists are not
-efficient for this purpose.  While appends and pops from the end of list are
-fast, doing inserts or pops from the beginning of a list is slow (because all
-of the other elements have to be shifted by one).
-
 Você também pode usar uma lista como uma fila, onde o primeiro item
 adicionado é o primeiro a ser recuperado (política “primeiro a entrar,
 primeiro a sair”); porém, listas não são eficientes para esta finalidade.
 Embora *appends* e *pops* no final da lista sejam rápidos, fazer *inserts*
-ou *pops* no início da lista é lento (porque todos os demais elementos tem
+ou *pops* no início da lista é lento (porque todos os demais elementos têm
 que ser deslocados).
 
 Para implementar uma fila, use a classe :class:`collections.deque` que foi
@@ -175,7 +169,7 @@ Ferramentas de programação funcional
 Existem três funções embutidas que são muito úteis para processar listas:
 :func:`filter`, :func:`map`, e :func:`reduce`.
 
-``filter(funcao, sequecia)`` devolve uma nova sequência formada pelos itens do
+``filter(funcao, sequencia)`` devolve uma nova sequência formada pelos itens do
 segundo argumento para os quais ``funcao(item)`` é verdadeiro. Se a sequencia
 de entrada for string ou tupla, a saída será do mesmo tipo; caso contrário, o
 resultado será sempre uma lista. Por exemplo, para computar uma sequência de
@@ -213,9 +207,9 @@ Se ``None`` for passado no lugar da função, então será aplicada a função
 identidade (apenas devolve o argumento recebido). Se várias sequências forem
 passadas, a lista resultante terá tuplas formadas pelos elementos
 correspondentes de cada sequência. Isso se parece com a função ``:func:zip``,
-exceto que ``:func:map`` devolve uma lista com o comprimento da sequência mais
+exceto que :func:`map` devolve uma lista com o comprimento da sequência mais
 longa que foi passada, preenchendo as lacunas com ``None`` quando necessário,
-e ``:func:zip`` devolve uma lista com o comprimento da mais curta. Confira::
+e :func:`zip` devolve uma lista com o comprimento da mais curta. Confira::
 
    >>> map(None, range(5))
    [0, 1, 2, 3, 4]
@@ -241,8 +235,9 @@ Se houver um único elemento na sequência fornecida, seu valor será devolvido.
 Se a sequência estiver vazia, uma exceção será levantada.
 
 Um terceiro argumento pode ser passado para definir o valor inicial. Neste
-caso, redução de uma sequência vazia debolve o valor inicial. Do contrário,
-a redução se inicia aplicando a função ao valor inicial e ao primeiro elemento da sequência, e continuando a partir daí. ::
+caso, redução de uma sequência vazia devolve o valor inicial. Do contrário, a
+redução se inicia aplicando a função ao valor inicial e ao primeiro elemento
+da sequência, e continuando a partir daí. ::
 
    >>> def somatoria(seq):
    ...     def somar(x,y): return x+y
@@ -266,9 +261,9 @@ Uma *list comprehension* é uma maneira concisa de construir uma lista
 preenchida. (N.d.T. literalmente, *abrangência de lista* mas no Brasil o termo
 em inglês é muito usado; também se usa a abreviação *listcomp*)
 
-Um uso comum é constuir uma nova lista onde cada elemento é o resultado de alguma
-expressão aplicada a cada membro de outra sequência ou iterável, ou para construir
-uma sub-sequência cujos elementos satisfazem uma certa condição.
+Um uso comum é construir uma nova lista onde cada elemento é o resultado de
+alguma expressão aplicada a cada membro de outra sequência ou iterável, ou
+para construir uma subsequência cujos elementos satisfazem uma certa condição.
 
 Por exemplo, suponha que queremos criar uma lista de quadrados, assim::
 
@@ -293,7 +288,7 @@ resultante da avaliação da expressão no contexto das cláusulas :keyword:`for
 e :keyword:`if`.
 
 Por exemplo, esta listcomp combina os elementos de duas listas quando eles são
-diferenttes::
+diferentes::
 
    >>> [(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]
    [(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
@@ -343,7 +338,9 @@ Se a expressão é uma tupla, ela deve ser inserida entre parênteses (ex.,
    >>> [num for elem in vec for num in elem]
    [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-A abrangência de lista é mais flexível do que :func:`map` e pode conter expressões complexas e funções aninhadas, sem necessidade do uso de :keyword'`lambda`::
+A abrangência de lista é mais flexível do que :func:`map` e pode conter
+expressões complexas e funções aninhadas, sem necessidade do uso de
+:keyword:`lambda`::
 
    >>> from math import pi
    >>> [str(round(pi, i)) for i in range(1, 6)]
@@ -394,12 +391,13 @@ e isso, por sua vez, faz o mesmo que isto::
    [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
    >>>
 
-Na prática, você deve dar preferência a funções embutidas em vez de expressões complexas. A função :func:`zip` resolve muito bem este caso de uso::
+Na prática, você deve dar preferência a funções embutidas em vez de expressões
+complexas. A função :func:`zip` resolve muito bem este caso de uso::
 
    >>> zip(*matriz)
    [(1, 5, 9), (2, 6, 10), (3, 7, 11), (4, 8, 12)]
 
-Veja :ref:`tut-unpacking-arguments` para entender o uso do asterísco neste exemplo.
+Veja :ref:`tut-unpacking-arguments` para entender o uso do asterisco neste exemplo.
 
 .. _tut-del:
 
@@ -408,7 +406,7 @@ O comando :keyword:`del`
 
 Existe uma maneira de remover um item de uma lista conhecendo seu índice, ao
 invés de seu valor: o comando :keyword:`del`. Ele difere do método
-:meth:`list.pop`, que devolve o item removido. O comanddo :keyword:`del` também
+:meth:`list.pop`, que devolve o item removido. O comando :keyword:`del` também
 pode ser utilizado para remover fatias (slices) da lista, ou mesmo limpar a
 lista toda (que fizemos antes atribuindo uma lista vazia à fatia ``a[:]``). Por
 exemplo::
@@ -440,12 +438,6 @@ usos para o comando :keyword:`del` mais tarde.
 
 Tuplas e sequências
 ===================
-
-We saw that lists and strings have many common properties, such as indexing and
-slicing operations.  They are two examples of *sequence* data types (see
-:ref:`typesseq`).  Since Python is an evolving language, other sequence data
-types may be added.  There is also another standard sequence data type: the
-*tuple*.
 
 Vimos que listas e strings têm muitas propriedades em comum, como indexação e
 operações de fatiamento (*slicing*). Elas são dois exemplos de *sequências*
@@ -525,7 +517,7 @@ Sets (conjuntos)
 Python também inclui um tipo de dados para conjuntos, chamado ``set``. Um
 conjunto é uma coleção desordenada de elementos, sem elementos repetidos. Usos
 comuns para sets incluem a verificação eficiente da existência de objetos e a
-eliminação de items duplicados. Conjuntos também suportam operações
+eliminação de itens duplicados. Conjuntos também suportam operações
 matemáticas como união, interseção, diferença e diferença simétrica.
 
 Uma pequena demonstração:
@@ -678,7 +670,7 @@ correspondente podem ser obtidos simultaneamente usando a função
    1 tac
    2 toe
 
-Para percorrer duas ou mais sequências simultaneamente com o laço, os items
+Para percorrer duas ou mais sequências simultaneamente com o laço, os itens
 podem ser agrupados com a função :func:`zip`. ::
 
    >>> questions = ['name', 'quest', 'favorite color']
@@ -707,7 +699,7 @@ com a sequência na ordem original. ::
    1
 
 Para percorrer uma sequência de maneira ordenada, use a função :func:`sorted`,
-que retorna uma lista ordenada com os items, mantendo a sequência original
+que retorna uma lista ordenada com os itens, mantendo a sequência original
 inalterada. ::
 
    >>> cesta = ['uva', 'laranja', 'uva', 'abacaxi', 'laranja', 'banana']
@@ -757,7 +749,7 @@ C`` é equivalente a ``(A and (not B)) or C``. Naturalmente, parênteses podem
 ser usados para expressar o agrupamento desejado.
 
 Os operadores booleanos ``and`` e ``or`` são operadores *short-circuit*: seus
-argumentos são avaliados da esquerda para a direita, e a avaliação pára quando
+argumentos são avaliados da esquerda para a direita, e a avaliação para quando
 o resultado é determinado. Por exemplo, se ``A`` e ``C`` são expressões
 verdadeiras, mas ``B`` é falsa, então ``A and B and C`` não chega a avaliar a
 expressão ``C``. Em geral, quando usado sobre valores genéricos e não
@@ -786,12 +778,12 @@ Comparando sequências e outros tipos
 
 Objetos sequência podem ser comparados com outros objetos sequência, desde que
 o tipo das sequências seja o mesmo. A comparação utiliza a ordem
-*lexicografica*: primeiramente os dois primeiros itens são comparados, e se
+*lexicográfica*: primeiramente os dois primeiros itens são comparados, e se
 diferirem isto determinará o resultado da comparação, caso contrário os
 próximos dois itens serão comparados, e assim por diante até que se tenha
 exaurido alguma das sequências. Se em uma comparação de itens, os mesmos forem
 também sequências (aninhadas), então é disparada recursivamente outra
-comparação léxicografica. Se todos os itens da sequência forem iguais, então
+comparação laxicográfica. Se todos os itens da sequência forem iguais, então
 as sequências são ditas iguais. Se uma das sequências é uma subsequência da
 outra, então a subsequência é a menor. A comparação lexicográfica de strings
 utiliza ASCII para definir a ordenação. Alguns exemplos de comparações entre
