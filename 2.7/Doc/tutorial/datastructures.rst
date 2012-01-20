@@ -546,7 +546,7 @@ Uma pequena demonstração:
    >>> a ^ b                            # letras em a ou b mas não em ambos
    set(['r', 'd', 'b', 'm', 'z', 'l'])
 
-N.d.T. A sintaxe de sets do Python 3 foi portada para o Python 2.7, tornando
+N.d.T. A sintaxe de sets do Python 3.1 foi portada para o Python 2.7, tornando
 possível escrever ``{10, 20, 30}`` para definir ``set([10, 20, 30])``. O
 conjunto vazio tem que ser escrito como ``set()`` ou ``set([])``, pois ``{}``
 sempre representou um dicionário vazio, como veremos a seguir. Também existe
