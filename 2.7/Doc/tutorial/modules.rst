@@ -68,53 +68,54 @@ local::
 
 .. _tut-moremodules:
 
-More on Modules
-===============
+Mais sobre módulos
+==================
 
-A module can contain executable statements as well as function definitions.
-These statements are intended to initialize the module. They are executed only
-the *first* time the module is imported somewhere. [#]_
+Um módulo pode conter tanto comandos quanto definições de funções.
+Esses comandos inicializam o módulo. E são executados somente na *primeira* vez 
+que o módulo é importado em algum lugar. [#]_
 
-Each module has its own private symbol table, which is used as the global symbol
-table by all functions defined in the module. Thus, the author of a module can
-use global variables in the module without worrying about accidental clashes
-with a user's global variables. On the other hand, if you know what you are
-doing you can touch a module's global variables with the same notation used to
-refer to its functions, ``modname.itemname``.
+Cada módulo tem sua própria tabela de símbolos, que é usada como a tabela de 
+símbolos global para todas as funções definidas no módulo. Assim, o autor de um
+módulo pode usar variáveis globais no seu módulo sem se preocupar com conflitos
+acidentais com as variáveis globais do usuário. Por outro lado, se você precisar
+usar uma varável global de um módulo, poderá fazê-lo com a mesma notação usadas
+para se referenciar às funções, ``nome_do_modulo.nome_do_item``.
 
-Modules can import other modules.  It is customary but not required to place all
-:keyword:`import` statements at the beginning of a module (or script, for that
-matter).  The imported module names are placed in the importing module's global
-symbol table.
+Módulos podem importar outros módulos. Isso é habitual mas não é necessário
+colocar todos os comandos :keyword:`import` no início do módulo (ou script, 
+onde for necessário). As definições do módulo importado são colocadas na tabela 
+de símbolos global do módulo importador.
 
-There is a variant of the :keyword:`import` statement that imports names from a
-module directly into the importing module's symbol table.  For example::
+Existe uma variação do comando :keyword:`import` que importa definições de um 
+módulo diretamente para a tabela de símbolos do módulo importador. Por exemplo::
 
    >>> from fibo import fib, fib2
    >>> fib(500)
    1 1 2 3 5 8 13 21 34 55 89 144 233 377
 
-This does not introduce the module name from which the imports are taken in the
-local symbol table (so in the example, ``fibo`` is not defined).
+Isso não coloca o nome do módulo de onde foram feitas as importações para a 
+tabela de símbolos local (assim, no exemplo ``fibo`` não está definido).
 
-There is even a variant to import all names that a module defines::
+Existem também uma variante para importar todas as definições do módulo::
 
    >>> from fibo import *
    >>> fib(500)
    1 1 2 3 5 8 13 21 34 55 89 144 233 377
 
-This imports all names except those beginning with an underscore (``_``).
+Isso importa todos as declarações, exceto aquelas que iniciam com um sublinhado
+(``_``).
 
-Note that in general the practice of importing ``*`` from a module or package is
-frowned upon, since it often causes poorly readable code. However, it is okay to
-use it to save typing in interactive sessions.
+Perceba que, em geral, a prática do ``import *`` de um módulo ou pacote é
+desaprovada, uma vez que frequentemente dificulta a leitura do código. Contudo,
+isso é aceitável para diminuir a digitação em sessões interativas.
 
 .. note::
 
-   For efficiency reasons, each module is only imported once per interpreter
-   session.  Therefore, if you change your modules, you must restart the
-   interpreter -- or, if it's just one module you want to test interactively,
-   use :func:`reload`, e.g. ``reload(modulename)``.
+   Por razões de eficiência, cada módulo é importado somente uma vez por sessão 
+   do interpretador. Portanto, se você alterar seus módulos, você dever reiniciar
+   o interpretador -- ou, se é somente um módulo que você quer testar 
+   interativamente, use :func:`reload`, ex. ``reload(nome_do_modulo)``.
 
 
 .. _tut-modulesasscripts:
