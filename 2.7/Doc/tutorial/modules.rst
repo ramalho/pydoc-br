@@ -1,54 +1,55 @@
 .. _tut-modules:
 
 *******
-Modules
+Módulos
 *******
 
-If you quit from the Python interpreter and enter it again, the definitions you
-have made (functions and variables) are lost. Therefore, if you want to write a
-somewhat longer program, you are better off using a text editor to prepare the
-input for the interpreter and running it with that file as input instead.  This
-is known as creating a *script*.  As your program gets longer, you may want to
-split it into several files for easier maintenance.  You may also want to use a
-handy function that you've written in several programs without copying its
-definition into each program.
+Se você sair do interpretador do Python e voltar depois, as definições (funções 
+e variáveis) que você havia feito estarão perdidas. Portanto, se você quer 
+escrever um programa um pouco mais longo, você se sairá melhor usando um editor
+de texto para criar e salvar o programa em um arquivo, usando depois esse 
+arquivo como entrada para a execução do interpretador. Isso é conhecido como 
+*script*. Como seu programa é mais longo, você pode querer dividi-lo em diversos
+arquivos para tornar a manutenção mais fácil. Você também pode querer usar uma 
+função que escreveu em diversos programas sem precisar copiá-la para dentro de 
+cada programa.
 
-To support this, Python has a way to put definitions in a file and use them in a
-script or in an interactive instance of the interpreter. Such a file is called a
-*module*; definitions from a module can be *imported* into other modules or into
-the *main* module (the collection of variables that you have access to in a
-script executed at the top level and in calculator mode).
+Para permitir isso, Python tem uma maneira de colocar definições em um arquivo e
+e então usá-las em um script ou em uma execução interativa no interpretador. Tal
+arquivo é chamado de "módulo"; definições de um módulo podem ser *importadas* 
+em outros módulos ou no módulo *principal* (a coleção de variáveis que você 
+acessou para executar um script no capítulo anterior e no modo calculadora).
 
-A module is a file containing Python definitions and statements.  The file name
-is the module name with the suffix :file:`.py` appended.  Within a module, the
-module's name (as a string) is available as the value of the global variable
-``__name__``.  For instance, use your favorite text editor to create a file
-called :file:`fibo.py` in the current directory with the following contents::
+Um módulo é um arquivo Python contendo definições e instruções. O nome do arquivo
+é o módulo com o sufixo :file:`.py` adicionado. Dentro de um módulo, o nome do 
+módulo (como uma string) está disponível na variável global ``__name__``. Por 
+exemplo, use seu editor de texto favorito para criar um arquivo chamado 
+:file:`fibo.py` no diretório atual com o seguinte conteúdo::
 
-   # Fibonacci numbers module
+   # Módulo numeros de Fibonacci
 
-   def fib(n):    # write Fibonacci series up to n
+   def fib(n):    # escreve a série de Fibonacci de 0 até n
        a, b = 0, 1
        while b < n:
            print b,
            a, b = b, a+b
 
-   def fib2(n): # return Fibonacci series up to n
-       result = []
+   def fib2(n): # returna a série de Fibonacci de 0 até n
+       resultado = []
        a, b = 0, 1
        while b < n:
-           result.append(b)
+           resultado.append(b)
            a, b = b, a+b
-       return result
+       return resultado
 
-Now enter the Python interpreter and import this module with the following
-command::
+Agora, entre no interpretador Python e importe esse módulo com o seguinte 
+comando::
 
    >>> import fibo
 
-This does not enter the names of the functions defined in ``fibo``  directly in
-the current symbol table; it only enters the module name ``fibo`` there. Using
-the module name you can access the functions::
+Isso não coloca os nomes das funções definidas em ``fibo`` diretamente na tabela
+de símbolos atual; isso coloca somente o nome do módulo ``fibo``. Usando o nome 
+do módulo você pode acessar as funções.
 
    >>> fibo.fib(1000)
    1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
@@ -57,7 +58,8 @@ the module name you can access the functions::
    >>> fibo.__name__
    'fibo'
 
-If you intend to use a function often you can assign it to a local name::
+Se você pretende usar uma função frequentemente, você pode associá-la a um nome
+local::
 
    >>> fib = fibo.fib
    >>> fib(500)
