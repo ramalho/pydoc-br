@@ -120,35 +120,36 @@ isso é aceitável para diminuir a digitação em sessões interativas.
 
 .. _tut-modulesasscripts:
 
-Executing modules as scripts
-----------------------------
+Executando módulos como scripts
+-------------------------------
 
-When you run a Python module with ::
+Quando você executa um módulo Python com::
 
-   python fibo.py <arguments>
+   python fibo.py <argumentos>
 
-the code in the module will be executed, just as if you imported it, but with
-the ``__name__`` set to ``"__main__"``.  That means that by adding this code at
-the end of your module::
+o código no módulo será executado, da mesma forma como você estivesse apenas 
+importado, mas com o valor de ``__name__`` definido para ``"__main__"``. Isso
+significa que adicionando este código no fim do seu módulo::
 
    if __name__ == "__main__":
        import sys
        fib(int(sys.argv[1]))
 
-you can make the file usable as a script as well as an importable module,
-because the code that parses the command line only runs if the module is
-executed as the "main" file::
+você permite que o arquivo seja usado tanto como um script quanto como um módulo 
+que pode ser importado, porque o código que analisa a linha de comando somente
+executa se o módulo é executado como o arquivo "principal"::
 
    $ python fibo.py 50
    1 1 2 3 5 8 13 21 34
 
-If the module is imported, the code is not run::
+Se o módulo é importado, o código não é executado::
 
    >>> import fibo
    >>>
 
-This is often used either to provide a convenient user interface to a module, or
-for testing purposes (running the module as a script executes a test suite).
+Isso é frequentemente usado para fornece uma conveniente interface de usuário 
+para um módulo, ou para propósitos de testes (executando o módulo como um script,
+executa uma suíte de testes).
 
 
 .. _tut-searchpath:
