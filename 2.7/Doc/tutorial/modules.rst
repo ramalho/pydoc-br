@@ -154,29 +154,30 @@ executa uma suíte de testes).
 
 .. _tut-searchpath:
 
-The Module Search Path
-----------------------
+O caminho de procura por módulos
+--------------------------------
 
 .. index:: triple: module; search; path
 
-When a module named :mod:`spam` is imported, the interpreter searches for a
-file named :file:`spam.py` in the directory containing the input script and
-then in the list of directories specified by the environment variable
-:envvar:`PYTHONPATH`.  This has the same syntax as the shell variable
-:envvar:`PATH`, that is, a list of directory names.  When :envvar:`PYTHONPATH`
-is not set, or when the file is not found there, the search continues in an
-installation-dependent default path; on Unix, this is usually
-:file:`.:/usr/local/lib/python`.
+Quando um módulo chamado :mod:`spam` é importado, o interpretador procura por um
+arquivo chamado :file:`spam.py` no diretório que contém o script importador, 
+depois na lista de diretórios especificada pela variável de ambiente
+:envvar:`PYTHONPATH`. Ela tem a mesma sintaxe da variável de ambiente do shell
+do sistema operacional :envvar:`PATH`, que é uma lista de nomes de diretórios.
+Quando :envvar:`PYTHONPATH` não está definida, ou quando o arquivo não é 
+encontrado nela, a procura continua em um caminho padrão dependente da 
+instalação; em Unix, usualmente é :file:`.:/usr/local/lib/python`.
 
-Actually, modules are searched in the list of directories given by the variable
-``sys.path`` which is initialized from the directory containing the input script
-(or the current directory), :envvar:`PYTHONPATH` and the installation- dependent
-default.  This allows Python programs that know what they're doing to modify or
-replace the module search path.  Note that because the directory containing the
-script being run is on the search path, it is important that the script not have
-the same name as a standard module, or Python will attempt to load the script as
-a module when that module is imported. This will generally be an error.  See
-section :ref:`tut-standardmodules` for more information.
+Na verdade, módulos são procurados na lista de diretórios dada pela variável
+``sys.path`` que é inicializada com o diretório que contém o script importador
+(ou o diretório atual), :envvar:`PYTHONPATH` e o padrão dependente da instalação.
+Isso permite programas em Python saber o que está sendo feito para modificar ou
+substituir o caminho de procura do módulo. Perceba que como o diretório contém o
+script que iniciou a execução ele também está no caminho de procura, então é
+importante que o script não tenha o mesmo nome de um módulo padrão, ou Python 
+irá carregar o script como sendo o módulo, quando ele for importado. Isso 
+geralmente será um erro. Veja seção :ref:`tut-standardmodules` para mais
+informações.
 
 
 "Compiled" Python files
