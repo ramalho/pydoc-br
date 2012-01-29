@@ -154,7 +154,7 @@ executa uma suíte de testes).
 
 .. _tut-searchpath:
 
-O caminho de procura por módulos
+O caminho de busca por módulos
 --------------------------------
 
 .. index:: triple: module; search; path
@@ -180,60 +180,57 @@ geralmente será um erro. Veja seção :ref:`tut-standardmodules` para mais
 informações.
 
 
-"Compiled" Python files
------------------------
+Arquivos Python "compilados"
+----------------------------
 
-As an important speed-up of the start-up time for short programs that use a lot
-of standard modules, if a file called :file:`spam.pyc` exists in the directory
-where :file:`spam.py` is found, this is assumed to contain an
-already-"byte-compiled" version of the module :mod:`spam`. The modification time
-of the version of :file:`spam.py` used to create :file:`spam.pyc` is recorded in
-:file:`spam.pyc`, and the :file:`.pyc` file is ignored if these don't match.
+Um fator que agiliza a inicialização de programas curtos que usam muitos módulos padrões é a existência de um arquivo chamado :file:`spam.pyc` no diretório do 
+fonte :file:`spam.py`. O arquivo :file:`spam.pyc` contém uma versão "byte-compilada" do fonte :file:`spam.py`. A hora de modificação de :file:`spam.py` é 
+armazanda dentro do :file:`spam.pyc`, e verificada automaticamente antes da 
+utilização do último. Se forem diferentes, o arquivo :file:`spam.pyc` existente 
+é re-compilado a partir do :file:`spam.py` mais atual.
 
-Normally, you don't need to do anything to create the :file:`spam.pyc` file.
-Whenever :file:`spam.py` is successfully compiled, an attempt is made to write
-the compiled version to :file:`spam.pyc`.  It is not an error if this attempt
-fails; if for any reason the file is not written completely, the resulting
-:file:`spam.pyc` file will be recognized as invalid and thus ignored later.  The
-contents of the :file:`spam.pyc` file are platform independent, so a Python
-module directory can be shared by machines of different architectures.
+Normalmente, não é preciso fazer nada para gerar o arquivo :file:`spam.pyc`.
+Sempre que :file:`spam.py` é compilado com sucesso, é feita uma tentativa para
+escrever a versão compilada em :file:`spam.pyc`. Não há geração de um erro se 
+essa tentativa falhar. Se por alguma razão o arquivo compilado não é inteiramente escrito em disco, o arquivo :file:`spam.pyc` resultante será reconhecido como inválido e, portanto, ignorado. O conteúdo do arquivo :file:`spam.pyc` é independente de plataforma, assim um diretório de módulos Python pode ser compartilhado por máquinas de diferentes arquiteturas.
 
-Some tips for experts:
+Algumas dicas dos especialistas:
 
-* When the Python interpreter is invoked with the :option:`-O` flag, optimized
-  code is generated and stored in :file:`.pyo` files.  The optimizer currently
-  doesn't help much; it only removes :keyword:`assert` statements.  When
-  :option:`-O` is used, *all* :term:`bytecode` is optimized; ``.pyc`` files are
-  ignored and ``.py`` files are compiled to optimized bytecode.
+* Quando o interpretador Python é invocado com a diretiva :option:`-O`, é gerado 
+  código otimizado e armazenado em arquivos :file:`.pyo`. O otimizador atual não
+  faz muita coisa; ele apenas remove instruções :keyword:`assert`. Quando 
+  :option:`-O` é utilizada, *todo* :term:`bytecode` é otimizado; arquivos 
+  ``.pyc`` são ignorados e arquivo ``.py`` são compilados para bytecode otimizado.
 
-* Passing two :option:`-O` flags to the Python interpreter (:option:`-OO`) will
-  cause the bytecode compiler to perform optimizations that could in some rare
-  cases result in malfunctioning programs.  Currently only ``__doc__`` strings are
-  removed from the bytecode, resulting in more compact :file:`.pyo` files.  Since
-  some programs may rely on having these available, you should only use this
-  option if you know what you're doing.
+* Passando duas diretivas :option:`-O` para o interpretador Python (:option:`-OO`) 
+  fará com que o compilador realize otimizações arriscadas, que em alguns casos
+  raros pode acarretar o mal funcionamento de programas. Atualmente apenas string
+  ``__doc__`` são removidas do bytecode, resultando em arquivo :file:`.pyo` mais
+  compactos. Uma vez que alguns programas podem supor a existência dessas 
+  docstrings, somente use essa opção se você souber o que está fazendo e segurança
+  de que não acarretará nenhum efeito colateral negativo.
 
-* A program doesn't run any faster when it is read from a :file:`.pyc` or
-  :file:`.pyo` file than when it is read from a :file:`.py` file; the only thing
-  that's faster about :file:`.pyc` or :file:`.pyo` files is the speed with which
-  they are loaded.
+* Um programa não executa mais rápido quando é lido de um arquivo :file:`.pyc` ou 
+  :file:`.pyo` em comparação a quando é lido de um arquivo :file:`.py`. A única 
+  diferença é que nos dois primeiros casos o tempo de inicialização do programa 
+  é menor.
 
-* When a script is run by giving its name on the command line, the bytecode for
-  the script is never written to a :file:`.pyc` or :file:`.pyo` file.  Thus, the
-  startup time of a script may be reduced by moving most of its code to a module
-  and having a small bootstrap script that imports that module.  It is also
-  possible to name a :file:`.pyc` or :file:`.pyo` file directly on the command
-  line.
+* Quando um script é executado diretamente a partir o seu nome da linha de
+  comando, não são geradas as formas compiladas deste script em arquivo :file:`.pyc`
+  ou :file:`.pyo`. Portanto, o tempo de carga de um script pode ser melhorado se 
+  movermos a maioria de seu código para um módulo e utilizarmos outro script apenas
+  para inicialização. Também é possível executar o interpretador diretamente sobre 
+  arquivos compilados, passando seu nome na linha de comando.
 
-* It is possible to have a file called :file:`spam.pyc` (or :file:`spam.pyo`
-  when :option:`-O` is used) without a file :file:`spam.py` for the same module.
-  This can be used to distribute a library of Python code in a form that is
-  moderately hard to reverse engineer.
+* Na presença das formas compiladas (:file:`spam.pyc` e :file:`spam.pyo`) de um 
+  script, não há necessidade da presença da forma textual (:file:`spam.py`). Isto 
+  é útil na hora de se distribuir bibliotecas Python, dificultando práticas de 
+  engenharia reversa.
 
   .. index:: module: compileall
 
-* The module :mod:`compileall` can create :file:`.pyc` files (or :file:`.pyo`
-  files when :option:`-O` is used) for all modules in a directory.
+* O módulo :mod:`compileall` pode criar arquivos :file:`.pyc` (ou :file:`.pyo` 
+  quando é :option:`-O` é usada) para todos os módulos em um dado diretório.
 
 
 .. _tut-standardmodules:
