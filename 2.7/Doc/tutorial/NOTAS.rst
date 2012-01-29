@@ -11,7 +11,8 @@ Uso de maiúsculas e minúsculas
 Critérios de caixa alta/baixa nos títulos
 ------------------------------------------
 
-Vamos usar caixa alta apenas para a primeira palavra do título e nomes próprios, portanto::
+Vamos usar caixa alta apenas para a primeira palavra do título e nomes próprios,
+portanto::
 
   Using the Python Interpreter
   ============================
@@ -99,7 +100,7 @@ Outro exemplo:
 
 Fica melhor assim:
 
-  Naturalmente, podemos utilizar Python para...
+  Naturalmente, podemos usar Python para...
 
 em vez de:
 
@@ -146,7 +147,7 @@ asterisk
   asterisco (cf. dicionário Houaiss)
 
 blank line
-  linha vazia (em vez de linha nula)
+  linha em branco ou vazia (em vez de linha nula)
 
 built-in function
   função embutida
@@ -226,5 +227,6 @@ Isto, isso e aquilo: uma conversa sobre pronomes demonstrativos
 
 .. [#] No fundo, em Python não há instruções meramente declarativas pois
   tudo se dá em tempo de execução. ``def`` é um comando que cria uma função
-  e atribui seu nome a uma variável no escopo atual. Por isso o termo genérico
+  e atribui seu nome a uma variável no escopo atual. ``import`` executa o
+  módulo e cria variáveis no escopo global etc. Por isso o termo genérico
   instrução é melhor que comando ou declaração
