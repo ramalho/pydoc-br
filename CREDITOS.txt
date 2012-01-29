@@ -1,3 +1,4 @@
+Adorilson Bezerra de Araújo
 Alexandre Ceolin Hausen
 Alexandre Nalon
 Anderson Leite
@@ -27,6 +28,5 @@ Ricardo Lopes
 Rodrigo Dias Arruda Senra
 Rodrigo Moraes
 Silas Justiniano
-Tiago Eugenio de Melo 
+Tiago Eugenio de Melo
 Vitor Espíndola
-

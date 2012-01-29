@@ -18,8 +18,8 @@ Vamos usar caixa alta apenas para a primeira palavra do título e nomes próprio
 
 fica assim (note que "interpretador" está em minúsculas)::
 
-  Utilizando o interpretador Python
-  =================================
+  Usando o interpretador Python
+  =============================
 
 A vantagem de usar caixa alta só na primeira palavra e nomes próprios é
 diminuir inconsistências e dilemas sobre quais palavras devem ter caixa alta.
@@ -194,7 +194,9 @@ shell
   sistema operacional
 
 statement
-  comando ou declaração
+  instrução (termo melhor e mais genérico) ou alternativamente, comando
+  (quando se trata comandos de controle de fluxo ou o print) ou declaração
+  (como ``class``, ``def``, ``global``); [#]_
 
 triple-quote
   aspas triplas (em vez de "aspas tríplices"; em nome da simplicidade)
@@ -218,3 +220,11 @@ Dicionário Houaiss da Língua Portuguesa (exige login no UOL)
 
 Isto, isso e aquilo: uma conversa sobre pronomes demonstrativos
   http://www1.folha.uol.com.br/folha/colunas/noutraspalavras/ult2675u20.shtml
+
+
+.. rubric:: Meta-notas
+
+.. [#] No fundo, em Python não há instruções meramente declarativas pois
+  tudo se dá em tempo de execução. ``def`` é um comando que cria uma função
+  e atribui seu nome a uma variável no escopo atual. Por isso o termo genérico
+  instrução é melhor que comando ou declaração
