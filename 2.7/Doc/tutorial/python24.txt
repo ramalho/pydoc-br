@@ -2530,6 +2530,7 @@ Refinando a Formatação de Saída
 Até agora nós encontramos duas maneiras de escrever valores: através de expressões e pelo comando print
 (uma terceira maneira é utilizar o método write() de objetos de arquivo; a saída padrão pode ser referenciada
 como sys.stdout). Veja o documento Library Reference para mais informações sobre este tópico.
+
 Frequentemente você desejará mais controle sobre a formatação de saída do que simplesmente imprimindo valores
 separados por espaços. Existem duas formas. A primeira é você mesmo manipular a string através de recortes
 (slicing) e concatenação. O módulo padrão string contém algumas rotinas úteis a esta finalidade. A segunda

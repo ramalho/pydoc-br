@@ -1,38 +1,46 @@
 .. _tut-io:
 
-****************
-Input and Output
-****************
+***************
+Entrada e saída
+***************
 
 There are several ways to present the output of a program; data can be printed
 in a human-readable form, or written to a file for future use. This chapter will
 discuss some of the possibilities.
 
-
 .. _tut-formatting:
 
-Fancier Output Formatting
-=========================
+Refinando a Formatação de Saída
+===============================
 
-So far we've encountered two ways of writing values: *expression statements* and
-the :keyword:`print` statement.  (A third way is using the :meth:`write` method
-of file objects; the standard output file can be referenced as ``sys.stdout``.
-See the Library Reference for more information on this.)
+.. XXX: nao entendi o que eles querem dizer com *expression statements* neste
+   contexto. Texto do paragrafo original: """So far we've encountered two ways of
+   writing values: *expression statements* and the :keyword:`print` statement.
+   (A third way is using the :meth:`write` method of file objects; the standard
+   output file can be referenced as ``sys.stdout``.See the Library Reference for
+   more information on this.)"""
 
-Often you'll want more control over the formatting of your output than simply
-printing space-separated values.  There are two ways to format your output; the
-first way is to do all the string handling yourself; using string slicing and
-concatenation operations you can create any layout you can imagine.  The
-string types have some methods that perform useful operations for padding
-strings to a given column width; these will be discussed shortly.  The second
-way is to use the :meth:`str.format` method.
+Até agora nós encontramos duas maneiras de exibir valores: escrevendo
+expressões e usando o comando :keyword:`print` (uma terceira maneira é
+utilizar o método :meth:`write` de objetos arquivo; a saída padrão pode ser
+referenciada como ``sys.stdout``. Veja a Library Reference para mais
+informações sobre isto).
 
-The :mod:`string` module contains a :class:`~string.Template` class which offers
-yet another way to substitute values into strings.
+Frequentemente é desejávei mais controle sobre a formatação de saída do que
+simplesmente exibir valores separados por espaços. Existem duas formas de
+formatar a saída. A primeira é você mesmo manipular strings através de
+fatiamento (slicing) e concatenação. Os tipos string têm métodos úteis para
+criar strings com tamanhos determinados, usando caraceres de preenchimento;
+eles serão apresentados a seguir. A segunda forma é usar o método
+:meth:`str.format`.
 
-One question remains, of course: how do you convert values to strings? Luckily,
-Python has ways to convert any value to a string: pass it to the :func:`repr`
-or :func:`str` functions.
+O módulo :mod:`string` tem uma classe :class:`string.Template` que oferece
+uma outra maneira de inserir valores em strings.
+
+Permanece a questão: como converter valores para strings? Por sorte, Python
+possui maneiras de converter qualquer valor para uma string: as
+funções :func:`repr` ou :func:`str()`. 
+
 
 The :func:`str` function is meant to return representations of values which are
 fairly human-readable, while :func:`repr` is meant to generate representations
@@ -42,6 +50,21 @@ representation for human consumption, :func:`str` will return the same value as
 :func:`repr`.  Many values, such as numbers or structures like lists and
 dictionaries, have the same representation using either function.  Strings and
 floating point numbers, in particular, have two distinct representations.
+
+A função :func:`str` serve para produzir representações de valores que sejam
+legíveis para as pessoas, enquanto :func:`repr` é para gerar representações
+que o interpretador Python possa ler ()
+
+function is meant to return representations of values which are
+fairly human-readable, while :func:`repr` is meant to generate representations
+which can be read by the interpreter (or will force a :exc:`SyntaxError` if
+there is not equivalent syntax).  For objects which don't have a particular
+representation for human consumption, :func:`str` will return the same value as
+:func:`repr`.  Many values, such as numbers or structures like lists and
+dictionaries, have the same representation using either function.  Strings and
+floating point numbers, in particular, have two distinct representations.
+
+
 
 Some examples::
 
