@@ -147,7 +147,7 @@ asterisk
   asterisco (cf. dicionário Houaiss)
 
 blank line
-  linha em branco ou vazia (em vez de linha nula)
+  linha em branco (em vez de linha nula)
 
 built-in function
   função embutida
@@ -188,6 +188,10 @@ print
 return
   devolver (quando se refere a função que devolve um valor) ou retornar
   (quando se refere ao fluxo de execução)
+
+raise
+  lançar, no sentido de "lançar uma exceção" (9x mais frequente que "levantar
+  uma exceção" segundo o Google);
 
 shell
   console ou shell, conforme o contexto: ao tratar do interpretador
