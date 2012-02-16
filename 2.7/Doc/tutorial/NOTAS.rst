@@ -139,12 +139,22 @@ Exemplo em datastructures.rst::
      >>> transposta
      [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
 
+Mais informações
+----------------
+
+Use sempre "consulte x para mais informações" em vez de "consulte x para maiores informações".
+
 
 Traduções adotadas para termos específicos
 ==========================================
 
 asterisk
   asterisco (cf. dicionário Houaiss)
+
+backslash
+   contrabarra (no Google, "contra-barra" tem 3x mais ocorrências que "barra
+   invertida"; pela lógica da nova ortografia, o hífen neste caso não é mais
+   usado)
 
 blank line
   linha em branco (em vez de linha nula)
@@ -163,6 +173,9 @@ extend
 
 indent, indented
   indentar, indentação (conforme o dicionário Aulete)
+
+file objects
+  objetos arquivo (e não "objetos de arquivo")
 
 float
   float (quando se refere ao tipo) ou ponto flutuante (o conceito
