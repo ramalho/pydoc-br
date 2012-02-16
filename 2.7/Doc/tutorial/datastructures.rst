@@ -206,7 +206,7 @@ que outra). Por exemplo::
 Se ``None`` for passado no lugar da função, então será aplicada a função
 identidade (apenas devolve o argumento recebido). Se várias sequências forem
 passadas, a lista resultante terá tuplas formadas pelos elementos
-correspondentes de cada sequência. Isso se parece com a função ``:func:zip``,
+correspondentes de cada sequência. Isso se parece com a função :func:`zip`,
 exceto que :func:`map` devolve uma lista com o comprimento da sequência mais
 longa que foi passada, preenchendo as lacunas com ``None`` quando necessário,
 e :func:`zip` devolve uma lista com o comprimento da mais curta. Confira::
@@ -783,7 +783,7 @@ diferirem isto determinará o resultado da comparação, caso contrário os
 próximos dois itens serão comparados, e assim por diante até que se tenha
 exaurido alguma das sequências. Se em uma comparação de itens, os mesmos forem
 também sequências (aninhadas), então é disparada recursivamente outra
-comparação laxicográfica. Se todos os itens da sequência forem iguais, então
+comparação lexicográfica. Se todos os itens da sequência forem iguais, então
 as sequências são ditas iguais. Se uma das sequências é uma subsequência da
 outra, então a subsequência é a menor. A comparação lexicográfica de strings
 utiliza ASCII para definir a ordenação. Alguns exemplos de comparações entre
@@ -803,7 +803,7 @@ Então, uma ``list`` é sempre menor do que uma ``str``, uma ``str`` é sempre
 menor do que uma ``tuple``, etc. [#]_ Tipos numéricos misturados são
 comparados de acordo com seus valores numéricos, logo 0 é igual a 0.0, etc.
 
-.. rubric:: Footnotes
+.. rubric:: Notas
 
 .. [#] As regras para comparação de objetos de tipos diferentes não são
        definitivas; elas podem variar em futuras versões da linguagem.
