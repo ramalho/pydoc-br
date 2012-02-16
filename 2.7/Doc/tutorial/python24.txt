@@ -2618,8 +2618,7 @@ Note que os espaços adicionados entre as colunas se devem a forma de funcioname
 sempre adiciona espaço entre seus argumentos.
 Este exemplo demonstra o método rjust() de strings, que justifica uma string à direita gerando espaços adi-
 cionais à esquerda. Existem métodos análogas ljust() e center(). Esses métodos apenas retornam a string
-48
-Capítulo 7. Entrada e Saída
+
 formatada. Se a entrada extrapolar o comprimento exigido a string original é devolvida sem modificação. A razão
 para isso é não apresentar um valor potencialmente corrompido por truncamento (se for desejado truncar o valor
 pode-se utilizar operações de recorte como em 'x.ljust(n)[0:n]').
