@@ -168,8 +168,11 @@ character
 current
   atual (e não "corrente", que é um falso cognato)
 
+extension
+  extensão (com 'x' e 's')
+
 extend
-  estender (com s) ou prolongar (uma lista, por exemplo)
+  estender (com 's') uma classe, ou prolongar -- uma lista, por exemplo
 
 indent, indented
   indentar, indentação (conforme o dicionário Aulete)
@@ -203,8 +206,11 @@ return
   (quando se refere ao fluxo de execução)
 
 raise
-  lançar, no sentido de "lançar uma exceção" (9x mais frequente que "levantar
-  uma exceção" segundo o Google);
+   levantar, no sentido de "levantar uma exceção" ("lançar uma exceção"
+   é mais frequente que "levantar uma exceção" segundo o Google, mas isso
+   é porque em Java, JavaScript e PHP o comando chama-se "throw", que
+   é lançar; em Python usamos "raise", que é levantar (pense num bandeirinha
+   sinalizando uma falta no futebol)
 
 shell
   console ou shell, conforme o contexto: ao tratar do interpretador
@@ -220,11 +226,12 @@ triple-quote
   aspas triplas (em vez de "aspas tríplices"; em nome da simplicidade)
 
 try
-  experimentar ou tentar (depende do contexto: "Let's try some..." é
-  "vamos expermimentar alguns...")
+  experimentar ou tentar (depende do contexto: "Let's try some..." significa
+  "vamos experimentar alguns...")
 
-using
-  usando (em vez de "utilizando"; em nome da simplicidade)
+use, using
+  uso, usar, usando (em vez de "utilização", "utilizar", "utilizando"; em
+  nome da simplicidade)
 
 
 Referências
@@ -239,6 +246,8 @@ Dicionário Houaiss da Língua Portuguesa (exige login no UOL)
 Isto, isso e aquilo: uma conversa sobre pronomes demonstrativos
   http://www1.folha.uol.com.br/folha/colunas/noutraspalavras/ult2675u20.shtml
 
+Estender e extensão
+  http://www.dicionarioweb.com.br/artigo/estender-ou-extender
 
 .. rubric:: Meta-notas
 
