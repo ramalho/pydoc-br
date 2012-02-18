@@ -1,4 +1,4 @@
-.. _tut-brieftour:
+﻿.. _tut-brieftour:
 
 ***************************************
 Um breve passeio pela biblioteca padrão
@@ -25,7 +25,7 @@ muito diferente.
 
 .. index:: builtin: help
 
-As funções embutidas :func:`dir` e :func:`help` são uteis como um sistema de ajuda
+As funções embutidas :func:`dir` e :func:`help` são úteis como um sistema de ajuda
 interativa pra lidar com módulos grandes como :mod:`os`::
 
    >>> import os
@@ -250,9 +250,9 @@ testes frequentemente durante o processo de desenvolvimento.
 
 O móudlo :mod:`doctest` oferece uma ferramenta para realizar um trabalho de
 varredura e validação de testes escritos nas strings de documentação (docstrings)
-de um programa. A contrução dos testes é tão simples quanto copiar uma chamada
+de um programa. A construção dos testes é tão simples quanto copiar uma chamada
 típica juntamente com seus resultados e colá-los na docstring. Isto aprimora
-a documentação, formecendo ao usuário um exemplo real, e permite que o módulo
+a documentação, fornecendo ao usuário um exemplo real, e permite que o módulo
 doctest verifique se o código continua fiel à documentação::
 
    def average(values):
@@ -264,7 +264,7 @@ doctest verifique se o código continua fiel à documentação::
        return sum(values, 0.0) / len(values)
 
    import doctest
-   doctest.testmod()   # Automaticamente valida os testes incluidos
+   doctest.testmod()   # Automaticamente valida os testes incluídos
 
 O módulo :mod:`unittest` não é tão simples de usar quanto o módulo :mod:`doctest`, mas
 permite que um conjunto muito maior de testes seja mantido em um arquivo separado::
@@ -307,6 +307,6 @@ através da sofisticação e robustez dos seus maiores pacotes. Por exemplo:
   de bancos de dados. Juntos esses módulos e pacotes simplificam muito a troca
   de dados entre aplicações em python e outras ferramentas.
 
-* Iternacionalização está disponível através de diversos módulos, como 
+* Internacionalização está disponível através de diversos módulos, como 
   :mod:`gettext`, :mod:`locale`, e o pacote :mod:`codecs`.
 
