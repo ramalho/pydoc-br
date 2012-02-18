@@ -76,7 +76,7 @@ flexível é fornecido pelo módulo :mod:`argparse`.
 
 .. _tut-stderr:
 
-Redirecionamento de error e encerramento do programa
+Redirecionamento de erros e encerramento do programa
 ====================================================
 
 O módulo :mod:`sys` também possui atributos para *stdin*, *stdout* e *stderr*.
