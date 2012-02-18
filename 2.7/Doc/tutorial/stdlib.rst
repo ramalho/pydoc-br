@@ -1,42 +1,41 @@
 .. _tut-brieftour:
 
-**********************************
-Brief Tour of the Standard Library
-**********************************
+***************************************
+Um breve passeio pela biblioteca padrão
+***************************************
 
 
 .. _tut-os-interface:
 
-Operating System Interface
-==========================
+Interface com o sistema operacional
+===================================
 
-The :mod:`os` module provides dozens of functions for interacting with the
-operating system::
+O módulo :mod:`os` fornece dúzias de funções para interagir com o sistema operacional::
 
    >>> import os
-   >>> os.getcwd()      # Return the current working directory
+   >>> os.getcwd()      # Retorna o diretório de trabalho atual
    'C:\\Python26'
-   >>> os.chdir('/server/accesslogs')   # Change current working directory
-   >>> os.system('mkdir today')   # Run the command mkdir in the system shell
+   >>> os.chdir('/server/accesslogs')   # Altera o diretório de trabalho atual
+   >>> os.system('mkdir today')   # Executa o comando mkdir no shell do sistema
    0
 
-Be sure to use the ``import os`` style instead of ``from os import *``.  This
-will keep :func:`os.open` from shadowing the built-in :func:`open` function which
-operates much differently.
+Tome cuidado para usar a forma ``import os`` ao invés de ``from os import *``.
+Isso evitará que :func:`os.open` oculte a função :func:`open` que opera de forma
+muito diferente.
 
 .. index:: builtin: help
 
-The built-in :func:`dir` and :func:`help` functions are useful as interactive
-aids for working with large modules like :mod:`os`::
+As funções embutidas :func:`dir` e :func:`help` são uteis como um sistema de ajuda
+interativa pra lidar com módulos grandes como :mod:`os`::
 
    >>> import os
    >>> dir(os)
-   <returns a list of all module functions>
+   <retorna uma lista com todas as funções do módulo>
    >>> help(os)
-   <returns an extensive manual page created from the module's docstrings>
+   <retorna uma extensa página de manual criada a partir das docstrings do módulo>
 
-For daily file and directory management tasks, the :mod:`shutil` module provides
-a higher level interface that is easier to use::
+Para tarefas de gerenciamento diário de arquivos e diretórios, o módulo :mod:`shutil` fornece
+uma interface de alto nível que é mais simples de usar::
 
    >>> import shutil
    >>> shutil.copyfile('data.db', 'archive.db')
@@ -45,11 +44,11 @@ a higher level interface that is easier to use::
 
 .. _tut-file-wildcards:
 
-File Wildcards
-==============
+Caracteres coringa
+==================
 
-The :mod:`glob` module provides a function for making file lists from directory
-wildcard searches::
+O módulo :mod:`glob` fornece uma função para criar listas de arquivos a partir
+de buscas em diretórios usando caracteres coringa::
 
    >>> import glob
    >>> glob.glob('*.py')
@@ -58,46 +57,46 @@ wildcard searches::
 
 .. _tut-command-line-arguments:
 
-Command Line Arguments
-======================
+Argumentos de linha de comando
+==============================
 
-Common utility scripts often need to process command line arguments. These
-arguments are stored in the :mod:`sys` module's *argv* attribute as a list.  For
-instance the following output results from running ``python demo.py one two
-three`` at the command line::
+Scripts geralmente precisam processar argumentos passados na linha de comando.
+Esses argumentos são armazenados como uma lista no atributo *argv* do módulo
+:mod:`sys`. Por exemplo, teríamos a seguinte saída executando ``python demo.py 
+one two three`` na linha de comando::
 
    >>> import sys
    >>> print sys.argv
    ['demo.py', 'one', 'two', 'three']
 
-The :mod:`getopt` module processes *sys.argv* using the conventions of the Unix
-:func:`getopt` function.  More powerful and flexible command line processing is
-provided by the :mod:`argparse` module.
+O módulo :mod:`getopt` processa os argumentos passados em sys.argv usando as
+convenções da função Unix :mod:`getopt`. Um processamento mais poderoso e
+flexível é fornecido pelo módulo :mod:`argparse`.
 
 
 .. _tut-stderr:
 
-Error Output Redirection and Program Termination
-================================================
+Redirecionamento de error e encerramento do programa
+====================================================
 
-The :mod:`sys` module also has attributes for *stdin*, *stdout*, and *stderr*.
-The latter is useful for emitting warnings and error messages to make them
-visible even when *stdout* has been redirected::
+O módulo :mod:`sys` também possui atributos para *stdin*, *stdout* e *stderr*.
+O último é usado para emitir avisos e mensagens de erros visíveis mesmo quando
+*stdout* foi redirecionado::
 
    >>> sys.stderr.write('Warning, log file not found starting a new one\n')
    Warning, log file not found starting a new one
 
-The most direct way to terminate a script is to use ``sys.exit()``.
+A forma mais direta de encerrar um script é usando ``sys.exit()``.
 
 
 .. _tut-string-pattern-matching:
 
-String Pattern Matching
-=======================
+Reconhecimento de padrões em strings
+====================================
 
-The :mod:`re` module provides regular expression tools for advanced string
-processing. For complex matching and manipulation, regular expressions offer
-succinct, optimized solutions::
+O módulo :mod:`re` fornece ferramentas para lidar com processamento de strings
+através de expressões regulares. Para reconhecimento de padrões complexos,
+expressões regulares  oferecem uma solução sucinta e eficiente::
 
    >>> import re
    >>> re.findall(r'\bf[a-z]*', 'which foot or hand fell fastest')
@@ -105,8 +104,8 @@ succinct, optimized solutions::
    >>> re.sub(r'(\b[a-z]+) \1', r'\1', 'cat in the the hat')
    'cat in the hat'
 
-When only simple capabilities are needed, string methods are preferred because
-they are easier to read and debug::
+Quando as exigências são simples, métodos de strings são preferíveis por serem
+mais fáceis de ler e depurar::
 
    >>> 'tea for too'.replace('too', 'two')
    'tea for two'
@@ -114,11 +113,11 @@ they are easier to read and debug::
 
 .. _tut-mathematics:
 
-Mathematics
-===========
+Matemática
+==========
 
-The :mod:`math` module gives access to the underlying C library functions for
-floating point math::
+O módulo :mod:`math` oferece acesso as funções da biblioteca C para matemática
+e ponto flutuante::
 
    >>> import math
    >>> math.cos(math.pi / 4.0)
@@ -126,31 +125,31 @@ floating point math::
    >>> math.log(1024, 2)
    10.0
 
-The :mod:`random` module provides tools for making random selections::
+O módulo :mod:`random` fornece ferramentas para gerar seleções aleatórias::
 
    >>> import random
    >>> random.choice(['apple', 'pear', 'banana'])
    'apple'
    >>> random.sample(xrange(100), 10)   # sampling without replacement
    [30, 83, 16, 4, 8, 81, 41, 50, 18, 33]
-   >>> random.random()    # random float
+   >>> random.random()    # float aleatório
    0.17970987693706186
-   >>> random.randrange(6)    # random integer chosen from range(6)
+   >>> random.randrange(6)    # inteiro aleatório escolhido de range(6)
    4
 
 
 .. _tut-internet-access:
 
-Internet Access
-===============
+Acesso a internet
+=================
 
-There are a number of modules for accessing the internet and processing internet
-protocols. Two of the simplest are :mod:`urllib2` for retrieving data from urls
-and :mod:`smtplib` for sending mail::
+Há diversos módulos para acesso e processamento de protocolos da internet. Dois dos
+mais simples são :mod:`urllib2` para efetuar download de dados a partir de urls e
+:mod:`smtplib` para enviar mensagens de correio eletrônico::
 
    >>> import urllib2
    >>> for line in urllib2.urlopen('http://tycho.usno.navy.mil/cgi-bin/timer.pl'):
-   ...     if 'EST' in line or 'EDT' in line:  # look for Eastern Time
+   ...     if 'EST' in line or 'EDT' in line:  # procurar pela hora do leste
    ...         print line
 
    <BR>Nov. 25, 09:43:32 PM EST
@@ -165,19 +164,19 @@ and :mod:`smtplib` for sending mail::
    ... """)
    >>> server.quit()
 
-(Note that the second example needs a mailserver running on localhost.)
+(Note que o segundo exemplo precisa de um servidor de email rodando em localhost.)
 
 
 .. _tut-dates-and-times:
 
-Dates and Times
-===============
+Data e Hora
+===========
 
-The :mod:`datetime` module supplies classes for manipulating dates and times in
-both simple and complex ways. While date and time arithmetic is supported, the
-focus of the implementation is on efficient member extraction for output
-formatting and manipulation.  The module also supports objects that are timezone
-aware. ::
+O módulo :mod:`datetime` fornece classes para manipulação de datas e horas nas
+mais variadas formas. Apesar da disponibilidade de aritmética com data e hora,
+o foco da implementação é na extração eficiente dos membros para formatação e
+manipulação. O módulo também oferece objetos que levam os fusos horários em
+consideração::
 
    >>> # dates are easily constructed and formatted
    >>> from datetime import date
