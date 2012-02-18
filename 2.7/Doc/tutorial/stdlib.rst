@@ -220,7 +220,7 @@ através de alguns módulos, entre eles: :mod:`zlib`, :mod:`gzip`, :mod:`bz2`, :
 Medição de desempenho
 =====================
 
-Alguns usuário de Python desenvolvem um interesse profundo pelo desempenho relativo
+Alguns usuários de Python desenvolvem um interesse profundo pelo desempenho relativo
 de diferentes abordagens para o mesmo problema. Python oferece uma ferramenta de
 medição que esclarece essas dúvidas rapidamente.
 
