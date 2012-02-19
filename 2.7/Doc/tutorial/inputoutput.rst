@@ -283,7 +283,7 @@ use a letra ``b`` (ex. ``rb``, ``wb`` etc.) para especificar modo binário.
 Em modo binário, o método ``write`` aceita strings de bytes, e os métodos
 de leitura devolvem strings de bytes também. Em modo texto, como já foi dito,
 os métodos de gravação e leitura aceitam e devolvem sempre strings
- ``unicode``.
+``unicode``.
 
 .. _tut-filemethods:
 
