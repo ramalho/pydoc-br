@@ -268,14 +268,22 @@ modo binário ao manipular tais arquivos. No Unix, não faz diferença colocar u
 arquivos binários de forma independente da plataforma.
 
 N.d.T. Para ler arquivos de texto contendo acentuação e outros caracteres
-não-ASCII, a melhor prática atualmente é usar a :func:`codecs.open`, do
-módulo :mod:`codecs`, em vez da função embutida :func:`open`. O motivo é que
-:func:`codecs.open` permite especificar a codificação logo ao abrir o arquivo.
-Desta forma, a leitura do arquivo sempre devolverá objetos ``unicode``,
-independente da codificação interna do mesmo. E ao escrever em um arquivo
-aberto via :func:`codecs.open`, basta enviar sempre strings ``unicode``, pois
-a conversão para o encoding do arquivo será feita automaticamente.
-
+não-ASCII, a melhor prática desde o Python 2.6 é usar a função :func:`io.open`,
+do módulo :mod:`io`, em vez da função embutida :func:`open`. O motivo é que,
+ao abrir arquivos texto para leitura ou escrita, :func:`io.open` permite
+especificar a codificação logo ao abrir o arquivo. Desta forma, a leitura do
+arquivo em modo texto sempre devolverá objetos ``unicode``, independente da
+codificação interna do mesmo. E ao escrever em um arquivo aberto via
+:func:`codecs.open`, basta enviar sempre strings ``unicode``, pois a conversão
+para o encoding do arquivo será feita automaticamente. Ao usar :func:`io.open`
+sempre faz diferença especificar se o arquivo é binário ou texto, em todos os
+sistemas operacionais: o modo texto é o default, mas se quiser ser explícito
+coloque a letra ``t`` no parâmetro ``mode`` (ex. ``rt``, ``wt`` etc.); use
+use a letra ``b`` (ex. ``rb``, ``wb`` etc.) para especificar modo binário.
+Em modo binário, o método ``write`` aceita strings de bytes, e os métodos
+de leitura devolvem strings de bytes também. Em modo texto, como já foi dito,
+os métodos de gravação e leitura aceitam e devolvem sempre strings
+ ``unicode``.
 
 .. _tut-filemethods:
 
