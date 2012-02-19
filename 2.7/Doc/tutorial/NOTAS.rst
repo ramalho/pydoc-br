@@ -198,6 +198,9 @@ parameter
   parâmetro formal (em declarações de funções) ou argumento (os
   valores passados na invocação)
 
+performance
+  desempenho
+
 print
   exibir (exceto quando realmente se tratar de imprimir em papel)
 
@@ -232,6 +235,9 @@ try
 use, using
   uso, usar, usando (em vez de "utilização", "utilizar", "utilizando"; em
   nome da simplicidade)
+
+wildcard
+  curinga (e não "coringa"; verificado nos dicionários Aulete e Houaiss)
 
 
 Referências
