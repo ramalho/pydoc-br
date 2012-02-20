@@ -39,7 +39,7 @@ revelar as estruturas de maneira mais clara::
       'azul']]]
 
 O módulo :mod:`textwrap` formata parágrafos de texto para que caibam em uma
-data largura de tela::
+dada largura de tela::
 
    >>> import textwrap
    >>> doc = """O método wrap() funciona como o método fill() exceto pelo fato
@@ -321,8 +321,8 @@ custosos para criar::
 
 .. _tut-list-tools:
 
-Tools for Working with Lists
-============================
+Ferramentas para trabalhar com liastas
+======================================
 
 Muitas necessidades envolvendo estrutura de dados podem ser satisfeitas
 com o tipo embutido lista. Entretanto, algumas vezes há uma necessidade
@@ -345,7 +345,7 @@ nas listas normais de objetos int::
 O módulo :mod:`collections` oferece um objeto :class:`deque()` que comporta-se
 como uma lista mas com anexações (appends) mais rápidos e remoções (pops)
 feitas pelo lado esquerdo. Esses objetos são adequados para implementação de
-filas e buscas em amplitude em árvores de dados(breadth first tree searches)::
+filas e buscas de amplitude em árvores de dados(breadth first tree searches)::
 
    >>> from collections import deque
    >>> d = deque(["tarefa1", "tarefa2", "tarefa3"])
@@ -390,8 +390,8 @@ Aritmética com ponto flutuante decimal
 ======================================
 
 O módulo :mod:`decimal` oferece o tipo :class:`Decimal` para aritmética
-com ponto flutuante decimal. Comparado a implementação embutida de 
-:class:`float` usando ponto flutuante binário, a classe é especialmente
+com ponto flutuante decimal. Comparado a implementação embutida 
+:class:`float` que usa ponto flutuante binário, a classe é especialmente
 útil para
 
 * aplicações financeiras que requerem representação decimal exata,
@@ -418,11 +418,11 @@ centavo mais próximo.
 O resultado de :class:`Decimal` mantém um zero final, automaticamente inferindo
 quatro casas decimais para multiplicandos com duas casas decimais. Decimal
 reproduz a matemática como a feita à mão e evita problemas que podem ocorrer
-quando ponto flutuante binário não podem representar quantidades decimais
+quando ponto flutuante binário não pode representar quantidades decimais
 exatamente.
 
 Representação exata permite à classe :class:`Decimal` executar cálculos de
-módulo e testes de igualdade que não são apropriados para ponto flutuante
+módulo e testes de igualdade que não podem ser feitos com ponto flutuante
 binário::
 
    >>> Decimal('1.00') % Decimal('.10')
