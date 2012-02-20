@@ -212,8 +212,8 @@ raise
    levantar, no sentido de "levantar uma exceção" ("lançar uma exceção"
    é mais frequente que "levantar uma exceção" segundo o Google, mas isso
    é porque em Java, JavaScript e PHP o comando chama-se "throw", que
-   é lançar; em Python usamos "raise", que é levantar (pense num bandeirinha
-   sinalizando uma falta no futebol)
+   é lançar; em Python usamos "raise", que é levantar [pense em um
+   bandeirinha sinalizando uma falta no futebol])
 
 shell
   console ou shell, conforme o contexto: ao tratar do interpretador
