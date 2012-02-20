@@ -45,7 +45,7 @@ Para tarefas de gerenciamento cotidiano de arquivos e diretórios, o módulo
 
 .. _tut-file-wildcards:
 
-Caracteres coringa
+Caracteres curinga
 ==================
 
 O módulo :mod:`glob` fornece uma função para criar listas de arquivos a partir
@@ -250,7 +250,7 @@ Uma das abordagens usadas no desenvolvimento de software de alta qualidade é
 escrever testes para cada função à medida que é desenvolvida e executar esses
 testes frequentemente durante o processo de desenvolvimento.
 
-O móudlo :mod:`doctest` oferece uma ferramenta para realizar um trabalho de
+O módulo :mod:`doctest` oferece uma ferramenta para realizar um trabalho de
 varredura e validação de testes escritos nas strings de documentação
 (docstrings) de um programa. A construção dos testes é tão simples quanto
 copiar uma chamada típica juntamente com seus resultados e colá-los na
