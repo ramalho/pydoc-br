@@ -4,31 +4,34 @@
 Classes
 *******
 
-Compared with other programming languages, Python's class mechanism adds classes
-with a minimum of new syntax and semantics.  It is a mixture of the class
-mechanisms found in C++ and Modula-3.  Python classes provide all the standard
-features of Object Oriented Programming: the class inheritance mechanism allows
-multiple base classes, a derived class can override any methods of its base
-class or classes, and a method can call the method of a base class with the same
-name.  Objects can contain arbitrary amounts and kinds of data.  As is true for
-modules, classes partake of the dynamic nature of Python: they are created at
-runtime, and can be modified further after creation.
+Em comparação com outras linguages, o mecanismo de classes de Python introduz
+a programação orientada a objetos sem acrescentar muitas novidades de sintaxe
+ou semântica. É uma mistura de mecanismos equivalentes encontrados em C++ e
+Modula-3. As classes em Python oferecem todas as características tradicionais
+da programação a orientada a objetos: o mecanismo de herança permite múltiplas
+classes base (herança múltipla), uma classe derivada pode sobrescrever
+quaisquer métodos de uma classe ancestral, e um método pode invocar outro
+método homônimo de uma classe ancestral. Objetos podem armazenar uma
+quantidade arbitrária de dados de qualquer tipo. Assim como acontece com os
+módulos, as classes fazem parte da natureza dinâmica de Python: são criadas em
+tempo de execução, e podem ser alteradas após sua criação.
 
-In C++ terminology, normally class members (including the data members) are
-*public* (except see below :ref:`tut-private`), and all member functions are
-*virtual*.  As in Modula-3, there are no shorthands for referencing the object's
-members from its methods: the method function is declared with an explicit first
-argument representing the object, which is provided implicitly by the call.  As
-in Smalltalk, classes themselves are objects.  This provides semantics for
-importing and renaming.  Unlike C++ and Modula-3, built-in types can be used as
-base classes for extension by the user.  Also, like in C++, most built-in
-operators with special syntax (arithmetic operators, subscripting etc.) can be
-redefined for class instances.
+Usando terminologia de C++, todos os membros de uma classe (incluindo dados)
+são públicos, e todos as funções membro são virtuais. Como em Modula-3, não
+existem atalhos para referenciar membros do objeto de dentro dos seus métodos.
+Um método (função definida em uma classe) é declarado com um primeiro
+argumento explícito representando o objeto (instância da classe), que é
+fornecido implicitamente pela invocação. Como em Smalltalk, classes são
+objetos. Isso fornece uma semântica para importar e renomear. Ao contrário de
+C++ ou Modula-3, tipos pré-definidos podem ser utilizados como classes base
+para extensões de usuário por herança. Como em C++, mas diferentemente de
+Modula-3, a maioria dos operadores (aritiméticos, indexação,etc) podem ser
+redefinidos para instâncias de classe.
 
-(Lacking universally accepted terminology to talk about classes, I will make
-occasional use of Smalltalk and C++ terms.  I would use Modula-3 terms, since
-its object-oriented semantics are closer to those of Python than C++, but I
-expect that few readers have heard of it.)
+(Na falta de uma terminologia universalmente aceita para falar sobre classes,
+ocasionalmente farei uso de termos comuns em Smalltalk ou C++ (eu usaria
+termos de Modula-3, já que sua semântica é mais próxima a de Python, mas creio
+que poucos leitores já ouviram falar dessa linguagem.)
 
 
 .. _tut-object:
