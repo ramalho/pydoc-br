@@ -36,118 +36,138 @@ que poucos leitores já ouviram falar dessa linguagem.)
 
 .. _tut-object:
 
-A Word About Names and Objects
-==============================
+Uma palavra sobre nomes e objetos
+=================================
 
-Objects have individuality, and multiple names (in multiple scopes) can be bound
-to the same object.  This is known as aliasing in other languages.  This is
-usually not appreciated on a first glance at Python, and can be safely ignored
-when dealing with immutable basic types (numbers, strings, tuples).  However,
-aliasing has a possibly surprising effect on the semantics of Python code
-involving mutable objects such as lists, dictionaries, and most other types.
-This is usually used to the benefit of the program, since aliases behave like
-pointers in some respects.  For example, passing an object is cheap since only a
-pointer is passed by the implementation; and if a function modifies an object
-passed as an argument, the caller will see the change --- this eliminates the
-need for two different argument passing mechanisms as in Pascal.
+Objetos têm individualidade, e vários nomes (inclusive em diferentes escopos)
+podem estar vinculados a um mesmo objeto. Isso é chamado de *aliasing* em
+outras linguagens. (N.d.T. *aliasing* é, literalmente, "apelidamento": um
+mesmo objeto pode ter vários apelidos.) À primeira vista, esta característica
+não é muito apreciada, e pode ser seguramente ignorada ao lidar com tipos
+imutáveis (números, strings, tuplas). Entretanto, aliasing pode ter um efeito
+inesperado sobre a semântica de código Python envolvendo objetos mutáveis como
+listas, dicionários e a maioria dos outros tipos. Isso pode ser usado em
+benefício do programa, porque os aliases (apelidos) funcionam de certa forma
+como ponteiros. Por exemplo, passar um objeto como argumento é barato, pois só
+um ponteiro é passado na implementação; e se uma função modifica um objeto
+passado como argumento, o invocador verá a mudança --- isso elimina a
+necessidade de ter dois mecanismos de passagem de parâmetros como em Pascal.
 
+N.d.T. Na terminologia de C++ e Java, o que o parágrafo acima denomina
+"apelidos" são identificadores de referências (variáveis de referência), e os
+ponteiros são as próprias referências. Se uma variável ``a`` está associada a
+um objeto qualquer, informalmente dizemos que a variável "contém" o objeto,
+mas na realidade o objeto existe independente da variável, e o conteúdo da
+variável é apenas uma referência (um ponteiro) para o objeto. O *aliasing*
+ocorre quando existem diversas variáveis, digamos ``a``, ``b`` e ``c``,
+apontando para o mesmo objeto.
 
 .. _tut-scopes:
 
-Python Scopes and Namespaces
-============================
+Escopos e *namespaces*
+======================
 
-Before introducing classes, I first have to tell you something about Python's
-scope rules.  Class definitions play some neat tricks with namespaces, and you
-need to know how scopes and namespaces work to fully understand what's going on.
-Incidentally, knowledge about this subject is useful for any advanced Python
-programmer.
+Antes de introduzir classes, é preciso falar das regras de escopo em Python.
+Definições de classe fazem alguns truques com namespaces (espaços de nomes).
+Portanto, primeiro é preciso entender bem como escopos e espaços de nomes
+funcionam. Esse conhecimento é muito útil para o programador avançado em
+Python.
 
-Let's begin with some definitions.
+Vamos começar com algumas definições.
 
-A *namespace* is a mapping from names to objects.  Most namespaces are currently
-implemented as Python dictionaries, but that's normally not noticeable in any
-way (except for performance), and it may change in the future.  Examples of
-namespaces are: the set of built-in names (containing functions such as :func:`abs`, and
-built-in exception names); the global names in a module; and the local names in
-a function invocation.  In a sense the set of attributes of an object also form
-a namespace.  The important thing to know about namespaces is that there is
-absolutely no relation between names in different namespaces; for instance, two
-different modules may both define a function ``maximize`` without confusion ---
-users of the modules must prefix it with the module name.
+Um *namespace* (ou espaço de nomes) é um mapeamento ou associação de nomes
+para objetos. Atualmente, são implementados como dicionários em Python, mas
+isso não é perceptível (a não ser pelo desempenho), e pode mudar no futuro.
+Exemplos de espaços de nomes são: o conjunto de nomes pré-definidos (funções
+como :func:`abs` e as exceções embutidas); nomes globais em um módulo; e nomes
+locais na invocação de uma função. De uma certa forma, os atributos de um
+objeto também formam um espaço de nomes. O mais importante é saber que não
+existe nenhuma relação entre nomes em espaços distintos. Por exemplo, dois
+módulos podem definir uma função de nome ``maximize`` sem confusão ---
+usuários dos módulos devem prefixar a função com o nome do módulo para evitar
+colisão.
 
-By the way, I use the word *attribute* for any name following a dot --- for
-example, in the expression ``z.real``, ``real`` is an attribute of the object
-``z``.  Strictly speaking, references to names in modules are attribute
-references: in the expression ``modname.funcname``, ``modname`` is a module
-object and ``funcname`` is an attribute of it.  In this case there happens to be
-a straightforward mapping between the module's attributes and the global names
-defined in the module: they share the same namespace!  [#]_
+A propósito, utilizo a palavra *atributo* para qualquer nome depois de um
+ponto. Na expressão ``z.real``, por exemplo, ``real`` é um atributo do objeto
+``z``. Estritamente falando, referências para nomes em módulos são atributos:
+na expressão ``nomemod.nomefunc``, ``nomemod`` é um objeto módulo e
+``nomefunc`` é um de seus atributos. Neste caso, existe um mapeamento direto
+entre os os atributos de um módulo e os nomes globais definidos no módulo:
+eles compartilham o mesmo espaço de nomes! [#]_
 
-Attributes may be read-only or writable.  In the latter case, assignment to
-attributes is possible.  Module attributes are writable: you can write
-``modname.the_answer = 42``.  Writable attributes may also be deleted with the
-:keyword:`del` statement.  For example, ``del modname.the_answer`` will remove
-the attribute :attr:`the_answer` from the object named by ``modname``.
+Atributos podem ser somente para leitura ou para leitura e escrita. No segundo
+caso, é possível atribuir um novo valor ao atributo. (N.d.T. Ou mesmo criar
+novos atributos.) Atributos de módulos são passíveis de atribuição: você pode
+escrever ``nomemod.a_reposta = 42``. Atributos que aceitam escrita também
+podem ser apagados através do comando :keyword:`del`. Por exemplo, ``del
+nomemod.a_reposta`` remove o atributo :attr:`a_resposta` do objeto
+referenciado por ``nomemod``.
 
-Namespaces are created at different moments and have different lifetimes.  The
-namespace containing the built-in names is created when the Python interpreter
-starts up, and is never deleted.  The global namespace for a module is created
-when the module definition is read in; normally, module namespaces also last
-until the interpreter quits.  The statements executed by the top-level
-invocation of the interpreter, either read from a script file or interactively,
-are considered part of a module called :mod:`__main__`, so they have their own
-global namespace.  (The built-in names actually also live in a module; this is
-called :mod:`__builtin__`.)
+Espaços de nomes são criados em momentos diferentes e possuem diferentes
+ciclos de vida. O espaço de nomes que contém os nomes embutidos é criado
+quando o interpretador inicializa e nunca é removido. O espaço de nomes global
+de um módulo é criado quando a definição do módulo é lida, e normalmente duram
+até a terminação do interpretador. Os comandos executados pela invocação do
+interpertador, pela leitura de um script com programa principal, ou
+interativamente, são parte do módulo chamado :mod:`__main__`, e portanto
+possuem seu próprio espaço de nomes. (Os nomes embutidos possuem seu
+próprio espaço de nomes no módulo chamado :mod:`__builtin__`.).
 
-The local namespace for a function is created when the function is called, and
-deleted when the function returns or raises an exception that is not handled
-within the function.  (Actually, forgetting would be a better way to describe
-what actually happens.)  Of course, recursive invocations each have their own
-local namespace.
+O espaço de nomes local de uma função é criado quando a função é invocada, e
+apagado quando a função retorna ou levanta uma exceção que não é tratada na
+própria função. (Na verdade, uma forma melhor de descrever o que realmente
+acontece é que o espaço de nomes local é "esquecido" quando a funçao termina.)
+Naturalmente, cada invocação recursiva de uma função tem seu próprio espaço de
+nomes.
 
-A *scope* is a textual region of a Python program where a namespace is directly
-accessible.  "Directly accessible" here means that an unqualified reference to a
-name attempts to find the name in the namespace.
+Um *escopo* (*scope*) é uma região textual de um programa Python onde um
+espaço de nomes é diretamente acessível. Aqui, “diretamente acessível”
+significa que uma referência sem um prefixo qualificador permite o acesso ao
+nome.
 
-Although scopes are determined statically, they are used dynamically. At any
-time during execution, there are at least three nested scopes whose namespaces
-are directly accessible:
+Ainda que escopos sejam determinados estaticamente, eles são usados
+dinamicamente. A qualquer momento durante a execução, existem no mínimo três
+escopos diretamente acessíveis:
 
-* the innermost scope, which is searched first, contains the local names
-* the scopes of any enclosing functions, which are searched starting with the
-  nearest enclosing scope, contains non-local, but also non-global names
-* the next-to-last scope contains the current module's global names
-* the outermost scope (searched last) is the namespace containing built-in names
+* o escopo mais interno (que é acessado primeiro) contendo nomes locais;
+* os escopos das funções que envolvem a função atual, que são acessados a
+  partir do escopo mias próximo, contém nomes não-locais mas também
+  não-globais;
+* o penúltimo escopo contém os nomes globais do módulo atual;
+* e o escopo mais externo (acessado por último) contém os nomes das funções
+  embutidas e demais objetos pré-definidos do interpretador.
 
-If a name is declared global, then all references and assignments go directly to
-the middle scope containing the module's global names. Otherwise, all variables
-found outside of the innermost scope are read-only (an attempt to write to such
-a variable will simply create a *new* local variable in the innermost scope,
-leaving the identically named outer variable unchanged).
+Se um nome é declarado no escopo global, então todas as referências e
+atribuições valores vão diretamente para o escopo intermediário que contém os
+nomes globais do módulo. Caso contrário, todas as variáveis encontradas fora
+do escopo mais interno são apenas para leitura (a tentativa de atribuir
+valores a essas variáveis irá simplesmente criar uma *nova* variável local, no
+escopo interno, não alterando nada na variável de nome idêntico fora dele).
 
-Usually, the local scope references the local names of the (textually) current
-function.  Outside functions, the local scope references the same namespace as
-the global scope: the module's namespace. Class definitions place yet another
-namespace in the local scope.
+Normalmente, o escopo local referencia os nomes locais da função corrente no
+texto do programa. Fora de funções, o escopo local referencia os nomes do
+escopo global: espaço de nomes do módulo. Definições de classes adicionam um
+outro espaço de nomes ao escopo local.
 
-It is important to realize that scopes are determined textually: the global
-scope of a function defined in a module is that module's namespace, no matter
-from where or by what alias the function is called.  On the other hand, the
-actual search for names is done dynamically, at run time --- however, the
-language definition is evolving towards static name resolution, at "compile"
-time, so don't rely on dynamic name resolution!  (In fact, local variables are
-already determined statically.)
+É importante perceber que escopos são determinados estaticamente, pelo texto
+do código fonte: o escopo global de uma função definida em um módulo é o
+espaço de nomes deste módulo, sem importar de onde ou por qual apelido a
+função é invocada. Por outro lado, a busca de nomes é dinâmica, ocorrendo
+durante a execução. Porém, a evolução da linguagem está caminhando para uma
+resolução de nomes estática, em "tempo de compilação" (N.d.T. quando um módulo
+é carregado ele é compilado em memória), portanto não conte com a resolução
+dinâmica de nomes! (De fato, variáveis locais já são resolvidas
+estaticamente.)
 
-A special quirk of Python is that -- if no :keyword:`global` statement is in
-effect -- assignments to names always go into the innermost scope.  Assignments
-do not copy data --- they just bind names to objects.  The same is true for
-deletions: the statement ``del x`` removes the binding of ``x`` from the
-namespace referenced by the local scope.  In fact, all operations that introduce
-new names use the local scope: in particular, :keyword:`import` statements and
-function definitions bind the module or function name in the local scope.  (The
-:keyword:`global` statement can be used to indicate that particular variables
-live in the global scope.)
+Uma peculiaridade de Python é que atribuições ocorrem sempre no escopo mais
+interno, exceto quando o comando :keyword:`global` é usado. Atribuições não
+copiam dados, apenas associam nomes a objetos. O mesmo vale para remoções: o
+comando ``del x`` remove o vínculo de ``x`` do espaço de nomes do escopo
+local. De fato, todas as operações que introduzem novos nomes usam o escopo
+local. Em particular, instruções :keyword:`import` e definições de funções
+assoociam o nome módulo ou da função ao escopo local. (A palavra-reservada
+:keyword:`global` pode ser usada para indicar que certas variáveis residem no
+escopo global ao invés do local.)
 
 
 .. _tut-firstclasses:
