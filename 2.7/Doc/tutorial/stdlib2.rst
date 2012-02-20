@@ -152,8 +152,9 @@ O módulo :mod:`struct` oferece as funções :func:`pack` e :func:`unpack` para
 trabalhar com formatos binários de tamanho variável. O exemplo a seguir mostra
 como iterar através do cabeçalho de informação num aquivo ZIP sem usar o módulo
 :mod:`zipfile`. Os códigos de empacotamento ``"H"`` e ``"I"`` representam
-números indefinidos de dois e quatro bytes respectivamente. O ``"<"`` indica
-que eles (os bytes) são de tamanho padrão e tem ordenamento little-endian::
+números sem sinal de dois e quatro bytes respectivamente. O ``"<"`` indica
+que eles (os bytes) são de tamanho padrão e tem a parte menos significante
+primeiro (little-endian)::
 
    import struct
 
@@ -187,8 +188,9 @@ Multi-threading
 O uso de threads é uma técnica para desacoplar tarefas que não são
 sequencialmente dependentes. Threads podem ser usadas para melhorar o
 tempo de resposta de aplicações que aceitam entradas do usuário enquanto outras
-tarefas rodam em segundo plano. Um caso relacionado é executar ações de
-entrada e saída (I/O) em paralelo com cálculos em outra thread.
+tarefas são executadas em segundo plano. Um caso relacionado é executar ações
+de entrada e saída (I/O) em uma thread paralelamente a cálculos em outra
+thread.
 
 O código a seguir mostra como o módulo de alto nível :mod:`threading` pode
 executar tarefas em segundo plano enquanto o programa principal continua
@@ -257,7 +259,7 @@ maneira mais simples, mensagens de log são enviadas para um arquivo ou para
    logging.error('Um erro ocorreu')
    logging.critical('Erro crítico -- encerrando o programa.')
 
-This produces the following output::
+Isso produz a seguinte saída::
 
    WARNING:root:Aviso:arquivo de configuração server.conf não encontrado
    ERROR:root:Um erro ocorreu
@@ -266,16 +268,13 @@ This produces the following output::
 Por padrão, mensagens informativas e de depuração são suprimidas e a saída é
 enviada para a saída de erros padrão (stderr). Outras opções de saída incluem
 envio de mensagens através de correio eletrônico, datagramas, sockets ou para
-um servidor HTTP. Novos filtros pode selecionar diferentes formas de envio de
+um servidor HTTP. Novos filtros podem selecionar diferentes formas de envio de
 mensagens, baseadas na prioridade da mensagem: :const:`DEBUG`, :const:`INFO`,
 :const:`WARNING`, :const:`ERROR` e :const:`CRITICAL`.
 
 O sistema de log pode ser configurado diretamente do Python ou pode ser
 carregado a partir de um arquivo de configuração editável pelo usuário
-para logs personalizados sem a necessidad de alterar a aplicação.
-The logging system can be configured directly from Python or can be loaded from
-a user editable configuration file for customized logging without altering the
-application.
+para logs personalizados sem a necessidade de alterar a aplicação.
 
 
 .. _tut-weak-references:
@@ -288,10 +287,10 @@ a maioria dos objetos e coleta de lixo para eliminar ciclos). A memória é
 liberada logo depois da última referência ser eliminada.
 
 Essa abordagem funciona bem para a maioria das aplicações, mas ocasionalmente
-surge a necessidade de restrear objetos apenas enquanto estão sendo usandos por
+surge a necessidade de rastrear objetos apenas enquanto estão sendo usados por
 algum outro. Infelizmente rastreá-los cria uma referência o que os fazem
 permanentes. O módulo :mod:`weakref` oferece ferramentas para rastrear objetos
-sem criar um referência. Quando o objeto não é mais necessário, ele é
+sem criar uma referência. Quando o objeto não é mais necessário, ele é
 automaticamente removido de uma tabela de referências fracas e uma chamada é
 disparada. Aplicações típicas incluem armazenamento de objetos que são muito
 custosos para criar::
@@ -363,7 +362,7 @@ filas e buscas em amplitude em árvores de dados(breadth first tree searches)::
            nao_buscados.append(m)
 
 Além de implementações alternativas de listas, a biblioteca também oferece
-outras ferramentas como o módulo :mod:`bisect` com funçṍes para manipulação
+outras ferramentas como o módulo :mod:`bisect` com funções para manipulação
 de listas ordenadas::
 
    >>> import bisect
