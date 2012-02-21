@@ -4,254 +4,281 @@
 Classes
 *******
 
-Compared with other programming languages, Python's class mechanism adds classes
-with a minimum of new syntax and semantics.  It is a mixture of the class
-mechanisms found in C++ and Modula-3.  Python classes provide all the standard
-features of Object Oriented Programming: the class inheritance mechanism allows
-multiple base classes, a derived class can override any methods of its base
-class or classes, and a method can call the method of a base class with the same
-name.  Objects can contain arbitrary amounts and kinds of data.  As is true for
-modules, classes partake of the dynamic nature of Python: they are created at
-runtime, and can be modified further after creation.
+Em comparação com outras linguages, o mecanismo de classes de Python introduz
+a programação orientada a objetos sem acrescentar muitas novidades de sintaxe
+ou semântica. É uma mistura de mecanismos equivalentes encontrados em C++ e
+Modula-3. As classes em Python oferecem todas as características tradicionais
+da programação a orientada a objetos: o mecanismo de herança permite múltiplas
+classes base (herança múltipla), uma classe derivada pode sobrescrever
+quaisquer métodos de uma classe ancestral, e um método pode invocar outro
+método homônimo de uma classe ancestral. Objetos podem armazenar uma
+quantidade arbitrária de dados de qualquer tipo. Assim como acontece com os
+módulos, as classes fazem parte da natureza dinâmica de Python: são criadas em
+tempo de execução, e podem ser alteradas após sua criação.
 
-In C++ terminology, normally class members (including the data members) are
-*public* (except see below :ref:`tut-private`), and all member functions are
-*virtual*.  As in Modula-3, there are no shorthands for referencing the object's
-members from its methods: the method function is declared with an explicit first
-argument representing the object, which is provided implicitly by the call.  As
-in Smalltalk, classes themselves are objects.  This provides semantics for
-importing and renaming.  Unlike C++ and Modula-3, built-in types can be used as
-base classes for extension by the user.  Also, like in C++, most built-in
-operators with special syntax (arithmetic operators, subscripting etc.) can be
-redefined for class instances.
+Usando a terminologia de C++, todos os membros de uma classe (incluindo dados)
+são públicos, e todos as funções membro são virtuais. Como em Modula-3, não
+existem atalhos para referenciar membros do objeto de dentro dos seus métodos.
+Um método (função definida em uma classe) é declarado com um primeiro
+argumento explícito representando o objeto (instância da classe), que é
+fornecido implicitamente pela invocação. Como em Smalltalk, classes são
+objetos. Isso fornece uma semântica para importar e renomear. Ao contrário de
+C++ ou Modula-3, tipos pré-definidos podem ser utilizados como classes base
+para extensões de usuário por herança. Como em C++, mas diferentemente de
+Modula-3, a maioria dos operadores (aritiméticos, indexação,etc) podem ser
+redefinidos para instâncias de classe.
 
-(Lacking universally accepted terminology to talk about classes, I will make
-occasional use of Smalltalk and C++ terms.  I would use Modula-3 terms, since
-its object-oriented semantics are closer to those of Python than C++, but I
-expect that few readers have heard of it.)
+(Na falta de uma terminologia universalmente aceita para falar sobre classes,
+ocasionalmente farei uso de termos comuns em Smalltalk ou C++ (eu usaria
+termos de Modula-3, já que sua semântica é mais próxima a de Python, mas creio
+que poucos leitores já ouviram falar dessa linguagem.)
 
 
 .. _tut-object:
 
-A Word About Names and Objects
-==============================
+Uma palavra sobre nomes e objetos
+=================================
 
-Objects have individuality, and multiple names (in multiple scopes) can be bound
-to the same object.  This is known as aliasing in other languages.  This is
-usually not appreciated on a first glance at Python, and can be safely ignored
-when dealing with immutable basic types (numbers, strings, tuples).  However,
-aliasing has a possibly surprising effect on the semantics of Python code
-involving mutable objects such as lists, dictionaries, and most other types.
-This is usually used to the benefit of the program, since aliases behave like
-pointers in some respects.  For example, passing an object is cheap since only a
-pointer is passed by the implementation; and if a function modifies an object
-passed as an argument, the caller will see the change --- this eliminates the
-need for two different argument passing mechanisms as in Pascal.
+Objetos têm individualidade, e vários nomes (inclusive em diferentes escopos)
+podem estar vinculados a um mesmo objeto. Isso é chamado de *aliasing* em
+outras linguagens. (N.d.T. *aliasing* é, literalmente, "apelidamento": um
+mesmo objeto pode ter vários apelidos.) À primeira vista, esta característica
+não é muito apreciada, e pode ser seguramente ignorada ao lidar com tipos
+imutáveis (números, strings, tuplas). Entretanto, aliasing pode ter um efeito
+inesperado sobre a semântica de código Python envolvendo objetos mutáveis como
+listas, dicionários e a maioria dos outros tipos. Isso pode ser usado em
+benefício do programa, porque os aliases (apelidos) funcionam de certa forma
+como ponteiros. Por exemplo, passar um objeto como argumento é barato, pois só
+um ponteiro é passado na implementação; e se uma função modifica um objeto
+passado como argumento, o invocador verá a mudança --- isso elimina a
+necessidade de ter dois mecanismos de passagem de parâmetros como em Pascal.
 
+N.d.T. Na terminologia de C++ e Java, o que o parágrafo acima denomina
+"apelidos" são identificadores de referências (variáveis de referência), e os
+ponteiros são as próprias referências. Se uma variável ``a`` está associada a
+um objeto qualquer, informalmente dizemos que a variável "contém" o objeto,
+mas na realidade o objeto existe independente da variável, e o conteúdo da
+variável é apenas uma referência (um ponteiro) para o objeto. O *aliasing*
+ocorre quando existem diversas variáveis, digamos ``a``, ``b`` e ``c``,
+apontando para o mesmo objeto.
 
 .. _tut-scopes:
 
-Python Scopes and Namespaces
-============================
+Escopos e *namespaces*
+======================
 
-Before introducing classes, I first have to tell you something about Python's
-scope rules.  Class definitions play some neat tricks with namespaces, and you
-need to know how scopes and namespaces work to fully understand what's going on.
-Incidentally, knowledge about this subject is useful for any advanced Python
-programmer.
+Antes de introduzir classes, é preciso falar das regras de escopo em Python.
+Definições de classe fazem alguns truques com *namespaces* (espaços de nomes).
+Portanto, primeiro é preciso entender bem como escopos e *namespaces*
+funcionam. Esse conhecimento é muito útil para o programador avançado em
+Python.
 
-Let's begin with some definitions.
+Vamos começar com algumas definições.
 
-A *namespace* is a mapping from names to objects.  Most namespaces are currently
-implemented as Python dictionaries, but that's normally not noticeable in any
-way (except for performance), and it may change in the future.  Examples of
-namespaces are: the set of built-in names (containing functions such as :func:`abs`, and
-built-in exception names); the global names in a module; and the local names in
-a function invocation.  In a sense the set of attributes of an object also form
-a namespace.  The important thing to know about namespaces is that there is
-absolutely no relation between names in different namespaces; for instance, two
-different modules may both define a function ``maximize`` without confusion ---
-users of the modules must prefix it with the module name.
+Um *namespace* (ou espaço de nomes) é um mapeamento que associa nomes a
+objetos. Atualmente, são implementados como dicionários em Python, mas isso
+não é perceptível (a não ser pelo desempenho), e pode mudar no futuro.
+Exemplos de espaços de nomes são: o conjunto de nomes pré-definidos (funções
+como :func:`abs` e as exceções embutidas); nomes globais em um módulo; e nomes
+locais na invocação de uma função. De uma certa forma, os atributos de um
+objeto também formam um espaço de nomes. O mais importante é saber que não
+existe nenhuma relação entre nomes em espaços distintos. Por exemplo, dois
+módulos podem definir uma função de nome ``maximize`` sem confusão ---
+usuários dos módulos devem prefixar a função com o nome do módulo para evitar
+colisão.
 
-By the way, I use the word *attribute* for any name following a dot --- for
-example, in the expression ``z.real``, ``real`` is an attribute of the object
-``z``.  Strictly speaking, references to names in modules are attribute
-references: in the expression ``modname.funcname``, ``modname`` is a module
-object and ``funcname`` is an attribute of it.  In this case there happens to be
-a straightforward mapping between the module's attributes and the global names
-defined in the module: they share the same namespace!  [#]_
+A propósito, utilizo a palavra *atributo* para qualquer nome depois de um
+ponto. Na expressão ``z.real``, por exemplo, ``real`` é um atributo do objeto
+``z``. Estritamente falando, referências para nomes em módulos são atributos:
+na expressão ``nomemod.nomefunc``, ``nomemod`` é um objeto módulo e
+``nomefunc`` é um de seus atributos. Neste caso, existe um mapeamento direto
+entre os os atributos de um módulo e os nomes globais definidos no módulo:
+eles compartilham o mesmo espaço de nomes! [#]_
 
-Attributes may be read-only or writable.  In the latter case, assignment to
-attributes is possible.  Module attributes are writable: you can write
-``modname.the_answer = 42``.  Writable attributes may also be deleted with the
-:keyword:`del` statement.  For example, ``del modname.the_answer`` will remove
-the attribute :attr:`the_answer` from the object named by ``modname``.
+Atributos podem ser somente para leitura ou para leitura e escrita. No segundo
+caso, é possível atribuir um novo valor ao atributo. (N.d.T. Ou mesmo criar
+novos atributos.) Atributos de módulos são passíveis de atribuição: você pode
+escrever ``nomemod.a_reposta = 42``. Atributos que aceitam escrita também
+podem ser apagados através do comando :keyword:`del`. Por exemplo, ``del
+nomemod.a_reposta`` remove o atributo :attr:`a_resposta` do objeto
+referenciado por ``nomemod``.
 
-Namespaces are created at different moments and have different lifetimes.  The
-namespace containing the built-in names is created when the Python interpreter
-starts up, and is never deleted.  The global namespace for a module is created
-when the module definition is read in; normally, module namespaces also last
-until the interpreter quits.  The statements executed by the top-level
-invocation of the interpreter, either read from a script file or interactively,
-are considered part of a module called :mod:`__main__`, so they have their own
-global namespace.  (The built-in names actually also live in a module; this is
-called :mod:`__builtin__`.)
+Espaços de nomes são criados em momentos diferentes e possuem diferentes
+ciclos de vida. O espaço de nomes que contém os nomes embutidos é criado
+quando o interpretador inicializa e nunca é removido. O espaço de nomes global
+de um módulo é criado quando a definição do módulo é lida, e normalmente duram
+até a terminação do interpretador. Os comandos executados pela invocação do
+interpertador, pela leitura de um script com programa principal, ou
+interativamente, são parte do módulo chamado :mod:`__main__`, e portanto
+possuem seu próprio espaço de nomes. (Os nomes embutidos possuem seu
+próprio espaço de nomes no módulo chamado :mod:`__builtin__`.).
 
-The local namespace for a function is created when the function is called, and
-deleted when the function returns or raises an exception that is not handled
-within the function.  (Actually, forgetting would be a better way to describe
-what actually happens.)  Of course, recursive invocations each have their own
-local namespace.
+O espaço de nomes local de uma função é criado quando a função é invocada, e
+apagado quando a função retorna ou levanta uma exceção que não é tratada na
+própria função. (Na verdade, uma forma melhor de descrever o que realmente
+acontece é que o espaço de nomes local é "esquecido" quando a funçao termina.)
+Naturalmente, cada invocação recursiva de uma função tem seu próprio espaço de
+nomes.
 
-A *scope* is a textual region of a Python program where a namespace is directly
-accessible.  "Directly accessible" here means that an unqualified reference to a
-name attempts to find the name in the namespace.
+Um *escopo* (*scope*) é uma região textual de um programa Python onde um
+espaço de nomes é diretamente acessível. Aqui, “diretamente acessível”
+significa que uma referência sem um prefixo qualificador permite o acesso ao
+nome.
 
-Although scopes are determined statically, they are used dynamically. At any
-time during execution, there are at least three nested scopes whose namespaces
-are directly accessible:
+Ainda que escopos sejam determinados estaticamente, eles são usados
+dinamicamente. A qualquer momento durante a execução, existem no mínimo três
+escopos diretamente acessíveis:
 
-* the innermost scope, which is searched first, contains the local names
-* the scopes of any enclosing functions, which are searched starting with the
-  nearest enclosing scope, contains non-local, but also non-global names
-* the next-to-last scope contains the current module's global names
-* the outermost scope (searched last) is the namespace containing built-in names
+* o escopo mais interno (que é acessado primeiro) contendo nomes locais;
+* os escopos das funções que envolvem a função atual, que são acessados a
+  partir do escopo mias próximo, contém nomes não-locais mas também
+  não-globais;
+* o penúltimo escopo contém os nomes globais do módulo atual;
+* e o escopo mais externo (acessado por último) contém os nomes das funções
+  embutidas e demais objetos pré-definidos do interpretador.
 
-If a name is declared global, then all references and assignments go directly to
-the middle scope containing the module's global names. Otherwise, all variables
-found outside of the innermost scope are read-only (an attempt to write to such
-a variable will simply create a *new* local variable in the innermost scope,
-leaving the identically named outer variable unchanged).
+Se um nome é declarado no escopo global, então todas as referências e
+atribuições valores vão diretamente para o escopo intermediário que contém os
+nomes globais do módulo. Caso contrário, todas as variáveis encontradas fora
+do escopo mais interno são apenas para leitura (a tentativa de atribuir
+valores a essas variáveis irá simplesmente criar uma *nova* variável local, no
+escopo interno, não alterando nada na variável de nome idêntico fora dele).
 
-Usually, the local scope references the local names of the (textually) current
-function.  Outside functions, the local scope references the same namespace as
-the global scope: the module's namespace. Class definitions place yet another
-namespace in the local scope.
+Normalmente, o escopo local referencia os nomes locais da função corrente no
+texto do programa. Fora de funções, o escopo local referencia os nomes do
+escopo global: espaço de nomes do módulo. Definições de classes adicionam um
+outro espaço de nomes ao escopo local.
 
-It is important to realize that scopes are determined textually: the global
-scope of a function defined in a module is that module's namespace, no matter
-from where or by what alias the function is called.  On the other hand, the
-actual search for names is done dynamically, at run time --- however, the
-language definition is evolving towards static name resolution, at "compile"
-time, so don't rely on dynamic name resolution!  (In fact, local variables are
-already determined statically.)
+É importante perceber que escopos são determinados estaticamente, pelo texto
+do código fonte: o escopo global de uma função definida em um módulo é o
+espaço de nomes deste módulo, sem importar de onde ou por qual apelido a
+função é invocada. Por outro lado, a busca de nomes é dinâmica, ocorrendo
+durante a execução. Porém, a evolução da linguagem está caminhando para uma
+resolução de nomes estática, em "tempo de compilação" (N.d.T. quando um módulo
+é carregado ele é compilado em memória), portanto não conte com a resolução
+dinâmica de nomes! (De fato, variáveis locais já são resolvidas
+estaticamente.)
 
-A special quirk of Python is that -- if no :keyword:`global` statement is in
-effect -- assignments to names always go into the innermost scope.  Assignments
-do not copy data --- they just bind names to objects.  The same is true for
-deletions: the statement ``del x`` removes the binding of ``x`` from the
-namespace referenced by the local scope.  In fact, all operations that introduce
-new names use the local scope: in particular, :keyword:`import` statements and
-function definitions bind the module or function name in the local scope.  (The
-:keyword:`global` statement can be used to indicate that particular variables
-live in the global scope.)
+Uma peculiaridade de Python é que atribuições ocorrem sempre no escopo mais
+interno, exceto quando o comando :keyword:`global` é usado. Atribuições não
+copiam dados, apenas associam nomes a objetos. O mesmo vale para remoções: o
+comando ``del x`` remove o vínculo de ``x`` do espaço de nomes do escopo
+local. De fato, todas as operações que introduzem novos nomes usam o escopo
+local. Em particular, instruções :keyword:`import` e definições de funções
+assoociam o nome módulo ou da função ao escopo local. (A palavra-reservada
+:keyword:`global` pode ser usada para indicar que certas variáveis residem no
+escopo global ao invés do local.)
 
 
 .. _tut-firstclasses:
 
-A First Look at Classes
-=======================
+Primeiro contato com classes
+============================
 
-Classes introduce a little bit of new syntax, three new object types, and some
-new semantics.
+Classes introduzem novidades sintáticas, três novos tipos de objetos, e também
+alguma semântica nova.
 
 
 .. _tut-classdefinition:
 
-Class Definition Syntax
------------------------
+Sintaxe de definição de classe
+------------------------------
 
-The simplest form of class definition looks like this::
+A forma mais simples de definir uma classe é:::
 
-   class ClassName:
-       <statement-1>
+   class NomeDaClasse:
+       <instrução-1>
        .
        .
        .
-       <statement-N>
+       <instrução-N>
 
-Class definitions, like function definitions (:keyword:`def` statements) must be
-executed before they have any effect.  (You could conceivably place a class
-definition in a branch of an :keyword:`if` statement, or inside a function.)
+Definições de classes, assim como definições de funções (instruções
+:keyword:`def`), precisam ser executados antes que tenham qualquer efeito.
+(Por exemplo, você pode colocar uma definição de classe dentro de teste
+condicional :keyword:`if` ou dentro de uma função.)
 
-In practice, the statements inside a class definition will usually be function
-definitions, but other statements are allowed, and sometimes useful --- we'll
-come back to this later.  The function definitions inside a class normally have
-a peculiar form of argument list, dictated by the calling conventions for
-methods --- again, this is explained later.
+Na prática, as instruções dentro da definição de uma classe em geral serão
+definições de funções, mas outras instruções são permitidas, e às vezes são
+bem úteis --- voltaremos a este tema depois. Definições de funções dentro da
+classe normalmente têm um lista peculiar de parâmetros formais determinada
+pela convenção de chamada a métodos --- isso também será explicado mais tarde.
 
-When a class definition is entered, a new namespace is created, and used as the
-local scope --- thus, all assignments to local variables go into this new
-namespace.  In particular, function definitions bind the name of the new
-function here.
+Quando se inicia a definição de classe, um novo namespace é criado, e usado
+como escopo local --- assim, todas atribuições a variáveis locais ocorrem
+nesse namespace. Em particular, funções definidas aqui são vinculadas a nomes
+nesse escopo.
 
-When a class definition is left normally (via the end), a *class object* is
-created.  This is basically a wrapper around the contents of the namespace
-created by the class definition; we'll learn more about class objects in the
-next section.  The original local scope (the one in effect just before the class
-definition was entered) is reinstated, and the class object is bound here to the
-class name given in the class definition header (:class:`ClassName` in the
-example).
+Quando o processamento de uma definição de classe é completado (normalmente,
+sem erros), um *objeto classe* é criado. Este objeto encapsula o conteúdo do
+espaço de nomes criado pela definição da class; aprenderemos mais sobre
+objetos classe na próxima seção. O escopo local que estava vigente antes da
+definição da classe é reativado, e o objeto classe é vinculado ao
+identificador da classe nesse escopo (no exemplo acima, :class:`NomeDaClasse`
+é o identificador da classe).
 
 
 .. _tut-classobjects:
 
-Class Objects
--------------
+Objetos classe
+--------------
 
-Class objects support two kinds of operations: attribute references and
-instantiation.
+Objetos classe suportam dois tipos de operações: *referências a atributos* e
+*instanciação*.
 
-*Attribute references* use the standard syntax used for all attribute references
-in Python: ``obj.name``.  Valid attribute names are all the names that were in
-the class's namespace when the class object was created.  So, if the class
-definition looked like this::
+*Referências a atributos* de classe utilizam a sintaxe padrão utilizada para
+quaisquer referências a atributos em Python: ``obj.nome``. Atributos válidos
+são todos os nomes presentes dentro do namespace da classe quando o objeto
+classe foi criado. Portanto, se a definição da classe foi assim::
 
-   class MyClass:
-       """A simple example class"""
+
+   class MinhaClasse:
+       """Um exemplo simples de classe"""
        i = 12345
        def f(self):
-           return 'hello world'
+           return 'olá, mundo'
 
-then ``MyClass.i`` and ``MyClass.f`` are valid attribute references, returning
-an integer and a function object, respectively. Class attributes can also be
-assigned to, so you can change the value of ``MyClass.i`` by assignment.
-:attr:`__doc__` is also a valid attribute, returning the docstring belonging to
-the class: ``"A simple example class"``.
+então ``MinhaClasse.i`` e ``MinhaClasse.f`` são referências válidas, que
+acessam, respectivamente, um inteiro e um objeto função. É possível mudar os
+valores dos atributos da classe, ou mesmo criar novos atributos, fazendo uma
+atribuição simples assim: ``MinhaClasse.i = 10``. O nome ``__doc__``
+identifica outro atributo válido da classe, referenciando a *docstring*
+associada à classe: ``"Um exemplo simples de classe"``.
 
-Class *instantiation* uses function notation.  Just pretend that the class
-object is a parameterless function that returns a new instance of the class.
-For example (assuming the above class)::
+Para *instanciar* uma classe, usa-se a sintaxe de invocar uma função. Apenas
+finja que o objeto classe do exemplo é uma função sem parâmetros, que devolve
+uma nova instância da classe. Continuando o exemplo acima::
 
-   x = MyClass()
+   x = MinhaClasse()
 
-creates a new *instance* of the class and assigns this object to the local
-variable ``x``.
+cria uma nova *instância* da classe e atribui o objeto resultante à variável
+local ``x``.
 
-The instantiation operation ("calling" a class object) creates an empty object.
-Many classes like to create objects with instances customized to a specific
-initial state. Therefore a class may define a special method named
-:meth:`__init__`, like this::
+A operação de instanciação (“invocar” um objeto classe) cria um objeto vazio.
+Muitas classes preferem criar novos objetos com um estado inicial
+predeterminado. Para tanto, a classe pode definir um método especial
+chamado :meth:`__init__`, assim::
 
    def __init__(self):
-       self.data = []
+       self.dados = []
 
-When a class defines an :meth:`__init__` method, class instantiation
-automatically invokes :meth:`__init__` for the newly-created class instance.  So
-in this example, a new, initialized instance can be obtained by::
+Quando uma classe define um método :meth:`__init__`, o processo de
+instânciação automaticamente invoca :meth:`__init__` sobre a instância recém
+criada. Em nosso exemplo, uma nova intância já inicializada pode ser obtida
+por::
 
-   x = MyClass()
+   x = MinhaClasse()
 
-Of course, the :meth:`__init__` method may have arguments for greater
-flexibility.  In that case, arguments given to the class instantiation operator
-are passed on to :meth:`__init__`.  For example, ::
+Naturalmente, o método :meth:`__init__` pode ter parâmetros para maior
+flexibilidade. Neste caso, os argumentos fornecidos na invocação da classe
+serão passados para o método :meth:`__init__`. Por exemplo::
 
-   >>> class Complex:
-   ...     def __init__(self, realpart, imagpart):
-   ...         self.r = realpart
-   ...         self.i = imagpart
+   >>> class Complexo:
+   ...     def __init__(self, parte_real, parte_imag):
+   ...         self.r = parte_real
+   ...         self.i = parte_imag
    ...
-   >>> x = Complex(3.0, -4.5)
+   >>> x = Complexo(3.0, -4.5)
    >>> x.r, x.i
    (3.0, -4.5)
 
