@@ -82,8 +82,8 @@ a aplicação.
 O formato usa um guarda-lugar (placeholder) formado por ``$`` seguido por um
 identificador Python válido (caracteres alfanuméricos e underscores).
 Envolvendo-se o guarda-lugar entre chaves, permite que ele seja seguido por
-mais caracteres alfanuméricos sem a necessidade de espaços. Escrevendo ``$$``
-cria-se um único ``$``::
+mais caracteres alfanuméricos sem a necessidade de espaços. Escrevendo-se 
+``$$`` cria-se um único ``$``::
 
    >>> from string import Template
    >>> t = Template('O pessoal de ${lugar}enviou $$10 para $causa.')
