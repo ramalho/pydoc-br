@@ -16,7 +16,7 @@ quantidade arbitrária de dados de qualquer tipo. Assim como acontece com os
 módulos, as classes fazem parte da natureza dinâmica de Python: são criadas em
 tempo de execução, e podem ser alteradas após sua criação.
 
-Usando terminologia de C++, todos os membros de uma classe (incluindo dados)
+Usando a terminologia de C++, todos os membros de uma classe (incluindo dados)
 são públicos, e todos as funções membro são virtuais. Como em Modula-3, não
 existem atalhos para referenciar membros do objeto de dentro dos seus métodos.
 Um método (função definida em uma classe) é declarado com um primeiro
@@ -68,16 +68,16 @@ Escopos e *namespaces*
 ======================
 
 Antes de introduzir classes, é preciso falar das regras de escopo em Python.
-Definições de classe fazem alguns truques com namespaces (espaços de nomes).
-Portanto, primeiro é preciso entender bem como escopos e espaços de nomes
+Definições de classe fazem alguns truques com *namespaces* (espaços de nomes).
+Portanto, primeiro é preciso entender bem como escopos e *namespaces*
 funcionam. Esse conhecimento é muito útil para o programador avançado em
 Python.
 
 Vamos começar com algumas definições.
 
-Um *namespace* (ou espaço de nomes) é um mapeamento ou associação de nomes
-para objetos. Atualmente, são implementados como dicionários em Python, mas
-isso não é perceptível (a não ser pelo desempenho), e pode mudar no futuro.
+Um *namespace* (ou espaço de nomes) é um mapeamento que associa nomes a
+objetos. Atualmente, são implementados como dicionários em Python, mas isso
+não é perceptível (a não ser pelo desempenho), e pode mudar no futuro.
 Exemplos de espaços de nomes são: o conjunto de nomes pré-definidos (funções
 como :func:`abs` e as exceções embutidas); nomes globais em um módulo; e nomes
 locais na invocação de uma função. De uma certa forma, os atributos de um
