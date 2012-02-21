@@ -5,6 +5,18 @@
 Notas para os tradutores da versão pt-br
 ########################################
 
+Formatação
+==========
+
+Siga fielmente a marcação ReST dos arquivos originais.
+
+Não traduza os nomes dos links (ex. ``_tut-exceptions``), pois as referências
+cruzadas dependem disso para funcionar.
+
+Limite as linhas de texto a 80 colunas, pois isso facilita a revisão com duas
+versões do texto lado a lado, e também torna mais fácil analizar diffs.
+
+
 Uso de maiúsculas e minúsculas
 ================================
 
