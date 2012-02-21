@@ -148,6 +148,9 @@ Use sempre "consulte x para mais informações" em vez de "consulte x para maior
 Traduções adotadas para termos específicos
 ==========================================
 
+arrow
+  seta
+
 asterisk
   asterisco (cf. dicionário Houaiss)
 
@@ -198,6 +201,9 @@ parameter
   parâmetro formal (em declarações de funções) ou argumento (os
   valores passados na invocação)
 
+parser
+  parser ou analisador sintático
+
 performance
   desempenho
 
@@ -220,10 +226,17 @@ shell
   interativo, usar sempre "console", evitando confusão com o shell do
   sistema operacional
 
+stack trace
+  v. traceback
+
 statement
   instrução (termo melhor e mais genérico) ou alternativamente, comando
   (quando se trata comandos de controle de fluxo ou o print) ou declaração
   (como ``class``, ``def``, ``global``); [#]_
+
+traceback
+  traceback (situação da pilha de execução), desse jeito mesmo, com a
+  tradução entre parênteses quando for a primeira ocorrência do termo [#]_
 
 triple-quote
   aspas triplas (em vez de "aspas tríplices"; em nome da simplicidade)
@@ -262,3 +275,13 @@ Estender e extensão
   e atribui seu nome a uma variável no escopo atual. ``import`` executa o
   módulo e cria variáveis no escopo global etc. Por isso o termo genérico
   instrução é melhor que comando ou declaração
+
+.. [#] Não usamos N.d.T. quando se trata apenas de colocar o termo equivalente
+   em português entre parênteses (ou vice-versa, há casos em que introduzimos um
+   termo em português e colocamos o original em inglês, que pode ser mais familiar
+   para alguns leitores, entre parênteses). Além disso, somente colocamos os
+   parênteses na primeira ocorrência em cada capítulo. Ou seja, se um termo assim
+   aparece em vários capítulos, o termo entre parênteses será mostrado na primeira
+   vez que for citado em cada um dos capítulos.
+
+
