@@ -10,7 +10,7 @@ arquivos para uso posterior. Este capítulo apresenta algumas possibilidades.
 
 .. _tut-formatting:
 
-Refinando a Formatação de Saída
+Refinando a formatação de saída
 ===============================
 
 Até agora vimos duas maneiras de exibir valores no console interativo:
@@ -209,8 +209,8 @@ que devolve um dicionário contendo todas as variáveis locais.
 Para uma visão completa da formatação de strings com :meth:`str.format`, veja
 a seção :ref:`formatstrings` na Referência da Biblioteca Python.
 
-Formatação de strings com ``%``
--------------------------------
+Formatação de strings à moda antiga: operador ``%``
+---------------------------------------------------
 
 O operador ``%`` também pode ser usado para formatação de strings. Ele
 interpreta o operando da esquerda de forma semelhante à função
