@@ -10,7 +10,7 @@ arquivos para uso posterior. Este capítulo apresenta algumas possibilidades.
 
 .. _tut-formatting:
 
-Refinando a Formatação de Saída
+Refinando a formatação de saída
 ===============================
 
 Até agora vimos duas maneiras de exibir valores no console interativo:
@@ -209,8 +209,8 @@ que devolve um dicionário contendo todas as variáveis locais.
 Para uma visão completa da formatação de strings com :meth:`str.format`, veja
 a seção :ref:`formatstrings` na Referência da Biblioteca Python.
 
-Formatação de strings com ``%``
--------------------------------
+Formatação de strings à moda antiga: operador ``%``
+---------------------------------------------------
 
 O operador ``%`` também pode ser usado para formatação de strings. Ele
 interpreta o operando da esquerda de forma semelhante à função
@@ -262,28 +262,27 @@ aberto em modo binário. Sendo assim, existem os modos compostos : 'rb', 'wb',
 e 'r+b'. O Windows faz distinção entre arquivos texto e binários: os
 caracteres terminadores de linha em arquivos texto são alterados ao ler e
 escrever. Essa mudança automática é útil em arquivos de texto ASCII, mas
-corrompe arquivos binários como 'JPEG' ou 'EXE'. Seja cuidadoso e use sempre o
+corrompe arquivos binários como .JPEG ou .EXE. Seja cuidadoso e use sempre o
 modo binário ao manipular tais arquivos. No Unix, não faz diferença colocar um
 ``'b'`` no modo, então você pode usar isto sempre que quiser lidar com
 arquivos binários de forma independente da plataforma.
 
 N.d.T. Para ler arquivos de texto contendo acentuação e outros caracteres
-não-ASCII, a melhor prática desde o Python 2.6 é usar a função :func:`io.open`,
-do módulo :mod:`io`, em vez da função embutida :func:`open`. O motivo é que,
-ao abrir arquivos texto para leitura ou escrita, :func:`io.open` permite
-especificar a codificação logo ao abrir o arquivo. Desta forma, a leitura do
-arquivo em modo texto sempre devolverá objetos ``unicode``, independente da
-codificação interna do mesmo. E ao escrever em um arquivo aberto via
-:func:`codecs.open`, basta enviar sempre strings ``unicode``, pois a conversão
-para o encoding do arquivo será feita automaticamente. Ao usar :func:`io.open`
-sempre faz diferença especificar se o arquivo é binário ou texto, em todos os
-sistemas operacionais: o modo texto é o default, mas se quiser ser explícito
-coloque a letra ``t`` no parâmetro ``mode`` (ex. ``rt``, ``wt`` etc.); use
-use a letra ``b`` (ex. ``rb``, ``wb`` etc.) para especificar modo binário.
-Em modo binário, o método ``write`` aceita strings de bytes, e os métodos
-de leitura devolvem strings de bytes também. Em modo texto, como já foi dito,
-os métodos de gravação e leitura aceitam e devolvem sempre strings
-``unicode``.
+não-ASCII, a melhor prática desde o Python 2.6 é usar a função
+:func:`io.open`, do módulo :mod:`io`, em vez da função embutida :func:`open`.
+O motivo é que :func:`io.open` permite especificar a codificação logo ao abrir
+um arquivo em modo texto para leitura ou escrita. Desta forma, a leitura do
+arquivo texto sempre devolverá objetos ``unicode``, independente da
+codificação interna do arquivo no disco. E ao escrever em um arquivo aberto
+via :func:`io.open`, basta enviar strings ``unicode``, pois a conversão para o
+encoding do arquivo será feita automaticamente. Note que ao usar
+:func:`io.open` sempre faz diferença especificar se o arquivo é binário ou
+texto, em todos os sistemas operacionais: o modo texto é o default, mas se
+quiser ser explícito coloque a letra ``t`` no parâmetro ``mode`` (ex. ``rt``,
+``wt`` etc.); use use a letra ``b`` (ex. ``rb``, ``wb`` etc.) para especificar
+modo binário. Somente em modo texto os métodos de gravação e leitura aceitam e
+devolvem strings ``unicode``. Em modo binário, o método ``write`` aceita
+strings de bytes, e os métodos de leitura devolvem strings de bytes também.
 
 .. _tut-filemethods:
 
@@ -369,7 +368,7 @@ N.d.T. Em particular, se você abriu um arquivo ``f`` com a função embutida
 deverá usar o método :meth:`unicode.encode()` explicitamente para converter
 ``x`` do tipo ``unicode`` para uma string de bytes ``str``, deste modo:
 ``f.write(x.encode('utf-8'))``. Por outro lado, se abriu um arquivo ``f2`` com
-:func:`codecs.open`, pode usar ``f2.write(x)`` diretamente, pois a conversão
+:func:`io.open`, pode usar ``f2.write(x)`` diretamente, pois a conversão
 de ``x`` -- de ``unicode`` para o encoding do arquivo -- será feita
 automaticamente.
 
