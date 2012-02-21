@@ -3179,14 +3179,20 @@ class NomeDaClasse:
 Definições de classes, como definições de funções (comandos def) devem ser executados antes que tenham
 qualquer efeito. Você pode colocar uma definição de classe após um teste condicional if ou dentro de uma
 função.
+
 Na prática, os comandos dentro de uma classe serão definições de funções, mas existem outros comandos que
 são permitidos. Definições de função dentro da classe possuem um lista peculiar de argumentos determinada pela
 convenção de chamada a métodos.
+
 Quando se fornece uma definição de classe, um novo espaço de nomes é criado. Todas atribuições de variáveis
 são vinculadas a este escopo local. Em particular, definições de função também são armazenadas neste escopo.
+
+
 Quando termina o processamento de uma definição de classe (normalmente, sem erros), um objeto de classe é
 criado. Este objeto encapsula o conteúdo do espaço de nomes criado pela definição da classe. O escopo local ativo
 antes da definição da classe é restaurado, e o objeto classe é vinculado a este escopo com o nome dado a classe.
+
+
 9.3.2 Objetos de Classe
 Objetos de Classe suportam dois tipos de operações: referências a atributos e instanciação.
 Referências a atributos de classe utilizam a sintaxe padrão utilizada para quaisquer referências a atributos em
