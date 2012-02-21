@@ -21,7 +21,7 @@ abreviar a exibição  de contêineres grandes ou profundamente aninhados::
    >>> repr.repr(set('supercalifragilisticexpialidocious'))
    "set(['a', 'c', 'd', 'e', 'f', 'g', ...])"
 
-O módulo :mod: `pprint` oferece um controle mais sofisticado na exibição tanto
+O módulo :mod:`pprint` oferece um controle mais sofisticado na exibição tanto
 de objetos embutidos quanto aqueles criados pelo usuário de maneira que fique
 mais legível através do interpretador. Quando o resultado é maior que uma
 linha, o "pretty printer" acrescenta quebras de linha e indentação para
@@ -71,8 +71,8 @@ direta de formatar números com separadores de grupo::
 
 .. _tut-templating:
 
-Usando modelos
-==============
+Usando modelos (templates)
+==========================
 
 O módulo :mod:`string` inclui a versátil classe :class:`Template` com uma 
 sintaxe simplificada, adequada para ser editada por usuários finais. Isso
@@ -129,7 +129,7 @@ imagem ou formato do aquivo::
    img_1076.jpg --> Ashley_1.jpg
    img_1077.jpg --> Ashley_2.jpg
 
-Uma outra aplicação para o uso de modelos é separar a lógica da aplicação dos
+Uma outra aplicação para o uso de templates é separar a lógica da aplicação dos
 detalhes de múltiplos formatos de saída. Isso faz possível substituir modelos
 personalizados por arquivos XML, relatórios em texto puro e relatórios web em
 HTML.
@@ -137,23 +137,15 @@ HTML.
 
 .. _tut-binary-formats:
 
-Trabalhando com formatos de dados binários
+Trabalhando com formatos binários de dados
 ==========================================
-
-.. REVISAR ANTES DE COMMITAR!!
-   The :mod:`struct` module provides :func:`pack` and :func:`unpack` functions for
-   working with variable length binary record formats.  The following example shows
-   how to loop through header information in a ZIP file without using the
-   :mod:`zipfile` module.  Pack codes ``"H"`` and ``"I"`` represent two and four
-   byte unsigned numbers respectively.  The ``"<"`` indicates that they are
-   standard size and in little-endian byte order
 
 O módulo :mod:`struct` oferece as funções :func:`pack` e :func:`unpack` para
 trabalhar com formatos binários de tamanho variável. O exemplo a seguir mostra
 como iterar através do cabeçalho de informação num aquivo ZIP sem usar o módulo
 :mod:`zipfile`. Os códigos de empacotamento ``"H"`` e ``"I"`` representam
 números sem sinal de dois e quatro bytes respectivamente. O ``"<"`` indica
-que eles (os bytes) são de tamanho padrão e tem a parte menos significante
+que eles (os bytes) são de tamanho padrão e tem os bits menos significantes
 primeiro (little-endian)::
 
    import struct
@@ -178,12 +170,6 @@ primeiro (little-endian)::
 
 Multi-threading
 ===============
-
-.. REVISAR ANTES DE COMMITAR!!
-   Threading is a technique for decoupling tasks which are not sequentially
-   dependent.  Threads can be used to improve the responsiveness of applications
-   that accept user input while other tasks run in the background.  A related use
-   case is running I/O in parallel with computations in another thread.
 
 O uso de threads é uma técnica para desacoplar tarefas que não são
 sequencialmente dependentes. Threads podem ser usadas para melhorar o
@@ -216,30 +202,18 @@ a sua execução::
    background.join()    # Espera até que a tarefa em segundo plano termine.
    print 'O programa principal esperou até a tarefa em segundo plano terminar.'
 
-.. The principal challengege of multi-threaded applications is coordinating threads
-   that share data or other resources.  To that end, the threading module provides
-   a number of synchronization primitives including locks, events, condition
-   variables, and semaphores.
-
-.. While those tools are powerful, minor design errors can result in problems that
-   are difficult to reproduce.  So, the preferred approach to task coordination is
-   to concentrate all access to a resource in a single thread and then use the
-   :mod:`Queue` module to feed that thread with requests from other threads.
-   Applications using :class:`Queue.Queue` objects for inter-thread communication
-   and coordination are easier to design, more readable, and more reliable.
-
-O principal desafio de aplicações que usam múltiplas threads é coordenar as
-threads que compartilham dados ou outros recursos. Para esta finalidade, o
+O principal desafio para as aplicações que usam múltiplas threads é coordenar
+as threads que compartilham dados ou outros recursos. Para esta finalidade, o
 módulo threading oferece alguns mecanismos primitivos de sincronização, como
 travas (locks), eventos, variáveis de condição e semáforos.
 
-Apesar destas ferramentas serem poderosas, pequenos erros podem resultar em
+Apesar dessas ferramentas serem poderosas, pequenos erros podem resultar em
 problemas difíceis de serem reproduzidos. Então, a maneira preferida de
-coordenar tarefas é concentrar todo o acesso a um recurso em uma única thread
-e usar o módulo :mod:`Queue` para alimentar aquela thread com requisições de
-outras threads. Aplicações usando objetos do tipo :class:`Queue.Queue` para
-comunicação e coordenação inter-thread são mais fáceis de implementar, mais
-legíveis e mais confiáveis.
+coordenar tarefas é concentrar todo o acesso a determinado recurso em uma única
+thread e usar o módulo :mod:`Queue` para alimentar aquela thread com
+requisições de outras threads. Aplicações usando objetos do tipo 
+:class:`Queue.Queue` para comunicação e coordenação inter-thread são mais
+fáceis de implementar, mais legíveis e mais confiáveis.
 
 
 .. _tut-logging:
@@ -321,10 +295,10 @@ custosos para criar::
 
 .. _tut-list-tools:
 
-Ferramentas para trabalhar com liastas
+Ferramentas para trabalhar com listas
 ======================================
 
-Muitas necessidades envolvendo estrutura de dados podem ser satisfeitas
+Muitas necessidades envolvendo estruturas de dados podem ser satisfeitas
 com o tipo embutido lista. Entretanto, algumas vezes há uma necessidade
 por implementações alternativas com alguns sacrifícios em nome de melhor
 desempenho.
