@@ -71,7 +71,7 @@ direta de formatar números com separadores de grupo::
 
 .. _tut-templating:
 
-Usando modelos (templates)
+Usando templates
 ==========================
 
 O módulo :mod:`string` inclui a versátil classe :class:`Template` com uma 
