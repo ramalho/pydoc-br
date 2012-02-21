@@ -72,23 +72,23 @@ direta de formatar números com separadores de grupo::
 .. _tut-templating:
 
 Usando templates
-==========================
+================
 
 O módulo :mod:`string` inclui a versátil classe :class:`Template` com uma 
 sintaxe simplificada, adequada para ser editada por usuários finais. Isso
 permite que usuários personalizem suas aplicações sem a necessidade de alterar
 a aplicação.
 
-O formato usa um guarda-lugar (placeholder) formado por ``$`` com um
-identificador Python válido(caracteres alfanuméricos e underscores). Envolvendo
-o guarda-lugar entre chaves, permite que ele seja seguido por mais caracteres
-alfanuméricos sem a necessidade de espaços. Escrevendo ``$$`` cria um único
-``$``::
+O formato usa um guarda-lugar (placeholder) formado por ``$`` seguido por um
+identificador Python válido (caracteres alfanuméricos e underscores).
+Envolvendo-se o guarda-lugar entre chaves, permite que ele seja seguido por
+mais caracteres alfanuméricos sem a necessidade de espaços. Escrevendo ``$$``
+cria-se um único ``$``::
 
    >>> from string import Template
    >>> t = Template('O pessoal de ${lugar}enviou $$10 para $causa.')
-   >>> t.substitute(lugar='Itaquera', causa='as obras da copa')
-   'O pessoal de Itaqueraenviou $10 para as obras da copa'
+   >>> t.substitute(lugar='Itaquera', causa='as obras de saneamento')
+   'O pessoal de Itaqueraenviou $10 para as obras de saneamento'
 
 O método :meth:`substitute` levanta uma exceção :exc:`KeyError` quando um
 guarda-lugar não é fornecido em um dicionário ou em um argumento nomeado
@@ -113,12 +113,12 @@ imagem ou formato do aquivo::
 
    >>> import time, os.path
    >>> fotos = ['img_1074.jpg', 'img_1076.jpg', 'img_1077.jpg']
-   >>> class RenomearLote(Template):
+   >>> class RenomeiaLote(Template):
    ...     delimiter = '%'
    >>> fmt = raw_input('Estilo para o nome (%d-data %n-numseq %f-formato):  ')
    Estilo para o nome (%d-data %n-numseq %f-formato):  Ashley_%n%f
 
-   >>> t = RenomearLote(fmt)
+   >>> t = RenomeiaLote(fmt)
    >>> data = time.strftime('%d%b%y')
    >>> for i, nome_arquivo in enumerate(fotos):
    ...     base, ext = os.path.splitext(nome_arquivo)
@@ -130,7 +130,7 @@ imagem ou formato do aquivo::
    img_1077.jpg --> Ashley_2.jpg
 
 Uma outra aplicação para o uso de templates é separar a lógica da aplicação dos
-detalhes de múltiplos formatos de saída. Isso faz possível substituir modelos
+detalhes de múltiplos formatos de saída. Isso faz possível substituir templates
 personalizados por arquivos XML, relatórios em texto puro e relatórios web em
 HTML.
 
