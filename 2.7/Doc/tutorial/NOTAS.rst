@@ -46,11 +46,11 @@ Para traduzir:
 
   The equal sign (``'='``) is used to assign a value to a variable.
 
-Isso é melhor:
+Isto é melhor:
 
   O sinal de igual (``'='``) é usado para atribuir um valor a uma variável.
 
-do que isso:
+do que isto:
 
   O sinal de igual (``'='``) é utilizado para atribuição de um valor a uma variável.
 
