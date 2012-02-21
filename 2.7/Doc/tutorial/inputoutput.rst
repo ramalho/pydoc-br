@@ -274,7 +274,7 @@ ao abrir arquivos texto para leitura ou escrita, :func:`io.open` permite
 especificar a codificação logo ao abrir o arquivo. Desta forma, a leitura do
 arquivo em modo texto sempre devolverá objetos ``unicode``, independente da
 codificação interna do mesmo. E ao escrever em um arquivo aberto via
-:func:`codecs.open`, basta enviar sempre strings ``unicode``, pois a conversão
+:func:`io.open`, basta enviar sempre strings ``unicode``, pois a conversão
 para o encoding do arquivo será feita automaticamente. Ao usar :func:`io.open`
 sempre faz diferença especificar se o arquivo é binário ou texto, em todos os
 sistemas operacionais: o modo texto é o default, mas se quiser ser explícito
@@ -369,7 +369,7 @@ N.d.T. Em particular, se você abriu um arquivo ``f`` com a função embutida
 deverá usar o método :meth:`unicode.encode()` explicitamente para converter
 ``x`` do tipo ``unicode`` para uma string de bytes ``str``, deste modo:
 ``f.write(x.encode('utf-8'))``. Por outro lado, se abriu um arquivo ``f2`` com
-:func:`codecs.open`, pode usar ``f2.write(x)`` diretamente, pois a conversão
+:func:`io.open`, pode usar ``f2.write(x)`` diretamente, pois a conversão
 de ``x`` -- de ``unicode`` para o encoding do arquivo -- será feita
 automaticamente.
 
