@@ -337,7 +337,8 @@ limite inferior produz uma string vazia. ::
    >>> palavra[2:1]
    ''
 
-Índices podem ser números negativos, para iniciar a contagem a pela direita. Por exemplo::
+Índices podem ser números negativos, para iniciar a contagem pela direita. Por
+exemplo::
 
    >>> palavra[-1]   # O último caractere
    'Z'
@@ -477,7 +478,7 @@ de se criar strings Unicode a partir de alguma codificação conhecida.
 
 
 A função embutida :func:`unicode` dá acesso a todos os codecs Unicode
-registrados (COders e DECoders). Alguns dos codecs mais conhecidos codecs são:
+registrados (COders e DECoders). Alguns dos codecs mais conhecidos são:
 *Latin-1*, *ASCII*, *UTF-8*, e *UTF-16*. Os dois últimos são codificações de
 tamanho variável para armazenar cada caractere Unicode em um ou mais bytes.
 (N.d.T: no Brasil, é muito útil o codec *cp1252*, variante estendida do
@@ -579,7 +580,7 @@ lista ou remover todos os itens dela::
    ... a[1:1] = ['bletch', 'xyzzy']
    >>> a
    [123, 'bletch', 'xyzzy', 1234]
-   >>> # Inserir uma cópiad a própria lista no início
+   >>> # Inserir uma cópia da própria lista no início
    >>> a[:0] = a
    >>> a
    [123, 'bletch', 'xyzzy', 1234, 123, 'bletch', 'xyzzy', 1234]

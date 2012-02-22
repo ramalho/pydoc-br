@@ -1,4 +1,4 @@
-﻿.. _tut-brieftourtwo:
+.. _tut-brieftourtwo:
 
 ***************************************************
 Um breve passeio pela biblioteca padrão -- Parte II
@@ -15,17 +15,17 @@ Formatando a saída
 ==================
 
 O módulo :mod:`repr` oferece uma versão modificada da função :func:`repr` para
-abreviar a exibição  de contêineres grandes ou profundamente aninhados::
+abreviar a exibição de coleções grandes ou profundamente aninhadas::
 
    >>> import repr
    >>> repr.repr(set('supercalifragilisticexpialidocious'))
    "set(['a', 'c', 'd', 'e', 'f', 'g', ...])"
 
-O módulo :mod: `pprint` oferece um controle mais sofisticado na exibição tanto
+O módulo :mod:`pprint` oferece um controle mais sofisticado na exibição tanto
 de objetos embutidos quanto aqueles criados pelo usuário de maneira que fique
-mais legível através do interpretador. Quando o resultado é maior que uma
-linha, o "pretty printer" acrescenta quebras de linha e indentação para
-revelar as estruturas de maneira mais clara::
+legível para o interpretador. Quando o resultado é maior que uma linha, o
+"pretty printer" acrescenta quebras de linha e indentação para revelar as
+estruturas de maneira mais clara::
 
    >>> import pprint
    >>> t = [[[['preto', 'ciano'], 'branco', ['verde', 'vermelho']],
@@ -54,8 +54,8 @@ dada largura de tela::
    as linhas.
 
 O módulo :mod:`locale` acessa uma base de dados de formatos específicos a
-determinada cultura. O atributo grouping da função format oferece uma forma
-direta de formatar números com separadores de grupo::
+determinada cultura. O argumento ``grouping`` da função :func:`format` oferece
+uma forma direta de formatar números com separadores de grupo::
 
    >>> import locale
    >>> locale.setlocale(locale.LC_ALL, 'pt_BR.utf8')
@@ -71,30 +71,30 @@ direta de formatar números com separadores de grupo::
 
 .. _tut-templating:
 
-Usando modelos
-==============
+Usando templates
+================
 
-O módulo :mod:`string` inclui a versátil classe :class:`Template` com uma 
+O módulo :mod:`string` inclui a versátil classe :class:`Template` com uma
 sintaxe simplificada, adequada para ser editada por usuários finais. Isso
 permite que usuários personalizem suas aplicações sem a necessidade de alterar
 a aplicação.
 
-O formato usa um guarda-lugar (placeholder) formado por ``$`` com um
-identificador Python válido(caracteres alfanuméricos e underscores). Envolvendo
-o guarda-lugar entre chaves, permite que ele seja seguido por mais caracteres
-alfanuméricos sem a necessidade de espaços. Escrevendo ``$$`` cria um único
-``$``::
+O formato usa um guarda-lugar (placeholder) formado por ``$`` seguido por um
+identificador Python válido (caracteres alfanuméricos e underscores).
+Envolvendo-se o guarda-lugar entre chaves, permite que ele seja seguido por
+mais caracteres alfanuméricos sem a necessidade de espaços. Escrevendo-se
+``$$`` cria-se um único ``$``::
 
    >>> from string import Template
-   >>> t = Template('O pessoal de ${lugar}enviou $$10 para $causa.')
-   >>> t.substitute(lugar='Itaquera', causa='as obras da copa')
-   'O pessoal de Itaqueraenviou $10 para as obras da copa'
+   >>> t = Template('Os ${lugar}nos enviaram $$10 para $causa.')
+   >>> t.substitute(lugar='Curitiba', causa='as obras de saneamento')
+   'Os Curitibanos enviaram $10 para as obras de saneamento.'
 
-O método :meth:`substitute` levanta uma exceção :exc:`KeyError` quando um
-guarda-lugar não é fornecido em um dicionário ou em um argumento nomeado
-(keyword argument). Para aplicações que podem receber dados incompletos
-fornecidos pelo usuário, o método :meth:`safe_substitute` pode ser mais 
-apropriado --- deixará os guarda-lugares intactos se os dados estiverem 
+O método :meth:`substitute` levanta uma exceção :exc:`KeyError` quando o
+identificador de uma marcação não é fornecido em um dicionário ou em um
+argumento nomeado (keyword argument). Para aplicações que podem receber dados
+incompletos fornecidos pelo usuário, o método :meth:`safe_substitute` pode ser
+mais apropriado --- deixará os marcadores intactos se os dados estiverem
 faltando::
 
    >>> t = Template('Encontre o $item e volte para $lugar.')
@@ -113,12 +113,12 @@ imagem ou formato do aquivo::
 
    >>> import time, os.path
    >>> fotos = ['img_1074.jpg', 'img_1076.jpg', 'img_1077.jpg']
-   >>> class RenomearLote(Template):
+   >>> class RenomeiaLote(Template):
    ...     delimiter = '%'
    >>> fmt = raw_input('Estilo para o nome (%d-data %n-numseq %f-formato):  ')
    Estilo para o nome (%d-data %n-numseq %f-formato):  Ashley_%n%f
 
-   >>> t = RenomearLote(fmt)
+   >>> t = RenomeiaLote(fmt)
    >>> data = time.strftime('%d%b%y')
    >>> for i, nome_arquivo in enumerate(fotos):
    ...     base, ext = os.path.splitext(nome_arquivo)
@@ -129,32 +129,24 @@ imagem ou formato do aquivo::
    img_1076.jpg --> Ashley_1.jpg
    img_1077.jpg --> Ashley_2.jpg
 
-Uma outra aplicação para o uso de modelos é separar a lógica da aplicação dos
-detalhes de múltiplos formatos de saída. Isso faz possível substituir modelos
+Outra aplicação para templates é separar a lógica da aplicação dos detalhes de
+múltiplos formatos de saída. Isso faz possível substituir templates
 personalizados por arquivos XML, relatórios em texto puro e relatórios web em
 HTML.
 
 
 .. _tut-binary-formats:
 
-Trabalhando com formatos de dados binários
+Trabalhando com formatos binários de dados
 ==========================================
 
-.. REVISAR ANTES DE COMMITAR!!
-   The :mod:`struct` module provides :func:`pack` and :func:`unpack` functions for
-   working with variable length binary record formats.  The following example shows
-   how to loop through header information in a ZIP file without using the
-   :mod:`zipfile` module.  Pack codes ``"H"`` and ``"I"`` represent two and four
-   byte unsigned numbers respectively.  The ``"<"`` indicates that they are
-   standard size and in little-endian byte order
-
 O módulo :mod:`struct` oferece as funções :func:`pack` e :func:`unpack` para
-trabalhar com formatos binários de tamanho variável. O exemplo a seguir mostra
-como iterar através do cabeçalho de informação num aquivo ZIP sem usar o módulo
-:mod:`zipfile`. Os códigos de empacotamento ``"H"`` e ``"I"`` representam
-números sem sinal de dois e quatro bytes respectivamente. O ``"<"`` indica
-que eles (os bytes) são de tamanho padrão e tem a parte menos significante
-primeiro (little-endian)::
+trabalhar com registros binários de tamanho variável. O exemplo a seguir
+mostra como iterar através do cabeçalho de informação num aquivo ZIP sem usar
+o módulo :mod:`zipfile`. Os códigos de empacotamento ``"H"`` e ``"I"``
+representam números sem sinal de dois e quatro bytes respectivamente. O
+``"<"`` indica que os números têm tamanho padrão e são little-endian (bytes
+menos significativos primeiro)::
 
    import struct
 
@@ -171,7 +163,7 @@ primeiro (little-endian)::
        extra = data[start:start+extra_size]
        print filename, hex(crc32), comp_size, uncomp_size
 
-       start += extra_size + comp_size      # vai para o próximo cabeçalho
+       start += extra_size + comp_size     # avança para o próximo cabeçalho
 
 
 .. _tut-multi-threading:
@@ -179,18 +171,11 @@ primeiro (little-endian)::
 Multi-threading
 ===============
 
-.. REVISAR ANTES DE COMMITAR!!
-   Threading is a technique for decoupling tasks which are not sequentially
-   dependent.  Threads can be used to improve the responsiveness of applications
-   that accept user input while other tasks run in the background.  A related use
-   case is running I/O in parallel with computations in another thread.
-
 O uso de threads é uma técnica para desacoplar tarefas que não são
-sequencialmente dependentes. Threads podem ser usadas para melhorar o
-tempo de resposta de aplicações que aceitam entradas do usuário enquanto outras
-tarefas são executadas em segundo plano. Um caso relacionado é executar ações
-de entrada e saída (I/O) em uma thread paralelamente a cálculos em outra
-thread.
+sequencialmente dependentes. Threads podem ser usadas para melhorar o tempo de
+resposta de aplicações que aceitam entradas do usuário enquanto outras tarefas
+são executadas em segundo plano. Um caso relacionado é executar ações de
+entrada e saída (I/O) em uma thread paralelamente a cálculos em outra thread.
 
 O código a seguir mostra como o módulo de alto nível :mod:`threading` pode
 executar tarefas em segundo plano enquanto o programa principal continua
@@ -213,39 +198,27 @@ a sua execução::
    background.start()
    print 'O programa principal continua a sua execução em primeiro plano.'
 
-   background.join()    # Espera até que a tarefa em segundo plano termine.
+   background.join()    # espera até que a tarefa em segundo plano termine
    print 'O programa principal esperou até a tarefa em segundo plano terminar.'
 
-.. The principal challengege of multi-threaded applications is coordinating threads
-   that share data or other resources.  To that end, the threading module provides
-   a number of synchronization primitives including locks, events, condition
-   variables, and semaphores.
-
-.. While those tools are powerful, minor design errors can result in problems that
-   are difficult to reproduce.  So, the preferred approach to task coordination is
-   to concentrate all access to a resource in a single thread and then use the
-   :mod:`Queue` module to feed that thread with requests from other threads.
-   Applications using :class:`Queue.Queue` objects for inter-thread communication
-   and coordination are easier to design, more readable, and more reliable.
-
-O principal desafio de aplicações que usam múltiplas threads é coordenar as
-threads que compartilham dados ou outros recursos. Para esta finalidade, o
+O principal desafio para as aplicações que usam múltiplas threads é coordenar
+as threads que compartilham dados ou outros recursos. Para esta finalidade, o
 módulo threading oferece alguns mecanismos primitivos de sincronização, como
 travas (locks), eventos, variáveis de condição e semáforos.
 
-Apesar destas ferramentas serem poderosas, pequenos erros podem resultar em
-problemas difíceis de serem reproduzidos. Então, a maneira preferida de
-coordenar tarefas é concentrar todo o acesso a um recurso em uma única thread
-e usar o módulo :mod:`Queue` para alimentar aquela thread com requisições de
-outras threads. Aplicações usando objetos do tipo :class:`Queue.Queue` para
-comunicação e coordenação inter-thread são mais fáceis de implementar, mais
-legíveis e mais confiáveis.
+Apesar dessas ferramentas serem poderosas, pequenos erros de projeto podem
+resultar em problemas difíceis de serem reproduzidos. Então, a maneira
+preferida de coordenar tarefas é concentrar todo o acesso a determinado
+recurso em uma única thread e usar o módulo :mod:`Queue` para alimentar aquela
+thread com requisições de outras threads. Aplicações usando objetos do tipo
+:class:`Queue.Queue` para comunicação e coordenação inter-thread são mais
+fáceis de implementar, mais legíveis e mais confiáveis.
 
 
 .. _tut-logging:
 
-Usando logs
-===========
+Gerando logs
+============
 
 O módulo :mod:`logging` oferece um completo e flexível sistema de log. Da
 maneira mais simples, mensagens de log são enviadas para um arquivo ou para
@@ -273,8 +246,8 @@ mensagens, baseadas na prioridade da mensagem: :const:`DEBUG`, :const:`INFO`,
 :const:`WARNING`, :const:`ERROR` e :const:`CRITICAL`.
 
 O sistema de log pode ser configurado diretamente do Python ou pode ser
-carregado a partir de um arquivo de configuração editável pelo usuário
-para logs personalizados sem a necessidade de alterar a aplicação.
+carregado a partir de um arquivo de configuração editável pelo usuário para
+logs personalizados sem a necessidade de alterar a aplicação.
 
 
 .. _tut-weak-references:
@@ -282,18 +255,19 @@ para logs personalizados sem a necessidade de alterar a aplicação.
 Referências fracas
 ==================
 
-Python faz geranciamento automático de memória (contagem de referências para
-a maioria dos objetos e coleta de lixo para eliminar ciclos). A memória é
-liberada logo depois da última referência ser eliminada.
+Python faz geranciamento automático de memória (contagem de referências para a
+maioria dos objetos e :term:`garbage collection` [coleta de lixo] para
+eliminar ciclos). A memória ocupada por um objeto é liberada logo depois da
+última referência a ele ser eliminada.
 
 Essa abordagem funciona bem para a maioria das aplicações, mas ocasionalmente
 surge a necessidade de rastrear objetos apenas enquanto estão sendo usados por
-algum outro. Infelizmente rastreá-los cria uma referência o que os fazem
+algum outro. Infelizmente rastreá-los cria uma referência, e isso os fazem
 permanentes. O módulo :mod:`weakref` oferece ferramentas para rastrear objetos
 sem criar uma referência. Quando o objeto não é mais necessário, ele é
-automaticamente removido de uma tabela de referências fracas e uma chamada é
-disparada. Aplicações típicas incluem armazenamento de objetos que são muito
-custosos para criar::
+automaticamente removido de uma tabela de referências fracas e uma chamada
+(*callback*) é disparada. Aplicações típicas incluem cacheamento de objetos
+que são muito custosos para criar::
 
    >>> import weakref, gc
    >>> class A:
@@ -321,19 +295,19 @@ custosos para criar::
 
 .. _tut-list-tools:
 
-Ferramentas para trabalhar com liastas
+Ferramentas para trabalhar com listas
 ======================================
 
-Muitas necessidades envolvendo estrutura de dados podem ser satisfeitas
-com o tipo embutido lista. Entretanto, algumas vezes há uma necessidade
-por implementações alternativas com alguns sacrifícios em nome de melhor
-desempenho.
+Muitas necessidades envolvendo estruturas de dados podem ser satisfeitas com o
+tipo embutido lista. Entretanto, algumas vezes há uma necessidade por
+implementações alternativas que sacrificam algumas facilidades em nome de
+melhor desempenho.
 
-O módulo :mod:`array` oferece um objeto :class:`array()`, semelhante a uma
-lista, mas que armazena apenas dados homogêneos e de maneira mais compacta.
-O exemplo a seguir mostra um vetor de números armazenados como números binários
-de dois bytes sem sinal (typecode ``"H"``) ao invés do usual 16 bytes por item
-nas listas normais de objetos int::
+O módulo :mod:`array` oferece uma classe :class:`array`, semelhante a uma
+lista, mas que armazena apenas dados homogêneos e de maneira mais compacta. O
+exemplo a seguir mostra um vetor de números armazenados como números binários
+de dois bytes sem sinal (código de tipo ``"H"``) ao invés dos 16 bytes
+usuais para cada item em uma lista de ``int``::
 
    >>> from array import array
    >>> a = array('H', [4000, 10, 700, 22222])
@@ -343,9 +317,10 @@ nas listas normais de objetos int::
    array('H', [10, 700])
 
 O módulo :mod:`collections` oferece um objeto :class:`deque()` que comporta-se
-como uma lista mas com anexações (appends) mais rápidos e remoções (pops)
-feitas pelo lado esquerdo. Esses objetos são adequados para implementação de
-filas e buscas de amplitude em árvores de dados(breadth first tree searches)::
+como uma lista mas com *appends* e *pops* pela esquerda mais rápidos, porém
+mais lento ao percorrer o meio da sequência. Esses objetos são adequados para
+implementar filas e buscas de amplitude em árvores de dados (*breadth first
+tree searches*)::
 
    >>> from collections import deque
    >>> d = deque(["tarefa1", "tarefa2", "tarefa3"])
@@ -358,7 +333,7 @@ filas e buscas de amplitude em árvores de dados(breadth first tree searches)::
        noh = nao_buscados.popleft()
        for m in gen_moves(noh):
            if eh_objetivo(m):
-	       return m
+	            return m
            nao_buscados.append(m)
 
 Além de implementações alternativas de listas, a biblioteca também oferece
@@ -371,7 +346,7 @@ de listas ordenadas::
    >>> pontos
    [(100, 'perl'), (200, 'tcl'), (300, 'ruby'), (400, 'lua'), (500, 'python')]
 
-O módulo :mod:`heapq` oferece funções para implementação de heaps baseadas
+O módulo :mod:`heapq` oferece funções para implementação de *heaps* baseadas
 em listas normais. O valor mais baixo é sempre mantido na posição zero. Isso é
 útil para aplicações que acessam repetidamente o menor elemento, mas não querem
 reordenar a lista toda a cada acesso::
@@ -386,25 +361,25 @@ reordenar a lista toda a cada acesso::
 
 .. _tut-decimal-fp:
 
-Aritmética com ponto flutuante decimal
+Aritmética decimal com ponto flutuante
 ======================================
 
 O módulo :mod:`decimal` oferece o tipo :class:`Decimal` para aritmética
-com ponto flutuante decimal. Comparado a implementação embutida 
-:class:`float` que usa ponto flutuante binário, a classe é especialmente
-útil para
+decimal com ponto flutuante. Comparado a implementação embutida :class:`float`
+que usa aritmética binária de ponto flutuante, a classe é especialmente útil
+para:
 
 * aplicações financeiras que requerem representação decimal exata,
-* controle sobre precisão
-* controle sobre arredondamento para satisfazer requerimentos legais,
-* rastreamento de casas decimais significantes, ou
+* controle sobre a precisão,
+* controle sobre arredondamento para satisfazer requesitos legais,
+* rastreamento de casas decimais significativas, ou
 * aplicações onde o usuário espera que os resultados sejam os mesmos que os
   dos cálculos feitos à mão.
 
-Por exemplo, calcular um imposto de 5% numa chamada telefônica de 70 centavos
-devolve diferentes resultados com ponto flutuante decimal e binário. A
-diferença torna-se significante se os resultados são arredondados para o
-centavo mais próximo.
+Por exemplo, calcular um imposto de 5% sobre uma chamada telefônica de 70
+centavos devolve diferentes resultados com aritmética de ponto flutuante
+decimal ou binária. A diferença torna-se significativa se os resultados são
+arredondados para o centavo mais próximo. ::
 
    >>> from decimal import *
    >>> x = Decimal('0.70') * Decimal('1.05')
@@ -415,14 +390,14 @@ centavo mais próximo.
    >>> round(.70 * 1.05, 2)         # o mesmo cálculo com float
    0.73
 
-O resultado de :class:`Decimal` mantém um zero final, automaticamente inferindo
-quatro casas decimais para multiplicandos com duas casas decimais. Decimal
-reproduz a matemática como a feita à mão e evita problemas que podem ocorrer
-quando ponto flutuante binário não pode representar quantidades decimais
-exatamente.
+O resultado de :class:`Decimal` considera zeros à direita, automaticamente
+inferindo quatro casas decimais a partir de multiplicandos com duas casas
+decimais. O módulo :mod:`decimal` reproduz a aritmética como fazemos à mão e
+evita problemas que podem ocorrer quando a representação binária do ponto
+flutuante não consegue representar quantidades decimais com exatidão.
 
-Representação exata permite à classe :class:`Decimal` executar cálculos de
-módulo e testes de igualdade que não podem ser feitos com ponto flutuante
+A representação exata permite à classe :class:`Decimal` executar cálculos de
+módulo e testes de igualdade que não funcionam bem em ponto flutuante
 binário::
 
    >>> Decimal('1.00') % Decimal('.10')
@@ -435,11 +410,10 @@ binário::
    >>> sum([0.1]*10) == 1.0
    False
 
-O módulo :mod:`decimal` oferece aritmética com tanta precisão quanto
+O módulo :mod:`decimal` implementa a aritmética com tanta precisão quanto
 necessária::
 
    >>> getcontext().prec = 36
    >>> Decimal(1) / Decimal(7)
    Decimal('0.142857142857142857142857142857142857')
-
 

@@ -127,16 +127,17 @@ O interpretador e seu ambiente
 Tratamento de erros
 -------------------
 
-Quando ocorre um erro, o interpretador exibe uma mensagem de erro um *stack
-trace* (a situação da pilha de execução). No modo interativo, ele retorna ao
-prompt primário; quando a entrada vem de um arquivo, o interpretador aborta a
-execução com status de erro diferente de zero após exibir o stack trace
-(Exceções tratadas por um :keyword:`except` em um comando :keyword:`try` não
-são consideradas erros neste contexto). Alguns erros são incondicionalmente
-fatais e causam a saída com status diferente de zero; isto se aplica a
-inconsistências internas e alguns casos de exaustão de memória. Todas as
-mensagens de erro são escritas na saída de erros padrão (standard error),
-enquanto a saída dos demais comandos é direcionada para a saída padrão.
+Quando ocorre um erro, o interpretador exibe uma mensagem de erro como um
+*stack trace* (a situação da pilha de execução). No modo interativo, ele
+retorna ao prompt primário; quando a entrada vem de um arquivo, o
+interpretador aborta a execução com status de erro diferente de zero após
+exibir o stack trace (Exceções tratadas por um :keyword:`except` em um comando
+:keyword:`try` não são consideradas erros neste contexto). Alguns erros são
+incondicionalmente fatais e causam a saída com status diferente de zero; isto
+se aplica a inconsistências internas e alguns casos de exaustão de memória.
+Todas as mensagens de erro são escritas na saída de erros padrão (*standard
+error*), enquanto a saída dos demais comandos é direcionada para a saída
+padrão.
 
 Teclar o caractere de interrupção (tipicamente Control-C ou DEL) no prompt
 primário ou secundário cancela a entrada de dados corrente e volta ao
@@ -204,8 +205,8 @@ Se o seu editor é capaz de salvar arquivos UTF-8 com *byte order mark*
 (conhecido como BOM), você pode usar isto ao invés da declaração de
 codificação. O IDLE é capaz de fazer isto se você habilitar
 ``Options/General/Default Source Encoding/UTF-8``.
-Note que esta assinatura não é reconhecida por versões antigas (Python 2.2 e
-anteriores), e nem pelo sistema operacional para arquivos com a declaração ``#!``
+Note que a assinatura BOM não é reconhecida por versões antigas (Python 2.2 e
+anteriores), nem pelo sistema operacional, invalidando a declaração ``#!``
 (usada somente em sistemas UNIX).
 
 Usando UTF-8 (seja através da assinatura ou de uma declaração de codificação),
