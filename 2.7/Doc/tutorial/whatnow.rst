@@ -1,68 +1,75 @@
 .. _tut-whatnow:
 
 *********
-What Now?
+E agora?
 *********
 
-Reading this tutorial has probably reinforced your interest in using Python ---
-you should be eager to apply Python to solving your real-world problems. Where
-should you go to learn more?
+Espera-se que a leitura deste tutorial tenha aguçado seu interesse em Python --
+você deve estar sedento para aplicar o Python na solução de seus problemas
+reais. Agora, onde você deveria ir para aprender mais?
 
-This tutorial is part of Python's documentation set.   Some other documents in
-the set are:
+Este tutorial é uma parte da documentação do Python. Algumas outras partes
+desta documentação são:
 
 * :ref:`library-index`:
 
-  You should browse through this manual, which gives complete (though terse)
-  reference material about types, functions, and the modules in the standard
-  library.  The standard Python distribution includes a *lot* of additional code.
-  There are modules to read Unix mailboxes, retrieve documents via HTTP, generate
-  random numbers, parse command-line options, write CGI programs, compress data,
-  and many other tasks. Skimming through the Library Reference will give you an
-  idea of what's available.
+  Você deveria navegar através deste manual que te dá um completo (embora
+  conciso) material de referência sobre tipos, funções e módulos incluídos
+  na biblioteca padrão. A distribuição padrão de Python inclui *muito* código
+  extra. Há módulos para ler caixas de e-mail Unix, recuperar documentos via
+  HTTP, gerar número aleatórios, tratar parâmetros da linha de comando,
+  escrever programas CGI, comprimir dados e muitas outras tarefas. Passear
+  pela referência da biblioteca padrão te dará uma ideia do que está
+  disponível.
 
-* :ref:`install-index` explains how to install external modules written by other
-  Python users.
+* :ref:`install-index` explica como instalar módulos externos escritos por
+  outros usuários de Python.
 
-* :ref:`reference-index`: A detailed explanation of Python's syntax and
-  semantics.  It's heavy reading, but is useful as a complete guide to the
-  language itself.
+* :ref:`reference-index`: Uma explicação detalhada sobre a sintaxe e a
+  semântica do Python. É uma leitura pesada, mas é útil como um guia completo à
+  linguagem em si.
 
-More Python resources:
 
-* http://www.python.org:  The major Python Web site.  It contains code,
-  documentation, and pointers to Python-related pages around the Web.  This Web
-  site is mirrored in various places around the world, such as Europe, Japan, and
-  Australia; a mirror may be faster than the main site, depending on your
-  geographical location.
+Mais recursos sobre python:
 
-* http://docs.python.org:  Fast access to Python's  documentation.
+* http://www.python.org:  O site oficial do Python. Contém código, documentação
+  a aponta para para outras páginas na web relacionadas a Python. Este site é
+  hospedado em vários lugares ao redor do mundo como Europa, Japão e Austrália;
+  Um servidor secundário pode ser mais rápido que o site principal dependendo
+  da sua localização geográfica.
 
-* http://pypi.python.org: The Python Package Index, previously also nicknamed
-  the Cheese Shop, is an index of user-created Python modules that are available
-  for download.  Once you begin releasing code, you can register it here so that
-  others can find it.
+* http://www.python.org.br: Site mantido pela comunidade brasileira de Python.
 
-* http://aspn.activestate.com/ASPN/Python/Cookbook/: The Python Cookbook is a
-  sizable collection of code examples, larger modules, and useful scripts.
-  Particularly notable contributions are collected in a book also titled Python
-  Cookbook (O'Reilly & Associates, ISBN 0-596-00797-3.)
+* http://docs.python.org:  Acesso rápido à documentação do Python.
 
-For Python-related questions and problem reports, you can post to the newsgroup
-:newsgroup:`comp.lang.python`, or send them to the mailing list at
-python-list@python.org.  The newsgroup and mailing list are gatewayed, so
-messages posted to one will automatically be forwarded to the other.  There are
-around 120 postings a day (with peaks up to several hundred), asking (and
-answering) questions, suggesting new features, and announcing new modules.
-Before posting, be sure to check the list of `Frequently Asked Questions
-<http://www.python.org/doc/faq/>`_ (also called the FAQ), or look for it in the
-:file:`Misc/` directory of the Python source distribution.  Mailing list
-archives are available at http://mail.python.org/pipermail/. The FAQ answers
-many of the questions that come up again and again, and may already contain the
-solution for your problem.
+* http://pypi.python.org: O índice de pacotes Python (Python package index),
+  anteriormente também apelidado de Cheese Shop. Um índice de módulos Python
+  criados pelos usuários. Assim que você começar a lançar código, você pode
+  registrá-lo aqui para que outros possam encontrá-lo.
 
-.. Postings figure based on average of last six months activity as
-   reported by www.egroups.com; Jan. 2000 - June 2000: 21272 msgs / 182
-   days = 116.9 msgs / day and steadily increasing. (XXX up to date figures?)
+* http://aspn.activestate.com/ASPN/Python/Cookbook/: O livro de receitas do
+  Python é uma grande coleção de exemplos de código, módulos maiores e scripts
+  úteis. Contribuições particularmente notáveis foram coletadas em um livro
+  chamado Python Cookbook (O'Reilly & Associates, ISBN 0-596-00797-3.)
+
+
+Você pode enviar suas questões e problemas relacionados ao Python para o
+newsgroup :newsgroup:`comp.lang.python` ou enviá-las para a lista de e-mails
+em python-list@python.org. O newsgroup e a lista de e-mails são interligadas
+então mensagens enviadas para uma serão automaticamente encaminhadas para
+outra. São por volta de 120 mensagens diárias (com picos de muitas centenas),
+com perguntas (e respostas), sugestões de novas funcionalidades e anúncios
+de novos módulos. Antes de enviar mensagens, leia a lista de `perguntas
+frequentes <http://www.python.org/doc/faq/>`_ (também chamada de FAQ), ou dê
+uma olhada no diretório :file:`Misc/` incluído na distribuição dos fontes
+do Python. Os arquivos da lista de e-mails estão disponíveis em
+http://mail.python.org/pipermail/. A FAQ responde a muitas questões que chegam
+frequentemente e pode ter a solução para o seu problema.
+
+Existe também a lista de e-mails da comunidade brasileira de Python em 
+python-brasil@googlegroups.com. Fique à vontade e mande suas mensagens, mas
+antes de enviá-las, dê uma lida na página `AntesDePerguntar
+<http://www.python.org.br/wiki/AntesDePerguntar>`_ .
+
 
 

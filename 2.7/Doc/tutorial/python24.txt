@@ -3083,10 +3083,10 @@ definidos podem ser utilizados como classes base para extensões de usuário por
 diferentemente de Modula-3, a maioria dos operadores (aritiméticos, indexação,etc) podem ser redefinidos para
 instâncias de classe.
 9.1
+
 Uma Palavra Sobre Terminologia
-Na falta de uma terminologia de classes universalmente aceita, eu irei ocasionalmente fazer uso de termos comuns
-a Smalltalk ou C++(eu usaria termos de Modula-3 já que sua semântica é muito próxima a de Python, mas tenho
-a impressão de que poucos usuários já ouviram falar dessa linguagem).
+
+
 Objetos tem individualidade, e podem estar vinculados a múltiplos nomes (em diferentes escopos). Essa facilidade
 é chamada aliasing em outras linguagens. À primeira vista não é muito apreciada, e pode ser seguramente ignorada
 ao lidar com tipos imutáveis (números, strings, tuplas). Entretanto, aliasing tem um efeito intencional sobre a
@@ -3114,20 +3114,30 @@ A propósito, eu utilizo a palavra atributo para qualquer nome depois de um pont
 exemplo, real é um atributo do objeto z. Estritamente falando, referências para nomes em módulos são atributos:
 na expressão modname.funcname, modname é um objeto módulo e funcname é seu atributo. Neste caso,
 existe um mapeamento direto entre os os atributos de um módulo e os nomes globais definidos no módulo: eles
-compartilham o mesmo espaço de nomes. 1
+compartilham o mesmo espaço de nomes.
+
+1
 Atributos podem ser somente de leitura ou não. Atributos de módulo são passíveis de atribuição, você pode
 escrever 'modname.the_answer = 42', e remoção pelo comando del ('del modname.the_answer').
+
+
 Espaços de nomes são criados em momentos diferentes e possuem diferentes longevidades. O espaço de nomes
 que contém os nomes pré-definidos é criado quando o interpretador inicializa e nunca é removido. O espaço de
 nomes global é criado quando uma definição de módulo é lida, e normalmente duram até a saída do interpretador.
 Os comandos executados pela invocação do interpertador, ou pela leitura de um script, ou interativamente são
 parte do módulo chamado __main__, e portanto possuem seu próprio espaço de nomes (os nomes pré-definidos
 possuem seu próprio espaço de nomes no módulo chamado __builtin__).
+
+
 O espaço de nomes local para uma função é criado quando a função é chamada, e removido quando a função
 retorna ou levanta uma exceção que não é tratada na própria função. Naturalmente, chamadas recursivas de uma
 função possuem seus próprios espaços de nomes.
+
+
 Um escopo é uma região textual de um programa Python onde um espaço de nomes é diretamente acessível. Onde
 “diretamente acessível” significa que uma referência sem qualificador especial permite o acesso ao nome.
+
+
 Ainda que escopos sejam determinados estaticamente, eles são usados dinamicamente. A qualquer momento
 durante a execução, existem no mínimo três escopos diretamente acessíveis: o escopo interno (que é procurado
 primeiro) contendo nomes locais, o escopo intermediário (com os nomes globais do módulo) e o escopo externo
@@ -3169,14 +3179,20 @@ class NomeDaClasse:
 Definições de classes, como definições de funções (comandos def) devem ser executados antes que tenham
 qualquer efeito. Você pode colocar uma definição de classe após um teste condicional if ou dentro de uma
 função.
+
 Na prática, os comandos dentro de uma classe serão definições de funções, mas existem outros comandos que
 são permitidos. Definições de função dentro da classe possuem um lista peculiar de argumentos determinada pela
 convenção de chamada a métodos.
+
 Quando se fornece uma definição de classe, um novo espaço de nomes é criado. Todas atribuições de variáveis
 são vinculadas a este escopo local. Em particular, definições de função também são armazenadas neste escopo.
+
+
 Quando termina o processamento de uma definição de classe (normalmente, sem erros), um objeto de classe é
 criado. Este objeto encapsula o conteúdo do espaço de nomes criado pela definição da classe. O escopo local ativo
 antes da definição da classe é restaurado, e o objeto classe é vinculado a este escopo com o nome dado a classe.
+
+
 9.3.2 Objetos de Classe
 Objetos de Classe suportam dois tipos de operações: referências a atributos e instanciação.
 Referências a atributos de classe utilizam a sintaxe padrão utilizada para quaisquer referências a atributos em

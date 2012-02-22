@@ -566,7 +566,7 @@ chaves (*keys*), que podem ser de qualquer tipo imutável (como strings e
 inteiros). Tuplas também podem ser chaves se contiverem apenas strings,
 inteiros ou outras tuplas. Se a tupla contiver, direta ou indiretamente,
 qualquer valor mutável, não poderá ser chave. Listas não podem ser usadas como
-chaves porque são podem ser modificadas *in place* pela atribuição em índices ou
+chaves porque podem ser modificadas *in place* pela atribuição em índices ou
 fatias, e por métodos como :meth:`append` e :meth:`extend`.
 
 Um bom modelo mental é imaginar um dicionário como um conjunto não ordenado de
@@ -639,7 +639,7 @@ Técnicas de iteração
 
 .. N.d.T: acrescentei esse parágrafo e o exemplo a seguir. ~LR
 
-Ao percorrer um dicionário em um laço, a variável de interação receberá
+Ao percorrer um dicionário em um laço, a variável de iteração receberá
 uma chave de cada vez::
 
    >>> knights = {'gallahad': 'the pure', 'robin': 'the brave'}

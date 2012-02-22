@@ -5,6 +5,18 @@
 Notas para os tradutores da versão pt-br
 ########################################
 
+Formatação
+==========
+
+Siga fielmente a marcação ReST dos arquivos originais.
+
+Não traduza os nomes dos links (ex. ``_tut-exceptions``), pois as referências
+cruzadas dependem disso para funcionar.
+
+Limite as linhas de texto a 80 colunas, pois isso facilita a revisão com duas
+versões do texto lado a lado, e também torna mais fácil analizar diffs.
+
+
 Uso de maiúsculas e minúsculas
 ================================
 
@@ -46,11 +58,11 @@ Para traduzir:
 
   The equal sign (``'='``) is used to assign a value to a variable.
 
-Isso é melhor:
+Isto é melhor:
 
   O sinal de igual (``'='``) é usado para atribuir um valor a uma variável.
 
-do que isso:
+do que isto:
 
   O sinal de igual (``'='``) é utilizado para atribuição de um valor a uma variável.
 
@@ -148,6 +160,9 @@ Use sempre "consulte x para mais informações" em vez de "consulte x para maior
 Traduções adotadas para termos específicos
 ==========================================
 
+arrow
+  seta
+
 asterisk
   asterisco (cf. dicionário Houaiss)
 
@@ -198,6 +213,9 @@ parameter
   parâmetro formal (em declarações de funções) ou argumento (os
   valores passados na invocação)
 
+parser
+  parser ou analisador sintático
+
 performance
   desempenho
 
@@ -212,18 +230,28 @@ raise
    levantar, no sentido de "levantar uma exceção" ("lançar uma exceção"
    é mais frequente que "levantar uma exceção" segundo o Google, mas isso
    é porque em Java, JavaScript e PHP o comando chama-se "throw", que
-   é lançar; em Python usamos "raise", que é levantar (pense num bandeirinha
-   sinalizando uma falta no futebol)
+   é lançar; em Python usamos "raise", que é levantar [pense em um
+   bandeirinha sinalizando uma falta no futebol])
 
 shell
   console ou shell, conforme o contexto: ao tratar do interpretador
   interativo, usar sempre "console", evitando confusão com o shell do
   sistema operacional
 
+significant
+  significativo (e nao "significante")
+
+stack trace
+  v. traceback
+
 statement
   instrução (termo melhor e mais genérico) ou alternativamente, comando
   (quando se trata comandos de controle de fluxo ou o print) ou declaração
   (como ``class``, ``def``, ``global``); [#]_
+
+traceback
+  traceback (situação da pilha de execução), desse jeito mesmo, com a
+  tradução entre parênteses quando for a primeira ocorrência do termo [#]_
 
 triple-quote
   aspas triplas (em vez de "aspas tríplices"; em nome da simplicidade)
@@ -262,3 +290,13 @@ Estender e extensão
   e atribui seu nome a uma variável no escopo atual. ``import`` executa o
   módulo e cria variáveis no escopo global etc. Por isso o termo genérico
   instrução é melhor que comando ou declaração
+
+.. [#] Não usamos N.d.T. quando se trata apenas de colocar o termo equivalente
+   em português entre parênteses (ou vice-versa, há casos em que introduzimos um
+   termo em português e colocamos o original em inglês, que pode ser mais familiar
+   para alguns leitores, entre parênteses). Além disso, somente colocamos os
+   parênteses na primeira ocorrência em cada capítulo. Ou seja, se um termo assim
+   aparece em vários capítulos, o termo entre parênteses será mostrado na primeira
+   vez que for citado em cada um dos capítulos.
+
+

@@ -301,10 +301,10 @@ através da sofisticação e robustez dos seus maiores pacotes. Por exemplo:
 
 * O pacote :mod:`email` é uma biblioteca para gerenciamento de mensagens de
   correio eletrônico, incluindo MIME e outros baseados no RFC 2822.
-  Diferente dos módulos :mod:`smtplib` e :mod:`poplib` que apenas enviam 
-  e recebem mensagens, o pacote :mod:`email` tem um conjunto completo de 
+  Diferente dos módulos :mod:`smtplib` e :mod:`poplib` que apenas enviam
+  e recebem mensagens, o pacote :mod:`email` tem um conjunto completo de
   ferramentas para construir ou decodificar a estrutura de mensagens
-  complexas  (incluindo anexos) e para implementação de protocolos de 
+  complexas  (incluindo anexos) e para implementação de protocolos de
   codificação e cabeçalhos.
 
 * Os pacotes :mod:`xml.dom` e :mod:`xml.sax` oferecem uma implementação
@@ -313,5 +313,5 @@ através da sofisticação e robustez dos seus maiores pacotes. Por exemplo:
   de bancos de dados. Juntos esses módulos e pacotes simplificam muito a
   troca de dados entre aplicações em Python e outras ferramentas.
 
-* Internacionalização está disponível através de diversos módulos, como 
+* Internacionalização está disponível através de diversos módulos, como
   :mod:`gettext`, :mod:`locale`, e o pacote :mod:`codecs`.
