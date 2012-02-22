@@ -43,7 +43,7 @@ Mais recursos sobre python:
 * http://docs.python.org:  Acesso rápido à documentação do Python.
 
 * http://pypi.python.org: O índice de pacotes Python (Python package index),
-  anteriormente também apelidado de Chese Shop. Um índice de módulos Python
+  anteriormente também apelidado de Cheese Shop. Um índice de módulos Python
   criados pelos usuários. Assim que você começar a lançar código, você pode
   registrá-lo aqui para que outros possam encontrá-lo.
 
