@@ -12,7 +12,6 @@ Este tutorial é uma parte da documentação do Python. Algumas outras partes
 desta documentação são:
 
 * :ref:`library-index`:
-
   Você deveria navegar através deste manual que é um material de referência
   completo (embora conciso) sobre os tipos, funções e módulos incluídos na
   biblioteca padrão. A distribuição padrão de Python inclui *muito* código
@@ -54,18 +53,18 @@ Mais recursos sobre python:
   ISBN 0-596-00797-3.)
 
 
-Você pode enviar suas questões e problemas relacionados ao Python para o
-newsgroup :newsgroup:`comp.lang.python` ou enviá-las para a lista de e-mails
-em python-list@python.org. O newsgroup e a lista de e-mails são interligadas
-então mensagens enviadas para uma serão automaticamente encaminhadas para
-outra. São por volta de 55 mensagens diárias (com picos de muitas centenas),
-com perguntas (e respostas), sugestões de novas funcionalidades e anúncios
-de novos módulos. Antes de enviar mensagens, leia a lista de `perguntas
-frequentes <http://www.python.org/doc/faq/>`_ (também chamada de FAQ), ou dê
-uma olhada no diretório :file:`Misc/` incluído na distribuição dos fontes
-do Python. Os arquivos da lista de e-mails estão disponíveis em
-http://mail.python.org/pipermail/. A FAQ responde a muitas questões que chegam
-frequentemente e pode ter a solução para o seu problema.
+Você pode enviar suas questões e problemas relacionados a Python, em inglês,
+para o newsgroup :newsgroup:`comp.lang.python` ou enviá-las para a lista de
+e-mails em python-list@python.org. O newsgroup e a lista de e-mails são
+interligadas então mensagens enviadas para uma serão automaticamente
+encaminhadas para outra. São por volta de 55 mensagens diárias (com picos de
+muitas centenas), com perguntas (e respostas), sugestões de novas
+funcionalidades e anúncios de novos módulos. Antes de enviar mensagens, leia a
+lista de `perguntas frequentes <http://www.python.org/doc/faq/>`_ (também
+chamada de FAQ), ou dê uma olhada no diretório :file:`Misc/` incluído na
+distribuição dos fontes do Python. Os arquivos da lista de e-mails estão
+disponíveis em http://mail.python.org/pipermail/. A FAQ responde a muitas
+questões que chegam frequentemente e pode ter a solução para o seu problema.
 
 .. Comentário no original:
    Postings figure based on average of last six months activity as
@@ -77,13 +76,13 @@ frequentemente e pode ter a solução para o seu problema.
    cheguei a uma média de 54.96 mensagens por dia em 2011.
 
 Existe também o grupo de discussão da comunidade brasileira de Python:
-`python-brasil no Google Groups http://groups.google.com/group/python-brasil>_`,
-com cerca de 18 mensagens por dia em média (em 2011), com discussões de ótimo
-nível técnico. Fique à vontade para mandar suas perguntas, mas antes de
+`python-brasil no Google Groups <http://groups.google.com/group/python-brasil>`_\ ,
+(média de 17,6 mensagens por dia em 2011), com discussões de ótimo nível
+técnico. Fique à vontade para mandar suas perguntas, mas antes de
 enviá-las, dê uma lida na página
-`AntesDePerguntar <http://www.python.org.br/wiki/AntesDePerguntar>`_ .
+`AntesDePerguntar <http://www.python.org.br/wiki/AntesDePerguntar>`_\ .
 
-.. [#] "Cheese Shop" é o título de um quadro do grupo Monty Python no qual um
-   freguês entra em uma loja especializada em queijos, mas qualquer queijo que
-   ele pede, o balconista diz que está em falta.
+.. [#] N.d.T. "Cheese Shop" é o título de um quadro do grupo Monty Python:
+   um freguês entra em uma loja especializada em queijos, mas qualquer
+   queijo que ele pede, o balconista diz que está em falta.
 
