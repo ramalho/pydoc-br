@@ -285,168 +285,187 @@ serão passados para o método :meth:`__init__`. Por exemplo::
 
 .. _tut-instanceobjects:
 
-Instance Objects
-----------------
+Instâncias
+----------
 
-Now what can we do with instance objects?  The only operations understood by
-instance objects are attribute references.  There are two kinds of valid
-attribute names, data attributes and methods.
+Agora, o que podemos fazer com instâncias? As únicas operações reconhecidas
+por instâncias são referências a atributos. Existem dois tipos de nomes de
+atributos válidos: atributos de dados (*data attributes*) e métodos.
 
-*data attributes* correspond to "instance variables" in Smalltalk, and to "data
-members" in C++.  Data attributes need not be declared; like local variables,
-they spring into existence when they are first assigned to.  For example, if
-``x`` is the instance of :class:`MyClass` created above, the following piece of
-code will print the value ``16``, without leaving a trace::
+Atributos de dados correspondem a “variáveis de instância” em Smalltalk, e a
+“data members” em C++. Atributos de dados não não precisam ser declarados.
+Assim como variáveis locais, eles passam a existir na primeira vez em que é
+feita uma atribuição. Por exemplo, se ``x`` é uma instância da
+:class:`MinhaClasse` criada acima, o próximo trecho de código irá exibir o
+valor ``16``, sem deixar nenhum rastro na instância (por causa do uso de
+:keyword:`del`)::
 
-   x.counter = 1
-   while x.counter < 10:
-       x.counter = x.counter * 2
-   print x.counter
-   del x.counter
+   x.contador = 1
+   while x.contador < 10:
+       x.contador = x.contador * 2
+   print x.contador
+   del x.contador
 
-The other kind of instance attribute reference is a *method*. A method is a
-function that "belongs to" an object.  (In Python, the term method is not unique
-to class instances: other object types can have methods as well.  For example,
-list objects have methods called append, insert, remove, sort, and so on.
-However, in the following discussion, we'll use the term method exclusively to
-mean methods of class instance objects, unless explicitly stated otherwise.)
+O outro tipo de referências a atributos são métodos. Um método é uma função
+que “pertence a” uma instância. (Em Python, o termo método não é aplicado
+exclusivamente a instâncias de classes definidas pelo usuário: outros tipos de
+objetos também podem ter métodos. Por exemplo, listas possuem os métodos
+append, insert, remove, sort, etc. Porém, na discussão a seguir usaremos o
+termo método apenas para se referir a métodos de classes definidas pelo
+usuário. Seremos explícidos ao falar de outros métodos.)
+
 
 .. index:: object: method
 
-Valid method names of an instance object depend on its class.  By definition,
-all attributes of a class that are function  objects define corresponding
-methods of its instances.  So in our example, ``x.f`` is a valid method
-reference, since ``MyClass.f`` is a function, but ``x.i`` is not, since
-``MyClass.i`` is not.  But ``x.f`` is not the same thing as ``MyClass.f`` --- it
-is a *method object*, not a function object.
+Nomes de métodos válidos de uma instância dependem de sua classe. Por
+definição, cada atributo de uma classe que é uma função equivalem a um método
+das instâncias. Em nosso exemplo, ``x.f`` é uma referência de método válida já
+que ``MinhaClasse.f`` é uma função, enquanto ``x.i`` não é, já que
+``MinhaClasse.i`` não é uma função. Entretanto, ``x.f`` não é o mesmo que
+``MinhaClasse.f``. A referência ``x.f`` acessa um objeto método (*method
+object*), e a ``MinhaClasse.f`` acessa um objeto função.
 
 
 .. _tut-methodobjects:
 
-Method Objects
+
+Objetos método
 --------------
 
-Usually, a method is called right after it is bound::
+Normalmente, um método é invocado imediatamente após ser acessado::
 
    x.f()
 
-In the :class:`MyClass` example, this will return the string ``'hello world'``.
-However, it is not necessary to call a method right away: ``x.f`` is a method
-object, and can be stored away and called at a later time.  For example::
+No exemplo :class:`MinhaClasse` o resultado da expressão acima será a string
+``'olá, mundo'``. No entanto, não é obrigatótio invocar o método
+imediatamente: como ``x.f`` é também um objeto (um objeto método), ele pode
+atribuido a uma variável invocado depois. Por exemplo::
 
    xf = x.f
    while True:
        print xf()
 
-will continue to print ``hello world`` until the end of time.
+Esse código exibirá o texto ``'olá, mundo'`` até o mundo acabar.
 
-What exactly happens when a method is called?  You may have noticed that
-``x.f()`` was called without an argument above, even though the function
-definition for :meth:`f` specified an argument.  What happened to the argument?
-Surely Python raises an exception when a function that requires an argument is
-called without any --- even if the argument isn't actually used...
+O que ocorre precisamente quando um método é invocado? Você deve ter notado
+que ``x.f()`` foi chamado sem nenhum parâmetro, porém a definição da função
+:meth:`f` especificava um parâmetro. O que aconteceu com esse parâmetro?
+Certamente Python levanta uma exceção quando uma função que declara um
+parâmetro é invocada sem nenhum argumento --- mesmo que o argumento não
+seja usado no corpo da função...
 
-Actually, you may have guessed the answer: the special thing about methods is
-that the object is passed as the first argument of the function.  In our
-example, the call ``x.f()`` is exactly equivalent to ``MyClass.f(x)``.  In
-general, calling a method with a list of *n* arguments is equivalent to calling
-the corresponding function with an argument list that is created by inserting
-the method's object before the first argument.
+Talvez você já tenha adivinhado a resposta: o que os métodos têm de especial é
+que eles passam o objeto (ao qual o método está vinculado) como primeiro
+argumento da função definida na classe. No nosso exemplo, a chamada ``x.f()``
+equivale exatamente ``MinhaClasse.f(x)``. Em geral, chamar um método com uma
+lista de *n* argumentos é equivalente a chamar a função na classe
+correspondente passando a instância como o primeiro argumento antes dos demais
+*n* argumentos.
 
-If you still don't understand how methods work, a look at the implementation can
-perhaps clarify matters.  When an instance attribute is referenced that isn't a
-data attribute, its class is searched.  If the name denotes a valid class
-attribute that is a function object, a method object is created by packing
-(pointers to) the instance object and the function object just found together in
-an abstract object: this is the method object.  When the method object is called
-with an argument list, a new argument list is constructed from the instance
-object and the argument list, and the function object is called with this new
-argument list.
+Se você ainda não entendeu como métodos funcionam, talvez uma olhada na
+implementação de Python sirva para clarear as coisas. Quando um atributo de
+instância é referenciado e não é um atributo de dado, a busca continua na
+classe. Se o nome indica um atributo de classe válido que é um objeto função,
+um objeto método é criado pela composição da instância alvo e do objeto
+função. Quando o método é invocado com uma lista de argumentos, uma nova lista
+de argumentos é criada inserindo a instância na posição 0 da lista.
+Finalmente, o objeto função --- empacotado dentro do objeto método --- é
+invocado com a nova lista de argumentos.
 
 
 .. _tut-remarks:
 
-Random Remarks
-==============
+Observações aleatórias
+======================
 
 .. These should perhaps be placed more carefully...
 
-Data attributes override method attributes with the same name; to avoid
-accidental name conflicts, which may cause hard-to-find bugs in large programs,
-it is wise to use some kind of convention that minimizes the chance of
-conflicts.  Possible conventions include capitalizing method names, prefixing
-data attribute names with a small unique string (perhaps just an underscore), or
-using verbs for methods and nouns for data attributes.
+Atributos de dados sobrescrevem atributos métodos homônimos. Para evitar
+conflitos de nome acidentais, que podem gerar bugs de difícil rastreio em
+programas extensos, é sábio adotar algum tipo de convenção que minimize a
+chance de conflitos. Convenções comuns incluem: definir nomes de métodos com
+inicial maiúscula, prefixar atributos de dados com uma string única (quem sabe
+“_” [*underscore* ou sublinhado]), ou usar sempre verbos para nomear métodos
+e substantivos para atributos de dados.
 
-Data attributes may be referenced by methods as well as by ordinary users
-("clients") of an object.  In other words, classes are not usable to implement
-pure abstract data types.  In fact, nothing in Python makes it possible to
-enforce data hiding --- it is all based upon convention.  (On the other hand,
-the Python implementation, written in C, can completely hide implementation
-details and control access to an object if necessary; this can be used by
-extensions to Python written in C.)
+Atributos de dados podem ser referenciados por métodos da própria instância,
+bem como por qualquer outro usuário do objeto (também chamados "clientes" do
+objeto). Em outras palavras, classes não servem para implementar tipos
+puramente abstratos de dados. De fato, nada em Python torna possível assegurar
+o encapsulamento de dados --- tudo é convenção. (Por outro lado, a
+implementação de Python, escrita em C, pode esconder completamente detalhes de
+um objeto ou controlar seu acesso, se necessário; isto pode ser utilizado por
+extensões de Python escritas em C.)
 
-Clients should use data attributes with care --- clients may mess up invariants
-maintained by the methods by stamping on their data attributes.  Note that
-clients may add data attributes of their own to an instance object without
-affecting the validity of the methods, as long as name conflicts are avoided ---
-again, a naming convention can save a lot of headaches here.
+Clientes devem utilizar atributos de dados com cuidado, pois podem bagunçar
+invariantes assumidas pelos métodos ao esbarrar em seus atributos de dados.
+Note que clientes podem adicionar à vontade atributos de dados a uma instância
+sem afetar a validade dos métodos, desde que seja evitado o conflito de nomes.
+Novamente, uma convenção de nomenclatura poupa muita dor de cabeça.
 
-There is no shorthand for referencing data attributes (or other methods!) from
-within methods.  I find that this actually increases the readability of methods:
-there is no chance of confusing local variables and instance variables when
-glancing through a method.
+.. LR: inverti a ordem dos dois próximos parágrafos para falar primeiro do
+   self e poder mencioná-lo explicitamente no parágrafo seguinte.
 
-Often, the first argument of a method is called ``self``.  This is nothing more
-than a convention: the name ``self`` has absolutely no special meaning to
-Python.  Note, however, that by not following the convention your code may be
-less readable to other Python programmers, and it is also conceivable that a
-*class browser* program might be written that relies upon such a convention.
+Frequentemente, o primeiro argumento de um método é chamado ``self``. Isso não
+passa de uma convenção: o identificador ``self`` não é uma palavra reservada
+nem possui qualquer significado especial em Python. Mas note que, ao seguir
+essa convenção, seu código se torna legível por uma grande comunidade de
+desenvolvedores Python e é possível que alguma *IDE* dependa dessa convenção
+para analisar seu código.
 
-Any function object that is a class attribute defines a method for instances of
-that class.  It is not necessary that the function definition is textually
-enclosed in the class definition: assigning a function object to a local
-variable in the class is also ok.  For example::
+Não existe atalho para referenciar atributos de dados (ou outros métodos!) de
+dentro de um método: sempre é preciso fazer referência explícita ao ``self.``
+para acessar qualquer atributo da instância. Em minha opinião isso aumenta a
+legibilidade dos métodos: não há como confundir uma variável local com um
+atributo da instância quando lemos rapidamente um método desconhecido.
 
-   # Function defined outside the class
+Qualquer objeto função que é atributo de uma classe, define um método para as
+instâncias desta classe. Não é necessário que a definição da função esteja
+textualmente embutida na definição da classe. Atribuir um objeto função a uma
+variável local da classe é válido. Por exemplo::
+
+
+   # Função definida fora da classe
    def f1(self, x, y):
        return min(x, x+y)
 
    class C:
-       f = f1
        def g(self):
-           return 'hello world'
+           return 'olá mundo'
        h = g
 
-Now ``f``, ``g`` and ``h`` are all attributes of class :class:`C` that refer to
-function objects, and consequently they are all methods of instances of
-:class:`C` --- ``h`` being exactly equivalent to ``g``.  Note that this practice
-usually only serves to confuse the reader of a program.
+   C.f = f1
 
-Methods may call other methods by using method attributes of the ``self``
-argument::
+Agora ``f``, ``g`` e ``h`` são todos atributos da classe :class:`C` que
+referenciam funções, e consequentemente são todos métodos de instâncias da
+classe :class:`C`, onde ``h`` é equivalente a ``g``. No entanto, essa prática
+serve apenas para confundir o leitor do programa.
 
-   class Bag:
+Métodos podem chamar outros métodos como atributos do argumento ``self``::
+
+   class Saco:
        def __init__(self):
            self.data = []
-       def add(self, x):
+       def adicionar(self, x):
            self.data.append(x)
-       def addtwice(self, x):
-           self.add(x)
-           self.add(x)
+       def adicionar2vezez(self, x):
+           self.adicionar(x)
+           self.adicionar(x)
 
-Methods may reference global names in the same way as ordinary functions.  The
-global scope associated with a method is the module containing its
-definition.  (A class is never used as a global scope.)  While one
-rarely encounters a good reason for using global data in a method, there are
-many legitimate uses of the global scope: for one thing, functions and modules
-imported into the global scope can be used by methods, as well as functions and
-classes defined in it.  Usually, the class containing the method is itself
-defined in this global scope, and in the next section we'll find some good
-reasons why a method would want to reference its own class.
 
-Each value is an object, and therefore has a *class* (also called its *type*).
-It is stored as ``object.__class__``.
+Métodos podem referenciar nomes globais da mesma forma que funções comuns. O
+escopo global associado a um método é o módulo contendo sua a definição de sua
+classe (a classe propriamente dita nunca é usada como escopo global!). Ainda
+que seja raro justificar o uso de dados globais em um método, há diversos usos
+legítimos do escopo global. Por exemplo, funções e módulos importados no
+escopo global podem ser usados por métodos, bem como as funções e classes
+definidas no próprio escopo global. Provavelmente, a classe contendo o método
+em questão também foi definida neste escopo global. Na próxima seção veremos
+razões pelas quais um método pode querer referenciar sua própria classe.
+
+Todo valor em Python é um objeto, e portanto tem uma *classe* (também
+conhecida como seu tipo, ou *type*). A classe de um objeto pode ser
+referenciada como ``objeto.__class__``.
 
 
 .. _tut-inheritance:
