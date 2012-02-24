@@ -293,7 +293,7 @@ por instâncias são referências a atributos. Existem dois tipos de nomes de
 atributos válidos: atributos de dados (*data attributes*) e métodos.
 
 Atributos de dados correspondem a “variáveis de instância” em Smalltalk, e a
-“data members” em C++. Atributos de dados não não precisam ser declarados.
+“data members” em C++. Atributos de dados não precisam ser declarados.
 Assim como variáveis locais, eles passam a existir na primeira vez em que é
 feita uma atribuição. Por exemplo, se ``x`` é uma instância da
 :class:`MinhaClasse` criada acima, o próximo trecho de código irá exibir o
@@ -307,7 +307,7 @@ valor ``16``, sem deixar nenhum rastro na instância (por causa do uso de
    del x.contador
 
 O outro tipo de referências a atributos são métodos. Um método é uma função
-que “pertence a” uma instância. (Em Python, o termo método não é aplicado
+que “pertence” a uma instância. (Em Python, o termo método não é aplicado
 exclusivamente a instâncias de classes definidas pelo usuário: outros tipos de
 objetos também podem ter métodos. Por exemplo, listas possuem os métodos
 append, insert, remove, sort, etc. Porém, na discussão a seguir usaremos o
@@ -318,9 +318,9 @@ usuário. Seremos explícidos ao falar de outros métodos.)
 .. index:: object: method
 
 Nomes de métodos válidos de uma instância dependem de sua classe. Por
-definição, cada atributo de uma classe que é uma função equivalem a um método
-das instâncias. Em nosso exemplo, ``x.f`` é uma referência de método válida já
-que ``MinhaClasse.f`` é uma função, enquanto ``x.i`` não é, já que
+definição, cada atributo de uma classe que é uma função corresponde a um
+método das instâncias. Em nosso exemplo, ``x.f`` é uma referência de método
+válida já que ``MinhaClasse.f`` é uma função, enquanto ``x.i`` não é, já que
 ``MinhaClasse.i`` não é uma função. Entretanto, ``x.f`` não é o mesmo que
 ``MinhaClasse.f``. A referência ``x.f`` acessa um objeto método (*method
 object*), e a ``MinhaClasse.f`` acessa um objeto função.
