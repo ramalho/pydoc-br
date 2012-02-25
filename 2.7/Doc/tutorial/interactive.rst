@@ -1,21 +1,20 @@
 .. _tut-interacting:
 
-**************************************************
-Interactive Input Editing and History Substitution
-**************************************************
+*********************************************************
+Edição de entrada interativa e substituição por histórico
+*********************************************************
 
-Some versions of the Python interpreter support editing of the current input
-line and history substitution, similar to facilities found in the Korn shell and
-the GNU Bash shell.  This is implemented using the `GNU Readline`_ library,
-which supports Emacs-style and vi-style editing.  This library has its own
-documentation which I won't duplicate here; however, the basics are easily
-explained.  The interactive editing and history described here are optionally
-available in the Unix and Cygwin versions of the interpreter.
+Algumas versões do interpretador Python suportam facilidades de edição e substituição
+semelhantes às encontradas na shell Korn ou na shell GNU Bash. Isso é implementado
+através da biblioteca `GNU Readline`_, que suporta edição no estilo Emacs ou vi.
+Essa biblioteca possui sua própria documentação, que não será duplicada aqui. Porém
+os fundamentos são fáceis de serem explicados. As facilidades aqui descritas estão
+disponíveis nas versões Unix e Cygwin do interpretador.
 
-This chapter does *not* document the editing facilities of Mark Hammond's
-PythonWin package or the Tk-based environment, IDLE, distributed with Python.
-The command line history recall which operates within DOS boxes on NT and some
-other DOS and Windows flavors  is yet another beast.
+Este capítulo *não* documenta as facilidades de edição do pacote PythonWin de Mark
+Hammond, ou do ambiente IDLE baseado em Tk e distribuído junto com Python. O
+histórico da linha de comando executada no DOS ou NT e outros sabores de DOS e
+Windows é outra besta-fera.
 
 
 .. _tut-lineediting:
