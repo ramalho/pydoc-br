@@ -151,10 +151,26 @@ Exemplo em datastructures.rst::
      >>> transposta
      [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
 
+
+"looks like this"
+-----------------
+
+Essa é uma expressão idiomática, e sua tradução literal soa muito mal: "se
+parece com isso" (não é natural em português, parece uma tradução automática).
+Alternativas melhores: "é assim" ou "tem esta forma". Exemplo:
+
+   A class definition with multiple base classes looks like this:
+
+pode ser traduzido assim:
+
+   Uma definição de classe que com várias classes base tem esta forma:
+
+
 Mais informações
 ----------------
 
-Use sempre "consulte x para mais informações" em vez de "consulte x para maiores informações".
+Use sempre "consulte x para mais informações" em vez de "consulte x para
+maiores informações".
 
 
 Traduções adotadas para termos específicos

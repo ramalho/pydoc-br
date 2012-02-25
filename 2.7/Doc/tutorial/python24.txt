@@ -3299,13 +3299,19 @@ Clientes devem utilizar atributos de dados com cuidado, pois podem bagunçar inv
 ao esbarrar nos seus atributos. Portanto, clientes podem adicionar à vontade atributos de dados para uma instância
 sem afetar a validade dos métodos, desde que seja evitado o conflito de nomes. Novamente, uma convenção de
 nomenclatura poupa muita dor de cabeça.
+
+
 Não existe atalho para referenciar atributos de dados (ou métodos) de dentro de um método. Isso na verdade
 aumenta a legibilidade dos métodos: não há como confundir uma variável local com uma instância global ao dar
 uma olhadela em um método desconhecido.
+
+
 Frequentemente, o primeiro argumento de qualquer método é chamado self. Isso não é nada mais do que
 uma convenção, self não possui nenhum significado especial em Python (observe que ao seguir a convenção
 seu código se torna legível por uma grande comunidade de desenvolvedores Python e potencialmente poderá se
 beneficiar de ferramentas feitas por outrém que se baseie na convenção).
+
+
 Qualquer função que é também atributo de classe, define um método nas instâncias desta classe. Não é necessário
 9.4. Observações Aleatórias
 63
