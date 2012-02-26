@@ -4,7 +4,7 @@
 Classes
 *******
 
-Em comparação com outras linguages, o mecanismo de classes de Python introduz
+Em comparação com outras linguagens, o mecanismo de classes de Python introduz
 a programação orientada a objetos sem acrescentar muitas novidades de sintaxe
 ou semântica. É uma mistura de mecanismos equivalentes encontrados em C++ e
 Modula-3. As classes em Python oferecem todas as características tradicionais
@@ -25,7 +25,7 @@ fornecido implicitamente pela invocação. Como em Smalltalk, classes são
 objetos. Isso fornece uma semântica para importar e renomear. Ao contrário de
 C++ ou Modula-3, tipos pré-definidos podem ser utilizados como classes base
 para extensões de usuário por herança. Como em C++, mas diferentemente de
-Modula-3, a maioria dos operadores (aritiméticos, indexação,etc) podem ser
+Modula-3, a maioria dos operadores (aritméticos, indexação,etc) podem ser
 redefinidos para instâncias de classe.
 
 (Na falta de uma terminologia universalmente aceita para falar sobre classes,
@@ -47,7 +47,7 @@ não é muito apreciada, e pode ser seguramente ignorada ao lidar com tipos
 imutáveis (números, strings, tuplas). Entretanto, aliasing pode ter um efeito
 inesperado sobre a semântica de código Python envolvendo objetos mutáveis como
 listas, dicionários e a maioria dos outros tipos. Isso pode ser usado em
-benefício do programa, porque os aliases (apelidos) funcionam de certa forma
+benefício do programa, porque os *aliases* (apelidos) funcionam de certa forma
 como ponteiros. Por exemplo, passar um objeto como argumento é barato, pois só
 um ponteiro é passado na implementação; e se uma função modifica um objeto
 passado como argumento, o invocador verá a mudança --- isso elimina a
@@ -69,7 +69,7 @@ Escopos e *namespaces*
 
 Antes de introduzir classes, é preciso falar das regras de escopo em Python.
 Definições de classe fazem alguns truques com *namespaces* (espaços de nomes).
-Portanto, primeiro é preciso entender bem como escopos e *namespaces*
+Portanto, primeiro é preciso entender claramente como escopos e *namespaces*
 funcionam. Esse conhecimento é muito útil para o programador avançado em
 Python.
 
@@ -96,9 +96,9 @@ entre os os atributos de um módulo e os nomes globais definidos no módulo:
 eles compartilham o mesmo espaço de nomes! [#]_
 
 Atributos podem ser somente para leitura ou para leitura e escrita. No segundo
-caso, é possível atribuir um novo valor ao atributo. (N.d.T. Ou mesmo criar
-novos atributos.) Atributos de módulos são passíveis de atribuição: você pode
-escrever ``nomemod.a_reposta = 42``. Atributos que aceitam escrita também
+caso, é possível atribuir um novo valor ao atributo. (N.d.T. Também é possível
+criar novos atributos.) Atributos de módulos são passíveis de atribuição: você
+pode escrever ``nomemod.a_reposta = 42``. Atributos que aceitam escrita também
 podem ser apagados através do comando :keyword:`del`. Por exemplo, ``del
 nomemod.a_reposta`` remove o atributo :attr:`a_resposta` do objeto
 referenciado por ``nomemod``.
@@ -108,7 +108,7 @@ ciclos de vida. O espaço de nomes que contém os nomes embutidos é criado
 quando o interpretador inicializa e nunca é removido. O espaço de nomes global
 de um módulo é criado quando a definição do módulo é lida, e normalmente duram
 até a terminação do interpretador. Os comandos executados pela invocação do
-interpertador, pela leitura de um script com programa principal, ou
+interpretador, pela leitura de um script com programa principal, ou
 interativamente, são parte do módulo chamado :mod:`__main__`, e portanto
 possuem seu próprio espaço de nomes. (Os nomes embutidos possuem seu
 próprio espaço de nomes no módulo chamado :mod:`__builtin__`.).
@@ -116,7 +116,7 @@ próprio espaço de nomes no módulo chamado :mod:`__builtin__`.).
 O espaço de nomes local de uma função é criado quando a função é invocada, e
 apagado quando a função retorna ou levanta uma exceção que não é tratada na
 própria função. (Na verdade, uma forma melhor de descrever o que realmente
-acontece é que o espaço de nomes local é "esquecido" quando a funçao termina.)
+acontece é que o espaço de nomes local é "esquecido" quando a função termina.)
 Naturalmente, cada invocação recursiva de uma função tem seu próprio espaço de
 nomes.
 
@@ -165,7 +165,7 @@ copiam dados, apenas associam nomes a objetos. O mesmo vale para remoções: o
 comando ``del x`` remove o vínculo de ``x`` do espaço de nomes do escopo
 local. De fato, todas as operações que introduzem novos nomes usam o escopo
 local. Em particular, instruções :keyword:`import` e definições de funções
-assoociam o nome módulo ou da função ao escopo local. (A palavra-reservada
+associam o nome módulo ou da função ao escopo local. (A palavra reservada
 :keyword:`global` pode ser usada para indicar que certas variáveis residem no
 escopo global ao invés do local.)
 
@@ -211,7 +211,7 @@ nesse escopo.
 
 Quando o processamento de uma definição de classe é completado (normalmente,
 sem erros), um *objeto classe* é criado. Este objeto encapsula o conteúdo do
-espaço de nomes criado pela definição da class; aprenderemos mais sobre
+espaço de nomes criado pela definição da classe; aprenderemos mais sobre
 objetos classe na próxima seção. O escopo local que estava vigente antes da
 definição da classe é reativado, e o objeto classe é vinculado ao
 identificador da classe nesse escopo (no exemplo acima, :class:`NomeDaClasse`
@@ -243,7 +243,7 @@ acessam, respectivamente, um inteiro e um objeto função. É possível mudar os
 valores dos atributos da classe, ou mesmo criar novos atributos, fazendo uma
 atribuição simples assim: ``MinhaClasse.i = 10``. O nome ``__doc__``
 identifica outro atributo válido da classe, referenciando a *docstring*
-associada à classe: ``"Um exemplo simples de classe"``.
+associada à ela: ``"Um exemplo simples de classe"``.
 
 Para *instanciar* uma classe, usa-se a sintaxe de invocar uma função. Apenas
 finja que o objeto classe do exemplo é uma função sem parâmetros, que devolve
@@ -263,9 +263,9 @@ chamado :meth:`__init__`, assim::
        self.dados = []
 
 Quando uma classe define um método :meth:`__init__`, o processo de
-instânciação automaticamente invoca :meth:`__init__` sobre a instância recém
-criada. Em nosso exemplo, uma nova intância já inicializada pode ser obtida
-por::
+instanciação automaticamente invoca :meth:`__init__` sobre a instância recém
+criada. Em nosso exemplo, uma nova instância já inicializada pode ser obtida
+desta maneira::
 
    x = MinhaClasse()
 
@@ -312,7 +312,7 @@ exclusivamente a instâncias de classes definidas pelo usuário: outros tipos de
 objetos também podem ter métodos. Por exemplo, listas possuem os métodos
 append, insert, remove, sort, etc. Porém, na discussão a seguir usaremos o
 termo método apenas para se referir a métodos de classes definidas pelo
-usuário. Seremos explícidos ao falar de outros métodos.)
+usuário. Seremos explícitos ao falar de outros métodos.)
 
 
 .. index:: object: method
@@ -337,9 +337,9 @@ Normalmente, um método é invocado imediatamente após ser acessado::
    x.f()
 
 No exemplo :class:`MinhaClasse` o resultado da expressão acima será a string
-``'olá, mundo'``. No entanto, não é obrigatótio invocar o método
+``'olá, mundo'``. No entanto, não é obrigatório invocar o método
 imediatamente: como ``x.f`` é também um objeto (um objeto método), ele pode
-atribuido a uma variável invocado depois. Por exemplo::
+atribuído a uma variável invocado depois. Por exemplo::
 
    xf = x.f
    while True:
@@ -515,11 +515,14 @@ Em uma classe derivada, um método que sobrescreva outro pode desejar na
 verdade estender, ao invés de substituir, o método sobrescrito de mesmo nome
 na classe base. A maneira mais simples de implementar esse comportamento é
 chamar diretamente o método na classe base, passando explicitamente a
-instância como primeiro argumento: ``NomeClasseBase.nomemetodo(self,
-argumentos)``. Às vezes essa forma de invocação pode ser útil até mesmo em
-código que apenas usa a classe, sem estendê-la. (Note que para esse exemplo
-funcionar, ``NomeClasseBase`` precisa estar definida ou importada diretamente
-no escopo global do módulo.)
+instância como primeiro argumento::
+
+  NomeClasseBase.nomemetodo(self, argumento1, argumento2)
+
+Às vezes essa forma de invocação pode ser útil até mesmo em código que apenas
+usa a classe, sem estendê-la. (Note que para esse exemplo funcionar,
+``NomeClasseBase`` precisa estar definida ou importada diretamente no escopo
+global do módulo.)
 
 Python tem duas funções embutidas que trabalham com herança:
 
@@ -564,15 +567,16 @@ preciso conhecer toda a hierarquia de :class:`Base1` para evitar um conflito
 com um atributo de :class:`Base2`. Na prática, a busca em profundidade não
 diferencia entre atributos diretos ou herdados de :class:`Base1`.)
 
-Em :term:`new-style class`\es, a ordem de resolução de métodos muda
-dinamicamente para suportar invocações cooperativas via :func:`super`. Esta
-abordagem é conhecida em certas outras linguagens que têm herança múltipla
-como *call-next-method* (invocar próximo método) e é mais poderoso que o
-mecanismo de invocação via super encontrado em linguagens de herança simples.
+Em :term:`new-style classes <new-style class>`), a ordem de resolução de
+métodos muda dinamicamente para suportar invocações cooperativas via
+:func:`super`. Esta abordagem é conhecida em certas outras linguagens que têm
+herança múltipla como *call-next-method* (invocar próximo método) e é mais
+poderoso que o mecanismo de invocação via super encontrado em linguagens de
+herança simples.
 
 A ordenação dinâmica é necessária nas classes new-style, porque todos os casos
 de herança múltipla apresentam uma ou mais estruturas de diamante (um
-losângulo no grafo de herança, onde pelo menos uma das superclasses pode ser
+losango no grafo de herança, onde pelo menos uma das superclasses pode ser
 acessada através de vários caminhos a partir de uma classe derivada). Por
 exemplo, todas as classes new-style herdam de :class:`object`, portanto,
 qualquer caso de herança múltipla envolvendo apenas classes new-style fornece
@@ -607,25 +611,16 @@ uma parte não-pública da API (seja ele uma função, um método ou um atributo
 dados). Tais nomes devem ser considerados um detalhe de implementação e
 sujeito a alteração sem aviso prévio.
 
-Since there is a valid use-case for class-private members (namely to avoid
-name clashes of names with names defined by subclasses), there is limited
-support for such a mechanism, called :dfn:`name mangling` .  Any identifier of the form ``__spam`` (at least two
-leading underscores, at most one trailing underscore) is textually replaced
-with ``_classname__spam``, where ``classname`` is the current class name with
-leading underscore(s) stripped.  This mangling is done without regard to the
-syntactic position of the identifier, as long as it occurs within the
-definition of a class.
-
 Uma vez que existe um caso de uso válido para a definição de atributos
 privados em classes (especificamente para evitar conflitos com nomes definidos
 em subclasses), existe um suporte limitado a identificadores privados em
 classes, chamado :dfn:`name mangling` (literalmente: desfiguração de nomes).
 Qualquer identificador no formato ``__spam`` (no mínimo dois underscores ``_``
 no prefixo e no máximo um sufixo) é substituído por ``_nomeclasse__spam``,
-onde ``classname`` é o nome da classe corrente (exceto quando o nome da classe
-é prefixado com ``_`` underscores; nesse caso eles são omitidos). Essa
-desfiguração independe da posição sintática do identificador, desde que ele
-apareça dentro da definição de uma classe.
+onde ``nomeclasse`` é o nome da classe corrente (exceto quando o nome da classe
+é prefixado com um ou mais underscores ``_``; nesse caso eles são omitidos).
+Essa desfiguração independe da posição sintática do identificador, desde que
+ele apareça dentro da definição de uma classe.
 
 A desfiguração de nomes é útil para que subclasses possam sobrescrever métodos
 sem quebrar a invocações de métodos dentro de outra classe. Por exemplo::
@@ -689,7 +684,7 @@ suporta. Por exemplo, se você tem uma função que formata dados obtidos de um
 objeto arquivo, pode passar como argumento para essa função uma instância de
 uma classe que implemente os métodos :meth:`read` e :meth:`readline` que obtém
 os dados lendo um buffer ao invés de ler um arquivo real. (N.d.T. isso é um
-exemplo de “duck typing” [#]_\ ).
+exemplo de “duck typing” [#]_\ .)
 
 
 .. (Unfortunately, this technique has its limitations: a class can't define
@@ -840,10 +835,10 @@ devolver ``self``::
 Geradores
 =========
 
-Funções geradoras (:term:`generator`) são uma maneira fácil e poderosa de
-criar um iterador. Uma função geradora é escrita como uma função normal, mas
-usa o comando :keyword:`yield` para produzir resultados. (N.d.T. Quando
-invocada, a função geradora produz um objeto gerador.) Cada vez que
+Funções geradoras (:term:`generator <generator>`) são uma maneira fácil e
+poderosa de criar um iterador. Uma função geradora é escrita como uma função
+normal, mas usa o comando :keyword:`yield` para produzir resultados. (N.d.T.
+Quando invocada, a função geradora produz um objeto gerador.) Cada vez que
 :meth:`next` é invocado, o gerador continua a partir de onde parou (ele mantem
 na memória seus dados internos e o último comando executado). Um exemplo
 mostra como geradores podem ser muito fáceis de criar::
@@ -937,22 +932,23 @@ Examplos::
 
 
 
-.. rubric:: Footnotes
+.. rubric:: Notas
 
-.. [#] Except for one thing.  Module objects have a secret read-only attribute called
-   :attr:`__dict__` which returns the dictionary used to implement the module's
-   namespace; the name :attr:`__dict__` is an attribute but not a global name.
-   Obviously, using this violates the abstraction of namespace implementation, and
-   should be restricted to things like post-mortem debuggers.
+.. [#] Exceto por um detalhe. Objetos módulo têm um atributo secreto apenas para
+   leitura chamado :attr:`__dict__` que é uma referência ao dicionário usado para
+   implementar o namespace do módulo; o nome :attr:`__dict__` é um atributo mas
+   não um nome global. Obviamente, acessar esse atributo viola a abstração da
+   implementação de namespaces, e é algo que só deve ser feito por ferramentas
+   especiais, como depuradores "post-mortem".
 
-.. [#] N.d.T.: Os termos "old-style class" e :term:`new-style class`
-  referem-se a duas implementações de classes que convivem desde o Python 2.2.
-  A implementação mais antiga, "old-style classes" foi preservada até o
-  Python 2.7 para manter a compatibilidade com bibliotecas e scripts antigos,
-  mas deixou de existir a partir do Python 3.0. As "new-style classes"
-  suportam o mecanismo de descritores, usado para implementar propriedades
-  (*properties*). Recomenda-se que todo código Python novo use apenas
-  "new-style classes".
+.. [#] N.d.T.: Os termos :term:`new-style class <new-style class>` e
+   "old-style class" e referem-se a duas implementações de classes que convivem
+   desde o Python 2.2. A implementação mais antiga, "old-style classes" foi
+   preservada até o Python 2.7 para manter a compatibilidade com bibliotecas e
+   scripts antigos, mas deixou de existir a partir do Python 3.0. As "new-style
+   classes" suportam o mecanismo de descritores, usado para implementar
+   propriedades (*properties*). Recomenda-se que todo código Python novo use
+   apenas "new-style classes".
 
   Desde o Python 2.2, a forma de declarar uma classe determina se ela usa a
   implementação nova ou antiga. Qualquer classe derivada direta ou
@@ -984,21 +980,21 @@ Examplos::
       <type 'type'>
 
   Para saber mais sobre as diferenças, veja `New Class vs Classic Class`_ no wiki
-  do python.org. ou arigo original do Guido van Rossum, `Unifying types and
+  do python.org. ou artigo original de Guido van Rossum, `Unifying types and
   classes in Python 2.2`_.
 
 .. _New Class vs Classic Class: http://wiki.python.org/moin/NewClassVsClassicClass
 .. _Unifying types and classes in Python 2.2: http://www.python.org/download/releases/2.2.3/descrintro/
 
 .. [#] N.d.T. Esse parágrafo descreve uma aplicação do conceito de "duck
-   typing" (literalmente, "tipagem pato"), cuja idéia central é que os
+   typing" (literalmente, "tipagem pato"), cuja ideia central é que os
    atributos e comportamentos de um objeto são mais importantes que seu tipo:
    “Quando vejo um pássaro que anda com um pato, nada como um pato, e grasna
    como um pato, chamo esse pássaro de pato.” (James Whitcomb Riley). Segundo
-   a Wikipedia_, a metáfora dos atributos de um pato no contexto de
-   programação orientada a objetos foi usada pela primeira vez por
-   Alex Martelli no grupo *comp.lang.python* em 26/jul/2000 (link para
-   mensagem: polymorphism_).
+   a Wikipedia_ (em inglês), a metáfora dos atributos de um pato no contexto
+   de programação orientada a objetos foi usada pela primeira vez por
+   Alex Martelli no grupo *comp.lang.python* em 26/jul/2000. O assunto da
+   mensagem era polymorphism_.
 
 .. _Wikipedia: http://en.wikipedia.org/wiki/Duck_typing#History
 .. _polymorphism: http://groups.google.com/group/comp.lang.python/msg/e230ca916be58835
