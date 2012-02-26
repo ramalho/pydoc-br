@@ -557,14 +557,12 @@ classes [#]_), a busca é feita em profundidade e da esquerda para a direita.
 Logo, se um atributo não é encontrado em :class:`NomeClasseDerivada`, ele é
 procurado em :class:`Base1`, e recursivamente nas classes bases de
 :class:`Base1`, e apenas se não for encontrado lá a busca prosseguirá em
-:class:`Base2`, e assim sucessivamente.
-
-(Para algumas pessoas a busca em largura --- procurar antes em :class:`Base2`
-e :class:`Base3` do que nos ancestrais de :class:`Base1` --- parece mais
-natural. Entretanto, seria preciso conhecer toda a hierarquia de
-:class:`Base1` para evitar um conflito com um atributo de :class:`Base2`. Na
-prática, a busca em profundidade não diferencia entre atributos diretos ou
-herdados de :class:`Base1`.)
+:class:`Base2`, e assim sucessivamente. (Para algumas pessoas a busca em
+largura --- procurar antes em :class:`Base2` e :class:`Base3` do que nos
+ancestrais de :class:`Base1` --- parece mais natural. Entretanto, seria
+preciso conhecer toda a hierarquia de :class:`Base1` para evitar um conflito
+com um atributo de :class:`Base2`. Na prática, a busca em profundidade não
+diferencia entre atributos diretos ou herdados de :class:`Base1`.)
 
 Em :term:`new-style class`\es, a ordem de resolução de métodos muda
 dinamicamente para suportar invocações cooperativas via :func:`super`. Esta
@@ -572,22 +570,7 @@ abordagem é conhecida em certas outras linguagens que têm herança múltipla
 como *call-next-method* (invocar próximo método) e é mais poderoso que o
 mecanismo de invocação via super encontrado em linguagens de herança simples.
 
-
-With new-style classes, dynamic ordering is necessary because all  cases of
-multiple inheritance exhibit one or more diamond relationships (where at
-least one of the parent classes can be accessed through multiple paths from the
-bottommost class).  For example, all new-style classes inherit from
-:class:`object`, so any case of multiple inheritance provides more than one path
-to reach :class:`object`.  To keep the base classes from being accessed more
-than once, the dynamic algorithm linearizes the search order in a way that
-preserves the left-to-right ordering specified in each class, that calls each
-parent only once, and that is monotonic (meaning that a class can be subclassed
-without affecting the precedence order of its parents).  Taken together, these
-properties make it possible to design reliable and extensible classes with
-multiple inheritance.  For more detail, see
-http://www.python.org/download/releases/2.3/mro/.
-
-Nas classes new-style, a ordenação dinâmica é necessária porque todos os casos
+A ordenação dinâmica é necessária nas classes new-style, porque todos os casos
 de herança múltipla apresentam uma ou mais estruturas de diamante (um
 losângulo no grafo de herança, onde pelo menos uma das superclasses pode ser
 acessada através de vários caminhos a partir de uma classe derivada). Por
@@ -601,8 +584,8 @@ pesquisa de uma maneira que:
 
 * acessa cada classe base apenas uma vez;
 
-é monotônica (o que significa que uma classe pode ser derivada sem que isso
-afete a ordem de precedência de suas classes base).
+* é monotônica (significa que uma classe pode ser derivada sem que isso
+  afete a ordem de precedência de suas classes base).
 
 Juntas, essas características tornam possível criar classes confiáveis e
 extensíveis usando herança múltipla. Para mais detalhes, veja `The Python 2.3
@@ -613,117 +596,139 @@ Method Resolution Order`_
 
 .. _tut-private:
 
-Private Variables
-=================
+Variáveis privadas
+==================
 
-"Private" instance variables that cannot be accessed except from inside an
-object don't exist in Python.  However, there is a convention that is followed
-by most Python code: a name prefixed with an underscore (e.g. ``_spam``) should
-be treated as a non-public part of the API (whether it is a function, a method
-or a data member).  It should be considered an implementation detail and subject
-to change without notice.
+Variáveis instância "privadas", que não podem ser acessados ​​exceto em
+métodos do próprio objeto não existem em Python. No entanto, existe uma
+convenção que é seguida pela maioria dos programas em Python: um nome
+prefixado com um sublinhado (por exemplo: ``_spam`` ) deve ser tratado como
+uma parte não-pública da API (seja ele uma função, um método ou um atributo de
+dados). Tais nomes devem ser considerados um detalhe de implementação e
+sujeito a alteração sem aviso prévio.
 
-Since there is a valid use-case for class-private members (namely to avoid name
-clashes of names with names defined by subclasses), there is limited support for
-such a mechanism, called :dfn:`name mangling`.  Any identifier of the form
-``__spam`` (at least two leading underscores, at most one trailing underscore)
-is textually replaced with ``_classname__spam``, where ``classname`` is the
-current class name with leading underscore(s) stripped.  This mangling is done
-without regard to the syntactic position of the identifier, as long as it
-occurs within the definition of a class.
+Since there is a valid use-case for class-private members (namely to avoid
+name clashes of names with names defined by subclasses), there is limited
+support for such a mechanism, called :dfn:`name mangling` .  Any identifier of the form ``__spam`` (at least two
+leading underscores, at most one trailing underscore) is textually replaced
+with ``_classname__spam``, where ``classname`` is the current class name with
+leading underscore(s) stripped.  This mangling is done without regard to the
+syntactic position of the identifier, as long as it occurs within the
+definition of a class.
 
-Name mangling is helpful for letting subclasses override methods without
-breaking intraclass method calls.  For example::
+Uma vez que existe um caso de uso válido para a definição de atributos
+privados em classes (especificamente para evitar conflitos com nomes definidos
+em subclasses), existe um suporte limitado a identificadores privados em
+classes, chamado :dfn:`name mangling` (literalmente: desfiguração de nomes).
+Qualquer identificador no formato ``__spam`` (no mínimo dois underscores ``_``
+no prefixo e no máximo um sufixo) é substituído por ``_nomeclasse__spam``,
+onde ``classname`` é o nome da classe corrente (exceto quando o nome da classe
+é prefixado com ``_`` underscores; nesse caso eles são omitidos). Essa
+desfiguração independe da posição sintática do identificador, desde que ele
+apareça dentro da definição de uma classe.
+
+A desfiguração de nomes é útil para que subclasses possam sobrescrever métodos
+sem quebrar a invocações de métodos dentro de outra classe. Por exemplo::
+
 
    class Mapping:
        def __init__(self, iterable):
            self.items_list = []
-           self.__update(iterable)
+           self.__update(iterable) # referencia ao nome privado
 
-       def update(self, iterable):
+       def update(self, iterable): # parte da API, pode ser sobrescrito
            for item in iterable:
                self.items_list.append(item)
 
-       __update = update   # private copy of original update() method
+       __update = update   # nome privado do método update
 
    class MappingSubclass(Mapping):
 
        def update(self, keys, values):
-           # provides new signature for update()
-           # but does not break __init__()
+           # altera a assinatura de update()
+           # mas não quebra o __init__() original
            for item in zip(keys, values):
                self.items_list.append(item)
 
-Note that the mangling rules are designed mostly to avoid accidents; it still is
-possible to access or modify a variable that is considered private.  This can
-even be useful in special circumstances, such as in the debugger.
+Note que as regras de desfiguração de nomes foram projetadas para evitar
+acidentes; ainda é possível acessar e alterar intencionalmente variáveis
+protegidas por esse mecanismo. De fato isso pode ser útil em certas
+circunstâncias, por exemplo, durante uma sessão com o :mod:`pdb`, o
+depurador interativo do Python.
 
-Notice that code passed to ``exec``, ``eval()`` or ``execfile()`` does not
-consider the classname of the invoking  class to be the current class; this is
-similar to the effect of the  ``global`` statement, the effect of which is
-likewise restricted to  code that is byte-compiled together.  The same
-restriction applies to ``getattr()``, ``setattr()`` and ``delattr()``, as well
-as when referencing ``__dict__`` directly.
+Código passado para ``exec``, ``eval()`` ou ``execfile()`` não considera o
+nome da classe que invocou como sendo a classe corrente; isso é semelhante ao
+funcionamento da declaração :keyword:`global`, cujo efeito se aplica somente
+ao código que é byte-compilado junto. A mesma restrição se aplica as funções
+``getattr()``, ``setattr()`` e ``delattr()``, e quando acessamos diretamente o
+``__dict__`` da classe: lá as chaves já estão desfiguradas.
 
 
 .. _tut-odds:
 
-Odds and Ends
-=============
+Miscelânea
+==========
 
-Sometimes it is useful to have a data type similar to the Pascal "record" or C
-"struct", bundling together a few named data items.  An empty class definition
-will do nicely::
+Às vezes, é útil ter um tipo semelhante ao “record” de Pascal ou ao “struct”
+de C, para agrupar alguns itens de dados. Uma definição de classe vazia
+funciona bem para este fim::
 
-   class Employee:
+   class Empregado:
        pass
 
-   john = Employee() # Create an empty employee record
+   joao = Empregado() # Criar um registro de empregado vazio
 
-   # Fill the fields of the record
-   john.name = 'John Doe'
-   john.dept = 'computer lab'
-   john.salary = 1000
+   # Preencher campos do registrp
+   joao.nome = u'João da Silva'
+   joao.depto = u'laboratório de informática'
+   joao.salario = 1000
 
-A piece of Python code that expects a particular abstract data type can often be
-passed a class that emulates the methods of that data type instead.  For
-instance, if you have a function that formats some data from a file object, you
-can define a class with methods :meth:`read` and :meth:`readline` that get the
-data from a string buffer instead, and pass it as an argument.
+Um trecho de código Python que espera um tipo abstrato de dado em particular,
+pode receber, ao invés disso, um objeto que emula os métodos que aquele tipo
+suporta. Por exemplo, se você tem uma função que formata dados obtidos de um
+objeto arquivo, pode passar como argumento para essa função uma instância de
+uma classe que implemente os métodos :meth:`read` e :meth:`readline` que obtém
+os dados lendo um buffer ao invés de ler um arquivo real. (N.d.T. isso é um
+exemplo de “duck typing” [#]_\ ).
+
 
 .. (Unfortunately, this technique has its limitations: a class can't define
    operations that are accessed by special syntax such as sequence subscripting
    or arithmetic operators, and assigning such a "pseudo-file" to sys.stdin will
    not cause the interpreter to read further input from it.)
 
-Instance method objects have attributes, too: ``m.im_self`` is the instance
-object with the method :meth:`m`, and ``m.im_func`` is the function object
-corresponding to the method.
+Objetos método têm seus próprios atributos: ``m.im_self`` é uma referência à
+instância vinculada ao método :meth:`m`, e ``m.im_func`` é o objeto função
+(atributo da classe) que corresponde ao método.
 
 
 .. _tut-exceptionclasses:
 
-Exceptions Are Classes Too
-==========================
+Exceções também são classes
+===========================
 
-User-defined exceptions are identified by classes as well.  Using this mechanism
-it is possible to create extensible hierarchies of exceptions.
+Exceções definidas pelo usuário são identificadas por classes. Através deste
+mecanismo é possível criar hierarquias extensíveis de exceções.
 
-There are two new valid (semantic) forms for the :keyword:`raise` statement::
+Há duas novas formas semanticamente válidas para o comando :keyword:`raise`::
 
-   raise Class, instance
+   raise Classe, instancia
 
-   raise instance
+   raise instancia
 
-In the first form, ``instance`` must be an instance of :class:`Class` or of a
-class derived from it.  The second form is a shorthand for::
+Na primeira forma, ``instancia`` deve ser uma instância de :class:`Classe` ou
+de uma classe derivada dela. A segunda forma é um atalho para::
 
-   raise instance.__class__, instance
 
-A class in an :keyword:`except` clause is compatible with an exception if it is
-the same class or a base class thereof (but not the other way around --- an
-except clause listing a derived class is not compatible with a base class).  For
-example, the following code will print B, C, D in that order::
+   raise instancia.__class__, instancia
+
+
+Em uma cláusula :keyword:`except`, uma classe é compatível com a exceção
+levantada se é a mesma classe ou uma classe ancestral dela (mas não o
+contrário: uma cláusula :keyword:`except` que menciona uma classe derivada
+daquela que foi levantada não vai capturar tal exceção). No exemplo a seguir
+será exibido B, C e D nessa ordem::
+
 
    class B:
        pass
@@ -742,12 +747,14 @@ example, the following code will print B, C, D in that order::
        except B:
            print "B"
 
-Note that if the except clauses were reversed (with ``except B`` first), it
-would have printed B, B, B --- the first matching except clause is triggered.
+Se a ordem das cláusulas fosse invertida (``except B`` no início), seria
+exibido B, B, B --- somente a primeira cláusula :keyword:`except` compatível é
+ativada.
 
-When an error message is printed for an unhandled exception, the exception's
-class name is printed, then a colon and a space, and finally the instance
-converted to a string using the built-in function :func:`str`.
+No caso de uma exceção não tratada, quando a mensagem de erro é gerada, o nome
+da classe da exceção é exibido, seguido de ``': '`` (dois pontos e um espaço),
+e finalmente aparece a instância da exceção convertida para string através da
+função embutida :func:`str`.
 
 
 .. _tut-iterators:
@@ -910,16 +917,16 @@ Examples::
    Obviously, using this violates the abstraction of namespace implementation, and
    should be restricted to things like post-mortem debuggers.
 
-.. [#] N.d.T.: Os termos "old-style class" e "new-style class" referem-se a
-  duas implementações de classes que convivem desde o Python 2.2. A
-  implementação mais antiga, das "old-style classes" foi preservada até o
+.. [#] N.d.T.: Os termos "old-style class" e :term:`new-style class`
+  referem-se a duas implementações de classes que convivem desde o Python 2.2.
+  A implementação mais antiga, "old-style classes" foi preservada até o
   Python 2.7 para manter a compatibilidade com bibliotecas e scripts antigos,
   mas deixou de existir a partir do Python 3.0. As "new-style classes"
   suportam o mecanismo de descritores, usado para implementar propriedades
   (*properties*). Recomenda-se que todo código Python novo use apenas
   "new-style classes".
 
-  Desde o Python 2.2, a forma de definir uma classe determina se ela usa a
+  Desde o Python 2.2, a forma de declarar uma classe determina se ela usa a
   implementação nova ou antiga. Qualquer classe derivada direta ou
   indiretamente de :class:`object` é uma classe "new-style". Os objetos classe
   novos são do tipo ``type`` e os objetos classe antigos são do tipo
@@ -954,3 +961,16 @@ Examples::
 
 .. _New Class vs Classic Class: http://wiki.python.org/moin/NewClassVsClassicClass
 .. _Unifying types and classes in Python 2.2: http://www.python.org/download/releases/2.2.3/descrintro/
+
+.. [#] N.d.T. Esse parágrafo descreve uma aplicação do conceito de "duck
+   typing" (literalmente, "tipagem pato"), cuja idéia central é que os
+   atributos e comportamentos de um objeto são mais importantes que seu tipo:
+   “Quando vejo um pássaro que anda com um pato, nada como um pato, e grasna
+   como um pato, chamo esse pássaro de pato.” (James Whitcomb Riley). Segundo
+   a Wikipedia_, a metáfora dos atributos de um pato no contexto de
+   programação orientada a objetos foi usada pela primeira vez por
+   Alex Martelli no grupo *comp.lang.python* em 26/jul/2000 (link para
+   mensagem: polymorphism_).
+
+.. _Wikipedia: http://en.wikipedia.org/wiki/Duck_typing#History
+.. _polymorphism: http://groups.google.com/group/comp.lang.python/msg/e230ca916be58835
