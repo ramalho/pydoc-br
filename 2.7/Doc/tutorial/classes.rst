@@ -121,7 +121,7 @@ Naturalmente, cada invocação recursiva de uma função tem seu próprio espaç
 nomes.
 
 Um *escopo* (*scope*) é uma região textual de um programa Python onde um
-espaço de nomes é diretamente acessível. Aqui, “diretamente acessível”
+espaço de nomes é diretamente acessível. Aqui, "diretamente acessível"
 significa que uma referência sem um prefixo qualificador permite o acesso ao
 nome.
 
@@ -254,7 +254,7 @@ uma nova instância da classe. Continuando o exemplo acima::
 cria uma nova *instância* da classe e atribui o objeto resultante à variável
 local ``x``.
 
-A operação de instanciação (“invocar” um objeto classe) cria um objeto vazio.
+A operação de instanciação ("invocar" um objeto classe) cria um objeto vazio.
 Muitas classes preferem criar novos objetos com um estado inicial
 predeterminado. Para tanto, a classe pode definir um método especial
 chamado :meth:`__init__`, assim::
@@ -292,8 +292,8 @@ Agora, o que podemos fazer com instâncias? As únicas operações reconhecidas
 por instâncias são referências a atributos. Existem dois tipos de nomes de
 atributos válidos: atributos de dados (*data attributes*) e métodos.
 
-Atributos de dados correspondem a “variáveis de instância” em Smalltalk, e a
-“data members” em C++. Atributos de dados não precisam ser declarados.
+Atributos de dados correspondem a "variáveis de instância" em Smalltalk, e a
+"data members" em C++. Atributos de dados não precisam ser declarados.
 Assim como variáveis locais, eles passam a existir na primeira vez em que é
 feita uma atribuição. Por exemplo, se ``x`` é uma instância da
 :class:`MinhaClasse` criada acima, o próximo trecho de código irá exibir o
@@ -307,7 +307,7 @@ valor ``16``, sem deixar nenhum rastro na instância (por causa do uso de
    del x.contador
 
 O outro tipo de referências a atributos são métodos. Um método é uma função
-que “pertence” a uma instância. (Em Python, o termo método não é aplicado
+que "pertence" a uma instância. (Em Python, o termo método não é aplicado
 exclusivamente a instâncias de classes definidas pelo usuário: outros tipos de
 objetos também podem ter métodos. Por exemplo, listas possuem os métodos
 append, insert, remove, sort, etc. Porém, na discussão a seguir usaremos o
@@ -385,7 +385,7 @@ conflitos de nome acidentais, que podem gerar bugs de difícil rastreio em
 programas extensos, é sábio adotar algum tipo de convenção que minimize a
 chance de conflitos. Convenções comuns incluem: definir nomes de métodos com
 inicial maiúscula, prefixar atributos de dados com uma string única (quem sabe
-“_” [*underscore* ou sublinhado]), ou usar sempre verbos para nomear métodos
+"_" [*underscore* ou sublinhado]), ou usar sempre verbos para nomear métodos
 e substantivos para atributos de dados.
 
 Atributos de dados podem ser referenciados por métodos da própria instância,
@@ -473,7 +473,7 @@ referenciada como ``objeto.__class__``.
 Herança
 =======
 
-Obviamente, uma característica não seria digna do nome “classe” se não
+Obviamente, uma característica não seria digna do nome "classe" se não
 suportasse herança. A sintaxe para uma classe derivada é assim::
 
    class NomeClasseDerivada(NomeClasseBase):
@@ -664,7 +664,7 @@ ao código que é byte-compilado junto. A mesma restrição se aplica as funçõ
 Miscelânea
 ==========
 
-Às vezes, é útil ter um tipo semelhante ao “record” de Pascal ou ao “struct”
+Às vezes, é útil ter um tipo semelhante ao "record" de Pascal ou ao "struct"
 de C, para agrupar alguns itens de dados. Uma definição de classe vazia
 funciona bem para este fim::
 
@@ -684,7 +684,7 @@ suporta. Por exemplo, se você tem uma função que formata dados obtidos de um
 objeto arquivo, pode passar como argumento para essa função uma instância de
 uma classe que implemente os métodos :meth:`read` e :meth:`readline` que obtém
 os dados lendo um buffer ao invés de ler um arquivo real. (N.d.T. isso é um
-exemplo de “duck typing” [#]_\ .)
+exemplo de "duck typing" [#]_\ .)
 
 
 .. (Unfortunately, this technique has its limitations: a class can't define
@@ -941,19 +941,19 @@ Examplos::
    implementação de namespaces, e é algo que só deve ser feito por ferramentas
    especiais, como depuradores "post-mortem".
 
-.. [#] N.d.T.: Os termos :term:`new-style class <new-style class>` e
-   "old-style class" e referem-se a duas implementações de classes que convivem
-   desde o Python 2.2. A implementação mais antiga, "old-style classes" foi
-   preservada até o Python 2.7 para manter a compatibilidade com bibliotecas e
-   scripts antigos, mas deixou de existir a partir do Python 3.0. As "new-style
+.. [#] N.d.T. Os termos :term:`new-style class <new-style class>` e "old-style
+   class" referem-se a duas implementações de classes que convivem desde o
+   Python 2.2. A implementação mais antiga, "old-style classes" foi preservada
+   até o Python 2.7 para manter a compatibilidade com bibliotecas e scripts
+   antigos, mas deixou de existir a partir do Python 3.0. As "new-style
    classes" suportam o mecanismo de descritores, usado para implementar
    propriedades (*properties*). Recomenda-se que todo código Python novo use
    apenas "new-style classes".
 
   Desde o Python 2.2, a forma de declarar uma classe determina se ela usa a
   implementação nova ou antiga. Qualquer classe derivada direta ou
-  indiretamente de :class:`object` é uma classe "new-style". Os objetos classe
-  novos são do tipo ``type`` e os objetos classe antigos são do tipo
+  indiretamente de :class:`object` é uma classe "new-style". Objetos classe
+  novos são do tipo ``type`` e objetos classe antigos são do tipo
   ``classobj``. Veja este exemplo::
 
       >>> class Nova(object):
@@ -969,9 +969,9 @@ Examplos::
 
   Note que a definição acima é recursiva. Em particular, uma classe
   que herda de uma classe antiga e de uma nova é uma classe "new-style",
-  pois através da classe ``Nova`` ela é uma subclasse de :class:`object`.
-  Não é uma boa prática misturar os dois estilos de classes, mas para fins
-  didáticos eis um exemplo::
+  pois através da classe nova ela é uma subclasse indireta de :class:`object`.
+  Não é uma boa prática misturar os dois estilos de classes, mas eis um
+  exemplo para ilustrar esse ponto::
 
       >>> class Mista(Velha, Nova):
       ...     pass
@@ -989,8 +989,8 @@ Examplos::
 .. [#] N.d.T. Esse parágrafo descreve uma aplicação do conceito de "duck
    typing" (literalmente, "tipagem pato"), cuja ideia central é que os
    atributos e comportamentos de um objeto são mais importantes que seu tipo:
-   “Quando vejo um pássaro que anda com um pato, nada como um pato, e grasna
-   como um pato, chamo esse pássaro de pato.” (James Whitcomb Riley). Segundo
+   "Quando vejo um pássaro que anda com um pato, nada como um pato, e grasna
+   como um pato, chamo esse pássaro de pato." (James Whitcomb Riley). Segundo
    a Wikipedia_ (em inglês), a metáfora dos atributos de um pato no contexto
    de programação orientada a objetos foi usada pela primeira vez por
    Alex Martelli no grupo *comp.lang.python* em 26/jul/2000. O assunto da
