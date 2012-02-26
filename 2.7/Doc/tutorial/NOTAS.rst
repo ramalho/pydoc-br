@@ -196,6 +196,9 @@ built-in function
 character
   caractere (e não "caracter", que não consta no Houaiss nem no Aulete)
 
+container objects
+  coleções
+
 current
   atual (e não "corrente", que é um falso cognato)
 

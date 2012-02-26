@@ -759,30 +759,32 @@ função embutida :func:`str`.
 
 .. _tut-iterators:
 
-Iterators
-=========
+Iteradores
+==========
 
-By now you have probably noticed that most container objects can be looped over
-using a :keyword:`for` statement::
+Você já deve ter notado que pode usar laços :keyword:`for` com a maioria das
+coleções em Python::
 
-   for element in [1, 2, 3]:
-       print element
-   for element in (1, 2, 3):
-       print element
-   for key in {'one':1, 'two':2}:
-       print key
-   for char in "123":
-       print char
-   for line in open("myfile.txt"):
-       print line
+   for elemento in [1, 2, 3]:
+       print elemento
+   for elemento in (1, 2, 3):
+       print elemento
+   for chave in {'one':1, 'two':2}:
+       print chave
+   for car in "123":
+       print car
+   for linha in open("myfile.txt"):
+       print linha
 
-This style of access is clear, concise, and convenient.  The use of iterators
-pervades and unifies Python.  Behind the scenes, the :keyword:`for` statement
-calls :func:`iter` on the container object.  The function returns an iterator
-object that defines the method :meth:`next` which accesses elements in the
-container one at a time.  When there are no more elements, :meth:`next` raises a
-:exc:`StopIteration` exception which tells the :keyword:`for` loop to terminate.
-This example shows how it all works::
+
+Esse estilo de acesso é limpo, conciso e conveniente. O uso de iteradores
+promove uma unificação ao longo de toda a linguagem. Nos bastidores, o comando
+:keyword:`for` aplica a função embutida :func:`iter` à coleção. Essa função
+devolve um iterador que define o método :meth:`next`, que acessa os elementos
+da coleção em sequência, um por vez. Quando acabam os elementos, :meth:`next`
+levanta uma exceção :exc:`StopIteration`, indicando que o laço :keyword:`for`
+deve encerrar. Este exemplo mostra como tudo funciona::
+
 
    >>> s = 'abc'
    >>> it = iter(s)
@@ -800,13 +802,14 @@ This example shows how it all works::
        it.next()
    StopIteration
 
-Having seen the mechanics behind the iterator protocol, it is easy to add
-iterator behavior to your classes.  Define an :meth:`__iter__` method which
-returns an object with a :meth:`next` method.  If the class defines
-:meth:`next`, then :meth:`__iter__` can just return ``self``::
+Observando o mecanismo por trás do protocolo dos iteradores, fica fácil
+adicionar esse comportamento às suas classes. Defina uma método
+:meth:`__iter__` que devolve um objeto que tenha um método :meth:`next`. Se
+uma classe já define :meth:`next`, então :meth:`__iter__` pode simplesmente
+devolver ``self``::
 
-   class Reverse:
-       """Iterator for looping over a sequence backwards."""
+   class Inversor:
+       """Iterador para percorrer uma sequencia de trás para frente."""
        def __init__(self, data):
            self.data = data
            self.index = len(data)
@@ -820,11 +823,11 @@ returns an object with a :meth:`next` method.  If the class defines
 
 ::
 
-   >>> rev = Reverse('spam')
-   >>> iter(rev)
+   >>> inv = Inversor('spam')
+   >>> iter(inv)
    <__main__.Reverse object at 0x00A1DB50>
-   >>> for char in rev:
-   ...     print char
+   >>> for car in inv:
+   ...     print car
    ...
    m
    a
@@ -834,23 +837,25 @@ returns an object with a :meth:`next` method.  If the class defines
 
 .. _tut-generators:
 
-Generators
-==========
+Geradores
+=========
 
-:term:`Generator`\s are a simple and powerful tool for creating iterators.  They
-are written like regular functions but use the :keyword:`yield` statement
-whenever they want to return data.  Each time :meth:`next` is called, the
-generator resumes where it left-off (it remembers all the data values and which
-statement was last executed).  An example shows that generators can be trivially
-easy to create::
+Funções geradoras (:term:`generator`) são uma maneira fácil e poderosa de
+criar um iterador. Uma função geradora é escrita como uma função normal, mas
+usa o comando :keyword:`yield` para produzir resultados. (N.d.T. Quando
+invocada, a função geradora produz um objeto gerador.) Cada vez que
+:meth:`next` é invocado, o gerador continua a partir de onde parou (ele mantem
+na memória seus dados internos e o último comando executado). Um exemplo
+mostra como geradores podem ser muito fáceis de criar::
 
-   def reverse(data):
+
+   def inversor(data):
        for index in range(len(data)-1, -1, -1):
            yield data[index]
 
 ::
 
-   >>> for char in reverse('golf'):
+   >>> for char in inversor('golf'):
    ...     print char
    ...
    f
@@ -858,50 +863,73 @@ easy to create::
    o
    g
 
-Anything that can be done with generators can also be done with class based
-iterators as described in the previous section.  What makes generators so
-compact is that the :meth:`__iter__` and :meth:`next` methods are created
-automatically.
+N.d.T. Veja como a função geradora produz um objeto gerador, que implementa
+o protocolo de iterador::
 
-Another key feature is that the local variables and execution state are
-automatically saved between calls.  This made the function easier to write and
-much more clear than an approach using instance variables like ``self.index``
-and ``self.data``.
+   >>> gerador = inversor('golf')
+   >>> gerador
+   <generator object inversor at 0xb7797a2c>
+   >>> gerador.next()
+   'f'
+   >>> gerador.next()
+   'l'
+   >>> gerador.next()
+   'o'
+   >>> gerador.next()
+   'g'
+   >>> gerador.next()
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   StopIteration
 
-In addition to automatic method creation and saving program state, when
-generators terminate, they automatically raise :exc:`StopIteration`. In
-combination, these features make it easy to create iterators with no more effort
-than writing a regular function.
+
+Qualquer coisa feita com geradores também pode ser feita com iteradores
+baseados numa classe, como descrito na seção anterior. O que torna geradores
+tão compactos é que os métodos :meth:`__iter__` e :meth:`next` são criados
+automaticamente.
+
+Outro ponto chave é que as variáveis locais e o estado da execução são
+preservados automaticamente entre as chamadas de :meth:`next`. Isto torna a
+função mais fácil de escrever e muito mais clara do que uma implementação
+usando variáveis de instância como ``self.index`` e ``self.data``.
+
+Além disso, quando geradores terminam, eles levantam :exc:`StopIteration`
+automaticamente. Combinados, todos estes aspectos tornam a criação de
+iteradores tão fácil quanto escrever uma função normal.
+
 
 
 .. _tut-genexps:
 
-Generator Expressions
-=====================
+Expressões geradoras
+====================
 
-Some simple generators can be coded succinctly as expressions using a syntax
-similar to list comprehensions but with parentheses instead of brackets.  These
-expressions are designed for situations where the generator is used right away
-by an enclosing function.  Generator expressions are more compact but less
-versatile than full generator definitions and tend to be more memory friendly
-than equivalent list comprehensions.
+Alguns geradores simples podem ser escritos sucintamente como expressões
+usando uma sintaxe similar a de abrangência de listas (*list comprehensions*),
+mas com parênteses ao invés de colchetes. Essas expressões são destinadas a
+situações em que o gerador é usado imediatamente como argumento para função.
+Uma expressão geradora é mais compacta, porém menos versátil do que uma função
+geradora, e tende a usar muito menos memória do que a abrangência de lista
+equivalente.
 
-Examples::
 
-   >>> sum(i*i for i in range(10))                 # sum of squares
+Examplos::
+
+   >>> sum(i*i for i in range(10))          # soma de quadrados
    285
 
    >>> xvec = [10, 20, 30]
    >>> yvec = [7, 5, 3]
-   >>> sum(x*y for x,y in zip(xvec, yvec))         # dot product
+   >>> sum(x*y for x,y in zip(xvec, yvec))  # produto escalar (dot product)
    260
 
    >>> from math import pi, sin
-   >>> sine_table = dict((x, sin(x*pi/180)) for x in range(0, 91))
+   >>> senos = dict((x, sin(x*pi/180)) for x in range(0, 91))
 
-   >>> unique_words = set(word  for line in page  for word in line.split())
+   >>> palavras_unicas = set(palavra for linha in pagina
+   ...                               for palavra in linha.split())
 
-   >>> valedictorian = max((student.gpa, student.name) for student in graduates)
+   >>> melhor_aluno = max((aluno.media, aluno.nome) for aluno in formados)
 
    >>> data = 'golf'
    >>> list(data[i] for i in range(len(data)-1,-1,-1))
