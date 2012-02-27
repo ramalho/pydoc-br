@@ -1,11 +1,11 @@
 .. _tut-brieftourtwo:
 
-***************************************************
-Um breve passeio pela biblioteca padrão -- Parte II
-***************************************************
+****************************************************
+Um breve passeio pela biblioteca padrão --- parte II
+****************************************************
 
-Este segundo passeio apresenta alguns módulos avançados que cobrem algumas
-necessidades de programação profissional. Esses módulos raramente aparecem
+Este segundo passeio apresenta alguns módulos avançados que atendem
+necessidades de programação profissional. Estes módulos raramente aparecem
 em scripts pequenos.
 
 
@@ -79,11 +79,12 @@ sintaxe simplificada, adequada para ser editada por usuários finais. Isso
 permite que usuários personalizem suas aplicações sem a necessidade de alterar
 a aplicação.
 
-O formato usa um guarda-lugar (placeholder) formado por ``$`` seguido por um
+Em um template são colocadas marcações indicando o local onde o texto variável
+deve ser inserido. Uma marcação é formada por ``$`` seguido de um
 identificador Python válido (caracteres alfanuméricos e underscores).
-Envolvendo-se o guarda-lugar entre chaves, permite que ele seja seguido por
-mais caracteres alfanuméricos sem a necessidade de espaços. Escrevendo-se
-``$$`` cria-se um único ``$``::
+Envolvendo-se o identificador da marcação entre chaves, permite que ele seja
+seguido por mais caracteres alfanuméricos sem a necessidade de espaços.
+Escrevendo-se ``$$`` cria-se um único ``$``::
 
    >>> from string import Template
    >>> t = Template('Os ${lugar}nos enviaram $$10 para $causa.')
@@ -92,10 +93,10 @@ mais caracteres alfanuméricos sem a necessidade de espaços. Escrevendo-se
 
 O método :meth:`substitute` levanta uma exceção :exc:`KeyError` quando o
 identificador de uma marcação não é fornecido em um dicionário ou em um
-argumento nomeado (keyword argument). Para aplicações que podem receber dados
-incompletos fornecidos pelo usuário, o método :meth:`safe_substitute` pode ser
-mais apropriado --- deixará os marcadores intactos se os dados estiverem
-faltando::
+argumento nomeado (*keyword argument*). Para aplicações que podem receber
+dados incompletos fornecidos pelo usuário, o método :meth:`safe_substitute`
+pode ser mais apropriado --- deixará os marcadores intactos se os dados
+estiverem faltando::
 
    >>> t = Template('Encontre o $item e volte para $lugar.')
    >>> d = dict(item='cálice')
@@ -107,8 +108,8 @@ faltando::
    Encontre o cálice e volte para $lugar
 
 Subclasses de Template podem especificar um delimitador personalizado. Por
-exemplo, um utilitário para renomeação em lote de fotos, pode usar o sinal
-de porcentagem para guarda-lugares como a data atual, número sequencial da
+exemplo, um utilitário para renomeação em lote de fotos pode usar o sinal
+de porcentagem para marcações como a data atual, número sequencial da
 imagem ou formato do aquivo::
 
    >>> import time, os.path
@@ -130,9 +131,8 @@ imagem ou formato do aquivo::
    img_1077.jpg --> Ashley_2.jpg
 
 Outra aplicação para templates é separar a lógica da aplicação dos detalhes de
-múltiplos formatos de saída. Isso faz possível substituir templates
-personalizados por arquivos XML, relatórios em texto puro e relatórios web em
-HTML.
+múltiplos formatos de saída. Assim é possível usar templates personalizados
+para gerar arquivos XML, relatórios em texto puro e relatórios web em HTML.
 
 
 .. _tut-binary-formats:
@@ -255,10 +255,10 @@ logs personalizados sem a necessidade de alterar a aplicação.
 Referências fracas
 ==================
 
-Python faz geranciamento automático de memória (contagem de referências para a
-maioria dos objetos e :term:`garbage collection` [coleta de lixo] para
-eliminar ciclos). A memória ocupada por um objeto é liberada logo depois da
-última referência a ele ser eliminada.
+Python faz gerenciamento automático de memória (contagem de referências para a
+maioria dos objetos e :term:`garbage collection <garbage collection>` [coleta
+de lixo] para eliminar ciclos). A memória ocupada por um objeto é liberada
+logo depois da última referência a ele ser eliminada.
 
 Essa abordagem funciona bem para a maioria das aplicações, mas ocasionalmente
 surge a necessidade de rastrear objetos apenas enquanto estão sendo usados por
@@ -371,7 +371,7 @@ para:
 
 * aplicações financeiras que requerem representação decimal exata,
 * controle sobre a precisão,
-* controle sobre arredondamento para satisfazer requesitos legais,
+* controle sobre arredondamento para satisfazer requisitos legais,
 * rastreamento de casas decimais significativas, ou
 * aplicações onde o usuário espera que os resultados sejam os mesmos que os
   dos cálculos feitos à mão.

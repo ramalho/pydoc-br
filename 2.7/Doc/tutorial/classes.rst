@@ -29,7 +29,7 @@ Modula-3, a maioria dos operadores (aritméticos, indexação,etc) podem ser
 redefinidos para instâncias de classe.
 
 (Na falta de uma terminologia universalmente aceita para falar sobre classes,
-ocasionalmente farei uso de termos comuns em Smalltalk ou C++ (eu usaria
+ocasionalmente farei uso de termos comuns em Smalltalk ou C++. Eu usaria
 termos de Modula-3, já que sua semântica é mais próxima a de Python, mas creio
 que poucos leitores já ouviram falar dessa linguagem.)
 
@@ -184,7 +184,7 @@ alguma semântica nova.
 Sintaxe de definição de classe
 ------------------------------
 
-A forma mais simples de definir uma classe é:::
+A forma mais simples de definir uma classe é::
 
    class NomeDaClasse:
        <instrução-1>
@@ -623,7 +623,7 @@ Essa desfiguração independe da posição sintática do identificador, desde qu
 ele apareça dentro da definição de uma classe.
 
 A desfiguração de nomes é útil para que subclasses possam sobrescrever métodos
-sem quebrar a invocações de métodos dentro de outra classe. Por exemplo::
+sem quebrar invocações de métodos dentro de outra classe. Por exemplo::
 
 
    class Mapping:
@@ -840,8 +840,8 @@ poderosa de criar um iterador. Uma função geradora é escrita como uma funçã
 normal, mas usa o comando :keyword:`yield` para produzir resultados. (N.d.T.
 Quando invocada, a função geradora produz um objeto gerador.) Cada vez que
 :meth:`next` é invocado, o gerador continua a partir de onde parou (ele mantem
-na memória seus dados internos e o último comando executado). Um exemplo
-mostra como geradores podem ser muito fáceis de criar::
+na memória seus dados internos e a próxima instrução a ser executada). Um
+exemplo mostra como geradores podem ser muito fáceis de criar::
 
 
    def inversor(data):
@@ -941,20 +941,20 @@ Examplos::
    implementação de namespaces, e é algo que só deve ser feito por ferramentas
    especiais, como depuradores "post-mortem".
 
-.. [#] N.d.T. Os termos :term:`new-style class <new-style class>` e "old-style
-   class" referem-se a duas implementações de classes que convivem desde o
-   Python 2.2. A implementação mais antiga, "old-style classes" foi preservada
-   até o Python 2.7 para manter a compatibilidade com bibliotecas e scripts
-   antigos, mas deixou de existir a partir do Python 3.0. As "new-style
-   classes" suportam o mecanismo de descritores, usado para implementar
-   propriedades (*properties*). Recomenda-se que todo código Python novo use
-   apenas "new-style classes".
+.. [#] N.d.T. Os termos :term:`new-style class <new-style class>` e
+   "old-style class" referem-se a duas implementações de classes que
+   convivem desde o Python 2.2. A implementação mais antiga, "old-style
+   classes" foi preservada até o Python 2.7 para manter a compatibilidade com
+   bibliotecas e scripts antigos, mas deixou de existir a partir do Python
+   3.0. As "new-style classes" suportam o mecanismo de descritores, usado para
+   implementar propriedades (*properties*). Recomenda-se que todo código
+   Python novo use apenas "new-style classes".
 
-  Desde o Python 2.2, a forma de declarar uma classe determina se ela usa a
-  implementação nova ou antiga. Qualquer classe derivada direta ou
-  indiretamente de :class:`object` é uma classe "new-style". Objetos classe
-  novos são do tipo ``type`` e objetos classe antigos são do tipo
-  ``classobj``. Veja este exemplo::
+   Desde o Python 2.2, a forma de declarar uma classe determina se ela usa a
+   implementação nova ou antiga. Qualquer classe derivada direta ou
+   indiretamente de :class:`object` é uma classe "new-style". Objetos classe
+   novos são do tipo ``type`` e objetos classe antigos são do tipo
+   ``classobj``. Veja este exemplo::
 
       >>> class Nova(object):
       ...     pass
@@ -967,11 +967,11 @@ Examplos::
       >>> type(Velha)
       <type 'classobj'>
 
-  Note que a definição acima é recursiva. Em particular, uma classe
-  que herda de uma classe antiga e de uma nova é uma classe "new-style",
-  pois através da classe nova ela é uma subclasse indireta de :class:`object`.
-  Não é uma boa prática misturar os dois estilos de classes, mas eis um
-  exemplo para ilustrar esse ponto::
+   Note que a definição acima é recursiva. Em particular, uma classe
+   que herda de uma classe antiga e de uma nova é uma classe "new-style",
+   pois através da classe nova ela é uma subclasse indireta de :class:`object`.
+   Não é uma boa prática misturar os dois estilos de classes, mas eis um
+   exemplo para ilustrar esse ponto::
 
       >>> class Mista(Velha, Nova):
       ...     pass
@@ -979,9 +979,9 @@ Examplos::
       >>> type(Mista)
       <type 'type'>
 
-  Para saber mais sobre as diferenças, veja `New Class vs Classic Class`_ no wiki
-  do python.org. ou artigo original de Guido van Rossum, `Unifying types and
-  classes in Python 2.2`_.
+   Para saber mais sobre as diferenças, veja `New Class vs Classic Class`_ no wiki
+   do python.org ou artigo original de Guido van Rossum, `Unifying types and
+   classes in Python 2.2`_.
 
 .. _New Class vs Classic Class: http://wiki.python.org/moin/NewClassVsClassicClass
 .. _Unifying types and classes in Python 2.2: http://www.python.org/download/releases/2.2.3/descrintro/
