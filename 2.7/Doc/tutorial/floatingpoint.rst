@@ -1,62 +1,72 @@
 .. _tut-fp-issues:
 
-**************************************************
-Floating Point Arithmetic:  Issues and Limitations
-**************************************************
+*****************************************************
+Aritmética de ponto flutuante: problemas e limitações
+*****************************************************
 
 .. sectionauthor:: Tim Peters <tim_one@users.sourceforge.net>
 
 
-Floating-point numbers are represented in computer hardware as base 2 (binary)
-fractions.  For example, the decimal fraction ::
+Números de ponto flutuante são representados no hardware do computador como frações binárias (base 2). Por exemplo, a fração decimal::
 
    0.125
 
-has value 1/10 + 2/100 + 5/1000, and in the same way the binary fraction ::
+tem o valor 1/10 + 2/100 + 5/1000, e da mesma maneira a fração binária::
 
    0.001
 
-has value 0/2 + 0/4 + 1/8.  These two fractions have identical values, the only
-real difference being that the first is written in base 10 fractional notation,
-and the second in base 2.
+tem o valor 0/2 + 0/4 + 1/8.  Essas duas frações têm valores idênticos, a única
+diferença real é que a primeira está representada na forma de frações base 10,
+e a segunda na base 2.
 
-Unfortunately, most decimal fractions cannot be represented exactly as binary
-fractions.  A consequence is that, in general, the decimal floating-point
-numbers you enter are only approximated by the binary floating-point numbers
-actually stored in the machine.
+Infelizmente, muitas frações decimais não podem ser representadas precisamente
+como frações binárias. O resultado é que, em geral, os números decimais de
+ponto flutuante que você digita acabam sendo armazenados de forma apenas
+aproximada, na forma de números binários de ponto flutuante.
+
 
 The problem is easier to understand at first in base 10.  Consider the fraction
 1/3.  You can approximate that as a base 10 fraction::
 
+O problema é mais fácil de entender primeiro em base 10. Considere a fração
+1/3. Podemos represtentá-la aproximadamente como uma fração base 10::
+
+
    0.3
 
-or, better, ::
+ou melhor, ::
 
    0.33
 
-or, better, ::
+ou melhor, ::
 
    0.333
 
-and so on.  No matter how many digits you're willing to write down, the result
-will never be exactly 1/3, but will be an increasingly better approximation of
-1/3.
+e assim por diante. Não importa quantos dígitos você está disposto a escrever,
+o resultado nunca será exatamente 1/3, mas será uma aproximação de cada vez
+melhor 1/3.
 
 In the same way, no matter how many base 2 digits you're willing to use, the
 decimal value 0.1 cannot be represented exactly as a base 2 fraction.  In base
 2, 1/10 is the infinitely repeating fraction ::
 
+Da mesma forma, não importa quantos dígitos de base 2 você está disposto a
+usar, o valor decimal 0.1 não pode ser representado exatamente como uma fração
+de base 2. Em base 2, 1/10 é uma fração binária que se repete infinitamente ::
+
    0.0001100110011001100110011001100110011001100110011...
 
-Stop at any finite number of bits, and you get an approximation.
+Se limitamos a representação a qualquer número finito de bits, obtemos apenas
+uma aproximação.
 
-On a typical machine running Python, there are 53 bits of precision available
-for a Python float, so the value stored internally when you enter the decimal
-number ``0.1`` is the binary fraction ::
+Em uma máquina típica rodando Python, há 53 bits de precisão disponível para
+um ``float``, de modo que o valor armazenado internamente quando você digita
+o número decimal ``0.1`` é esta fração binária ::
+
 
    0.00011001100110011001100110011001100110011001100110011010
 
-which is close to, but not exactly equal to, 1/10.
+que chega perto, mas não é exatamente igual a 1/10.
 
 It's easy to forget that the stored value is an approximation to the original
 decimal fraction, because of the way that floats are displayed at the
@@ -65,31 +75,38 @@ decimal value of the binary approximation stored by the machine.  If Python
 were to print the true decimal value of the binary approximation stored for
 0.1, it would have to display ::
 
+É fácil esquecer que o valor armazenado é uma aproximação da fração decimal
+original, devido à forma como floats são exibidos no interpretador interativo.
+Python exibe apenas uma aproximação decimal do verdadeiro valor decimal da
+aproximação binária armazenada pela máquina. Se Python exibisse o verdadeiro
+valor decimal da aproximação binária que representa o decimal 0.1, teria
+que mostrar::
+
    >>> 0.1
    0.1000000000000000055511151231257827021181583404541015625
 
-That is more digits than most people find useful, so Python keeps the number
-of digits manageable by displaying a rounded value instead ::
+Isso é bem mais dígitos do que a maioria das pessoas considera útil, então Python
+limita o número de dígitos, apresentando em vez disso um valor arredondado::
 
    >>> 0.1
    0.1
 
-It's important to realize that this is, in a real sense, an illusion: the value
-in the machine is not exactly 1/10, you're simply rounding the *display* of the
-true machine value.  This fact becomes apparent as soon as you try to do
-arithmetic with these values ::
+É importante perceber que isso é, de fato, uma ilusão: o valor na máquina não
+é exatamente 1/10, estamos simplesmente arredondando a exibição do verdadeiro
+valor na máquina. Esse fato torna-se evidente logo que você tenta fazer
+aritmética com estes valores::
 
    >>> 0.1 + 0.2
    0.30000000000000004
 
-Note that this is in the very nature of binary floating-point: this is not a
-bug in Python, and it is not a bug in your code either.  You'll see the same
-kind of thing in all languages that support your hardware's floating-point
-arithmetic (although some languages may not *display* the difference by
-default, or in all output modes).
+Note que esse é a própria natureza do ponto flutuante binário: não é um bug em
+Python, e nem é um bug em seu código. Você verá o mesmo tipo de coisa em todas
+as linguagens que usam as instruções de aritmética de ponto flutuante do
+hardware (apesar de algumas linguagens não *mostrarem* a diferença, por
+padrão, ou em todos os modos de saída).
 
-Other surprises follow from this one.  For example, if you try to round the
-value 2.675 to two decimal places, you get this ::
+Outras surpresas decorrem desse fato. Por exemplo, se tentar arredondar o
+valor 2.675 para duas casas decimais, obterá esse resultado::
 
    >>> round(2.675, 2)
    2.67
@@ -101,15 +118,30 @@ here to be (a binary approximation to) 2.68.  It's not, because when the
 decimal string ``2.675`` is converted to a binary floating-point number, it's
 again replaced with a binary approximation, whose exact value is ::
 
+A documentação da função embutida :func:`round` diz que ela arredonda para o
+valor mais próximo, e em caso de empate opta pela aproximação mais distante de
+zero. Uma vez que a fração decimal 2.675 fica exatamente a meio caminho entre
+2.67 e 2.68, poderia-se esperar que o resultado fosse (uma aproximação binária
+de) 2.68. Mas não é, porque quando a string decimal ``2.675`` é convertida em
+um número de ponto flutuante binário, é substituída por uma aproximação
+binária, cujo valor exato é::
+
    2.67499999999999982236431605997495353221893310546875
 
-Since this approximation is slightly closer to 2.67 than to 2.68, it's rounded
-down.
+Uma vez que esta aproximação é ligeiramente mais próxima de 2.67 do que de
+2.68, acaba sendo arredondada para baixo.
 
 If you're in a situation where you care which way your decimal halfway-cases
 are rounded, you should consider using the :mod:`decimal` module.
 Incidentally, the :mod:`decimal` module also provides a nice way to "see" the
 exact value that's stored in any particular Python float ::
+
+Se você estiver em uma situação onde você se importa o caminho que o seu
+decimal meias-casos são arredondados, você deve considerar usar o: mod:
+`módulo` decimal. Aliás, a: mod: `decimal` módulo também fornece uma boa
+maneira de "ver" o valor exato que é armazenado em qualquer bóia Python
+especial ::
+
 
    >>> from decimal import Decimal
    >>> Decimal(2.675)
