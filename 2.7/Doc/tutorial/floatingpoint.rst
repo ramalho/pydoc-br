@@ -39,11 +39,11 @@ ou melhor, ::
 
 e assim por diante. Não importa quantos dígitos você está disposto a escrever,
 o resultado nunca será exatamente 1/3, mas será uma aproximação de cada vez
-melhor 1/3.
+melhor de 1/3.
 
 Da mesma forma, não importa quantos dígitos de base 2 você está disposto a
 usar, o valor decimal 0.1 não pode ser representado exatamente como uma fração
-de base 2. Em base 2, 1/10 é uma fração binária que se repete infinitamente ::
+de base 2. Em base 2, 1/10 é uma fração binária que se repete infinitamente::
 
    0.0001100110011001100110011001100110011001100110011...
 
@@ -52,7 +52,7 @@ uma aproximação.
 
 Em uma máquina típica rodando Python, há 53 bits de precisão disponível para
 um ``float``, de modo que o valor armazenado internamente quando você digita
-o número decimal ``0.1`` é esta fração binária ::
+o número decimal ``0.1`` é esta fração binária::
 
 
    0.00011001100110011001100110011001100110011001100110011010
@@ -198,7 +198,7 @@ arredondando para cima::
    7205759403792794
 
 Portanto, a melhor aproximação possível de 1/10 como um "IEEE-754 double
-precision" é aquele valor dividido por 2\*\* 56, ou ::
+precision" é aquele valor dividido por 2\*\* 56, ou::
 
 
    7205759403792794 / 72057594037927936
