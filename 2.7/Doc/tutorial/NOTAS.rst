@@ -5,7 +5,7 @@
 Notas para os tradutores da versão pt-br
 ########################################
 
-Formatação
+Convenções
 ==========
 
 Siga fielmente a marcação ReST dos arquivos originais.
@@ -15,6 +15,9 @@ cruzadas dependem disso para funcionar.
 
 Limite as linhas de texto a 80 colunas, pois isso facilita a revisão com duas
 versões do texto lado a lado, e também torna mais fácil analizar diffs.
+
+Leia :ref:`documenting-index` para saber mais sobre as convenções usadas na
+documentação oficial de Python.
 
 
 Uso de maiúsculas e minúsculas
@@ -195,6 +198,9 @@ built-in function
 
 character
   caractere (e não "caracter", que não consta no Houaiss nem no Aulete)
+
+container objects
+  coleções
 
 current
   atual (e não "corrente", que é um falso cognato)
