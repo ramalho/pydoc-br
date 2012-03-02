@@ -68,9 +68,9 @@ O resto da linha é um detalhamento que depende do tipo da exceção ocorrida e
 sua causa.
 
 A parte anterior da mensagem de erro apresenta o contexto onde ocorreu a
-exceção. Essa informação é denominada stack traceback (a situação da pilha de
+exceção. Essa informação é denominada *stack traceback* (situação da pilha de
 execução). Em geral, contém uma lista de linhas do código fonte, sem
-apresentar, no entanto, valores lidos da entrada padrão.
+apresentar, no entanto, linhas lidas da entrada padrão.
 
 :ref:`bltin-exceptions` lista as exceções pré-definidas e seus significados.
 
@@ -95,25 +95,25 @@ que uma interrupção gerada pelo usuário será sinalizada pela exceção
    ...         print "Oops!  Não foi um número válido.  Tente novamente..."
    ...
 
-A instrução :keyword:`try` funciona da seguinte maneira.
+A instrução :keyword:`try` funciona da seguinte maneira:
 
 * Primeiramente, a *cláusula try* (o conjunto de instruções entre as palavras
-  reservadas :keyword:`try` e :keyword:`except` ) é executado.
+  reservadas :keyword:`try` e :keyword:`except` ) é executada.
 
 * Se nenhuma exceção ocorrer, a *cláusula except* é ignorada e a execução da
   instrução :keyword:`try` é finalizada.
 
 * Se ocorrer uma execução durante a execução da cláusula try, as instruções
-  remanescentes na cláusula são ignorados. Se o tipo da exceção ocorrida tiver
-  sido previsto junto alguma palavra reservada :keyword:`except`, então essa
-  cláusula será executada. Ao fim, a execução continua depois da instrução
-  :keyword:`try`.
+  remanescentes na cláusula são ignoradas. Se o tipo da exceção ocorrida tiver
+  sido previsto em algum :keyword:`except`, então essa cláusula será
+  executada. Depois disso, a execução continua na próxima instrução após
+  o conjunto *try/except*.
 
 * Se a exceção levantada não foi prevista em nenhuma cláusula
   :keyword:`except` da cláusula :keyword:`try` em que ocorreu, então ela é
   entregue a uma instrução :keyword:`try` mais externa. Se não existir nenhum
-  tratador previsto para tal exceção (será uma *exceção não tratada*), a
-  execução encerra com uma mensagem de erro.
+  tratador previsto para tal exceção, será uma *exceção não tratada* e a
+  execução do programa termina com uma mensagem de erro.
 
 A instrução :keyword:`try` pode ter mais de uma cláusula :keyword:`except`
 para especificar múltiplos tratadores para diferentes exceções. No máximo um
@@ -172,10 +172,10 @@ Quando uma exceção ocorre, ela pode estar associada a um valor chamado
 exceção.
 
 A cláusula except pode especificar uma variável depois do nome (ou da tupla de
-nomes) da exceção. A variável é ligada à sua instância de exceção com os
-argumentos armazenados em ``instancia.args``. Por conveniência, a instância
-define os métodos :meth:`__str__` e :meth:`__getitem__` para que os argumentos
-possam ser acessados sem necessidade de recorrer a ``.args``.
+nomes) da exceção. A variável é associada à instância de exceção capturada,
+com os argumentos armazenados em ``instancia.args``. Por conveniência, a
+instância define o método :meth:`__str__` para que os argumentos possam ser
+exibidos diretamente sem necessidade de acessar ``.args``.
 
 Pode-se também instanciar uma exceção antes de levantá-la e adicionar qualquer
 atributo a ela, conforme desejado. ::
