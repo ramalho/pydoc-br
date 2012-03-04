@@ -143,36 +143,35 @@ acaba sendo necessário na maior parte das sessões com o interpretador. ::
 
 .. _tut-commentary:
 
-Alternatives to the Interactive Interpreter
-===========================================
+Alternativas para o interpretador interativo
+============================================
 
-This facility is an enormous step forward compared to earlier versions of the
-interpreter; however, some wishes are left: It would be nice if the proper
-indentation were suggested on continuation lines (the parser knows if an indent
-token is required next).  The completion mechanism might use the interpreter's
-symbol table.  A command to check (or even suggest) matching parentheses,
-quotes, etc., would also be useful.
+Essa facilidade representa um enorme passo em comparação com versões anteriores
+do interpretador. Todavia, ainda há características desejáveis deixadas de fora.
+Seria interessante se a indentação apropriada fosse sugerida em linhas de continuação,
+pois o parser sabe se um token de indentação é necessário. O mecanismo de autocompletar
+poderia utilizar a tabela de símbolos do interpretador. Também seria útil um comando
+para verificar (ou até mesmo sugerir) o balanceamento de parênteses, aspas, etc.
 
-One alternative enhanced interactive interpreter that has been around for quite
-some time is IPython_, which features tab completion, object exploration and
-advanced history management.  It can also be thoroughly customized and embedded
-into other applications.  Another similar enhanced interactive environment is
-bpython_.
+Um poderoso interpretador interativo alternativo que tem sido bastante utilizado
+já há algum tempo é o IPython_, que possui recursos de autocompletar, exploração
+de objetos e avançado gerenciamento de histórico. Ele também pode ser personalizado
+e incorporada em outras aplicações. Outro poderoso ambiente interativo similar é
+o bpython_.
 
 
 .. rubric:: Footnotes
 
 .. [#] Algumas vezes, o :kbd:`C-S` pode conflitar com a controle de fluxo XON/XOFF
-   (no Konsole por exemplo). Como essa pesquisa é um característica do GNU
-   Readline,você pode associa-lá a outra tecla. Contudo, melhor e mais simples é
+   (no Konsole por exemplo). Como essa pesquisa é um característica da GNU
+   Readline, você pode associa-lá a outra tecla. Contudo, é melhor e mais simples
    simplesmente desativar o XON/XOFF executando o seguinte comando: "stty -ixon"
    no bash, ou seu terminal preferido. Além disso, é necessário que a opção
    mark-modified-lines (da GNU Readline) esteja ativa para que o asterisco apareça
    quando uma linha do histórico é alterada.
-.. [#] Python will execute the contents of a file identified by the
-   :envvar:`PYTHONSTARTUP` environment variable when you start an interactive
-   interpreter.  To customize Python even for non-interactive mode, see
-   :ref:`tut-customize`.
+.. [#] Python executará o conteúdo do arquivo identificado pela variável de
+   ambiente :envvar:`PYTHONSTARTUP` quando se inicia o interpretador no modo 
+   interativo. Para personalizar Python no modo não-interativo, veja :ref:`tut-customize`.
 
 
 .. _GNU Readline: http://tiswww.case.edu/php/chet/readline/rltop.html
