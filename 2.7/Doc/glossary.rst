@@ -1,10 +1,10 @@
 .. _glossary:
 
-********
+*********
 Glossário
-********
+*********
 
-.. se você adicionar novos verbetes, mantenha-os em ordem alfabética!
+.. OBS: se você adicionar novos verbetes, mantenha-os em ordem alfabética!
 
 .. glossary::
 
@@ -26,6 +26,8 @@ Glossário
       O 2to3 está disponível na biblioteca padrão como :mod:`lib2to3`; um ponto de
       entrada é disponibilizado como :file:`Tools/scripts/2to3`.  Veja
       :ref:`2to3-reference`.
+
+.. XXX: falta traduzir
 
    abstract base class
       Abstract base classes complement :term:`duck-typing` by
@@ -66,7 +68,7 @@ Glossário
       mantido em cache em arquivos ``.pyc`` e ``.pyo``, de forma que executar
       um mesmo arquivo é mais rápido na segunda vez (a recompilação dos fontes
       para bytecode não é necessária).  Esta "linguagem intermediária" é
-      adequada para execução em uma :term:`virtual machine`, que executa o
+      adequada para execução em uma :term:`máquina virtual`, que executa o
       código de máquina correspondente para cada bytecode.  Tenha em mente que
       não se espera que bytecodes sejam executados entre máquinas virtuais
       Python diferentes, nem que se mantenham estáveis entre versões de Python.
@@ -194,13 +196,13 @@ Glossário
       estilo :term:`LBYL`, comum em outras linguagens como C, por exemplo.
 
    expressão
-      Uma parte da sintaxe que pode ser avaliada para algum valor.  Em outras
-      palavras, uma expressão é uma composição de elementos de expressão como
-      literais, nomes, atributos de acesso, operadores ou chamadas de função
-      que, juntos, retornam um valor.  Diferentemente de algumas outras
-      linguagens, nem todas as construções em Python são expressões.  Existem
-      ainda :term:`statement` que não podem ser usadas como expressões, tais
-      como :keyword:`print` ou :keyword:`if`.  Atribuições também são
+      Uma parte da sintaxe que pode ser avaliada para produzir algum valor. 
+      Em outras palavras, uma expressão é uma composição de elementos de 
+      expressão como literais, nomes, atributos de acesso, operadores ou 
+      chamadas de função que, juntos, têm um valor.  Diferentemente de algumas
+      outras linguagens, nem todas as construções em Python são expressões. 
+      Existem ainda :term:`instrução` que não podem ser usadas como expressões, 
+      tais como :keyword:`print` ou :keyword:`if`.  Atribuições também são
       declarações, não expressões.
 
    extension module
@@ -438,10 +440,11 @@ Glossário
       criar e utilizar funções chave.
 
    keyword argument
-      Argumentos que são precedidos de um ``nome_de_variavel=`` na chamada.  O
-      nome da variável designa o nome local na função para o qual o valor será
-      atribuído.  ``**`` é usado para aceitar ou passar um dicionário de
-      argumentos nomeados.  Veja também :term:`argument`.
+      (**pt-br**: argumento nomeado) Argumentos que são precedidos de 
+      ``nome_de_variavel=`` na chamada.  O nome da variável designa o nome 
+      local na função ao qual o valor será atribuído.  ``**`` é usado para
+      aceitar argumentos nomeados arbitrários (não pre-definidos) na forma
+      de um dicionário. Veja também :term:`argumento`.
 
    lambda
       Uma função anônima consistindo de uma única :term:`expressão` que é
@@ -451,7 +454,7 @@ Glossário
    LBYL
       Iniciais da expressão em inglês "look before you leap", que significa
       algo como "olhe antes de pisar".  Este estilo de codificação testa as
-      précondições explicitamente antes de fazer chamadas ou buscas.  Este
+      pré-condições explicitamente antes de fazer chamadas ou buscas.  Este
       estilo contrasta com a abordagem :term:`EAFP` e é caracterizada pela
       presença de muitos comandos :keyword:`if`.
 
@@ -504,10 +507,10 @@ Glossário
       Mais informações podem ser encontradas em :ref:`metaclasses`.
 
    método
-      Uma função que é definida dentro do corpo de uma classe.  Se chamada como
-      um atributo de uma instância daquela classe, o método considerará a
-      instância do objeto como seu primeiro :term:`argument` (que comumente é
-      chamado de ``self``).  Veja :term:`function` e :term:`nested scope`.
+      Uma função que é definida dentro do corpo de uma classe. Se chamada como
+      um atributo de uma instância daquela classe, o método receberá a
+      instância do objeto como seu primeiro :term:`argumento` (que comumente
+      é chamado de ``self``). Veja :term:`função` e :term:`nested scope`.
 
    method resolution order
       Ordem de resolução de métodos é a ordem em que os membros de uma classe
@@ -547,6 +550,9 @@ Glossário
       função.  Escrever :func:`random.seed` ou :func:`itertools.izip`, por
       exemplo, deixa claro que estas funções são implementadas pelos módulos
       :mod:`random` e :mod:`itertools` respectivamente.
+      
+.. XXX: A definição de nested scope abaixo tem problemas conceituais e precisa
+        ser revista.     
 
    nested scope
       A habilidade de se referir a uma variável em um definição mais
@@ -559,7 +565,7 @@ Glossário
       globais leem e escrevem no namespace global.  A palavra-chave 
       :keyword:`nonlocal` nos permite escrever em escopos mais externos.
 
-   classes new-style
+   new-style class
       Qualquer classe que herda de :class:`object`.  Isto inclui todos os tipos
       nativos como :class:`list` e :class:`dict`.  Apenas as classes new-style
       podem usar os recursos mais novos e versáteis de Python, como
@@ -567,7 +573,7 @@ Glossário
 
       Mais informações podem ser encontradas em :ref:`newstyle`.
 
-   objecto
+   objeto
       Qualquer dado com estado (atributos ou valores) e comportamento definido
       (métodos).  Também é a classe base primordial de qualquer
       :term:`new-style class`.
@@ -680,10 +686,11 @@ Glossário
       de fato utilize ``list(dictview)``.  Veja :ref:`dict-views`.
 
    máquina virtual
-      Um computador definido inteirmente em software.  A máquina virtual do
+      Um computador definido inteirmente em software. A máquina virtual do
       Python executa :term:`bytecode` gerado pelo compilador de bytecode.
 
    Zen do Python
       Uma listagem dos princípios e filosofias de desenvolvimento que são úteis
       na compreensão e utilização da linguagem.  A listagem pode ser consultada
       digitando-se "``import this``" no prompt interativo.
+
