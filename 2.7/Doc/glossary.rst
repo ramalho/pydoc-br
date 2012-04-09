@@ -31,7 +31,7 @@ Glossário
       Classes base abstratas complementam a :term:`tipagem pato`
       disponibilizando uma forma de definir interfaces quando a aplicação de
       outras técnicas, como o uso de :func:`hasattr`, for um tanto quanto
-      estranho ou mesmo errôneo (por exemplo, com :ref:`métodos mágicos
+      estranha ou mesmo errônea (por exemplo, com :ref:`métodos mágicos
       <new-style-special-lookup>`).  Classes base abstratas também introduzem
       subclasses virtuais, que são classes que não herdam de uma classe mas
       ainda assim são reconhecidas por :func:`isinstance` e :func:`issubclass`;
