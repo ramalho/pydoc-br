@@ -27,8 +27,6 @@ Glossário
       entrada é disponibilizado como :file:`Tools/scripts/2to3`.  Veja
       :ref:`2to3-reference`.
 
-.. XXX: falta traduzir
-
    classe base abstrata
       Classes base abstratas complementam a :term:`tipagem pato`
       disponibilizando uma forma de definir interfaces quando a aplicação de
