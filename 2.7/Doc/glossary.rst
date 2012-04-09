@@ -15,15 +15,15 @@ Glossário
 
    ``...``
       O prompt padrão do shell interativo do Python ao se digitar código em um
-      bloco indentado ou dentro de um par de delimitadores direita-esquerda
-      (como parênteses, colchetes ou chaves).
+      bloco indentado ou dentro de um par de delimitadores direita-esquerda   .. XXX: concordam com "delimitadores direita-esquerda"?
+      (como parênteses, colchetes ou chaves).      
 
    2to3
       Uma ferramenta que tenta converter código Python 2.x para código Python 3.x
-      tratando a maioria das incompatibilidades que podem se detectadas com análise
+      tratando a maioria das incompatibilidades que podem se detectadas com análise   .. XXX: permanece "detectadas" ou "detetadas" pela nova ortografia?
       do código-fonte e navegação na árvore sintática.
 
-      O 2to3 está disponível na biblioteca padrão como :mod:`lib2to3`; um ponto de
+      O 2to3 está disponível na biblioteca padrão como :mod:`lib2to3`; um ponto de   .. XXX: concordam com: "ponto de entrada"?
       entrada é disponibilizado como :file:`Tools/scripts/2to3`.  Veja
       :ref:`2to3-reference`.
 
@@ -38,7 +38,7 @@ Glossário
       veja a documentação do módulo :mod:`abc`.  Python já vem com diversas
       classes base abstratas predefinidas para estruturas de dados (no módulo
       :mod:`collections`), para números (no módulo
-      :mod:`numbers`) e streams (no módulo :mod:`io`).  Você pode criar suas
+      :mod:`numbers`) e streams (no módulo :mod:`io`).  Você pode criar suas   .. XXX: traduzir ou manter "streams"?
       próprias classes base abstratas a partir do módulo :mod:`abc`.
 
    argumento
@@ -55,12 +55,13 @@ Glossário
 
    atributo
       Um valor associado com um objeto que é referenciado por nome utilizando-se
-      expressões com ponto.  Por exemplo, se um objeto *o* tem um atributo *a*,
+      expressões com ponto.  Por exemplo, se um objeto *o* tem um atributo *a*,  .. XXX: alguma sugestão para "expressões com ponto"?
       ele deve ser referenciado como *o.a*.
 
    BDFL
-      Benevolent Dictator For Life, a.k.a. `Guido van Rossum
-      <http://www.python.org/~guido/>`_, Python's creator.
+      Iniciais para Benevolent Dictator For Life, ou ditador benevolente
+      vitalício.  Uma referência ao `Guido van Rossum
+      <http://www.python.org/~guido/>`_, o criador do Python.
 
    bytecode
       O código-fonte Python é compilado para bytecode, a representação interna
@@ -74,7 +75,7 @@ Glossário
       Python diferentes, nem que se mantenham estáveis entre versões de Python.
 
       Uma lista de instruções bytecode pode ser encontrada na documentação
-      para :ref:`the dis module <bytecodes>`.
+      para :ref:`o módulo dis <bytecodes>`.
 
    classe
       Um modelo para criação de objetos definidos pelo usuário.  Definições de
@@ -83,15 +84,15 @@ Glossário
 
    classe clássica
       Qualquer classe que não herda de :class:`object`.  Veja
-      :term:`new-style class`.  Classes clássicas serão removidas no Python
-      3.0.
+      :term:`classe de estilo novo`.  Classes clássicas serão removidas no
+      Python 3.0.
 
    coerção
       A conversão implícita de uma instância de um tipo em outro durante uma
       operação que envolve dois argumentos do mesmo tipo.  Por exemplo,
       ``int(3.15)`` converte o número de ponto flutuante no inteiro ``3``, mas
       em ``3+4.5``, cada argumento é de um tipo diferente (um é inteiro e o
-      outro de ponto flutuante), e ambos devem ser convertidos para o mesmo tipo
+      outro de ponto flutuante) e ambos devem ser convertidos para o mesmo tipo
       antes de serem adicionados, ou senão será levantado um ``TypeError``.  A
       coerção entre dois operandos pode ser executada por meio da função interna
       ``coerce``; assim, ``3+4.5`` é equivalente a chamar
@@ -124,8 +125,8 @@ Glossário
       "CPython" é quando for necessário distinguir esta implementação de outras
       como Jython ou IronPython.
 
-   decorator
-      Uma função que devolve outra função, normalmente aplicada como uma
+   decorador
+      Uma função que devolve outra função, normalmente aplicada como uma   .. XXX: "função...função...função"
       função de transformação usando-se a sintaxe ``@wrapper``.  Exemplos
       comuns de decorators são :func:`classmethod` e :func:`staticmethod`.
 
@@ -142,12 +143,12 @@ Glossário
 
       O mesmo conceito existe para classes, mas é utilizado menos
       frequentemente.  Consulte a documentação e
-      :ref:`function definitions <function>` e
-      :ref:`class definitions <class>` para mais detalhes sobre decorators.
+      :ref:`definições de função <function>` e
+      :ref:`definições de classe <class>` para mais detalhes sobre decoradores.   .. XXX: vai quebrar "ref: function definitions e class definitions"?
 
    descritor
-      Qualquer objeto *new-style* que define os métodos :meth:`__get__`,
-      :meth:`__set__`, ou :meth:`__delete__`.  Quando um atributo de classe é
+      Qualquer objeto *new-style* que define os métodos :meth:`__get__`,   .. XXX: traduzir ou manter "objeto *new-style*"?
+      :meth:`__set__`, ou :meth:`__delete__`.  Quando um atributo de classe é   .. XXX: revisar contexto
       um descritor, seu comportamento especial associado é disparado no acesso
       a um atributo.  Normalmente, ao se utilizar *a.b* para se obter, atribuir
       ou excluir um atributo dispara uma busca no objeto chamado *b* no
@@ -157,13 +158,13 @@ Glossário
       funcionalidades incluindo funções, métodos, propriedades, métodos de
       classe, métodos estáticos e referências para superclasses.
 
-      Para mais informação sobre métodos descritores, veja :ref:`descriptors`.
+      Para mais informação sobre métodos descritores, veja :ref:`descriptors`.   .. XXX: não sei para onde aponta e optei por deixar como estava.
 
    dicionário
-      Um array associativo em que chaves arbitrárias são mapeadas a valores.  
+      Um array associativo em que chaves arbitrárias são mapeadas para valores.
       As chaves podem ser quaisquer objetos que possuam os métodos
-      :meth:`__hash__` e :meth:`__eq__`. Dicionários são chamados de hash na
-      linguagem Perl.
+      :meth:`__hash__` e :meth:`__eq__`. Dicionários são estruturas chamadas
+      de hash na linguagem Perl.
 
    docstring
       Uma string literal que aparece como primeira expressão numa classe,
@@ -174,21 +175,23 @@ Glossário
       do objeto.
 
    duck-typing
+   tipagem pato
       Um estilo de programação que não verifica o tipo do objeto para determinar
       se ele possui a interface correta; em vez disso, o método ou atributo é
       simplesmente chamado ou utilizado ("Se se parece com um pato e grasna como
       um pato, então deve ser um pato.")  Enfatizando interfaces ao invés de
       tipos específicos, o código bem desenvolvido aprimora sua flexibilidade
-      por permitir substituição polimórfica.  Duck-typing evita necessidade de
-      testes que usem :func:`type` ou :func:`isinstance`.  (Note, porém, que
-      duck-typing pode ser complementada com o uso de
-      with :term:`classes base abstratas <abstract base class>`.)  Ao invés
+      por permitir substituição polimórfica.  Tipagem pato evita necessidade de
+      testes que usem :func:`type` ou :func:`isinstance`.  (Note, porém, que a
+      a tipagem pato pode ser complementada com o uso de
+      :term:`classes base abstratas <abstract base class>`.)  Ao invés
       disso, são normalmente empregados testes :func:`hasattr` ou programação
       :term:`EAFP`.
 
    EAFP
+   MFPPP
       Iniciais da expressão em inglês "easier to ask for forgiveness than
-      permission" que significa "é mais fácil perdir perdão do que permissão".
+      permission" que significa "é mais fácil perdir perdão que permissão".
       Este estilo de codificação comum em Python assume a existência de chaves
       ou atributos válidos e captura exceções caso essa premissa se prove falsa.
       Este estilo limpo e rápido se caracteriza pela presença de várias
@@ -206,9 +209,11 @@ Glossário
       declarações, não expressões.
 
    extension module
+   módulo de extensão
       Um módulo escrito em C ou C++, usando a API C de Python para interagir
       tanto com código de usuário quanto do núcleo.
 
+   file object
    objeto arquivo
       Um objeto que expõe uma API orientada a arquivos (com métodos tais como
       :meth:`read()` ou :meth:`write()`) para um recurso subjacente.  
@@ -218,37 +223,38 @@ Glossário
       buffers em memória, sockets, pipes, etc.).  Objetos arquivo também são
       chamados de :dfn:`file-like objects` ou :dfn:`streams`.
 
-      Atualmente há três categorias de objetos arquivo: arquivos binários raw,
+      Atualmente há três categorias de objetos arquivo: arquivos binários raw,   .. XXX: sugestões para "raw" e "bufferizados"?
       arquivos binários bufferizados e arquivos texto.  Suas interfaces estão
       definidas no módulo :mod:`io`.  A forma canônica de se criar um objeto
       arquivo é por meio da função :func:`open`.
 
    objeto semelhante a arquivo
-      Um sinônimo para :term:`file object`.
+      Um sinônimo para :term:`objeto arquivo`.
 
    finder
-      Um objeto que tenta encontrar o :term:`loader` para um módulo.  Ele deve
+      Um objeto que tenta encontrar o :term:`loader` para um módulo.  Ele deve   .. XXX: manter ou traduzir "finder"?
       implementar um método chamado :meth:`find_module`.  Veja :pep:`302` para
       mais detalhes.
 
    floor division
+   divisão pelo piso
       Divisão matemática que arredonda para baixo para o inteiro mais próximo.
-      O operador de floor division é ``//``.  Por exemplo, a expressão
+      O operador de divisão pelo piso é ``//``.  Por exemplo, a expressão
       ``11 // 4`` retorna o valor ``2`` ao invés de ``2.75``, que seria
       retornado pela divisão de ponto flutuante.  Note que ``(-11) // 4`` é
       ``-3`` porque é ``-2.75`` arredondado *para baixo*.  Consulte a
       :pep:`238`.
 
    função
-      Um conjunto de instruções que retorna algum valor para a invoca.  Uma
-      função pode receber zero ou mais argumentos que podem ser usados na
+      Um conjunto de instruções que devolve algum valor para quem a invoca.  
+      Uma função pode receber zero ou mais argumentos que podem ser usados na
       execução do corpo.  Veja também :term:`argumento` e :term:`método`.
 
    __future__
       Um pseudo-módulo o qual os programadores podem usar para habilitar novas
       funcionalidades da linguagem que não são compatíveis com o interpretador
       atual.  Por exemplo, a expressão ``11/4`` atualmente é avaliada com o
-      valor ``2``.  Se o móduo no qual esta expressão estiver sendo executada
+      valor ``2``.  Se o módulo no qual esta expressão estiver sendo executada
       tiver habilitado a *divisão verdadeira* tendo executado::
 
          from __future__ import division
@@ -263,6 +269,7 @@ Glossário
          _Feature((2, 2, 0, 'alpha', 2), (3, 0, 0, 'alpha', 0), 8192)
 
    garbage collection
+   coleta de lixo
       O processo de liberação de memória quando ela não está mais sendo usada.
       O Python executa coleta de lixo por meio da contagem de referências e um
       coletor de lixo cíclico é capaz de detectar e quebrar referências
@@ -271,7 +278,8 @@ Glossário
       .. index:: single: generator
 
    generator
-      Uma função que retorna um iterator.  É parecida com uma função normal,
+   gerador
+      Uma função que retorna um iterador.  É parecida com uma função normal,
       exceto pelo fato de conter instruções :keyword:`yield` para produzir uma
       série de valores que podem ser usados em um laço for ou que podem ser
       obtidos um de cada vez com a função :func:`next`.  Cada :keyword:`yield`
@@ -284,6 +292,7 @@ Glossário
       .. index:: single: generator expression
 
    generator expression
+   expressão geradora
       Uma expressão que retorna um iterador.  É semelhante a uma expressão que
       é seguida por uma expressão :keyword:`for` que define uma variável de um
       laço, um intervalo e uma expressão :keyword:`if` opcional.  A expressão
@@ -293,9 +302,10 @@ Glossário
          285
 
    GIL
-      Veja :term:`global interpreter lock`.
+      Veja :term:`trava global do interpretador`.
 
    global interpreter lock
+   trava global do interpretador
       O mecanismo utilizado pelo interpretador :term:`CPython` para garantir
       que apenas uma thread execute o :term:`bytecode` Python por vez.  Isto
       simplifica a implementação do CPython ao fazer com que o modelo de
@@ -309,7 +319,7 @@ Glossário
       tarefas computacionalmente muito intensas, como compactação ou cálculos
       de hash.  Além disso, o GIL é sempre liberado nas operações de E/S.
 
-      No passados, esforços para criar um interpretador que lidasse plenamente
+      No passado, esforços para criar um interpretador que lidasse plenamente
       com threads (travando dados compartilhados numa granularidade bem mais
       fina) não foram bem sucedidos devido a queda no desempenho ao serem
       executados em processadores de apenas um núcleo.  Acredita-se que superar
@@ -317,6 +327,7 @@ Glossário
       complicada e bem mais difícil de manter.
 
    hashable
+   hasheável
       Um objeto é *hasheável* se tem um valor de hash que nunca muda durante
       seu ciclo de vida (precisa ter um método :meth:`__hash__`) e se pode
       ser comparado com outros objetos (precisa ter um método 
@@ -327,11 +338,11 @@ Glossário
       dicionário e como membro de um conjunto, pois estas estruturas de dados
       utilizam os valores de hash internamente.
 
-      Todos os objetosimutáveis nativos de Python são hasheáveis, enquanto que
-      nenhum dos containers mutáveis (como listas e dicionários) é.  Objetos
-      que são instâncias de classes definidas pelo usuário são hasheáveis por
-      padrão; todos eles são considerados como diferentes e seus valores de
-      hash é dado pela função :func:`id`.
+      Todos os objetos imutáveis nativos de Python são hasheáveis, enquanto
+      que nenhum dos containers mutáveis (como listas e dicionários) é.
+      Objetos que são instâncias de classes definidas pelo usuário são
+      hasheáveis por padrão; todos eles são considerados como diferentes e
+      seus valores de hash é dado pela função :func:`id`.
 
    IDLE
       Um ambiente de desenvolvimento integrado para Python.  IDLE é um editor
