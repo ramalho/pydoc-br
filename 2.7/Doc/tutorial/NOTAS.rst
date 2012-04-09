@@ -179,6 +179,8 @@ maiores informações".
 Traduções adotadas para termos específicos
 ==========================================
 
+Veja também :ref:`terminologia` (traduções adotadas para o glossário).
+
 arrow
   seta
 
