@@ -21,6 +21,11 @@ necessariamente conter uma ou mais traduções alternativas, sendo que a
 primeira tradução deve ser a indicada para uso na primeira ocorrência
 do texto em inglês em cada capítulo da documentação.
 
+Veja também :ref:`traducoes-adotadas` (lista de termos que não fazem parte
+deste glossário, mas que tiveram sua tradução padronizada pelos autores
+desta tradução).
+
+
 ======================= ============================== ============================================================
 termo original          termo adotado                  outras traduções
 ======================= ============================== ============================================================
