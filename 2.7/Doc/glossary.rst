@@ -29,17 +29,19 @@ Glossário
 
 .. XXX: falta traduzir
 
-   abstract base class
-      Abstract base classes complement :term:`duck-typing` by
-      providing a way to define interfaces when other techniques like
-      :func:`hasattr` would be clumsy or subtly wrong (for example with
-      :ref:`magic methods <new-style-special-lookup>`).  ABCs introduce virtual
-      subclasses, which are classes that don't inherit from a class but are
-      still recognized by :func:`isinstance` and :func:`issubclass`; see the
-      :mod:`abc` module documentation.  Python comes with many built-in ABCs for
-      data structures (in the :mod:`collections` module), numbers (in the
-      :mod:`numbers` module), and streams (in the :mod:`io` module). You can
-      create your own ABCs with the :mod:`abc` module.
+   classe base abstrata
+      Classes base abstratas complementam a :term:`tipagem pato`
+      disponibilizando uma forma de definir interfaces quando a aplicação de
+      outras técnicas, como o uso de :func:`hasattr`, for um tanto quanto
+      estranho ou mesmo errôneo (por exemplo, com :ref:`métodos mágicos
+      <new-style-special-lookup>`).  Classes base abstratas também introduzem
+      subclasses virtuais, que são classes que não herdam de uma classe mas
+      ainda assim são reconhecidas por :func:`isinstance` e :func:`issubclass`;
+      veja a documentação do módulo :mod:`abc`.  Python já vem com diversas
+      classes base abstratas predefinidas para estruturas de dados (no módulo
+      :mod:`collections`), para números (no módulo
+      :mod:`numbers`) e streams (no módulo :mod:`io`).  Você pode criar suas
+      próprias classes base abstratas a partir do módulo :mod:`abc`.
 
    argumento
       Um valor passado para uma função ou método, que é atribuído a uma variável
