@@ -1,8 +1,8 @@
 .. _glossary:
 
-*********
+***********
 Glossário
-*********
+***********
 
 .. OBS: se você adicionar novos verbetes, mantenha-os em ordem alfabética!
 

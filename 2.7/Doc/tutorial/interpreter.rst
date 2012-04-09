@@ -97,7 +97,7 @@ Quando os comandos são lidos a partir do console (tty), diz-se que o
 interpretador está em modo interativo. Nesse modo ele solicita um próximo
 comando através do *prompt primário*, tipicamente três sinais de maior
 (``>>>``); para linhas de continuação do comando atual, o *prompt secundário*
-padrão é formado por três pontos (``...``). O interpretador imprime uma
+padrão é formado por três pontos (``...``). O interpretador exibe uma
 mensagem de boas vindas, informando seu número de versão e um aviso de
 copyright antes de exibir o primeiro prompt::
 
