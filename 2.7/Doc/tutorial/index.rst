@@ -67,6 +67,7 @@ Também vale a pena folhear o :ref:`glossary`.
    :hidden:
 
    NOTAS.rst
+   TERMINOLOGIA.rst
 
 .. note:: Sobre esta tradução
 

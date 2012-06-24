@@ -175,9 +175,12 @@ Mais informações
 Use sempre "consulte x para mais informações" em vez de "consulte x para
 maiores informações".
 
+.. _traducoes-adotadas:
 
 Traduções adotadas para termos específicos
 ==========================================
+
+Veja também :ref:`terminologia` (traduções adotadas para o glossário).
 
 arrow
   seta
