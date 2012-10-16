@@ -2,51 +2,51 @@
 .. _library-intro:
 
 ************
-Introduction
+Introdução
 ************
 
-The "Python library" contains several different kinds of components.
+A "Biblioteca Python" contém vários tipos diferentes de componentes.
 
-It contains data types that would normally be considered part of the "core" of a
-language, such as numbers and lists.  For these types, the Python language core
-defines the form of literals and places some constraints on their semantics, but
-does not fully define the semantics.  (On the other hand, the language core does
-define syntactic properties like the spelling and priorities of operators.)
+Ela contém tipos de dados que normalmente seriam considerados parte do "núcleo" de uma
+linguagem, como números e listas. Para esses tipos, o núcleo da linguagem Python
+define a forma de literais e impõe algumas restrições na semântica, mas sem
+definí-la totalmente. (Por outro lado, o núcleo da linguagem
+define propriedades sintáticas como a escrita e as prioridades dos operadores.)
 
-The library also contains built-in functions and exceptions --- objects that can
-be used by all Python code without the need of an :keyword:`import` statement.
-Some of these are defined by the core language, but many are not essential for
-the core semantics and are only described here.
+A biblioteca também contém funções embutidas e exceções --- objetos que podem
+ser usados por qualquer código Python sem a necessidade de uma instrução :keyword: `import`.
+Algumas delas são definidas pelo núcleo da linguagem, mas muitas não são essenciais para
+a semântica principal e são apenas descritas aqui.
 
-The bulk of the library, however, consists of a collection of modules. There are
-many ways to dissect this collection.  Some modules are written in C and built
-in to the Python interpreter; others are written in Python and imported in
-source form.  Some modules provide interfaces that are highly specific to
-Python, like printing a stack trace; some provide interfaces that are specific
-to particular operating systems, such as access to specific hardware; others
-provide interfaces that are specific to a particular application domain, like
-the World Wide Web. Some modules are available in all versions and ports of
-Python; others are only available when the underlying system supports or
-requires them; yet others are available only when a particular configuration
-option was chosen at the time when Python was compiled and installed.
+Entretanto, a maior parte da biblioteca é composta por uma coleção de módulos. Existem
+várias maneiras de dissecá-los. Alguns módulos são escritos em linguagem C e estão embutidos
+no interpretador Python; outros são escritos em Python e importados na
+forma de código fonte. Alguns módulos fornecem interfaces que são muito específicas para o
+Python, como imprimir um traceback (situação da pilha de execução); alguns fornecem interfaces que são específicas
+para um sistema operacional em particular, como o acesso a um hardware específico; outros
+fornecem interfaces que são específicas para um domínio de aplicação, como
+a Rede Mundial (World Wide Web). Alguns módulos estão disponíveis em todas as versões e implementações de
+Python; outros só estão disponíveis quando o sistema em questão os suporta ou
+necessita deles; outros módulos, ainda, estão disponíveis apenas quando uma determinada opção de configuração
+foi escolhida quando o Python estava sendo compilado e instalado.
 
-This manual is organized "from the inside out:" it first describes the built-in
-data types, then the built-in functions and exceptions, and finally the modules,
-grouped in chapters of related modules.  The ordering of the chapters as well as
-the ordering of the modules within each chapter is roughly from most relevant to
-least important.
+Esse manual está organizado "de dentro para fora:" primeiro ele descreve os
+tipos de dados embutidos, depois as funções e exceções embutidas, e finalmente os módulos,
+agrupados em capítulos dos módulos relacionados. A ordem dos capítulos, assim como
+a ordem dos módulos dentro de cada capítulo é geralmente do mais relevante para
+o menos importante.
 
-This means that if you start reading this manual from the start, and skip to the
-next chapter when you get bored, you will get a reasonable overview of the
-available modules and application areas that are supported by the Python
-library.  Of course, you don't *have* to read it like a novel --- you can also
-browse the table of contents (in front of the manual), or look for a specific
-function, module or term in the index (in the back).  And finally, if you enjoy
-learning about random subjects, you choose a random page number (see module
-:mod:`random`) and read a section or two.  Regardless of the order in which you
-read the sections of this manual, it helps to start with chapter
-:ref:`built-in-funcs`, as the remainder of the manual assumes familiarity with
-this material.
+Isso significa que se alguém começar a ler esse manual desde o princípio, e pular para o
+próximo capítulo quando ficar chato, ele terá uma visão geral bem razoável dos
+módulos disponíveis e das áreas de aplicação que são suportadas pela biblioteca
+do Python. Naturalmente, não é *necessário* lê-lo como um romance --- é possível
+navegar pelo índice (no início do manual), ou procurar uma função específica,
+módulo ou termo no índice remissivo (no final). E, finalmente, se gostar
+de aprender sobre assuntos aleatórios, escolha uma página ao acaso (veja o módulo
+:mod:`random`) e leia uma ou duas seções. Independente da ordem que esse
+manual for lido, seria útil se começasse pelo capítulo
+:ref:`built-in-funcs`, já que todo o restante do material pressupõe familiaridade
+com essa seção.
 
-Let the show begin!
+Vamos começar o show!
 
