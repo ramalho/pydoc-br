@@ -7,101 +7,108 @@ Terminologia
 
 .. a versão inicial deste arquivo foi gerada pelo script Docs/tutorial/tools/extract_terms
 
-A tabela abaixo relaciona todas as entradas do arquivo
-``glossary.rst`` original (v. 2.7). A coluna central contém o termo adotado
-na tradução brasileira e a última coluna contém traduções alternativas.
+A tabela abaixo relaciona todos os termos que são entradas no arquivo
+``glossary.rst`` original (v. 2.7).
 
-O termo adotado deve ser preferencialmente português, mas pode ser o termo
-original quando nenhuma tradução é adequada ou quando o termo original já
-está consagrado pelo uso (ex. string em vez de "cadeia de caracteres").
+A tradução na coluna 3 poderá ou não ser adotada como termo preferencial.
+A coluna 1 indica qual o termo adotado na documentação traduzida.
 
-A última coluna pode estar em branco quando o termo adotado é uma tradução.
-Se o termo adotado é o original em inglês, a última coluna deve
-necessariamente conter uma ou mais traduções alternativas, sendo que a
-primeira tradução deve ser a indicada para uso na primeira ocorrência
-do texto em inglês em cada capítulo da documentação.
+Nossa política será adotar o termo em português como preferencial, a menos
+que o termo original já esteja consagrado pelo uso (ex. "string") e não
+exista uma tradução difundida na comunidade Python brasileira.
+
+Quando o termo adotado for o original em inglês, a tradução da coluna 3 será
+colocada entre parênteses após a primeira ocorrência do termo original em
+cada capítulo (documento ``.rst``) da documentação.
+
+Por exemplo, para "argument" adotamos "argumento", mas para "duck typing"
+a tradução "tipagem pato" será usado apenas ao apresentar o termo original
+para o leitor.
+
+A coluna 4 é opcional, e serve para registrar traduções alternativas a
+título de sugestão para os tradutores.
 
 Veja também :ref:`traducoes-adotadas` (lista de termos que não fazem parte
 deste glossário, mas que tiveram sua tradução padronizada pelos autores
 desta tradução).
 
 
-======================= ============================== ============================================================
-termo original          termo adotado                  outras traduções
-======================= ============================== ============================================================
-``>>>``                 ``>>>``
-``...``                 ``...``
-2to3                    2to3?
-abstract base class     classe base abstrata
-argument                argumento
-attribute               atributo
-BDFL                    BDFL                           "Ditador benevolente vitalício"
-bytecode                bytecode
-class                   classe
-classic class           classe clássica                classe estilo antigo
-coercion                coerção                        conversão automática
-complex number          número complexo
-context manager         gerenciador de contexto
-CPython                 CPython
-decorator               decorador
-descriptor              descritor
-dictionary              dicionário
-docstring               docstring                      string de documentação
-duck-typing             duck-typing                    tipagem-pato
-EAFP                    EAFP                           "MFPPP: Mais fácil pedir perdão que permissão."
-expression              expressão
-extension module        módulo de extensão
-file object             objeto arquivo
-file-like object        objeto arquivo ou similar
-finder                  finder?
-floor division          divisão pelo piso
-function                função
-__future__              __future__                     __future__
-garbage collection      coleta de lixo
-generator               gerador
-generator expression    expressão geradora
-GIL                     GIL                            trava global do interpretador
-global interpreter lock trava global do interpretador
-hashable                hashable?
-IDLE                    IDLE                           IDLE
-immutable               imutável
-integer division        divisão entre inteiros
-importer                importador                     módulo que faz a importação
-interactive             interativo
-interpreted             interpretado
-iterable                iterável
-iterator                iterador
-key function            função chave                   função para gerar chave de ordenação
-keyword argument        argumento nomeado
-lambda                  lambda                         lambda
-LBYL                    LBYL                           "OAS: Olhe antes de saltar"
-list                    lista
-list comprehension      list comprehension             abrangência de lista, listcomp
-loader                  loader?
-mapping                 mapeamento?
-metaclass               metaclasse
-method                  método
-method resolution order ordem de resolução de métodos
-MRO                     MRO
-mutable                 mutável
-named tuple             tupla nomeada
-namespace               namespace                      espaço nominal, espaço de nomes
-nested scope            escopo aninhado
-new-style class         classe estilo novo
-object                  objeto
-positional argument     argumento posicional
-Python 3000             Python 3000
-Pythonic                pythônico                      (em PT não se usa inicial maiúscula em adjetivos como este)
-reference count         contagem de referências
-__slots__               __slots__
-sequence                sequência
-slice                   fatia
-special method          método especial
-statement               instrução                      comando, declaração (em contextos espefíficos)
-struct sequence         struct sequence?
-triple-quoted string    string entre aspas triplas
-type                    tipo
-view                    view?
-virtual machine         máquina virtual
-Zen of Python           Zen do Python
-======================= ============================== ============================================================
+======= ======================= ============================== =====================================================
+adotado termo original          tradução                       outras traduções
+======= ======================= ============================== =====================================================
+orig.   ``>>>``                 ``>>>``
+orig.   ``...``                 ``...``
+orig.   2to3                    2to3?
+trad.   abstract base class     classe base abstrata
+trad.   argument                argumento
+trad.   attribute               atributo
+trad.   BDFL                    BDFL                           "Ditador benevolente vitalício"
+trad.   orig.   bytecode                bytecode
+trad.   class                   classe
+trad.   classic class           classe clássica                classe estilo antigo
+trad.   coercion                coerção                        conversão automática
+trad.   complex number          número complexo
+trad.   context manager         gerenciador de contexto
+orig.   CPython                 CPython
+trad.   decorator               decorador
+trad.   descriptor              descritor
+trad.   dictionary              dicionário
+orig.   docstring               docstring                      string de documentação
+orig.   duck-typing             tipagem-pato
+trad.   EAFP                    EAFP                           "MFPPP: Mais fácil pedir perdão que permissão."
+trad.   expression              expressão
+trad.   extension module        módulo de extensão
+trad.   file object             objeto arquivo
+trad.   file-like object        objeto arquivo ou similar
+trad.   finder                  finder
+trad.   floor division          divisão pelo piso
+trad.   function                função
+trad.   __future__              __future__                     __future__
+trad.   garbage collection      coleta de lixo
+trad.   generator               gerador
+trad.   generator expression    expressão geradora
+orig.   GIL                     GIL                            trava global do interpretador
+trad.   global interpreter lock trava global do interpretador
+orig.   hashable                hashable?
+orig.   IDLE                    IDLE
+trad.   immutable               imutável
+trad.   integer division        divisão entre inteiros
+trad.   importer                importador                     módulo que faz a importação
+trad.   interactive             interativo
+trad.   interpreted             interpretado
+trad.   iterable                iterável
+trad.   iterator                iterador
+trad.   key function            função chave                   função para gerar chave de ordenação
+trad.   keyword argument        argumento nomeado
+orig.   lambda                  lambda
+trad.   LBYL                    LBYL                           "OAS: Olhe antes de saltar"
+trad.   list                    lista
+orig.   list comprehension      abrangência de lista           listcomp
+orig.   loader                  loader?
+trad.   mapping                 mapeamento?
+trad.   metaclass               metaclasse
+trad.   method                  método
+trad.   method resolution order ordem de resolução de métodos
+trad.   MRO                     MRO
+trad.   mutable                 mutável
+trad.   named tuple             tupla nomeada
+orig.   namespace               espaço de nomes                      espaço de nomes
+trad.   nested scope            escopo aninhado
+trad.   new-style class         classe estilo novo
+trad.   object                  objeto
+trad.   positional argument     argumento posicional
+orig.   Python 3000             Python 3000
+trad.   Pythonic                pythônico                      (em PT não se usa inicial maiúscula em adjetivos como este)
+trad.   reference count         contagem de referências
+orig.   __slots__               __slots__
+trad.   sequence                sequência
+trad.   slice                   fatia
+trad.   special method          método especial
+trad.   statement               instrução                      comando, declaração (em contextos espefíficos)
+trad.   struct sequence         struct sequence?
+trad.   triple-quoted string    string entre aspas triplas
+trad.   type                    tipo
+orig.   view                    view?
+trad.   virtual machine         máquina virtual
+trad.   Zen of Python           Zen do Python
+======= ======================= ============================== =====================================================
