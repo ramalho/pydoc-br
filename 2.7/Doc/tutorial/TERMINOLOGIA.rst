@@ -7,19 +7,20 @@ Terminologia
 
 .. a versão inicial deste arquivo foi gerada pelo script Docs/tutorial/tools/extract_terms
 
-A tabela abaixo relaciona todos os termos que são entradas no arquivo
-``glossary.rst`` original (v. 2.7).
+A tabela abaixo relaciona todos os termos que são entradas no
+:ref:`glossary` (arquivo ``glossary.rst``, original v. 2.7).
 
 A tradução na coluna 3 poderá ou não ser adotada como termo preferencial.
-A coluna 1 indica qual o termo adotado na documentação traduzida.
+A coluna 1 indica se usaremos o termo traduzido ou o original.
 
-Nossa política será adotar o termo em português como preferencial, a menos
+Nossa política é usar preferencialmente o termo em português, a menos
 que o termo original já esteja consagrado pelo uso (ex. "string") e não
 exista uma tradução difundida na comunidade Python brasileira.
 
 Quando o termo adotado for o original em inglês, a tradução da coluna 3 será
 colocada entre parênteses após a primeira ocorrência do termo original em
-cada capítulo (documento ``.rst``) da documentação.
+cada capítulo da documentação (em geral um capítulo corresponde a um arquivo
+``.rst``).
 
 Por exemplo, para "argument" adotamos "argumento", mas para "duck typing"
 a tradução "tipagem pato" será usado apenas ao apresentar o termo original
@@ -43,7 +44,7 @@ trad.   abstract base class     classe base abstrata
 trad.   argument                argumento
 trad.   attribute               atributo
 trad.   BDFL                    BDFL                           "Ditador benevolente vitalício"
-trad.   orig.   bytecode                bytecode
+orig.   bytecode                bytecode                       código binário
 trad.   class                   classe
 trad.   classic class           classe clássica                classe estilo antigo
 trad.   coercion                coerção                        conversão automática
